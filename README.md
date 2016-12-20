@@ -1,5 +1,5 @@
 
-# Jupyter Notebook Server on Raspberry PI 2 and 3
+# Jupyter Notebook Server on Raspberry Pi 2 and 3
 
 ## Intro
 Sliderules are a thing of the past, decent calculators are hard to get by these days and spreadsheets are somewhat cumbersome, at times outright dangerous or just not the right tool for many tasks. Project Jupyter not only revolutionizes data-heavy research in all domains - it also boosts personal productivity for problems on a much smaller scale. 
@@ -132,18 +132,18 @@ You should now be able to access the system from any browser on your network via
 If you prefer a setp by step installation, execute the respective shell scripts in the order given below: 
 
 * To install Python 3.5.1 run ``` install_python.sh```
-* To install TeX run ```install_tex.sh'''
+* To install TeX run ```install_tex.sh```
 * To install Jupyter run ```install_jupyter.sh```
 * To configure Jupyter run ```configure_jupyter.sh```
 * To install scientific stack run ```install_stack.sh```
 
-### Python 3.5.1 Installation
+### Python 3.5.2 Installation
 Instructions for building Python from source can be found [here](http://sowingseasons.com/blog/building-python-3-4-on-raspberry-pi-2.html). I adjusted them to suit installtion of Python 3.5.1 and turned the instructions into a script:
 
 ```bash
 #!/bin/bash
 # script name:     install_python.sh
-# last modified:   2015/09/30
+# last modified:   2016/11/6
 # sudo:            yes
 #
 # see: http://sowingseasons.com/blog/building-python-3-4-on-raspberry-pi-2.html
@@ -154,7 +154,7 @@ if ! [ $(id -u) = 0 ]; then
 fi
 
 #Python 3 version to install
-version="3.5.1"
+version="3.5.2"
 
 #------------------------------------------------------
 apt-get install -y build-essential libncursesw5-dev
