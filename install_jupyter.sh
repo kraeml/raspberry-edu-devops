@@ -1,6 +1,6 @@
 #!/bin/bash
 # script name:     install_jupyter.sh
-# last modified:   2015/09/22
+# last modified:   2017/02/06
 # sudo:            yes
 
 if ! [ $(id -u) = 0 ]; then
@@ -8,11 +8,12 @@ if ! [ $(id -u) = 0 ]; then
    exit 1
 fi
 
-pip install jupyter
+pip3 install jupyter
 
 #------------------------------------------------------
 apt-get -y install libncurses5-dev
+apt-get -y install python-dev
 #------------------------------------------------------
 
-pip install readline
-pip install ipyparallel
+pip3 install readline
+pip3 install ipyparallel

@@ -1,9 +1,49 @@
+# 05 Mar 2017
+* I removed the softlink that made pip run pip3 and replaced all occurrences of pip in the scripts by pip3 - thanks to [Priyabrata Dash](http://priyabgeek.blogspot.ca/2017/02/raspberry-pi-experiments-running.html?m=1&utm_content=buffer3c732&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer) for the suggestion. 
+
+```bash
+sed -i -- 's/pip/pip3/g' *.sh 
+```
+
+* After running the command above I also corrected README.md in similar fashion and made some minor cosmetic corrections as the command above also replces legit occurrences of pip3 into pip33.
+
+# 06 February 2017
+* merged pull request fixing dependency issue
+* adjusted modification dates in two scripts affected by pull request
+* made respective changes in the writeup
+
+# 14 January 2017
+* added a directory ```additional_kernels``` 
+* moved files related to R, Julia etc. into this directory
+* added ```ruby_on_raspberry_pi.md```, a minimalistic instruction for adding the IRuby kernel.
+
+# 3 January 2017
+* nothing spectacular - just added year 2017 to LICENCE.md - HAPPY NEW YEAR
+
+# 29 December 2016
+* Added ```libreadline-dev``` and ```libbz2-dev``` in ```install_python.sh```. Without readline the standard Python prompt is unusable as it generates segmentation faults and Bus errors. ```IPython``` was unaffected as the Jupyter team switched to prompt-toolkit a while back.
+
+# 28 December 2016
+* minor changes to configure_jupyter.sh: if notebook directory exists, we keep it (-p) if configuration file exeists, we overwrite it (-y)
+* this way the script can be re-run if things go wrong
+* I also found ```grep "^[^#;]" /home/jns/.jupyter/jupyter_notebook_config.py``` to be useful to just print out the lines that are active in the configuration file
+
+# 25 December 2016
+* switched to Python 3.6.0. Note that I tried to do this on an exiting installation and ended up in a mess
+* changed the server port to 8888 as this seems to be standard
+* made the server listen on all IP addresses
+* deleted ```configure_disk_image.sh```
+* cleaned up ```configure_jupyter.sh```
+
+# 22 December 2016
+* as of version 5.0.0 nbconvert uses xelatex by default for latex export, improving unicode and font support - I added one line at the end of ```install_tex.sh```
+
 # 15 October 2016
 * Now Julia has a bug in her hair...
 * I added R and the IRkernel
 
 # 3 October 2016
-* Update of padas from pandas-0.18.1 to pandas-0.19.0 requires cython.
+* Update of pandas from pandas-0.18.1 to pandas-0.19.0 requires cython.
 * Before manually updating pandas install cyton first:
 ```bash
 sudo pip install cython
