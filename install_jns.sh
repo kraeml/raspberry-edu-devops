@@ -11,6 +11,6 @@ fi
 # run scripts
 ./install_python.sh
 ./install_jupyter.sh
-sudo -u jns ./configure_jupyter.sh
+sudo -u $LOGNAME ./configure_jupyter.sh
 ./install_tex.sh
 ./install_stack.sh
