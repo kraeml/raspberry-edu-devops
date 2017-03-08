@@ -5,7 +5,7 @@
 
 if [ $(id -u) = 0 ]
 then
-   echo "to be run as $(logname)"
+   echo "to be run as $(LOGNAME)"
    exit 1
 fi
 
@@ -14,7 +14,7 @@ fi
 # if configuration file exeists, we overwrite it (-y)
 
 jupyter notebook -y --generate-config
-cd $home
+cd $HOME
 mkdir -p notebooks
 
 target=~/.jupyter/jupyter_notebook_config.py
