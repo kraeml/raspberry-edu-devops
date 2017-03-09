@@ -11,6 +11,7 @@ fi
 apt-get install -y pandoc
 
 pip3 install jupyter
+pip3 install bash_kernel
 
 #------------------------------------------------------
 apt-get -y install libncurses5-dev
