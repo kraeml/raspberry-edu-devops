@@ -8,6 +8,8 @@ if ! [ $(id -u) = 0 ]; then
    exit 1
 fi
 
+apt-get install -y pandoc
+
 pip3 install jupyter
 
 #------------------------------------------------------
