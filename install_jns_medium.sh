@@ -1,10 +1,10 @@
 #!/bin/bash
 # script name:     install_jns.sh
-# last modified:   2015/09/30
-# sudo:            yes
+# last modified:   2017/03/09
+# sudo:            no
 
-if ! [ $(id -u) = 0 ]; then
-   echo "to be run with sudo"
+if [ $(id -u) = 0 ]; then
+   echo "to be run without sudo"
    exit 1
 fi
 
