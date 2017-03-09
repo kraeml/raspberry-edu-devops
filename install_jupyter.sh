@@ -19,3 +19,5 @@ apt-get -y install python-dev
 
 pip3 install readline
 pip3 install ipyparallel
+
+python3 -m bash_kernel.install

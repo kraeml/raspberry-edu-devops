@@ -13,4 +13,6 @@ sudo ./install_python.sh
 sudo ./install_jupyter.sh
 ./configure_jupyter.sh
 sudo ./install_tex.sh
+sudo ./install_dependencies.sh
+./install_nodered.sh
 #./install_stack.sh
