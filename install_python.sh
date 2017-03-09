@@ -10,33 +10,8 @@ if ! [ $(id -u) = 0 ]; then
    exit 1
 fi
 
-#Python 3 version to install
-version="3.6.0"
-
-if [ ${version} = $(python3 --version | cut -d\  -f 2) ]
-then
-    exit
-fi
-
 #------------------------------------------------------
-apt-get install -y build-essential libncursesw5-dev
-apt-get install -y libgdbm-dev libc6-dev
-apt-get install -y zlib1g-dev libsqlite3-dev tk-dev
-apt-get install -y libssl-dev openssl
-apt-get install -y libreadline-dev libbz2-dev
+apt-get install -y python3 python3-dev python3-pip 
 #------------------------------------------------------
 
-wget "https://www.python.org/ftp/python/$version/Python-$version.tgz"
-tar zxvf "Python-$version.tgz"
-cd "Python-$version"
-./configure
-make
-make install
-pip3 install pip --upgrade
-
-# clean up
-
-cd ..
-
-rm -rf "./Python-$version"
-rm "./Python-$version.tgz"
+pip3 install -U pip
