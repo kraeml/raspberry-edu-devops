@@ -5,7 +5,7 @@
 
 if [ $(id -u) = 0 ]
 then
-   echo "to be run as $(LOGNAME)"
+   echo "to be run as normal User"
    exit 1
 fi
 
