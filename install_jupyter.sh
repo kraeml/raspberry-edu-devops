@@ -24,4 +24,5 @@ pip3 install ipyparallel
 python3 -m bash_kernel.install
 
 cp jupyter.service /etc/systemd/system/jupyter.service
+sudo systemctl daemon-reload
 service jupyter start
