@@ -1,11 +1,19 @@
 [Unit]
 Description=cloud9
+Wants=network.target
 
 [Service]
+Type=simple
 ExecStart=/usr/bin/node /home/pi/cloud9/server.js -w /home/pi -l 0.0.0.0 -a jns:jns
-Restart=always
+Restart=on-failure
+Nice=5
 User=pi
 Group=pi
 Environment=PATH=/usr/bin:/usr/local/bin
 Environment=NODE_ENV=production
 WorkingDirectory=/home/pi/cloud9/
+# Tag things in the log
+SyslogIdentifier=Cloud9
+
+[Install]
+WantedBy=multi-user.target
