@@ -1,0 +1,11 @@
+[Unit]
+Description=jupyter
+
+[Service]
+ExecStart=/usr/local/bin/jupyter-notebook
+Restart=always
+User=pi
+Group=pi
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/pi/
