@@ -12,5 +12,8 @@ git clone https://github.com/c9/core.git ~/cloud9
 cd ~/cloud9
 ./scripts/install-sdk.sh
 cd -
+sudo cp cloud9.service /etc/systemd/system/
+sudo chmod 755 /etc/systemd/system/cloud9.service
+sudo service cloud9 start
 
 #node server.js -p 8181 -l 0.0.0.0 -w /home/pi -a :
