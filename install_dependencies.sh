@@ -12,4 +12,4 @@ fi
 
 pip3 install rpi.gpio
 apt-get update
-apt-get install -y curl sudo sense-hat
+apt-get install -y curl sudo sense-hat expect python-rpi.gpio
