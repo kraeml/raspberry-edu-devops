@@ -7,9 +7,9 @@ if [ $(id -u) = 0 ]; then
    echo "to be run with no sudo"
    exit 1
 fi
-sudo apt-get install tmux
-git clone https://github.com/c9/core.git ~/cloud9
-cd ~/cloud9
+sudo apt-get install -y tmux
+git clone https://github.com/c9/core.git ${HOME}/cloud9
+cd ${HOME}/cloud9
 ./scripts/install-sdk.sh
 cd -
 sudo cp cloud9.service /etc/systemd/system/
