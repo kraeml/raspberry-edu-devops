@@ -14,6 +14,7 @@ cd ${HOME}/cloud9
 cd -
 sudo cp cloud9.service /etc/systemd/system/
 sudo chmod 755 /etc/systemd/system/cloud9.service
+sudo systemctl daemon-reload
 sudo service cloud9 start
 
 #node server.js -p 8181 -l 0.0.0.0 -w /home/pi -a :
