@@ -13,3 +13,4 @@ chmod u+x /tmp/update-nodejs-and-nodered
 ./expect_nodered.sh
 #rm /tmp/update-nodejs-and-nodered
 sudo systemctl enable nodered.service
+sudo service nodered start
