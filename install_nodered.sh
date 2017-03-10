@@ -1,4 +1,4 @@
-#!/usr/bin/expect -f
+#!/bin/bash
 # script name:     install_jns.sh
 # last modified:   2017/03/09
 # sudo:            no
@@ -8,13 +8,8 @@ if [ $(id -u) = 0 ]; then
    exit 1
 fi
 
-spawn bash <(curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered)
-expect "Are you really sure you want to do this ? (y/N) ? "
-send "y\n"
+curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered > /tmp/update-nodejs-and-nodered
+chmod u+x /tmp/update-nodejs-and-nodered
+./expect_nodered.sh
+rm /tmp/update-nodejs-and-nodered
 sudo systemctl enable nodered.service
-
-##!/usr/bin/expect -f
-#spawn ssh-add /home/vagrant/.ssh/id_rsa
-#expect "Enter passphrase for /home/vagrant/.ssh/id_rsa:"
-#send "geheim\n";
-#interact
