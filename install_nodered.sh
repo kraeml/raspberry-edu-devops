@@ -11,5 +11,5 @@ fi
 curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered > /tmp/update-nodejs-and-nodered
 chmod u+x /tmp/update-nodejs-and-nodered
 ./expect_nodered.sh
-rm /tmp/update-nodejs-and-nodered
+#rm /tmp/update-nodejs-and-nodered
 sudo systemctl enable nodered.service
