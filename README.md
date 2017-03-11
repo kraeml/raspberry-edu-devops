@@ -1,5 +1,7 @@
 # Jupyter Notebook Server on Raspberry Pi 2 and 3
 
+May could work on Pi B.
+
 ## Intro
 Sliderules are a thing of the past, decent calculators are hard to get by these days and spreadsheets are somewhat cumbersome, at times outright dangerous or just not the right tool for many tasks. Project Jupyter not only revolutionizes data-heavy research in all domains - it also boosts personal productivity for problems on a much smaller scale. 
 
@@ -27,13 +29,7 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install -y pandoc
 sudo apt-get install -y git
-```
-
-Set up new user jns (jns stands for ***j***upyter ***n***otebook ***s***erver) and add the new user to the groups sudo and ssh as we are going to use this user to perform the installation and later to start the server.
-
-```bash
-sudo adduser jns
-sudo usermod -aG sudo,ssh jns
+sudo apt-get install -y screen
 ```
 
 ## Clone the GitHub Repository
@@ -41,15 +37,14 @@ sudo usermod -aG sudo,ssh jns
 Reboot and log in as user jns via ssh. From the terminal run:
 
 ```bash
-cd /home/jns
-git clone https://github.com/kleinee/jns.git
+cd
+git clone https://github.com/kraeml/jns.git
 cd jns
-chmod +x *.sh
 ```
 
 ## Server Installation
 ```bash
-sudo ./install_jns.sh
+./install_jns_medium.sh
 ```
 
 This will create a directory notebooks in the home directory of user jns, clone this repository to get the installtion scripts, make the scripts executable and then run install_jns.sh which does the following:
@@ -58,9 +53,13 @@ This will create a directory notebooks in the home directory of user jns, clone 
 * install Jupyter
 * (pre)-configure the notebook server
 * install TeX
-* install scientific stack
+* install node-red
+* install cloud9
+* install scientific stack (not in medium)
 
 The script is nothing spectacular - just convenience to save us some typing. The next section briefly describes the individual steps.
+
+__TODO__ Changes made from kraeml
 
 ```bash
 #!/bin/bash
@@ -81,10 +80,12 @@ sudo -u jns ./configure_jupyter.sh
 ./install_stack.sh
 ```
 
-If everything goes to plan you end up with a fully functional Jupyter Notebook server!!! To start the server just run:
+If everything goes to plan you end up with a fully functional Jupyter Notebook server!!! The server should start on startup.
+
+Other weise run
 
 ```bash
-jupyter notebook 
+sudo service jupyter restart
 ```
 You should now be able to access the system from any browser on your network via the IP address of the Raspberry Pi on port 8888. The **notebook server password*** set during installation is ***jns***. This can be changed if requirerd.
 
