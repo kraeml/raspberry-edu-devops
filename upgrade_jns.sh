@@ -1,14 +1,17 @@
 #!/bin/bash
 # script name:     upgrade_jns.sh
-# last modified:   2017/03/05
-# sudo:            yes
+# last modified:   2017/03/11
+# sudo:            no
 
-if [ $(whoami) != 'root' ]; then
-        echo "Must be root to run $0"
-        exit 1;
+if [ $(id -u) = 0 ]; then
+   echo "to be run with no sudo"
+   exit 1
 fi
 
 START=$SECONDS
+
+sudo apt-get update
+sudo apt-get upgrade
 
 # generate list of outdated packages
 echo ">>> CHECKING INSTALLATION FOR OUTDATED PACKAGES..."
@@ -16,14 +19,23 @@ lst=(`pip3 list --outdated --format='legacy'|grep -o '^\S*'`)
 
 # process list of outdated packages
 if [ ${#lst[@]} -eq 0 ]; then
-    echo ">>> INSTALLATION UP TO DATE"
-    exit 1;
+    echo ">>> PIP INSTALLATION UP TO DATE"
 else
-    echo ">>> UPGRADING PACKAGES"
+    echo ">>> PIP UPGRADING PACKAGES"
     for i in ${lst[@]}; do
-        pip3 install ${i} --upgrade
+      sudo pip3 install ${i} --upgrade
     done
 fi
-
+if [[ -d $HOME/cloud9 ]]; then
+  cd ${HOME}/cloud9
+  git pull origin master
+  ./scripts/install-sdk.sh
+  cd -
+fi
+if [[ -f /usr/bin/node-red ]]; then
+  curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered > /tmp/update-nodejs-and-nodered
+  chmod u+x /tmp/update-nodejs-and-nodered
+  ./expect_nodered.sh
+fi
 ELAPSED=$(($SECONDS - $START))
 echo $ELAPSED
