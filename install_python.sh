@@ -14,4 +14,5 @@ fi
 apt-get install -y python3 python3-dev python3-pip
 #------------------------------------------------------
 
+# No update while apt-get install pip
 pip3 install -U pip

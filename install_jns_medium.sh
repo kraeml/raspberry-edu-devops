@@ -9,11 +9,8 @@ if [ $(id -u) = 0 ]; then
 fi
 
 # run scripts
-sudo ./install_python.sh
-sudo ./install_jupyter.sh
-./configure_jupyter.sh
+./install_jns_fast.sh
 sudo ./install_tex.sh
 sudo ./install_dependencies.sh
 ./install_nodered.sh
 ./install_cloud9.sh
-#./install_stack.sh

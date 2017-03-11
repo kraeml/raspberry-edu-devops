@@ -12,5 +12,3 @@ fi
 sudo ./install_python.sh
 sudo ./install_jupyter.sh
 ./configure_jupyter.sh
-#./install_tex.sh
-#./install_stack.sh
