@@ -1,7 +1,7 @@
 #!/bin/bash
 # script name:     upgrade_jns.sh
-# last modified:   2017/03/05
-# sudo:            yes
+# last modified:   2017/03/11
+# sudo:            no
 
 if [ $(id -u) = 0 ]; then
    echo "to be run with no sudo"
@@ -19,12 +19,11 @@ lst=(`pip3 list --outdated --format='legacy'|grep -o '^\S*'`)
 
 # process list of outdated packages
 if [ ${#lst[@]} -eq 0 ]; then
-    echo ">>> INSTALLATION UP TO DATE"
-    exit 1;
+    echo ">>> PIP INSTALLATION UP TO DATE"
 else
-    echo ">>> UPGRADING PACKAGES"
+    echo ">>> PIP UPGRADING PACKAGES"
     for i in ${lst[@]}; do
-        sudo pip3 install ${i} --upgrade
+      sudo pip3 install ${i} --upgrade
     done
 fi
 if [[ -d $HOME/cloud9 ]]; then

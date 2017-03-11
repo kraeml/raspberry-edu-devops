@@ -11,8 +11,13 @@ if ! [ $(id -u) = 0 ]; then
 fi
 
 #------------------------------------------------------
-apt-get install -y python3 python3-dev python3-pip
+apt-get install -y \
+  python3 \
+  python3-dev \
+  python3-pip \
+  zlib1g-dev \
+  libjpeg-dev
 #------------------------------------------------------
 
 # No update while apt-get install pip
-pip3 install -U pip
+# pip3 install -U pip
