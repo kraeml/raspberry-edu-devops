@@ -8,9 +8,13 @@ if [ $(id -u) = 0 ]; then
    exit 1
 fi
 
-curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered > /tmp/update-nodejs-and-nodered
-chmod u+x /tmp/update-nodejs-and-nodered
-./expect_nodered.sh
-#rm /tmp/update-nodejs-and-nodered
-sudo systemctl enable nodered.service
-sudo service nodered start
+if [[ -f /usr/bin/node-red ]]; then
+  echo "Nodered already installed"
+else
+  curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered > /tmp/update-nodejs-and-nodered
+  chmod u+x /tmp/update-nodejs-and-nodered
+  ./expect_nodered.sh
+  #rm /tmp/update-nodejs-and-nodered
+  sudo systemctl enable nodered.service
+  sudo service nodered start
+fi
