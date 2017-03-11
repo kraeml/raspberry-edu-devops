@@ -3,12 +3,15 @@
 # last modified:   2017/03/05
 # sudo:            yes
 
-if [ $(whoami) != 'root' ]; then
-        echo "Must be root to run $0"
-        exit 1;
+if [ $(id -u) = 0 ]; then
+   echo "to be run with no sudo"
+   exit 1
 fi
 
 START=$SECONDS
+
+sudo apt-get update
+sudo apt-get upgrade
 
 # generate list of outdated packages
 echo ">>> CHECKING INSTALLATION FOR OUTDATED PACKAGES..."
@@ -21,9 +24,19 @@ if [ ${#lst[@]} -eq 0 ]; then
 else
     echo ">>> UPGRADING PACKAGES"
     for i in ${lst[@]}; do
-        pip3 install ${i} --upgrade
+        sudo pip3 install ${i} --upgrade
     done
 fi
-
+if [[ -d $HOME/cloud9 ]]; then
+  cd ${HOME}/cloud9
+  git pull origin master
+  ./scripts/install-sdk.sh
+  cd -
+fi
+if [[ -f /usr/bin/node-red ]]; then
+  curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered > /tmp/update-nodejs-and-nodered
+  chmod u+x /tmp/update-nodejs-and-nodered
+  ./expect_nodered.sh
+fi
 ELAPSED=$(($SECONDS - $START))
 echo $ELAPSED
