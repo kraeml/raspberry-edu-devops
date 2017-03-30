@@ -1,5 +1,7 @@
 # Jupyter Notebook Server on Raspberry Pi 2 and 3
 
+Forked from:  [kleinee/jns](https://github.com/kleinee/jns)
+
 May could work on Pi B.
 
 ## Intro
