@@ -1,6 +1,6 @@
 #!/usr/bin/expect -f
-# script name:     install_jns.sh
-# last modified:   2017/03/09
+# script name:     expect_nodered.sh
+# last modified:   2017/03/30
 # sudo:            no
 
 spawn /tmp/update-nodejs-and-nodered
