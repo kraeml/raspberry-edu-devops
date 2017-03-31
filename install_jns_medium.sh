@@ -15,3 +15,4 @@ sudo ./install_dependencies.sh
 ./install_nodered.sh
 ./install_cloud9.sh
 ./install_docker.sh
+./install_jns_php7.sh
