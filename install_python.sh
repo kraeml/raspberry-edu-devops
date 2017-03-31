@@ -13,6 +13,11 @@ fi
 #Python 3 version to install
 version="3.6.1"
 
+if [ ${version} = $(python3 --version | cut -d\  -f 2) ]
+then
+    exit
+fi
+
 #------------------------------------------------------
 apt-get install -y build-essential libncursesw5-dev
 apt-get install -y libgdbm-dev libc6-dev
