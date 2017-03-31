@@ -1,6 +1,6 @@
 MYSQL_ROOT_PASSWORD=root
 echo "Install software"
-sleep 45
+
 echo "mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD" | sudo debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD" | sudo debconf-set-selections
 sudo apt-get update
