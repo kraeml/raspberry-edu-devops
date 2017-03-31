@@ -1,3 +1,13 @@
+#!/bin/bash
+# script name:     install_jns_mysql.sh
+# last modified:   2017/03/31
+# sudo:            no
+
+if [ $(id -u) = 0 ]; then
+   echo "to be run with no sudo"
+   exit 1
+fi
+
 MYSQL_ROOT_PASSWORD=root
 echo "Install software"
 
