@@ -8,6 +8,14 @@ if [ $(id -u) = 0 ]; then
    exit 1
 fi
 
+#php version to install
+version="7"
+which php
+if [ "$?" -eq 0 ] && [ "${version}" = "$(php --version | grep "^PHP" | cut -d\  -f 2) | cut -d \. -f 1" ]
+then
+    exit
+fi
+
 sudo echo "deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi" | sudo tee /etc/apt/sources.list.d/stretch.list
 sudo apt-get update
 sudo echo -e "Package: *\nPin: release n=jessie\nPin-Priority: 600" | sudo tee /etc/apt/preferences.d/jessie.pref

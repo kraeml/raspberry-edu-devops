@@ -8,5 +8,13 @@ if [ $(id -u) = 0 ]; then
    exit 1
 fi
 
+#docker version to install
+version="17"
+which docker
+if [ "$?" -eq 0 ] && [ "${version}" = "$(docker --version | cut -d\  -f 3)" ]
+then
+    exit
+fi
+
 curl -sSL https://get.docker.com | sudo sh
 sudo usermod -aG docker pi
