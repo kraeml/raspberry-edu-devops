@@ -14,6 +14,7 @@ else
   curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered > /tmp/update-nodejs-and-nodered
   chmod u+x /tmp/update-nodejs-and-nodered
   ./expect_nodered.sh
+  #sudo apt-get update && sudo apt-get install python-rpi.gpio
   #rm /tmp/update-nodejs-and-nodered
   sudo systemctl enable nodered.service
   sudo service nodered start

@@ -12,8 +12,8 @@ fi
 
 #Python 3 version to install
 version="3.6.1"
-
-if [ ${version} = $(python3 --version | cut -d\  -f 2) ]
+which python3
+if [ "$?" -eq 0 ] && [ "${version}" = "$(python3 --version | cut -d\  -f 2)" ]
 then
     exit
 fi
