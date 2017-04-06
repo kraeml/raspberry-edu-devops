@@ -14,6 +14,7 @@ sudo chown -R pi: .
 if [ ! -e $HOME/.firstboot ]; then
   echo -n "First boot detected on "
   date
+  touch $HOME/.firstboot
   # run scripts
   ./install_jns_fast.sh
   sudo ./install_tex.sh
@@ -24,8 +25,6 @@ if [ ! -e $HOME/.firstboot ]; then
   ./install_jns_php7.sh
   ./install_jns_mysql.sh
   ./install_jns_phpmyadmin.sh
-
-  touch $HOME/.firstboot
 
   sudo shutdown -r +1 "First boot installation completed. Please log off now."
   echo -n "First boot installation completed on "
