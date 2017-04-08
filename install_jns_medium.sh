@@ -13,6 +13,8 @@ sudo chown -R pi: .
 # to maintain regardless of the use.
 if [ ! -e $HOME/.firstboot ]; then
   echo -n "First boot detected on "
+  export HOME=/home/pi
+  export USER=pi
   date
   touch $HOME/.firstboot
   # run scripts
