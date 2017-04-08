@@ -13,7 +13,7 @@ fi
 # if notebook directory exists, we keep it (-p)
 # if configuration file exeists, we overwrite it (-y)
 
-jupyter notebook -y --generate-config
+/usr/local/bin/jupyter notebook -y --generate-config
 cd $HOME
 mkdir -p notebooks
 
