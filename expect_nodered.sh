@@ -3,7 +3,11 @@
 # last modified:   2017/03/30
 # sudo:            no
 
+set timeout -1
+match_max 100000
 spawn /tmp/update-nodejs-and-nodered
 expect "Are you really sure *"
-send "y\r"
-interact
+send -- "y\r"
+#interact
+expect eof
+#exit
