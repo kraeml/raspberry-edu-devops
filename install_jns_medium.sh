@@ -21,3 +21,9 @@ pushd $HOME/.raspberry-edu-devops
     ./install_cloud9.sh | tee -a ../post-boot.log | logger -p local7.info -t cloud9-post-boot
     date
 popd
+
+systemd-analyze | logger -t analyzer
+
+systemd-analyze critical-chain | logger -t analyzer
+
+(sleep 3660; systemd-analyze critical-chain --fuzz=1h | logger -t late-medium-analyzer) &
