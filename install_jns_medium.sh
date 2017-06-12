@@ -1,16 +1,23 @@
 #!/bin/bash
 # script name:     install_jns.sh
-# last modified:   2017/03/09
+# last modified:   2017/06/12
 # sudo:            no
+
+# Timestamp the logfile
+date
 
 if [ $(id -u) = 0 ]; then
    echo "to be run without sudo"
    exit 1
 fi
 
-# run scripts
-./install_jns_fast.sh
-sudo ./install_tex.sh
-sudo ./install_dependencies.sh
-./install_nodered.sh
-./install_cloud9.sh
+# Change PWD to the binaries directory
+pushd $HOME/.raspberry-edu-devops
+    # run scripts
+    ./install_jns_fast.sh
+    sudo ./install_tex.sh | tee -a ../post-boot.log | logger -p local7.info -t tex-post-boot
+    sudo ./install_dependencies.sh | tee -a ../post-boot.log | logger -p local7.info -t dependencies-post-boot
+    ./install_nodered.sh | tee -a ../post-boot.log | logger -p local7.info -t nodered-post-boot
+    ./install_cloud9.sh | tee -a ../post-boot.log | logger -p local7.info -t cloud9-post-boot
+    date
+popd

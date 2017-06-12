@@ -1,14 +1,22 @@
 #!/bin/bash
 # script name:     install_jns.sh
-# last modified:   2017/03/09
+# last modified:   2017/06/12
 # sudo:            no
+
+# Timestamp the logfile
+date
 
 if [ $(id -u) = 0 ]; then
    echo "to be run without sudo"
    exit 1
 fi
 
-# run scripts
-sudo ./install_python.sh
-sudo ./install_jupyter.sh
-./configure_jupyter.sh
+# Change PWD to the binaries directory
+pushd $HOME/.raspberry-edu-devops
+
+    # run scripts
+    sudo ./install_python.sh | tee -a ../post-boot.log | logger -p local7.info -t python-post-boot
+    sudo ./install_jupyter.sh | tee -a ../post-boot.log | logger -p local7.info -t jupyter-post-boot
+    ./configure_jupyter.sh | tee -a ../post-boot.log | logger -p local7.info -t configure-jupyter-boot
+    date
+popd
