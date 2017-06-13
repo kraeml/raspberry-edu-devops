@@ -16,6 +16,8 @@ else
   ./expect_nodered.sh
   #sudo apt-get update && sudo apt-get install python-rpi.gpio
   #rm /tmp/update-nodejs-and-nodered
+  sleep 1
   sudo systemctl enable nodered.service
+  sleep 1
   sudo service nodered start
 fi

@@ -11,7 +11,7 @@ fi
 START=$SECONDS
 
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get upgrade --yes
 
 # generate list of outdated packages
 echo ">>> CHECKING INSTALLATION FOR OUTDATED PACKAGES..."
