@@ -1,6 +1,6 @@
 #!/bin/bash
 # script name:     configure_jupyter.sh
-# last modified:   2017/03/05
+# last modified:   2017/03/30
 # sudo:            no
 
 if [ $(id -u) = 0 ]
@@ -13,7 +13,7 @@ fi
 # if notebook directory exists, we keep it (-p)
 # if configuration file exeists, we overwrite it (-y)
 
-jupyter notebook -y --generate-config
+/usr/local/bin/jupyter notebook -y --generate-config
 cd $HOME
 mkdir -p notebooks
 

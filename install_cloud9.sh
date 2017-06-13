@@ -1,6 +1,6 @@
 #!/bin/bash
-# script name:     install_jns.sh
-# last modified:   2017/03/09
+# script name:     install_cloud9.sh
+# last modified:   2017/03/30
 # sudo:            no
 
 if [ $(id -u) = 0 ]; then
@@ -22,5 +22,5 @@ else
   sudo service cloud9 start
 fi
 
-
-#node server.js -p 8181 -l 0.0.0.0 -w /home/pi -a :
+# Manually run with
+# node server.js -p 8181 -l 0.0.0.0 -w /home/pi -a :

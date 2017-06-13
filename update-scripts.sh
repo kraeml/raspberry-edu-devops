@@ -3,7 +3,7 @@
 
 ME=$(whoami)
 
-branch=$(cat $HOME/.raspboot.branch)
+branch=$(cat $HOME/.raspberry-edu-devops.branch)
 git pull
 git fetch origin
 git checkout $branch && git reset --hard origin/$branch && git clean -f -d
