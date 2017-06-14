@@ -11,13 +11,8 @@ fi
 if [[ -f /usr/bin/node-red ]]; then
   echo "Nodered already installed"
 else
-  curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered > /tmp/update-nodejs-and-nodered
+  # ToDo: Change path /home/pi/bin into variables
+  curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered > /home/pi/bin/update-nodejs-and-nodered
   chmod u+x /tmp/update-nodejs-and-nodered
   ./expect_nodered.sh
-  #sudo apt-get update && sudo apt-get install python-rpi.gpio
-  #rm /tmp/update-nodejs-and-nodered
-  sleep 1
-  sudo systemctl enable nodered.service
-  sleep 1
-  sudo service nodered start
 fi

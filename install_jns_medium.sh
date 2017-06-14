@@ -35,8 +35,6 @@ if [ ! -e $HOME/.firstboot ]; then
         ./install_jns_phpmyadmin.sh | tee -a ../post-boot.log | logger -p local7.info -t phpmyadmin-post-boot
         sudo apt-get update
         sudo apt-get upgrade --yes
-        # ToDo Bugfixing
-        ./install_nodered.sh | tee -a ../post-boot.log | logger -p local7.info -t nodered-post-boot
         sudo shutdown -r +1 "First boot installation completed. Please log off now."
         echo -n "First boot installation completed on "
         date
