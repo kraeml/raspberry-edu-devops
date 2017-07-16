@@ -13,12 +13,12 @@ fi
 
 # Change PWD to the binaries directory
 pushd $HOME/.raspberry-edu-devops
-
     # run scripts
     ./update-scripts.sh | tee -a ../post-boot.log | logger -p local7.info -t update-scripts-post-boot
     sudo ./install_python.sh | tee -a ../post-boot.log | logger -p local7.info -t python-post-boot
     sudo ./install_jupyter.sh | tee -a ../post-boot.log | logger -p local7.info -t jupyter-post-boot
     ./configure_jupyter.sh | tee -a ../post-boot.log | logger -p local7.info -t configure-jupyter-boot
+    sudo ./enable_jupyter.sh | tee -a ../post-boot.log | logger -p local7.info -t jupyter-post-service
     date
 popd
 

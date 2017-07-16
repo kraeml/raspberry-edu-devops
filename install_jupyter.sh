@@ -8,23 +8,16 @@ if ! [ $(id -u) = 0 ]; then
    exit 1
 fi
 
-apt-get install -y pandoc
+# Packages Dependencies for building Jupyter
+#------------------------------------------------------
+apt-get -y install libncurses5-dev install python-dev pandoc
+#------------------------------------------------------
 
+# Install Jupyter
 pip3 install jupyter
-pip3 install bash_kernel
-
-#------------------------------------------------------
-apt-get -y install libncurses5-dev
-apt-get -y install python-dev
-#------------------------------------------------------
-
 pip3 install readline
 pip3 install ipyparallel
 
+# Install additional kernels
+pip3 install bash_kernel
 python3 -m bash_kernel.install
-
-sudo cp jupyter.service /lib/systemd/system/
-sudo chmod 644 /lib/systemd/system/jupyter.service
-sudo systemctl daemon-reload
-sudo systemctl enable jupyter.service
-service jupyter start

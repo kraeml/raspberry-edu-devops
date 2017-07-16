@@ -19,8 +19,6 @@ if [ ! -e $HOME/.firstboot ]; then
     # Change PWD to the binaries directory
     pushd $HOME/.raspberry-edu-devops
         echo -n "First boot detected on "
-        #export HOME=/home/pi
-        #export USER=pi
         date
         touch $HOME/.firstboot
         # run scripts
