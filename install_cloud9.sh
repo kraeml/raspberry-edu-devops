@@ -19,7 +19,7 @@ else
   sudo chmod 644 /lib/systemd/system/cloud9.service
   sudo systemctl daemon-reload
   sudo systemctl enable cloud9.service
-  sudo service cloud9 start
+  sudo systemctl start cloud9.service
 fi
 
 # Manually run with

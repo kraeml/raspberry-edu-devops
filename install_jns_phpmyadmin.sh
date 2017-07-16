@@ -4,7 +4,7 @@
 # sudo:            no
 
 cd /tmp
-version="4.7.0"
+version="4.7.2"
 wget https://files.phpmyadmin.net/phpMyAdmin/${version}/phpMyAdmin-${version}-all-languages.tar.gz
 tar xvf phpMyAdmin-${version}-all-languages.tar.gz
 sudo mv phpMyAdmin-${version}-all-languages /var/www/html/phpMyAdmin
