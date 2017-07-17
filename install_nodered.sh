@@ -15,4 +15,7 @@ else
   curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered > /home/pi/bin/update-nodejs-and-nodered
   chmod u+x /home/pi/bin/update-nodejs-and-nodered
   ./expect_nodered.sh
+  sudo systemctl daemon-reload
+  sudo systemctl enable nodered.service
+  sudo systemctl start nodered.service
 fi

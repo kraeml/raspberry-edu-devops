@@ -18,4 +18,4 @@ sudo apt install -y mysql-server
 
 
 sudo sed -i 's/bind-address[[:space:]]*=[[:space:]]*127.0.0.1/bind-address = 0.0.0.0/g' /etc/mysql/my.cnf
-sudo service mysql restart
+sudo systemctl restart mysql.service
