@@ -12,7 +12,7 @@ fi
 
 #Python 3 version to install
 # May new Version 3.6.2 08-Jul-2017 05:50
-version="3.6.1"
+version="3.6.2"
 which python3
 if [ "$?" -eq 0 ] && [ "${version}" = "$(python3 --version | cut -d\  -f 2)" ]
 then
