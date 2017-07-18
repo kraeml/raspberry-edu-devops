@@ -33,8 +33,8 @@ if [[ -d $HOME/cloud9 ]]; then
   cd -
 fi
 if [[ -f /usr/bin/node-red ]]; then
-  curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered > /tmp/update-nodejs-and-nodered
-  chmod u+x /tmp/update-nodejs-and-nodered
+  curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered > /home/pi/bin/update-nodejs-and-nodered
+  chmod u+x /home/pi/bin/update-nodejs-and-nodered
   ./expect_nodered.sh
 fi
 ELAPSED=$(($SECONDS - $START))
