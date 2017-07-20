@@ -22,4 +22,5 @@ fi
 
 # Install additional jupyter kernels
 sudo npm install -g ijavascript
-sudo ijsinstall
+sudo ijsinstall --install=global
+sudo systemctl restart jupyter.service
