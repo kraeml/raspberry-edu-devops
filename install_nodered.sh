@@ -19,3 +19,7 @@ else
   sudo systemctl enable nodered.service
   sudo systemctl start nodered.service
 fi
+
+# Install additional jupyter kernels
+sudo npm install -g ijavascript
+sudo ijsinstall

@@ -21,6 +21,7 @@ pip3 install ipyparallel
 # Install additional kernels
 pip3 install bash_kernel
 python3 -m bash_kernel.install
-npm install -g ijavascript
-ijsinstall
+# No nodejs
+# npm install -g ijavascript
+# ijsinstall
 pip3 install ipython-sql
