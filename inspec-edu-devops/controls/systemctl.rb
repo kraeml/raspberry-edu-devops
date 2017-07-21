@@ -2,12 +2,21 @@
 # copyright: 2015, The Authors
 # license: All rights reserved
 
+services = [
+    "jupyter",
+    "nodered",
+    "nginx"
+]
 # you add controls here
 control 'systemctl-1.0' do                        # A unique ID for this control
   impact 1.0                                # The criticality, if this control fails.
-  title 'Deamon are running'                # A human-readable title
+  title 'Services are running'                # A human-readable title
   desc 'An optional description...'
-  describe file('/tmp') do                  # The actual test
-    it { should be_directory }
+  for service in services do
+      describe systemd_service(service) do
+          it { should be_installed }
+          it { should be_enabled }
+          it { should be_running }
+      end
   end
 end
