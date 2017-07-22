@@ -21,7 +21,7 @@ control 'packages-1.0' do
     title 'Ensure packages installed'
     tools.each do |tool|
         describe command(tool[:command]) do
-          its(:stdout) { should match /tool[:version]/ }
+          its(:stdout) { should match /#{tool[:version]}/ }
         end
     end
 end
