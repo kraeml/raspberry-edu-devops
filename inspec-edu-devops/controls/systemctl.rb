@@ -5,7 +5,10 @@
 services = [
     "jupyter",
     "nodered",
-    "nginx"
+    "nginx",
+    "docker",
+    "cloud9",
+    "mysql"
 ]
 # you add controls here
 control 'systemctl-1.0' do                        # A unique ID for this control
