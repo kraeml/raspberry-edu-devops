@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 # script name:     install_inspec.sh
 # last modified:   2017/07/16
 # sudo:            no
@@ -14,6 +14,6 @@ wget https://gist.githubusercontent.com/blacktm/8302741/raw/b498c27c03e2b7dcf79c
 chmod u+x install_ruby_rpi.sh
 ./install_ruby_rpi.sh
 source ~/.bashrc
-sudo gem update system
-sudo gem cleanup
-sudo gem install inspec
+gem update system
+gem cleanup
+gem install inspec

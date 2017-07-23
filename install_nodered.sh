@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 # script name:     install_nodered.sh
 # last modified:   2017/03/30
 # sudo:            no

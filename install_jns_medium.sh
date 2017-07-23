@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 
 # script name:     install_jns.sh
 # last modified:   2017/06/12
