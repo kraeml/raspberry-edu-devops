@@ -13,3 +13,5 @@ fi
 pip3 install rpi.gpio
 apt-get update
 apt-get install -y curl sudo sense-hat expect python-rpi.gpio debian-keyring debian-archive-keyring
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8B48AD6246925553
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010

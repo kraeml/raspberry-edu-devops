@@ -9,7 +9,11 @@ if [ $(id -u) = 0 ]; then
 fi
 
 sudo apt-get update
-sudo apt-get install --yes ruby ruby-dev gcc make
+# sudo apt-get install --yes ruby ruby-dev gcc make
+wget https://gist.githubusercontent.com/blacktm/8302741/raw/b498c27c03e2b7dcf79ca00183b6ccdf361b7001/install_ruby_rpi.sh
+chmod u+x install_ruby_rpi.sh
+./install_ruby_rpi.sh
+source ~/.bashrc
 sudo gem update system
 sudo gem cleanup
 sudo gem install inspec

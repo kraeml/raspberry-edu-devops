@@ -23,10 +23,10 @@ if [ ! -e $HOME/.firstboot ]; then
         touch $HOME/.firstboot
         # run scripts
         ./install_jns_fast.sh
+        sudo ./install_dependencies.sh | tee -a ../post-boot.log | logger -p local7.info -t dependencies-post-boot
         ./install_ansible.sh | tee -a ../post-boot.log | logger -p local7.info -t ansible-post-boot
         ./install_inspec.sh | tee -a ../post-boot.log | logger -p local7.info -t inspec-post-boot
         sudo ./install_tex.sh | tee -a ../post-boot.log | logger -p local7.info -t tex-post-boot
-        sudo ./install_dependencies.sh | tee -a ../post-boot.log | logger -p local7.info -t dependencies-post-boot
         ./install_cloud9.sh | tee -a ../post-boot.log | logger -p local7.info -t cloud9-post-boot
         ./install_nodered.sh | tee -a ../post-boot.log | logger -p local7.info -t nodered-post-boot
         ./install_docker.sh | tee -a ../post-boot.log | logger -p local7.info -t docker-post-boot
