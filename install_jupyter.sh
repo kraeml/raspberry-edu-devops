@@ -10,7 +10,7 @@ fi
 
 # Packages Dependencies for building Jupyter
 #------------------------------------------------------
-apt-get -y install libncurses5-dev install python-dev pandoc
+apt-get -y install libncurses5-dev python-dev pandoc
 #------------------------------------------------------
 
 # Install Jupyter
