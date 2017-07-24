@@ -11,8 +11,8 @@
 START_TIME=$SECONDS
 
 # Check out rbenv into ~/.rbenv
-sudo git clone https://github.com/rbenv/rbenv.git /usr/src/rbenv
-cd /usr/src/rbenv
+sudo git clone https://github.com/rbenv/rbenv.git /usr/local/src/rbenv
+cd /usr/local/src/rbenv
 sudo src/configure && sudo make -C src
 sudo cp libexec/rbenv /usr/local/bin/
 export RBENV_ROOT=/usr/local/rbenv
