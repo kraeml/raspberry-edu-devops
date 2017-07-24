@@ -14,7 +14,10 @@ wget https://gist.githubusercontent.com/blacktm/8302741/raw/b498c27c03e2b7dcf79c
 chmod u+x install_ruby_rpi.sh
 sed -i 's/read -p "  Continue? (y\/n) " ans/ans="y"/g' install_ruby_rpi.sh
 ./install_ruby_rpi.sh
-source ~/.bashrc
+#source ~/.bashrc
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 gem update system
 gem cleanup
 gem install inspec
