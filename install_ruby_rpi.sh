@@ -17,6 +17,7 @@ sudo src/configure && sudo make -C src
 sudo cp libexec/rbenv /usr/local/bin/
 export RBENV_ROOT=/usr/local/rbenv
 sudo mkdir -p /usr/local/rbenv/plugins
+sudo chmod 777 /usr/local/rbenv
 
 export PATH=/usr/src/rbenv/libexec:$PATH
 # Add ~/.rbenv/bin to $PATH, enable shims and autocompletion
@@ -43,17 +44,13 @@ sudo apt update
 sudo apt install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 
 # Install Ruby 2.4, don't generate RDoc to save lots of time
-CONFIGURE_OPTS="--disable-install-doc --enable-shared" sudo rbenv install 2.4.1 --verbose
+CONFIGURE_OPTS="--disable-install-doc --enable-shared" sudo /usr/local/bin/rbenv install 2.4.1 --verbose
 
 # Set Ruby 2.4 as the global default
-sudo rbenv global 2.4.1
+sudo /usr/local/bin/rbenv global 2.4.1
 
 # Don't install docs for gems (saves lots of time)
 echo "gem: --no-document" > ~/.gemrc
-
-# Reminder to reload the shell
-echo -e "\nReload the current shell to get access to rbenv using:"
-echo "  source ~/.bashrc"
 
 # Print the time elapsed
 ELAPSED_TIME=$(($SECONDS - $START_TIME))
