@@ -11,20 +11,20 @@
 START_TIME=$SECONDS
 
 # Check out rbenv into ~/.rbenv
-sudo git clone https://github.com/rbenv/rbenv.git /usr/src/rbenv
-cd /usr/src/rbenv
+sudo git clone https://github.com/rbenv/rbenv.git /usr/local/src/rbenv
+cd /usr/local/src/rbenv
 sudo src/configure && sudo make -C src
 sudo cp libexec/rbenv /usr/local/bin/
 export RBENV_ROOT=/usr/local/rbenv
 sudo mkdir -p /usr/local/rbenv/plugins
 sudo chmod 777 /usr/local/rbenv
 
-export PATH=/usr/src/rbenv/libexec:$PATH
+export PATH=/usr/local/src/rbenv/libexec:$PATH
 # Add ~/.rbenv/bin to $PATH, enable shims and autocompletion
 read -d '' String <<"EOF"
 # rbenv
 export RBENV_ROOT=/usr/local/rbenv
-export PATH=/usr/src/rbenv/libexec:$PATH
+export PATH=/usr/local/src/rbenv/libexec:$PATH
 
 eval "$(rbenv init -)"
 EOF
