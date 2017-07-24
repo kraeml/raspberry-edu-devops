@@ -16,6 +16,17 @@ inspec = { :version => '1.31.1', :command => 'inspec --version'}
 php = { :version => '7.0.19', :command => 'php --version'}
 
 tools = [ ansible, python3, inspec, php ]
+
+control 'ports-1.0' do
+    impact 1.0
+    title 'Ensure ports pare open'
+    describe port(22) do        
+      its('processes') { should include 'sshd' }
+      its('protocols') { should include 'tcp' }
+      its('addresses') { should include '0.0.0.0' }
+    end
+end
+
 control 'packages-1.0' do
     impact 1.0
     title 'Ensure packages installed'
