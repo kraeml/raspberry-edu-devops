@@ -28,9 +28,8 @@ export PATH=/usr/src/rbenv/libexec:$PATH
 eval "$(rbenv init -)"
 EOF
 
-# Save to ~/.bashrc
+# Save to /etc/profile.d/rbenv.sh
 echo -e "\n${String}" | sudo tee /etc/profile.d/rbenv.sh
-chmod
 
 # Enable rbenv for current shell
 eval "${String}"
@@ -44,7 +43,7 @@ sudo apt update
 sudo apt install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 
 # Install Ruby 2.4, don't generate RDoc to save lots of time
-CONFIGURE_OPTS="--disable-install-doc --enable-shared" rbenv install 2.4.1 --verbose
+CONFIGURE_OPTS="--disable-install-doc --enable-shared" sudo rbenv install 2.4.1 --verbose
 
 # Set Ruby 2.4 as the global default
 sudo rbenv global 2.4.1
