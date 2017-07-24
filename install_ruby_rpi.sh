@@ -44,10 +44,10 @@ sudo apt update
 sudo apt install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 
 # Install Ruby 2.4, don't generate RDoc to save lots of time
-CONFIGURE_OPTS="--disable-install-doc --enable-shared" sudo /usr/local/bin/rbenv install 2.4.1 --verbose
+CONFIGURE_OPTS="--disable-install-doc --enable-shared" /usr/local/bin/rbenv install 2.4.1 --verbose
 
 # Set Ruby 2.4 as the global default
-sudo /usr/local/bin/rbenv global 2.4.1
+/usr/local/bin/rbenv global 2.4.1
 
 # Don't install docs for gems (saves lots of time)
 echo "gem: --no-document" > ~/.gemrc
