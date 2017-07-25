@@ -10,29 +10,37 @@ services = [
     "cloud9",
     "mysql"
 ]
-ansible = { :version => '2.2.1.0', :command => 'ansible --version'}
-python3 = { :version => '3.6.2', :command => 'python3 --version'}
-inspec = { :version => '1.31.1', :command => 'inspec --version'}
-php = { :version => '7.0.19', :command => 'php --version'}
-
-tools = [ ansible, python3, inspec, php ]
+tools = {
+    :ansible => { :version => '2.2.1.0', :command => 'ansible --version' },
+    :python3 => { :version => '3.6.2', :command => 'python3 --version' },
+    :inspec => { :version => '1.31.1', :command => 'inspec --version' },
+    :php => { :version => '7.0.19', :command => 'php --version' },
+    :mysql => { :version => '5.5.55', :command => '/usr/sbin/mysqld --version', :port => '3660', :process => '' },
+    :nginx => { :version => '1.10.3', :command => '/usr/sbin/nginx -v', :port => '80', :process => 'nginx' },
+    :jupyter => { :version => '4.3.0', :command => 'jupyter --version', :port => '8888', :process => 'python3.6' },
+    :nodered => { :version => '6.11.1', :command => 'node-red-pi --version', :port => '1880', :process => 'node' },
+    :cloud9 => { :port => '8181', :process => 'node'},
+    :ssh => { :port => '22', :process => 'sshd'}
+}
 
 control 'ports-1.0' do
     impact 1.0
     title 'Ensure ports pare open'
-    describe port(22) do        
-      its('processes') { should include 'sshd' }
-      its('protocols') { should include 'tcp' }
-      its('addresses') { should include '0.0.0.0' }
+    tools.each do |key, value|
+        describe port(value[:port]) do
+          its('processes') { should include value[:process] }
+          its('protocols') { should include 'tcp' }
+          its('addresses') { should include '0.0.0.0' }
+        end
     end
 end
 
 control 'packages-1.0' do
     impact 1.0
     title 'Ensure packages installed'
-    tools.each do |tool|
-        describe command(tool[:command]) do
-          its(:stdout) { should match /#{tool[:version]}/ }
+    tools.each do |key, value|
+        describe command(value[:command]) do
+          its(:stdout) { should match /#{value[:version]}/ }
         end
     end
 end
