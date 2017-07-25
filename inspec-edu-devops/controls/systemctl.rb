@@ -27,10 +27,12 @@ control 'ports-1.0' do
     impact 1.0
     title 'Ensure ports pare open'
     tools.each do |key, value|
-        describe port(value[:port]) do
-          its('processes') { should include value[:process] }
-          its('protocols') { should include 'tcp' }
-          its('addresses') { should include '0.0.0.0' }
+        if value[:port]
+            describe port(value[:port]) do
+              its('processes') { should include value[:process] }
+              its('protocols') { should include 'tcp' }
+              its('addresses') { should include '0.0.0.0' }
+            end
         end
     end
 end
@@ -39,8 +41,10 @@ control 'packages-1.0' do
     impact 1.0
     title 'Ensure packages installed'
     tools.each do |key, value|
-        describe command(value[:command]) do
-          its(:stdout) { should match /#{value[:version]}/ }
+        if value[:command]
+            describe command(value[:command]) do
+              its(:stdout) { should match /#{value[:version]}/ }
+            end
         end
     end
 end
