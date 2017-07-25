@@ -15,7 +15,7 @@ tools = {
     :python3 => { :version => '3.6.2', :command => 'python3 --version' },
     :inspec => { :version => '1.31.1', :command => 'inspec --version' },
     :php => { :version => '7.0.19', :command => 'php --version' },
-    :mysql => { :version => '5.5.55', :command => '/usr/sbin/mysqld --version', :port => '3306', :process => '' },
+    :mysql => { :version => '5.5.55', :command => '/usr/sbin/mysqld --version', :port => '3306', :process => 'mysqld' },
     :nginx => { :version => 'nginx\/1.10.3', :command => '/usr/sbin/nginx -v', :port => '80', :process => 'nginx' },
     :jupyter => { :version => '4.3.0', :command => 'jupyter --version', :port => '8888', :process => 'python3.6' },
     :nodered => { :version => '6.11.1', :command => 'node-red-pi --version', :port => '1880', :process => 'node-red' },
