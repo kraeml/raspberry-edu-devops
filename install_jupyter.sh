@@ -25,3 +25,6 @@ python3 -m bash_kernel.install
 # npm install -g ijavascript
 # ijsinstall
 pip3 install ipython-sql
+
+# Activate jupyter extensions
+jupyter nbextension enable --py --sys-prefix widgetsnbextension
