@@ -47,10 +47,15 @@ case $yn in
         # that $USER is the user name and the group name to use when running is the
         # primary group of that user
         # if this is not correct then edit the lines below
-        $USER=pi
+        if [ ! -z $USER ]; then
+            USER=pi
+        fi
+        if [ ! -z $HOME ]; then
+            HOME=/home/pi
+        fi
         NODERED_HOME=$HOME
         NODERED_USER=$USER
-        NODERED_GROUP=`id -gn`
+        NODERED_GROUP=`id -gn $USER`
         TICK='\033[1;32m\u2714\033[0m'
         CROSS='\033[1;31m\u2718\033[0m'
         cd "$NODERED_HOME" || exit 1
