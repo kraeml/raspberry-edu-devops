@@ -15,7 +15,8 @@
 # limitations under the License.
 if [ "$EUID" == "0" ]
   then echo -en "\nRoot user detected. Typically install as a normal user. No need for sudo.\r\n"
-  read -p "Are you really sure you want to install as root ? (y/N) ? " yn
+  # read -p "Are you really sure you want to install as root ? (y/N) ? " yn
+  yn=n
   case $yn in
     [Yy]* )
     ;;
@@ -38,7 +39,8 @@ echo "Especially if they have any native binary component. Some nodes in your"
 echo "~/.node-red directory will probably need to be re-installed afterwards, some"
 echo "may need you to run npm update, and some may require you to run npm rebuild."
 echo " "
-read -p "Are you really sure you want to do this ? (y/N) ? " yn
+# read -p "Are you really sure you want to do this ? (y/N) ? " yn
+yn=y
 case $yn in
     [Yy]* )
         # this script assumes that $HOME is the folder of the user that runs node-red
@@ -206,8 +208,8 @@ case $yn in
         fi
 
         # Finally update the update script
-        if sudo curl -sL -o /tmp/update-nodejs-and-nodered https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered 2>&1 | sudo tee -a /var/log/nodered-install.log >>/dev/null; then CHAR=$TICK; else CHAR=$CROSS; fi
-        sudo chmod +x /tmp/update-nodejs-and-nodered
+        if sudo curl -sL -o /home/pi/bin/update-nodejs-and-nodered https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered 2>&1 | sudo tee -a /var/log/nodered-install.log >>/dev/null; then CHAR=$TICK; else CHAR=$CROSS; fi
+        sudo chmod +x /home/pi/bin/update-nodejs-and-nodered
         echo -ne "  Update update script                $CHAR\r\n"
 
         echo -ne "\r\n\r\n\r\n"
