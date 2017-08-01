@@ -19,7 +19,7 @@ else
   update-nodejs-and-nodered
   sudo systemctl daemon-reload
   sudo systemctl enable nodered.service
-  sudo systemctl start nodered.service
+  sudo systemctl restart nodered.service
 fi
 
 # Install additional jupyter kernels
