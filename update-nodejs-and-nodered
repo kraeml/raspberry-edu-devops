@@ -47,6 +47,7 @@ case $yn in
         # that $USER is the user name and the group name to use when running is the
         # primary group of that user
         # if this is not correct then edit the lines below
+        $USER=pi
         NODERED_HOME=$HOME
         NODERED_USER=$USER
         NODERED_GROUP=`id -gn`
