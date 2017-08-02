@@ -13,13 +13,16 @@ services = [
 tools = {
     :ansible => {
         :version => '2.2',
-        :command => 'ansible --version' },
+        :command => 'ansible --version'
+    },
     :python3 => {
         :version => '3.6.2',
-        :command => 'python3 --version' },
+        :command => 'python3 --version'
+    },
     :inspec => {
         :version => '1.31',
-        :command => 'inspec --version' },
+        :command => 'inspec --version'
+    },
     :php => {
         :version => '7.0.19',
         :command => 'php --version' },
@@ -27,28 +30,46 @@ tools = {
         :version => '5.5',
         :command => '/usr/sbin/mysqld --version',
         :port => '3306',
-        :process => 'mysqld' },
+        :process => 'mysqld'
+    },
     :nginx => {
         #:version => 'nginx\/1.10.3',
         #:command => '/usr/sbin/nginx -v',
         :port => '80',
-        :process => 'nginx' },
+        :process => 'nginx'
+    },
     :jupyter => {
         :version => '4.3',
         :command => 'jupyter --version',
         :port => '8888',
-        :process => 'python3.6' },
+        :process => 'python3.6'
+    },
     :nodered => {
         :version => '6.11',
         :command => 'node-red-pi --version',
         :port => '1880',
-        :process => 'node-red' },
+        :process => 'node-red'
+    },
     :cloud9 => {
         :port => '8181',
-        :process => 'node'},
+        :process => 'node'
+    },
     :ssh => {
         :port => '22',
-        :process => 'sshd'}
+        :process => 'sshd'
+    },
+    :pillow => {
+        :version => '4.2',
+        :command => 'pip3 show pillow'
+    },
+    :rpigpio => {
+        :version => '0.6',
+        :command => 'pip3 show rpi.gpio'
+    },
+    :sensehat => {
+        :version => '2.2',
+        :command => 'pip3 show sense-hat'
+    }
 }
 
 control 'ports-1.0' do
