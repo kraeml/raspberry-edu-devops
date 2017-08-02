@@ -22,7 +22,7 @@ else
   sudo systemctl restart nodered.service
 fi
 
-# Install additional jupyter kernels
+# Install additional jupyter kernels after installed nodejs
 sudo npm install -g ijavascript
 sudo ijsinstall --install=global
 sudo systemctl restart jupyter.service
