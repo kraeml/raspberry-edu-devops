@@ -45,10 +45,18 @@ tools = {
         :process => 'python3.6'
     },
     :nodered => {
-        :version => '6.11',
-        :command => 'node-red-pi --version',
+        :version => '0.17',
+        :command => 'node-red --help',
         :port => '1880',
         :process => 'node-red'
+    },
+    :nodejs => {
+        :version => '6.11',
+        :command => 'nodejs -v'
+    },
+    :npm => {
+        :version => '3.10',
+        :command => 'npm -v'
     },
     :cloud9 => {
         :port => '8181',
