@@ -45,3 +45,10 @@ pip3 install pillow sense-hat rpi.gpio
 cd ..
 rm -rf "./Python-$version"
 rm "./Python-$version.tgz"
+
+git clone https://github.com/RPi-Distro/RTIMULib.git
+cd RTIMULib/Linux/python/
+python3 setup.py build
+python3 setup.py install
+cd -
+rm -rf RTIMULib
