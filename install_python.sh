@@ -53,5 +53,6 @@ python3 setup.py install
 cd -
 rm -rf RTIMULib
 
-echo 'python=python3.6' | tee /home/pi/.npmrc | /root/.npmrc
-chown pi:pi /home/pi/.npmrc
+# Python3.6.2 not supported by cyp
+#echo 'python=python3.6' | tee /home/pi/.npmrc | /root/.npmrc
+#chown pi:pi /home/pi/.npmrc
