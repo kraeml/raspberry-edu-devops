@@ -12,7 +12,7 @@ services = [
 ]
 tools = {
     :ansible => {
-        :version => '2.2',
+        :version => '2.3',
         :command => 'ansible --version'
     },
     :python3 => {
