@@ -1,10 +1,10 @@
 #!/bin/bash
 # script name:     install_jns_phpmyadmin.sh
-# last modified:   2017/03/31
+# last modified:   2017/08/04
 # sudo:            no
 
 cd /tmp
-version="4.7.2"
+version="4.7.3"
 wget https://files.phpmyadmin.net/phpMyAdmin/${version}/phpMyAdmin-${version}-all-languages.tar.gz
 tar xvf phpMyAdmin-${version}-all-languages.tar.gz
 sudo mv phpMyAdmin-${version}-all-languages /var/www/html/phpMyAdmin
