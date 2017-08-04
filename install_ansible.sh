@@ -14,4 +14,5 @@ fi
 #sudo apt-get install --yes cowsay sshpass python-winrm
 #sudo apt-get -t jessie-backports install --yes --force-yes ansible
 
+apt-get install -y libffi-dev
 sudo pip3 install ansible
