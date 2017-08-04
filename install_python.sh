@@ -53,5 +53,5 @@ python3 setup.py install
 cd -
 rm -rf RTIMULib
 
-echo 'python=python3.6' > /home/pi/.npmrc
+echo 'python=python3.6' | tee /home/pi/.npmrc | /root/.npmrc
 chown pi:pi /home/pi/.npmrc
