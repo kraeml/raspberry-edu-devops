@@ -1,6 +1,6 @@
 #!/bin/bash
 # script name:     install_jns.sh
-# last modified:   2017/03/30
+
 # sudo:            no
 
 if [ $(id -u) = 0 ]; then

@@ -1,6 +1,6 @@
 #!/bin/bash -l
 # script name:     install_inspec.sh
-# last modified:   2017/07/16
+
 # sudo:            no
 
 if [ $(id -u) = 0 ]; then

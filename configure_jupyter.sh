@@ -1,6 +1,6 @@
 #!/bin/bash
 # script name:     configure_jupyter.sh
-# last modified:   2017/03/30
+
 # sudo:            no
 
 if [ $(id -u) = 0 ]

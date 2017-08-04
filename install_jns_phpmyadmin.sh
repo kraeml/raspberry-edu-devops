@@ -1,6 +1,6 @@
 #!/bin/bash
 # script name:     install_jns_phpmyadmin.sh
-# last modified:   2017/08/04
+
 # sudo:            no
 
 cd /tmp

@@ -1,7 +1,7 @@
 #!/bin/bash -l
 
 # script name:     install_jns.sh
-# last modified:   2017/06/12
+
 # sudo:            no
 
 # Timestamp the logfile

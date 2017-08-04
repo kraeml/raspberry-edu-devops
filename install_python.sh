@@ -1,6 +1,6 @@
 #!/bin/bash
 # script name:     install_python.sh
-# last modified:   2017/03/30
+
 # sudo:            yes
 #
 # see: http://sowingseasons.com/blog/building-python-3-4-on-raspberry-pi-2.html

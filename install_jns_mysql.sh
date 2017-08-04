@@ -1,6 +1,6 @@
 #!/bin/bash
 # script name:     install_jns_mysql.sh
-# last modified:   2017/03/31
+
 # sudo:            no
 
 if [ $(id -u) = 0 ]; then
