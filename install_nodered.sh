@@ -1,6 +1,5 @@
 #!/bin/bash -l
 # script name:     install_nodered.sh
-
 # sudo:            no
 
 if [ $(id -u) = 0 ]; then

@@ -1,6 +1,5 @@
 #!/bin/bash -l
 # script name:     enable_jupyter.sh
-
 # sudo:            yes
 
 if ! [ $(id -u) = 0 ]; then

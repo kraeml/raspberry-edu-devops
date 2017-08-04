@@ -1,6 +1,5 @@
 #!/bin/bash
 # script name:     install_jns_phpmyadmin.sh
-
 # sudo:            no
 
 cd /tmp

@@ -1,6 +1,5 @@
 #!/bin/bash
 # script name:     install_tex.sh
-
 # sudo:            yes
 
 if ! [ $(id -u) = 0 ]; then

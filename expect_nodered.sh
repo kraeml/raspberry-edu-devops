@@ -1,6 +1,5 @@
 #!/usr/bin/expect -f
 # script name:     expect_nodered.sh
-
 # sudo:            no
 
 set timeout -1

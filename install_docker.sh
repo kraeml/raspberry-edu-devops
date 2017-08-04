@@ -1,6 +1,5 @@
 #!/bin/bash
 # script name:     install_docker.sh
-
 # sudo:            no
 
 if [ $(id -u) = 0 ]; then

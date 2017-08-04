@@ -1,6 +1,5 @@
 #!/bin/bash
 # script name:     upgrade_jns.sh
-
 # sudo:            no
 
 if [ $(id -u) = 0 ]; then

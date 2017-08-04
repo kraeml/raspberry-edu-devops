@@ -1,6 +1,5 @@
 #!/bin/bash
 # script name:     install_jns.sh
-
 # sudo:            no
 
 # Timestamp the logfile
