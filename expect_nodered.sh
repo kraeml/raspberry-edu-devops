@@ -4,7 +4,7 @@
 
 set timeout -1
 match_max 100000
-spawn /home/pi/bin/update-nodejs-and-nodered
+spawn ./update-nodejs-and-nodered
 expect "Are you really sure *"
 send -- "y\r"
 #interact
