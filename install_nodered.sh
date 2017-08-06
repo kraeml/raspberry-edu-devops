@@ -24,6 +24,12 @@ sudo npm install -g node-red-admin
 # Install node-red addons
 cd /home/pi/.node-red
 npm i node-red-dashboard
+npm install node-red-contrib-bigtimer
+# Install for blinkt
+npm install node-red-contrib-looptimer
+mkdir nodes
+git clone http://github.com/pimoroni/node-red-nodes pimoroni-nodes
+cd -
 
 sudo systemctl restart nodered.service
 
