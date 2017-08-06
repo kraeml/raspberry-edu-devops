@@ -37,8 +37,12 @@ pip3 install pip --upgrade
 ### install rest of the libraries, as well as freetrype
 apt-get install libjpeg-dev libfreetype6 libfreetype6-dev
 
-### re-install PIL
+### install PIL
 pip3 install pillow sense-hat rpi.gpio
+pip3 blinkt requests psutil paho-mqtt tweepy
+
+git clone https://github.com/pimoroni/blinkt.git /home/pi/blinkt
+chown -R pi: /home/pi/blinkt
 
 # clean up
 cd ..

@@ -21,6 +21,12 @@ fi
 # Install node-red-admin
 sudo npm install -g node-red-admin
 
+# Install node-red addons
+cd /home/pi/.node-red
+npm i node-red-dashboard
+
+sudo systemctl restart nodered.service
+
 # Install additional jupyter kernels after installed nodejs
 sudo npm install -g ijavascript
 sudo ijsinstall --install=global
