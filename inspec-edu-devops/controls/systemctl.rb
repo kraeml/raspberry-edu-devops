@@ -97,6 +97,10 @@ tools = {
     :tweepy => {
         :version => '3.5',
         :command => 'pip3 show tweepy'
+    },
+    :noderedrpigpio => {
+        :version => 'enabled',
+        :command => 'node-red-admin info node-red/rpi-gpios'
     }
 }
 
