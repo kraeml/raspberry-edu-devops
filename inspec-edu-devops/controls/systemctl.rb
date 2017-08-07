@@ -77,6 +77,26 @@ tools = {
     :sensehat => {
         :version => '2.2',
         :command => 'pip3 show sense-hat'
+    },
+    :blinkt => {
+        :version => '0.1',
+        :command => 'pip3 show blinkt'
+    },
+    :requests => {
+        :version => '2.18',
+        :command => 'pip3 show requests'
+    },
+    :psutil => {
+        :version => '5.2',
+        :command => 'pip3 show psutil'
+    },
+    :pahomqtt => {
+        :version => '1.3',
+        :command => 'pip3 show paho-mqtt'
+    },
+    :tweepy => {
+        :version => '3.5',
+        :command => 'pip3 show tweepy'
     }
 }
 
