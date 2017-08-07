@@ -99,7 +99,8 @@ tools = {
         :command => 'pip3 show tweepy'
     },
     :noderedrpigpio => {
-        :version => 'enabled',
+        :version => '0.17',
+        :commend => 'enabled',
         :command => 'node-red-admin info node-red/rpi-gpio'
     }
 }
@@ -125,6 +126,9 @@ control 'packages-1.0' do
         if value[:command]
             describe command(value[:command]) do
               its(:stdout) { should match /#{value[:version]}/ }
+              if value[:commend]
+                  its(:stdout) { should match /#{value[:commend]}/ }
+              end
             end
         end
     end
