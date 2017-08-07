@@ -100,7 +100,7 @@ tools = {
     },
     :noderedrpigpio => {
         :version => 'enabled',
-        :command => 'node-red-admin info node-red/rpi-gpios'
+        :command => 'node-red-admin info node-red/rpi-gpio'
     }
 }
 
