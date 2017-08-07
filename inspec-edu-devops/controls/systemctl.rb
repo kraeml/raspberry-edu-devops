@@ -102,6 +102,31 @@ tools = {
         :version => '0.17',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red/rpi-gpio'
+    },
+    :bigtimer => {
+        :version => '1.6',
+        :commend => 'enabled',
+        :command => 'node-red-admin info node-red-contrib-bigtimer'
+    },
+    :dashboard => {
+        :version => '2.4',
+        :commend => 'enabled',
+        :command => 'node-red-admin info node-red-dashboard'
+    },
+    :looptimer => {
+        :version => '0.0.8',
+        :commend => 'enabled',
+        :command => 'node-red-admin info node-red-contrib-looptimer'
+    },
+    :sensehat => {
+        :version => '0.0.15',
+        :commend => 'enabled',
+        :command => 'node-red-admin info node-red-node-pi-sense-hat'
+    },
+    :blinkt => {
+        :version => '0.17',
+        :commend => 'enabled',
+        :command => 'node-red-admin info node-red/rpi-blinkt'
     }
 }
 

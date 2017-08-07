@@ -28,6 +28,7 @@ npm install node-red-contrib-bigtimer
 # Install for blinkt
 npm install node-red-contrib-looptimer
 mkdir nodes
+cd nodes
 git clone http://github.com/pimoroni/node-red-nodes pimoroni-nodes
 cd -
 
