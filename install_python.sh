@@ -39,7 +39,7 @@ apt-get install libjpeg-dev libfreetype6 libfreetype6-dev
 
 ### install PIL
 pip3 install pillow sense-hat rpi.gpio
-pip3 blinkt requests psutil paho-mqtt tweepy
+pip3 install blinkt requests psutil paho-mqtt tweepy
 
 git clone https://github.com/pimoroni/blinkt.git /home/pi/blinkt
 chown -R pi: /home/pi/blinkt
