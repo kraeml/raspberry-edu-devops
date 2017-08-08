@@ -118,12 +118,12 @@ tools = {
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-looptimer'
     },
-    :sensehat => {
+    :noderedsensehat => {
         :version => '0.0.15',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-pi-sense-hat'
     },
-    :blinkt => {
+    :noderedblinkt => {
         :version => '0.17',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red/rpi-blinkt'
