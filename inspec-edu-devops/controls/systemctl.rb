@@ -130,22 +130,22 @@ tools = {
     },
     :noderedexplorehat => {
         :version => '0.17',
-        :commend => 'enabled',
+        :commend => 'disabled',
         :command => 'node-red-admin info node-red/rpi-explorerhat'
     },
     :noderedflotilla => {
         :version => '0.17',
-        :commend => 'enabled',
+        :commend => 'disabled',
         :command => 'node-red-admin info node-red/node-flotilla'
     },
     :noderedledborg => {
         :version => '0.17',
-        :commend => 'enabled',
+        :commend => 'disabled',
         :command => 'node-red-admin info node-red-node-ledborg/ledborg'
     },
     :noderedunicorn => {
         :version => '0.17',
-        :commend => 'enabled',
+        :commend => 'disabled',
         :command => 'node-red-admin info node-red/rpi-unicorn'
     }
 }
