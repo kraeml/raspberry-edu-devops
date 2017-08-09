@@ -32,6 +32,13 @@ cd nodes
 git clone http://github.com/pimoroni/node-red-nodes pimoroni-nodes
 cd -
 
+# Disable unused nodes
+node-red-admin login
+node-red-admin disable node-red/node-flotilla
+node-red-admin disable node-red-node-ledborg/ledborg
+node-red-admin disable node-red/rpi-explorerhat
+node-red-admin disable node-red/rpi-unicorn
+
 sudo systemctl restart nodered.service
 
 # Install additional jupyter kernels after installed nodejs
