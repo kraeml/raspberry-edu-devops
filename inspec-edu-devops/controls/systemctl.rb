@@ -147,6 +147,10 @@ tools = {
         :version => '0.17',
         :commend => 'disabled',
         :command => 'node-red-admin info node-red/rpi-unicorn'
+    },
+    :mongodb => {
+        :version => '2.4',
+        :command => 'mongod --version'
     }
 }
 
