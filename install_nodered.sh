@@ -32,6 +32,8 @@ cd nodes
 git clone http://github.com/pimoroni/node-red-nodes pimoroni-nodes
 cd -
 
+sudo systemctl restart nodered.service
+sleep 5
 # Disable unused nodes
 node-red-admin login
 node-red-admin disable node-red/node-flotilla
