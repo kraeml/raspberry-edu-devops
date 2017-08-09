@@ -135,7 +135,7 @@ tools = {
     },
     :noderedflotilla => {
         :version => '0.17',
-        :commend => 'disabled',
+        :commend => 'Error',
         :command => 'node-red-admin info node-red/node-flotilla'
     },
     :noderedledborg => {
