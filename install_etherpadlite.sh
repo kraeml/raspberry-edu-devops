@@ -8,6 +8,7 @@ if [ $(id -u) = 0 ]; then
    exit 1
 fi
 
+sudo apt-get install -y libreoffice abiword
 wget https://github.com/ether/etherpad-lite/zipball/master -O etherpad-lite.zip
 unzip etherpad-lite.zip
 rm etherpad-lite.zip
