@@ -33,6 +33,7 @@ if [ ! -e $HOME/.firstboot ]; then
         ./install_jns_php7.sh | tee -a ../post-boot.log | logger -p local7.info -t php7-post-boot
         ./install_jns_mysql.sh | tee -a ../post-boot.log | logger -p local7.info -t mysql-post-boot
         ./install_jns_phpmyadmin.sh | tee -a ../post-boot.log | logger -p local7.info -t phpmyadmin-post-boot
+        ./install_mongodb.sh | tee -a ../post-boot.log | logger -p local7.info -t mongodb-post-boot
         sudo apt-get update
         sudo apt-get upgrade --yes
         sudo rm /etc/cron.d/raspboot
