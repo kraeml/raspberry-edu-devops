@@ -48,5 +48,7 @@ sudo npm install -g ijavascript
 sudo ijsinstall --install=global
 sudo systemctl restart jupyter.service
 
-# Additional packages for web-dev
+# Additional packages for web-dev learning
 sudo npm install -g pm2 socket.io sqlite3 mongoose mysql express
+sudo npm install -g javascripting learnyounode how-to-npm scope-chains-closures stream-adventure how-to-markdown learnyouhtml
+sudo npm install -g functional-javascript-workshop bytewiser expressworks bug-clinic async-you test-anything learnyoumongo torrential
