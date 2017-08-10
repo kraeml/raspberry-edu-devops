@@ -8,7 +8,9 @@ services = [
     "nginx",
     "docker",
     "cloud9",
-    "mysql"
+    "mysql",
+    "etherpad-lite",
+    "etherdraw"
 ]
 tools = {
     :ansible => {
