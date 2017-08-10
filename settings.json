@@ -164,6 +164,9 @@
       ["timeslider_export", "timeslider_returnToPad"]
     ]
   },
+  "ep_draw": {
+      "host": "localhost:9002"
+  },
   */
 
   /* The log level we are using, can be: DEBUG, INFO, WARN, ERROR */

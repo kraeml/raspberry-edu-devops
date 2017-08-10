@@ -25,10 +25,12 @@ sudo cp ./settings.json /opt/etherpad
 sudo chown -R etherpad:etherpad /opt/etherpad
 sudo -H -u etherpad /opt/etherpad/bin/installDeps.sh
 cd /opt/etherpad
-sudo -H -u etherpad /usr/bin/npm install ep_activepads ep_adminpads ep_copy_paste_images ep_cursortrace ep_draw
+sudo -H -u etherpad /usr/bin/npm install ep_activepads ep_adminpads ep_copy_paste_images ep_cursortrace
 sudo -H -u etherpad /usr/bin/npm install ep_font_family ep_font_size ep_horizontal_line ep_latexexport
 sudo -H -u etherpad /usr/bin/npm install ep_markdown ep_markdownify ep_padlist ep_print ep_printer
 sudo -H -u etherpad /usr/bin/npm install ep_search ep_spellcheck ep_tables ep_xmlexport
+# No working correct
+# sudo -H -u etherpad /usr/bin/npm install ep_draw
 cd -
 sudo chown -R etherpad:etherpad /opt/etherpad
 # ToDo etherpad-lite not running yet

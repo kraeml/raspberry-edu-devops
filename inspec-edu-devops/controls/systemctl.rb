@@ -10,7 +10,8 @@ services = [
     "cloud9",
     "mysql",
     "etherpad-lite",
-    "etherdraw"
+    "etherdraw",
+    "dphys-swapfile"
 ]
 tools = {
     :ansible => {
