@@ -17,7 +17,7 @@ apt-get install -y nmap curl sudo expect
 apt-get install -y sense-hat rpi.gpio
 apt-get install -y debian-keyring debian-archive-keyring
 apt-get install -y dphys-swapfile lxc
-sudo  mkdir -p /var/lxc/guests/test
+mkdir -p /var/lxc/guests/test
 debootstrap jessie /var/lxc/guests/test/fs/ http://archive.raspbian.org/raspbian
 #apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8B48AD6246925553
 #apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010
