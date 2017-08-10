@@ -104,7 +104,7 @@ tools = {
         :command => 'node-red-admin info node-red/rpi-gpio'
     },
     :bigtimer => {
-        :version => '1.6',
+        :version => '1.7',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-bigtimer'
     },
