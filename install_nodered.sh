@@ -49,4 +49,4 @@ sudo ijsinstall --install=global
 sudo systemctl restart jupyter.service
 
 # Additional packages for web-dev
-sudo npm install -g pm2 socket.io sqlite3 mongoose mysql
+sudo npm install -g pm2 socket.io sqlite3 mongoose mysql express
