@@ -25,6 +25,8 @@ sudo npm install -g node-red-admin
 cd /home/pi/.node-red
 npm i node-red-dashboard
 npm install node-red-contrib-bigtimer
+npm install node-red-node-mongodb
+npm install node-red-node-mysql
 # Install for blinkt
 npm install node-red-contrib-looptimer
 mkdir nodes
@@ -52,3 +54,10 @@ sudo systemctl restart jupyter.service
 sudo npm install -g pm2 socket.io sqlite3 mongoose mysql express
 sudo npm install -g javascripting learnyounode how-to-npm scope-chains-closures stream-adventure how-to-markdown learnyouhtml
 sudo npm install -g functional-javascript-workshop bytewiser expressworks bug-clinic async-you test-anything learnyoumongo torrential
+
+# ToDo could in a seperate file
+git clone git://git.drogon.net/wiringPi
+wiringPi/
+./build
+cd -
+rm -rf wiringPi
