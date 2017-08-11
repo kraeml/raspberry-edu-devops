@@ -11,7 +11,8 @@ services = [
     "mysql",
     "etherpad-lite",
     "etherdraw",
-    "dphys-swapfile"
+    "dphys-swapfile",
+    "mosquitto"
 ]
 tools = {
     :ansible => {
@@ -154,6 +155,20 @@ tools = {
     :mongodb => {
         :version => '2.4',
         :command => 'mongod --version'
+    },
+    :gpio => {
+        :version => '2.44',
+        :command => 'gpio -v'
+    },
+    :noderedmongo => {
+        :version => '0.0.13',
+        :commend => 'enabled',
+        :command => 'node-red-admin info node-red-node-mongodb/mongo'
+    },
+    :noderedmysql => {
+        :version => '0.0.16',
+        :commend => 'enabled',
+        :command => 'node-red-admin info node-red-node-mysql/mysql'
     }
 }
 
