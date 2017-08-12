@@ -13,5 +13,5 @@ fi
 #sudo apt-get install --yes cowsay sshpass python-winrm
 #sudo apt-get -t jessie-backports install --yes --force-yes ansible
 
-sudo apt-get install -y libffi-dev
-sudo pip3 install ansible
+sudo apt-get install -y libffi-dev libssl-dev
+sudo pip3 install ansible pywinrm
