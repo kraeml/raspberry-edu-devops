@@ -12,7 +12,10 @@ services = [
     "etherpad-lite",
     "etherdraw",
     "dphys-swapfile",
-    "mosquitto"
+    "mosquitto",
+    "mongod",
+    "lxc-net.service",
+    "lxc.service"
 ]
 tools = {
     :ansible => {
@@ -169,6 +172,10 @@ tools = {
         :version => '0.0.16',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-mysql/mysql'
+    },
+    :lxc => {
+        :version => '2.0',
+        :command => 'lxc-create --version'
     }
 }
 

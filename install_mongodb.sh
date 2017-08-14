@@ -8,4 +8,5 @@ if [ $(id -u) = 0 ]; then
    exit 1
 fi
 
-sudo apt-get install -y mongodb-server
+# sudo apt-get install -y mongodb-server
+sudo apt-get install --yes --force-yes -t stretch mongodb-server

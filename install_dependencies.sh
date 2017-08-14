@@ -9,8 +9,10 @@ if ! [ $(id -u) = 0 ]; then
    echo "to be run with sudo"
    exit 1
 fi
-
+echo "deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi" > /etc/apt/sources.list.d/stretch.list
+echo -e "Package: *\nPin: release n=jessie\nPin-Priority: 600" > /etc/apt/preferences.d/jessie.pref
 apt-get update
+apt-get --yes upgrade
 apt-get install -y nmap curl sudo expect
 # Needed for nodered
 # Todo: Change for python3.6
