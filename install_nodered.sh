@@ -57,7 +57,7 @@ sudo npm install -g functional-javascript-workshop bytewiser expressworks bug-cl
 
 # ToDo could in a seperate file
 git clone git://git.drogon.net/wiringPi
-wiringPi/
+cd wiringPi/
 ./build
 cd -
 rm -rf wiringPi

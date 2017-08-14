@@ -27,6 +27,3 @@ pip3 install ipython-sql
 
 # Activate jupyter extensions
 jupyter nbextension enable --py --sys-prefix widgetsnbextension
-
-# Create raspberry-edu-devops link into notebooks
-ln -s /home/pi/.raspberry-edu-devops/notebooks/ /home/pi/notebooks/raspberry-edu-devops

@@ -39,3 +39,6 @@ for key in ${!arr[@]};do
         echo "${arr[${key}]}" >> $target
     fi
 done
+
+# Create raspberry-edu-devops link into notebooks
+ln -s /home/pi/.raspberry-edu-devops/notebooks/ /home/pi/notebooks/raspberry-edu-devops
