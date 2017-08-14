@@ -13,7 +13,7 @@ services = [
     "etherdraw",
     "dphys-swapfile",
     "mosquitto",
-    "mongod",
+    "mongodb",
     "lxc-net.service",
     "lxc.service"
 ]
