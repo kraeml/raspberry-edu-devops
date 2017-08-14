@@ -176,6 +176,14 @@ tools = {
     :lxc => {
         :version => '2.0',
         :command => 'lxc-create --version'
+    },
+    :abiword => {
+        :version => '3.0',
+        :command => '/usr/bin/abiword --version'
+    },
+    :libreoffice => {
+        :version => '5.2',
+        :command => '/usr/bin/libreoffice --version'
     }
 }
 
