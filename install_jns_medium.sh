@@ -26,14 +26,15 @@ if [ ! -e $HOME/.firstboot ]; then
         ./install_ansible.sh | tee -a ../post-boot.log | logger -p local7.info -t ansible-post-boot
         ./install_inspec.sh | tee -a ../post-boot.log | logger -p local7.info -t inspec-post-boot
         sudo ./install_tex.sh | tee -a ../post-boot.log | logger -p local7.info -t tex-post-boot
-        ./install_cloud9.sh | tee -a ../post-boot.log | logger -p local7.info -t cloud9-post-boot
         ./install_nodered.sh | tee -a ../post-boot.log | logger -p local7.info -t nodered-post-boot
+        ./install_cloud9.sh | tee -a ../post-boot.log | logger -p local7.info -t cloud9-post-boot
         ./install_docker.sh | tee -a ../post-boot.log | logger -p local7.info -t docker-post-boot
         ./install_jns_php7.sh | tee -a ../post-boot.log | logger -p local7.info -t php7-post-boot
         ./install_jns_mysql.sh | tee -a ../post-boot.log | logger -p local7.info -t mysql-post-boot
         ./install_jns_phpmyadmin.sh | tee -a ../post-boot.log | logger -p local7.info -t phpmyadmin-post-boot
         ./install_mongodb.sh | tee -a ../post-boot.log | logger -p local7.info -t mongodb-post-boot
-        ./install_lxc.sh | tee -a ../post-boot.log | logger -p local7.info -t lxc-post-boot
+        # ToDo lxc hangs up
+        # ./install_lxc.sh | tee -a ../post-boot.log | logger -p local7.info -t lxc-post-boot
         ./install_etherpadlite.sh | tee -a ../post-boot.log | logger -p local7.info -t etherpadlite-post-boot
         sudo apt-get update
         sudo apt-get dist-upgrade --yes --force-yes
