@@ -6,7 +6,7 @@ if ! [ $(id -u) = 0 ]; then
    echo "to be run with sudo"
    exit 1
 fi
-
+export DEBIAN_FRONTEND=noninteractive
 #------------------------------------------------------
 apt-get install -y texlive
 apt-get install -y texlive-latex-extra
