@@ -2,6 +2,7 @@
 # script name:     install_nodered.sh
 # sudo:            no
 
+export DEBIAN_FRONTEND=noninteractive
 if [ $(id -u) = 0 ]; then
    echo "to be run with no sudo"
    exit 1
@@ -40,7 +41,7 @@ git clone http://github.com/pimoroni/node-red-nodes pimoroni-nodes
 cd -
 
 sudo systemctl restart nodered.service
-sleep 5
+sleep 20
 # Disable unused nodes
 node-red-admin login
 node-red-admin disable node-red/node-flotilla
@@ -57,11 +58,30 @@ sudo systemctl restart jupyter.service
 
 # Additional packages for web-dev learning
 sudo apt-get install --yes sqlite3
-sudo npm install -g pm2 socket.io sqlite3 mongoose mysql express
-sudo npm install -g javascripting learnyounode how-to-npm scope-chains-closures stream-adventure how-to-markdown learnyouhtml
-sudo npm install -g functional-javascript-workshop bytewiser expressworks bug-clinic async-you test-anything learnyoumongo torrential
+sudo npm install -g pm2
+sudo npm install -g socket.io
+sudo npm install -g sqlite3
+sudo npm install -g mongoose
+sudo npm install -g mysql
+sudo npm install -g express
+sudo npm install -g javascripting
+sudo npm install -g how-to-npm
+sudo npm install -g scope-chains-closures
+sudo npm install -g stream-adventure
+sudo npm install -g how-to-markdown
+sudo npm install -g learnyouhtml
+sudo npm install -g learnyounode
+sudo npm install -g functional-javascript-workshop
+sudo npm install -g bytewiser
+sudo npm install -g expressworks
+sudo npm install -g bug-clinic
+sudo npm install -g async-you
+sudo npm install -g test-anything
+sudo npm install -g learnyoumongo
+sudo npm install -g torrential
 
 # ToDo could in a seperate file
+cd /home/pi/
 git clone git://git.drogon.net/wiringPi
 cd wiringPi/
 ./build

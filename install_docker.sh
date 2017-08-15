@@ -2,6 +2,8 @@
 # script name:     install_docker.sh
 # sudo:            no
 
+export DEBIAN_FRONTEND=noninteractive
+
 if [ $(id -u) = 0 ]; then
    echo "to be run with no sudo"
    exit 1
