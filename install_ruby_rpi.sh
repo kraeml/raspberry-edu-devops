@@ -7,6 +7,7 @@
 #   bash <(curl -s https://gist.githubusercontent.com/blacktm/8302741/raw/install_ruby_rpi.sh)
 # --------------------------------------------------------------------------------------------
 
+export DEBIAN_FRONTEND=noninteractive
 # Time the install process
 START_TIME=$SECONDS
 
