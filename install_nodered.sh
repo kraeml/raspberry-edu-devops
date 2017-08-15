@@ -21,7 +21,7 @@ fi
 # Update npm and install npm-check
 sudo npm install -g npm@latest
 sudo npm install -g npm-check
-npm config --global set unsafe-perm=true
+sudo npm config --global set unsafe-perm=true
 
 # Install node-red-admin
 sudo npm install -g node-red-admin
