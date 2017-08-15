@@ -1,6 +1,8 @@
 #!/bin/bash
 # script name:     install_jns_php7.sh
 # sudo:            no
+# See: https://getgrav.org/blog/raspberrypi-nginx-php7-dev
+# See: https://gist.github.com/Lewiscowles1986/ce14296e3f5222082dbaa088ca1954f7
 
 if [ $(id -u) = 0 ]; then
    echo "to be run with no sudo"
@@ -15,9 +17,22 @@ then
     exit
 fi
 
-sudo apt-get install --yes -t stretch php7.0 php7.0-curl php7.0-gd php7.0-fpm php7.0-cli php7.0-opcache php7.0-mbstring php7.0-xml php7.0-zip php7.0-mysql nginx
+# Pinning in install_dependencies.sh
 # Remove old nginx-packages
+sudo apt-get purge --yes nginx
+
+sudo apt-get install --yes -t stretch php7.0 php7.0-curl php7.0-gd php7.0-fpm php7.0-cli php7.0-opcache php7.0-mbstring php7.0-xml php7.0-zip php7.0-mysql
+apt-get install -t stretch -y nginx-full
 sudo apt-get autoremove --yes
 sudo cp default /etc/nginx/sites-available/default
-sudo service nginx restart
-sudo service php7.0-fpm restart
+sudo update-rc.d nginx defaults
+sudo update-rc.d php7.0-fpm defaults
+
+echo "<?php phpinfo();" > /var/www/html/index.php
+chown -R www-data:www-data /var/www
+chmod -R 775 /var/www
+
+usermod -aG www-data pi
+
+sudo systemctl restart nginx
+sudo systemctl restart php7.0-fpm
