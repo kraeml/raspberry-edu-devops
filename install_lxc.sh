@@ -8,4 +8,6 @@ if [ $(id -u) = 0 ]; then
    exit 1
 fi
 
+export DEBIAN_FRONTEND=noninteractive
+
 sudo apt-get install --yes --force-yes -t stretch lxc bridge-utils
