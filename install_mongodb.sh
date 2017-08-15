@@ -9,4 +9,4 @@ if [ $(id -u) = 0 ]; then
 fi
 
 # sudo apt-get install -y mongodb-server
-sudo apt-get install --yes --force-yes -t stretch mongodb-server
+sudo apt-get install --yes --force-yes mongodb-server

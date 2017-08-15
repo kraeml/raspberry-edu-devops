@@ -10,4 +10,4 @@ fi
 
 export DEBIAN_FRONTEND=noninteractive
 
-sudo apt-get install --yes --force-yes -t stretch lxc bridge-utils
+sudo apt-get install --yes --force-yes lxc bridge-utils

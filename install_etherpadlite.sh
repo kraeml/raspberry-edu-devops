@@ -12,11 +12,9 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 
 # Dependencies for etherpad-lite
-sudo apt-get install --yes --force-yes -t stretch libreoffice abiword
-# ToDo no Package in stretch
-# sudo apt-get install --yes --force-yes -t stretch python3-rpi.gpio
+sudo apt-get install --yes --force-yes libreoffice abiword
 # Dependencies for etherdraw
-sudo apt-get install --yes --force-yes -t stretch libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++
+sudo apt-get install --yes --force-yes libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++
 
 #wget https://github.com/ether/etherpad-lite/zipball/master -O etherpad-lite.zip
 #unzip etherpad-lite.zip
