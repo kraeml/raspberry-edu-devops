@@ -7,6 +7,7 @@ if ! [ $(id -u) = 0 ]; then
    exit 1
 fi
 
+export DEBIAN_FRONTEND=noninteractive
 # Packages Dependencies for building Jupyter
 #------------------------------------------------------
 apt-get -y install libncurses5-dev python-dev pandoc
