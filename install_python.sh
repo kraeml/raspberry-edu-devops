@@ -16,7 +16,7 @@ if [ "$?" -eq 0 ] && [ "${version}" = "$(python3 --version | cut -d\  -f 2)" ]
 then
     exit
 fi
-
+export DEBIAN_FRONTEND=noninteractive
 # Packages Dependencies for building python3
 #------------------------------------------------------
 apt-get install -y build-essential libncursesw5-dev
@@ -26,7 +26,7 @@ apt-get install -y libssl-dev openssl
 apt-get install -y libreadline-dev libbz2-dev
 #------------------------------------------------------
 
-wget "https://www.python.org/ftp/python/$version/Python-$version.tgz"
+wget --quiet "https://www.python.org/ftp/python/$version/Python-$version.tgz"
 tar zxvf "Python-$version.tgz"
 cd "Python-$version"
 ./configure
