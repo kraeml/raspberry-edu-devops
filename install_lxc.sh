@@ -10,4 +10,7 @@ fi
 
 export DEBIAN_FRONTEND=noninteractive
 
-sudo apt-get install --yes --force-yes lxc bridge-utils
+sudo apt-get install --yes --force-yes lxc bridge-utils debootstrap
+#apt-get install -y lxc
+#mkdir -p /var/lxc/guests/test
+#debootstrap jessie /var/lxc/guests/test/fs/ http://archive.raspbian.org/raspbian
