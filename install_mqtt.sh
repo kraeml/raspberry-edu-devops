@@ -8,4 +8,4 @@ if [ $(id -u) = 0 ]; then
    exit 1
 fi
 
-sudo apt-get install mosquitto mosquitto-clients
+sudo apt-get install --yes mosquitto mosquitto-clients
