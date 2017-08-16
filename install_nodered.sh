@@ -20,7 +20,8 @@ else
 fi
 
 # Update npm and install npm-check
-sudo npm install -g npm@latest
+# May not work with etherpad-lite
+# sudo npm install -g npm@latest
 sudo npm install -g npm-check
 sudo npm config --global set unsafe-perm=true
 
