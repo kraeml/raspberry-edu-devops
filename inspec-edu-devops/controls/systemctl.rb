@@ -14,7 +14,6 @@ services = [
     "dphys-swapfile",
     "mosquitto",
     "mongodb",
-    "lxc-net.service",
     "lxc.service"
 ]
 tools = {
