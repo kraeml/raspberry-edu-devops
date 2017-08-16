@@ -62,7 +62,7 @@ tools = {
         :command => 'nodejs -v'
     },
     :npm => {
-        :version => '3.10',
+        :version => '5.3',
         :command => 'npm -v'
     },
     :cloud9 => {
@@ -142,7 +142,7 @@ tools = {
     },
     :noderedflotilla => {
         :version => '0.17',
-        :commend => 'Error',
+        :commend => 'disabled',
         :command => 'node-red-admin info node-red/node-flotilla'
     },
     :noderedledborg => {
@@ -178,11 +178,11 @@ tools = {
         :command => 'lxc-create --version'
     },
     :abiword => {
-        :version => '3.0',
+        :version => '1.0',
         :command => '/usr/bin/abiword --version'
     },
     :libreoffice => {
-        :version => '5.2',
+        :version => '4.3',
         :command => '/usr/bin/libreoffice --version'
     }
 }
