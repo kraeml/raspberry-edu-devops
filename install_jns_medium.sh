@@ -35,6 +35,7 @@ if [ ! -e $HOME/.firstboot ]; then
         ./install_jns_phpmyadmin.sh | tee -a ../post-boot.log | logger -p local7.info -t phpmyadmin-post-boot
         ./install_mongodb.sh | tee -a ../post-boot.log | logger -p local7.info -t mongodb-post-boot
         ./install_lxc.sh | tee -a ../post-boot.log | logger -p local7.info -t lxc-post-boot
+        ./install_mqtt.sh | tee -a ../post-boot.log | logger -p local7.info -t mqtt-post-boot
         ./install_etherpadlite.sh | tee -a ../post-boot.log | logger -p local7.info -t etherpadlite-post-boot
         sudo apt-get update
         sudo apt-get dist-upgrade --yes --force-yes
