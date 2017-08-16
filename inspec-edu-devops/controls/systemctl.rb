@@ -61,7 +61,7 @@ tools = {
         :command => 'nodejs -v'
     },
     :npm => {
-        :version => '5.3',
+        :version => '3.10',
         :command => 'npm -v'
     },
     :cloud9 => {
@@ -173,11 +173,11 @@ tools = {
         :command => 'node-red-admin info node-red-node-mysql/mysql'
     },
     :lxc => {
-        :version => '2.0',
+        :version => '1.0',
         :command => 'lxc-create --version'
     },
     :abiword => {
-        :version => '1.0',
+        :version => '3.0',
         :command => '/usr/bin/abiword --version'
     },
     :libreoffice => {
