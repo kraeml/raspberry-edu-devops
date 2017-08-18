@@ -228,7 +228,7 @@ control 'users-1.0' do
     impact 1.0
     title 'Ensure users are known'
     users.each do |key, value|
-        describe user(value[:uname]) do,
+        describe user(value[:uname]) do
             it { should exist }
             its('group') { should eq "#{value[:gname]}" }
             its('groups') { should eq value[:groups] }
