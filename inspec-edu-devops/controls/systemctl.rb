@@ -16,6 +16,34 @@ services = [
     "mongodb",
     "lxc.service"
 ]
+
+files = {
+    :phpinfo => {
+        :path => '/var/www/html/index.php',
+        :user => 'www-data',
+        :group => 'www-data',
+        :rights => '0644'
+    }
+}
+
+users = {
+    :pi => {
+        :uname => 'pi',
+        :gname => 'pi',
+        :groups => [
+            'adm',
+            'dialout',
+            'sudo',
+            'www-data',
+            'video',
+            'users',
+            'docker',
+            'gpio'
+        ],
+        :home => '/home/pi'
+    }
+}
+
 tools = {
     :ansible => {
         :version => '2.3',
@@ -39,8 +67,8 @@ tools = {
         :process => 'mysqld'
     },
     :nginx => {
-        :version => 'nginx\/1.10.3',
-        :command => '/usr/sbin/nginx -v',
+        :version => 'nginx\/1.10',
+        :command => '/usr/sbin/nginx -v 2>&1',
         :port => '80',
         :process => 'nginx'
     },
@@ -185,6 +213,33 @@ tools = {
         :command => '/usr/bin/libreoffice --version'
     }
 }
+
+control 'files' do
+    impact 1.0
+    title 'Ensure file/dirs exists'
+    files.each do |key, value|
+        describe file(value[:path]) do
+          it { should exist }
+        end
+    end
+end
+
+control 'users-1.0' do
+    impact 1.0
+    title 'Ensure users are known'
+    users.each do |key, value|
+        describe user(value[:uname]) do,
+            it { should exist }
+            its('group') { should eq "#{value[:gname]}" }
+            its('groups') { should eq value[:groups] }
+            its('home') { should eq "#{value[:home]}" }
+            #its('shell') { should eq '/bin/bash' }
+            #its('mindays') { should eq 0 }
+            #its('maxdays') { should eq 90 }
+            #its('warndays') { should eq 8 }
+        end
+    end
+end
 
 control 'ports-1.0' do
     impact 1.0

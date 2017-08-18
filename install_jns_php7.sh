@@ -31,7 +31,8 @@ sudo update-rc.d php7.0-fpm defaults
 # ToDo Write some inspec tests
 sudo echo "<?php phpinfo();?>" | sudo tee /var/www/html/index.php
 sudo chown -R www-data:www-data /var/www
-sudo chmod -R 775 /var/www
+sudo find /var/www/ -type d -exec sudo chmod 775 {} \;
+# sudo find /var/www/ -type f -exec sudo chmod 644 {} \;
 
 sudo usermod -aG www-data pi
 
