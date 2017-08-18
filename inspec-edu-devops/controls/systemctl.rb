@@ -39,8 +39,8 @@ tools = {
         :process => 'mysqld'
     },
     :nginx => {
-        #:version => 'nginx\/1.10.3',
-        #:command => '/usr/sbin/nginx -v',
+        :version => 'nginx\/1.10.3',
+        :command => '/usr/sbin/nginx -v',
         :port => '80',
         :process => 'nginx'
     },

@@ -29,7 +29,7 @@ sudo update-rc.d nginx defaults
 sudo update-rc.d php7.0-fpm defaults
 
 # ToDo Write some inspec tests
-sudo echo "<?php phpinfo();" > /var/www/html/index.php
+sudo echo "<?php phpinfo();?>" | sudo tee /var/www/html/index.php
 sudo chown -R www-data:www-data /var/www
 sudo chmod -R 775 /var/www
 
