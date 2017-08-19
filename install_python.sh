@@ -35,7 +35,7 @@ make install
 pip3 install pip --upgrade
 
 ### install rest of the libraries, as well as freetrype
-apt-get install libjpeg-dev libfreetype6 libfreetype6-dev
+apt-get install libjpeg8 libjpeg-dev libfreetype6 libfreetype6-dev
 
 ### install PIL
 pip3 install pillow sense-hat rpi.gpio
