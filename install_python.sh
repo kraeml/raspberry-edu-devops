@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -lx
 # script name:     install_python.sh
 # sudo:            yes
 #
