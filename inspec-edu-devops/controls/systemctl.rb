@@ -40,6 +40,9 @@ users = {
             'docker',
             'gpio'
         ],
+        :notGroups => [
+            'root'
+        ],
         :home => '/home/pi'
     }
 }
@@ -231,12 +234,20 @@ control 'users-1.0' do
         describe user(value[:uname]) do
             it { should exist }
             its('group') { should eq "#{value[:gname]}" }
-            its('groups') { should eq value[:groups] }
+            # its('groups') { should eq value[:groups] }
             its('home') { should eq "#{value[:home]}" }
             #its('shell') { should eq '/bin/bash' }
             #its('mindays') { should eq 0 }
             #its('maxdays') { should eq 90 }
             #its('warndays') { should eq 8 }
+        end
+        describe command("id #{key.to_s}") do
+            value[:groups].each do |group|
+                its(:stdout) { should include group.to_s }
+            end
+            value[:notGroups ].each do |group|
+                its(:stdout) { should_not include group.to_s }
+            end
         end
     end
 end
