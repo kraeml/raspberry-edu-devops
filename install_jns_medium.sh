@@ -16,11 +16,13 @@ export DEBIAN_FRONTEND=noninteractive
 # This makes the `raspbian-ua-netinst` installer more uniform and easier
 # to maintain regardless of the use.
 if [ ! -e $HOME/.firstboot ]; then
+    touch $HOME/.firstboot
     # Change PWD to the binaries directory
     pushd $HOME/.raspberry-edu-devops
         echo -n "First boot detected on "
         date
-        touch $HOME/.firstboot
+        # Somthing took long ...
+        sleep 10
         # run scripts
         ./install_jns_fast.sh
         sudo ./install_dependencies.sh | tee -a ../post-boot.log | logger -p local7.info -t dependencies-post-boot
