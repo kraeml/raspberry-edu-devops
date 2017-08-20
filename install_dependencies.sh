@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 # script name:     install_dependencies.sh
 # sudo:            yes
 #
@@ -19,4 +19,7 @@ apt-get install -y nmap curl sudo expect
 # Needed for nodered
 apt-get install -y sense-hat rpi.gpio
 apt-get install -y debian-keyring debian-archive-keyring
+apt-get update
+apt-get upgrade -y
+sleep 20
 apt-get install -y dphys-swapfile lsb-core
