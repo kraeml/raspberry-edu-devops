@@ -56,3 +56,5 @@ echo "gem: --no-document" > ~/.gemrc
 # Print the time elapsed
 ELAPSED_TIME=$(($SECONDS - $START_TIME))
 echo -e "\nFinished in $(($ELAPSED_TIME/60/60)) hr, $(($ELAPSED_TIME/60%60)) min, and $(($ELAPSED_TIME%60)) sec\n"
+
+sudo rm -rf /tmp/ruby-build*
