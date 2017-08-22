@@ -1,4 +1,4 @@
-#! /bin/bash -lx
+#! /bin/bash -l
 
 # script name:     update-scripts.sh
 # sudo:            no
