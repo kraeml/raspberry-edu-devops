@@ -27,4 +27,6 @@ if [ ! -e $HOME/.firstboot_basic ]; then
     systemd-analyze critical-chain | logger -t analyzer
 
     (sleep 3660; systemd-analyze critical-chain --fuzz=1h | logger -t late-fast-analyzer) &
+else
+    echo "First boot base script still running"
 fi
