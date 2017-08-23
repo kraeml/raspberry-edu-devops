@@ -38,7 +38,7 @@ pip3 install pip --upgrade
 apt-get install libjpeg62-turbo libjpeg62-turbo-dev liblcms1-dev liblcms1 zlib1g libjpeg8 libjpeg-dev libfreetype6 libfreetype6-dev
 
 ### install PIL
-pip3 install pillow sense-hat rpi.gpio
+# pip3 install pillow sense-hat rpi.gpio
 pip3 install blinkt requests psutil paho-mqtt tweepy
 
 git clone https://github.com/pimoroni/blinkt.git /home/pi/blinkt
