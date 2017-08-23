@@ -2,15 +2,16 @@
 # script name:     install_jns.sh
 # sudo:            no
 
-# Timestamp the logfile
-date
-
-if [ $(id -u) = 0 ]; then
-   echo "to be run without sudo"
-   exit 1
-fi
 if [ ! -e $HOME/.firstboot_basic ]; then
     touch $HOME/.firstboot_basic
+    # Timestamp the logfile
+    date
+
+    if [ $(id -u) = 0 ]; then
+       echo "to be run without sudo"
+       exit 1
+    fi
+
     # Change PWD to the binaries directory
     pushd $HOME/.raspberry-edu-devops
         # run scripts
@@ -21,9 +22,9 @@ if [ ! -e $HOME/.firstboot_basic ]; then
         date
     popd
 
-systemd-analyze | logger -t analyzer
+    systemd-analyze | logger -t analyzer
 
-systemd-analyze critical-chain | logger -t analyzer
+    systemd-analyze critical-chain | logger -t analyzer
 
-(sleep 3660; systemd-analyze critical-chain --fuzz=1h | logger -t late-fast-analyzer) &
+    (sleep 3660; systemd-analyze critical-chain --fuzz=1h | logger -t late-fast-analyzer) &
 fi

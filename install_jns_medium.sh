@@ -1,26 +1,26 @@
-#!/bin/bash -l
+#!/bin/bash
 
 # script name:     install_jns.sh
 # sudo:            no
 
-# Timestamp the logfile
-date
-
-if [ $(id -u) = 0 ]; then
-   echo "to be run without sudo"
-   exit 1
-fi
-sudo chown -R pi: .
-export DEBIAN_FRONTEND=noninteractive
 # Additional scripts to be executed on the first boot after install.
 # This makes the `raspbian-ua-netinst` installer more uniform and easier
 # to maintain regardless of the use.
 if [ ! -e $HOME/.firstboot ]; then
     touch $HOME/.firstboot
+    sudo rm /etc/cron.d/raspboot
+    # Timestamp the logfile
+    date
+
+    if [ $(id -u) = 0 ]; then
+       echo "to be run without sudo"
+       exit 1
+    fi
+    sudo chown -R pi: .
+    export DEBIAN_FRONTEND=noninteractive
     # Change PWD to the binaries directory
     pushd $HOME/.raspberry-edu-devops
         echo -n "First boot detected on "
-        sudo rm /etc/cron.d/raspboot
         date
         # run scripts
         ./install_jns_fast.sh
