@@ -9,5 +9,3 @@ if [ $(id -u) = 0 ]; then
 fi
 
 sudo apt-get install --yes mosquitto mosquitto-clients
-
-sudo pip3 install pillow sense-hat rpi.gpio
