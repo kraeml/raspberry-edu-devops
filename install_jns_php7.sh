@@ -38,5 +38,3 @@ sudo usermod -aG www-data pi
 
 sudo systemctl restart nginx
 sudo systemctl restart php7.0-fpm
-
-sudo pip3 install pillow sense-hat rpi.gpio
