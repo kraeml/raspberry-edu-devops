@@ -23,4 +23,3 @@ apt-get update
 apt-get upgrade -y
 sleep 20
 apt-get install -y dphys-swapfile lsb-core
-pip3 install pillow sense-hat rpi.gpio

@@ -88,3 +88,5 @@ cd wiringPi/
 ./build
 cd -
 rm -rf wiringPi
+
+sudo pip3 install pillow sense-hat rpi.gpio
