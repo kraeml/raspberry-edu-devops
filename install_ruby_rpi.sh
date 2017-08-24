@@ -42,7 +42,10 @@ sudo git clone https://github.com/rbenv/ruby-build.git /usr/local/rbenv/plugins/
 # Install dependencies
 #  See: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 sudo apt update
-sudo apt install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+sudo apt install -y autoconf bison build-essential libssl-dev libyaml-dev \
+ libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev \
+ libxml2 libxml2-dev libxslt1.1 libxslt1-dev
+
 
 # Install Ruby 2.4, don't generate RDoc to save lots of time
 CONFIGURE_OPTS="--disable-install-doc --enable-shared" /usr/local/bin/rbenv install 2.4.1 --verbose
