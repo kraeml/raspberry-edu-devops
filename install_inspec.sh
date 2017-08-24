@@ -20,3 +20,18 @@ source /etc/profile.d/rbenv.sh
 gem update system
 gem cleanup
 gem install inspec
+
+# Install webserver tests with capybara and co.
+gem install bundler
+gem install capybara
+gem install selenium-webdriver
+
+# Visit http://elementalselenium.com/tips/38-headless
+sudo apt-get install -y xvfb firefox-esr
+
+sudo apt-get install libfontconfig1 libfreetype6
+curl -o /tmp/phantomjs_2.1.1_armhf.deb -sSL https://github.com/fg2it/phantomjs-on-raspberry/releases/download/v2.1.1-wheezy-jessie/phantomjs_2.1.1_armhf.deb
+sudo dpkg -i /tmp/phantomjs_2.1.1_armhf.deb
+
+# Visit https://realpython.com/blog/python/headless-selenium-testing-with-python-and-phantomjs/
+sudo pip3 install selenium
