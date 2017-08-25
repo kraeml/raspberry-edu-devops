@@ -233,6 +233,10 @@ tools = {
     :phantomjs => {
         :version => '2.1',
         :command => 'phantomjs --version'
+    },
+    :pip3_selenium => {
+        :version => '3.5.0',
+        :command => 'pip3 show selenium'
     }
 }
 
