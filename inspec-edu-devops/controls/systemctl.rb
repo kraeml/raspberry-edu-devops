@@ -229,6 +229,10 @@ tools = {
     :libreoffice => {
         :version => '4.3',
         :command => '/usr/bin/libreoffice --version'
+    },
+    :phantomjs => {
+        :version => '2.1',
+        :command => 'phantomjs --version'
     }
 }
 
