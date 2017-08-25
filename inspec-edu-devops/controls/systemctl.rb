@@ -18,13 +18,13 @@ services = [
 ]
 
 gem_packages = {
-    :bundler = > {
+    :bundler => {
         :version => "1.15"
     },
-    :capybara = > {
+    :capybara => {
         :version => "2.15"
     },
-    :inspec = > {
+    :inspec => {
         :version => "1.34"
     },
     :selenium-webdriver = > {
