@@ -17,6 +17,21 @@ services = [
     "lxc.service"
 ]
 
+gem_packages = {
+    :bundler = > {
+        :version => "1.15"
+    },
+    :capybara = > {
+        :version => "2.15"
+    },
+    :inspec = > {
+        :version => "1.34"
+    },
+    :selenium-webdriver = > {
+        :version => "3.5"
+    }
+}
+
 files = {
     :phpinfo => {
         :path => '/var/www/html/index.php',
@@ -216,6 +231,17 @@ tools = {
         :command => '/usr/bin/libreoffice --version'
     }
 }
+
+control 'gem packages' do
+    impact 1.0
+    title 'Ensure gem packages are installed'
+    gem_packages.each do | key, value|
+        describe gem(key) do
+            it { should be_installed }
+            its('version') { should eq "#{value[:version]}" }
+        end
+    end
+end
 
 control 'files' do
     impact 1.0
