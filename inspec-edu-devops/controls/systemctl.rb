@@ -19,16 +19,16 @@ services = [
 
 gem_packages = {
     :bundler => {
-        :version => "1.15"
+        :version => "1.15.4"
     },
     :capybara => {
-        :version => "2.15"
+        :version => "2.15.1"
     },
     :inspec => {
-        :version => "1.34"
+        :version => "1.34.1"
     },
     :"selenium-webdriver" => {
-        :version => "3.5"
+        :version => "3.5.1"
     }
 }
 
