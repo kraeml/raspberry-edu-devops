@@ -27,7 +27,7 @@ gem_packages = {
     :inspec => {
         :version => "1.34"
     },
-    :selenium-webdriver = > {
+    :selenium-webdriver => {
         :version => "3.5"
     }
 }
