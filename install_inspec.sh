@@ -35,4 +35,4 @@ sudo dpkg -i /tmp/phantomjs_2.1.1_armhf.deb
 curl -L https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-arm7hf.tar.gz | sudo tar xz -C /usr/local/bin/
 
 # Visit https://realpython.com/blog/python/headless-selenium-testing-with-python-and-phantomjs/
-sudo pip3 install selenium
+sudo pip3 install selenium pyvirtualdisplay
