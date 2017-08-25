@@ -38,6 +38,12 @@ files = {
         :user => 'www-data',
         :group => 'www-data',
         :rights => '0644'
+    },
+    :ansible_hosts => {
+        :path => '/etc/ansible/hosts',
+        :user => 'root',
+        :group => 'root',
+        :rights => '0644'
     }
 }
 
