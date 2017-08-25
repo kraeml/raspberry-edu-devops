@@ -1,2 +1,2 @@
 #!/bin/bash -l
-vfb-run ruby headless.rb
+xvfb-run ruby headless.rb
