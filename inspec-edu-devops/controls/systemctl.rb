@@ -57,7 +57,7 @@ tools = {
         :command => 'python3 --version'
     },
     :inspec => {
-        :version => '1.33',
+        :version => '1.34',
         :command => 'inspec --version'
     },
     :php => {
