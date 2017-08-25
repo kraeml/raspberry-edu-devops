@@ -238,7 +238,14 @@ tools = {
     :pip3_selenium => {
         :version => '3.5.0',
         :command => 'pip3 show selenium'
-    }
+    };
+    :geckodriver => {
+        :version => '0.18.0';
+        :command => 'geckodriver --version'
+    },
+    :pyvirtualdisplay => {
+        :version => '0.2',
+        :command => 'pip3 show pyvirtualdisplay'
 }
 
 control 'gem packages' do
