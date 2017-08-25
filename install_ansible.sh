@@ -10,3 +10,6 @@ fi
 echo "Install ansible via pip"
 sudo apt-get install -y libffi-dev libssl-dev cowsay sshpass
 sudo pip3 install ansible pywinrm
+
+sudo mkdir -p /etc/ansible
+sudo cp files/etc/ansible/hosts /etc/ansible/
