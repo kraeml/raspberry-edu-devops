@@ -131,6 +131,10 @@ tools = {
         :version => 'javascript',
         :command => 'jupyter-kernelspec list'
     },
+    :jupyter_widgets => {
+        :version => 'jupyter-js-widgets/extension  enabled',
+        :command => 'jupyter nbextension list'
+    },
     :pip3_ipython_sql => {
         :version => '0.3',
         :command => 'pip3 show ipython-sql'
