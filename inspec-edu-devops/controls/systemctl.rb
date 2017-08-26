@@ -103,6 +103,38 @@ tools = {
         :port => '8888',
         :process => 'python3.6'
     },
+    :pip3_jupyter => {
+        :version => '1.0',
+        :command => 'pip3 show jupyter'
+    },
+    :pip3_readline => {
+        :version => '6.2',
+        :command => 'pip3 show readline'
+    },
+    :pip3_ipyparallel => {
+        :version => '6.0',
+        :command => 'pip3 show ipyparallel'
+    },
+    :pip3_bash_kernel => {
+        :version => '0.6',
+        :command => 'pip3 show bash_kernel'
+    },
+    :jupyter_bash_kernel => {
+        :version => 'bash',
+        :command => 'jupyter-kernelspec list'
+    },
+    :jupyter_python3 => {
+        :version => 'python3',
+        :command => 'jupyter-kernelspec list'
+    },
+    :jupyter_javascript => {
+        :version => 'javascript',
+        :command => 'jupyter-kernelspec list'
+    },
+    :pip3_ipython_sql => {
+        :version => '0.3',
+        :command => 'pip3 show ipython-sql'
+    },
     :nodered => {
         :version => '0.17',
         :command => 'node-red --help',
@@ -303,7 +335,7 @@ end
 
 control 'ports-1.0' do
     impact 1.0
-    title 'Ensure ports pare open'
+    title 'Ensure ports are open'
     tools.each do |key, value|
         if value[:port]
             describe port(value[:port]) do

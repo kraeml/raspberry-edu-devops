@@ -19,7 +19,7 @@ pip3 install readline
 pip3 install ipyparallel
 
 echo "Install additional kernels"
-pip3 install bash_kernel
+pip3 install bash_kernel==0.6
 python3 -m bash_kernel.install
 # No nodejs
 # npm install -g ijavascript
