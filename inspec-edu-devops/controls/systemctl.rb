@@ -132,7 +132,7 @@ tools = {
         :command => 'jupyter-kernelspec list'
     },
     :jupyter_widgets => {
-        :version => 'jupyter-js-widgets/extension  enabled',
+        :version => 'widgets.*enabled',
         :command => 'jupyter nbextension list'
     },
     :pip3_ipython_sql => {
