@@ -81,11 +81,3 @@ sudo npm install -g async-you
 sudo npm install -g test-anything
 sudo npm install -g learnyoumongo
 sudo npm install -g torrential
-
-# ToDo could in a seperate file
-cd /home/pi/
-git clone git://git.drogon.net/wiringPi
-cd wiringPi/
-./build
-cd -
-rm -rf wiringPi
