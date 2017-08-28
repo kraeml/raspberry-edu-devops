@@ -30,6 +30,8 @@ gem install 'poltergeist'
 gem install 'selenium-webdriver'
 gem install 'launchy'
 gem install 'rest-client'
+gem install 'sinatra'
+gem install 'rspec'
 
 # Visit http://elementalselenium.com/tips/38-headless
 sudo apt-get install -y xvfb firefox-esr
