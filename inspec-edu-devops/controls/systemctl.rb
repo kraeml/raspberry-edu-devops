@@ -307,6 +307,10 @@ tools = {
     :wiringpi => {
         :version => '2.44',
         :command => 'gpio -v'
+    },
+    :gem => {
+        :version => '2.1',
+        :command => 'gem -v'
     }
 }
 
