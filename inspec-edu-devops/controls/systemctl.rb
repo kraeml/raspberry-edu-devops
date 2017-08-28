@@ -131,7 +131,7 @@ tools = {
         :command => 'pip3 show ipyparallel'
     },
     :pip3_bash_kernel => {
-        :version => '0.6',
+        :version => '0.7.1',
         :command => 'pip3 show bash_kernel'
     },
     :jupyter_bash_kernel => {
