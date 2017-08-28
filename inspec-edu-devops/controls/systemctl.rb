@@ -29,6 +29,21 @@ gem_packages = {
     },
     :"selenium-webdriver" => {
         :version => "3.5.1"
+    },
+    :"cucumber" => {
+        :version => "2.4.0"
+    },
+    :"rspec-expectations" => {
+        :version => "3.6.0"
+    },
+    :"poltergeist" => {
+        :version => "1.16.0"
+    },
+    :"launchy" => {
+        :version => "2.4.3"
+    },
+    :"rest-client" => {
+        :version => "2.0.2"
     }
 }
 
@@ -288,6 +303,10 @@ tools = {
     :pyvirtualdisplay => {
         :version => '0.2',
         :command => 'pip3 show pyvirtualdisplay'
+    },
+    :wiringpi => {
+        :version => '2.44',
+        :command => 'gpio -v'
     }
 }
 
