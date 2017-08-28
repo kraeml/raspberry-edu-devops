@@ -68,19 +68,30 @@ users = {
         :gname => 'pi',
         :groups => [
 	    'pi',
-            'adm',
-            'dialout',
-            'sudo',
-            'www-data',
-            'video',
-            'users',
-            'gpio',
+        'adm',
+        'dialout',
+        'sudo',
+        'www-data',
+        'video',
+        'users',
+        'gpio',
 	    'docker'
         ],
         :notGroups => [
             'root'
         ],
         :home => '/home/pi'
+    }
+    :"www-data" => {
+        :uname => 'www-data',
+        :gname => 'www-data',
+        :groups => [
+	    'www-data',
+        'gpio'],
+        :notGroups => [
+            'root'
+        ],
+        :home => '/bin/false'
     }
 }
 
