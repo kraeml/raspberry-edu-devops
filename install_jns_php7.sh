@@ -35,6 +35,7 @@ sudo find /var/www/ -type d -exec sudo chmod 775 {} \;
 # sudo find /var/www/ -type f -exec sudo chmod 644 {} \;
 
 sudo usermod -aG www-data pi
+sudo usermod -aG gpio www-data
 
 sudo systemctl restart nginx
 sudo systemctl restart php7.0-fpm
