@@ -19,7 +19,7 @@ apt-get install -y nmap curl sudo expect
 # Needed for nodered
 apt-get install -y sense-hat rpi.gpio
 apt-get install -y debian-keyring debian-archive-keyring
-apt-get install -y wiringpi
+apt-get install -y wiringpi raspi-gpio
 apt-get update
 apt-get upgrade -y
 sleep 20
