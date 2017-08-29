@@ -81,7 +81,7 @@ users = {
             'root'
         ],
         :home => '/home/pi'
-    }
+    },
     :"www-data" => {
         :uname => 'www-data',
         :gname => 'www-data',
@@ -91,7 +91,7 @@ users = {
         :notGroups => [
             'root'
         ],
-        :home => '/bin/false'
+        :home => '/var/www'
     }
 }
 
@@ -320,7 +320,7 @@ tools = {
         :command => 'gpio -v'
     },
     :gem => {
-        :version => '2.1',
+        :version => '2.6',
         :command => 'gem -v'
     }
 }
