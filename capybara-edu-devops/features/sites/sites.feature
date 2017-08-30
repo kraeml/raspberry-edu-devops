@@ -1,10 +1,15 @@
 Feature: Looking for websites on raspberry
 
   Scenario Outline: Checking all pages
-    When I go on the page "http://localhost:<port>"
+    When I go on the page "http://localhost:<port>/<path>"
     # Then the page has no HTTP error response
     And see the content of "<content>"
       Examples:
-        | port | content            |
-        | 80   | PHP Version 7.0.19 |
-        | 8888 | Password:          |
+        | port | content            | path |
+        | 80   | PHP Version 7.0.19 |      |
+        | 80   | Willkommen bei phpMyAdmin | phpMyAdmin/ |
+        | 8888 | Password:          |      |
+        | 1880 | Raspberr Pi        |      |
+        | 9001 | oder ein Pad mit folgendem Namen |      |
+
+# ToDo Port 9002 etherdraw; 8181 cloud9
