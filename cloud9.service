@@ -4,7 +4,7 @@ Wants=network.target
 
 [Service]
 Type=simple
-# Capybara with poltergeist coudn't test alerts
+# Capybara with poltergeist couldn't test alerts
 ExecStart=/usr/bin/node /home/pi/cloud9/server.js -w /home/pi -l 0.0.0.0 -a jns:jns
 Restart=on-failure
 Nice=5
