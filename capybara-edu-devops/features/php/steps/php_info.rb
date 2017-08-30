@@ -1,4 +1,4 @@
-Given(/^I am on "([^"]*)" home page$/) do |arg1|
+Given(/^I am on "([^"]*)"$/) do |arg1|
   visit arg1
 end
 
