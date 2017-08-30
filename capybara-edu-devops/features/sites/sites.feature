@@ -7,3 +7,4 @@ Feature: Looking for websites on raspberry
       Examples:
         | port | content            |
         | 80   | PHP Version 7.0.19 |
+        | 8888 | Password:          |
