@@ -23,15 +23,9 @@ gem install inspec
 
 # Install webserver tests with capybara and co.
 gem install 'bundler'
-gem install 'capybara'
-gem install 'cucumber'
-gem install 'rspec-expectations'
-gem install 'poltergeist'
-gem install 'selenium-webdriver'
-gem install 'launchy'
-gem install 'rest-client'
-gem install 'sinatra'
-gem install 'rspec'
+cd capybara-edu-devops
+bundle install
+cd -
 
 # Visit http://elementalselenium.com/tips/38-headless
 sudo apt-get install -y xvfb firefox-esr
