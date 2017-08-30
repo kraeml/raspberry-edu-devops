@@ -4,7 +4,7 @@ Wants=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/node /home/pi/cloud9/server.js -w /home/pi -l 0.0.0.0 -a jns:jns
+ExecStart=/usr/bin/node /home/pi/cloud9/server.js -w /home/pi -l 0.0.0.0 -a :
 Restart=on-failure
 Nice=5
 User=pi
