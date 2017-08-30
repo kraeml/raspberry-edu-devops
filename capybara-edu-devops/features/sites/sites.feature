@@ -14,4 +14,4 @@ Feature: Looking for websites on raspberry
         | 9001 | oder ein Pad mit folgendem Namen |      |
         | 8181 | Welcome to Cloud9  |      |
 
-# ToDo Port 9002 etherdraw;
+# ToDo Port 9002 etherdraw; Jupyter login
