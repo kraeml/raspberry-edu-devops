@@ -13,8 +13,8 @@ services = [
     "etherdraw",
     "dphys-swapfile",
     "mosquitto",
-    "mongodb",
-    "lxc.service"
+    "mongodb"#,
+    #"lxc.service"
 ]
 
 gem_packages = {
@@ -25,7 +25,7 @@ gem_packages = {
         :version => "2.15.1"
     },
     :inspec => {
-        :version => "1.34.1"
+        :version => "1.35.1"
     },
     :"selenium-webdriver" => {
         :version => "3.5.1"
@@ -104,10 +104,6 @@ tools = {
         :version => '3.6.2',
         :command => 'python3 --version'
     },
-    :inspec => {
-        :version => '1.34',
-        :command => 'inspec --version'
-    },
     :php => {
         :version => '7.0.19',
         :command => 'php --version' },
@@ -127,7 +123,7 @@ tools = {
         :version => '4.3',
         :command => 'jupyter --version',
         :port => '8888',
-        :process => 'python3.6'
+        :process => 'jupyter-noteboo'
     },
     :pip3_jupyter => {
         :version => '1.0',
@@ -208,7 +204,7 @@ tools = {
         :command => 'pip3 show requests'
     },
     :psutil => {
-        :version => '5.2',
+        :version => '5.3',
         :command => 'pip3 show psutil'
     },
     :pahomqtt => {
@@ -287,10 +283,10 @@ tools = {
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-mysql/mysql'
     },
-    :lxc => {
-        :version => '1.0',
-        :command => 'lxc-create --version'
-    },
+    #:lxc => {
+    #    :version => '1.0',
+    #    :command => 'lxc-create --version'
+    #},
     :abiword => {
         :version => '3.0',
         :command => '/usr/bin/abiword --version'
