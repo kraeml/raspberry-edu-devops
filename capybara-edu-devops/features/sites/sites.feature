@@ -8,7 +8,8 @@ Feature: Looking for websites on raspberry
         | port | content            | path |
         | 80   | PHP Version 7.0.19 |      |
         | 80   | Willkommen bei phpMyAdmin | phpMyAdmin/ |
-        | 80   | Index of /~pi/     | ~pi  |
+        | 80   | Hallo Welt!        | ~pi  |
+        | 80   | PHP Version 7.0.19 | ~pi/index.php  |
         | 8888 | Password:          |      |
         | 1880 | Raspberr Pi        |      |
         | 9001 | oder ein Pad mit folgendem Namen |      |
