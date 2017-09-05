@@ -325,7 +325,7 @@ tools = {
     },
     :java => {
         :version => '1.8',
-        :command => 'java -version'
+        :command => 'java -version 2>&1'
     }
 }
 
