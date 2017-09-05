@@ -38,6 +38,7 @@ cd "Python-$version"
 make
 make install
 pip3 install pip --upgrade
+pip3 install -U virtualenv
 
 ### install PIL
 pip3 install pillow sense-hat rpi.gpio
