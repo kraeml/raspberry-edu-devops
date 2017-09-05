@@ -24,3 +24,9 @@ apt-get update
 apt-get upgrade -y
 sleep 20
 apt-get install -y dphys-swapfile lsb-core
+
+#HTML5 Validator
+apt-get install -y openjdk-8-jre
+alternatives --set java /usr/lib/jvm/java-8-openjdk-armhf/jre/bin/java
+pip3 install html5validator
+sudo apt-get install -t stretch tidy

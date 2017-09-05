@@ -81,3 +81,4 @@ sudo npm install -g async-you
 sudo npm install -g test-anything
 sudo npm install -g learnyoumongo
 sudo npm install -g torrential
+sudo npm install -g html-validator-cli

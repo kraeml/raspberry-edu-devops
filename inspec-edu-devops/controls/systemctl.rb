@@ -318,6 +318,14 @@ tools = {
     :gem => {
         :version => '2.6',
         :command => 'gem -v'
+    },
+    :tidy => {
+        :version => '5.2',
+        :command => 'tidy --version'
+    },
+    :java => {
+        :version => '1.8',
+        :command => 'java -version'
     }
 }
 
