@@ -25,6 +25,7 @@ sudo apt-get install --yes -t stretch php7.0 php7.0-curl php7.0-gd php7.0-fpm ph
 sudo apt-get install -t stretch -y nginx-full
 sudo apt-get autoremove --yes
 sudo cp default /etc/nginx/sites-available/default
+sduo cp php7_common /etc/nginx/php7_common
 sudo update-rc.d nginx defaults
 sudo update-rc.d php7.0-fpm defaults
 
