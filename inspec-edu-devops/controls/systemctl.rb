@@ -115,9 +115,9 @@ tools = {
     },
     :nginx => {
         :version => 'nginx\/1.10',
-        :command => '/usr/sbin/nginx -v 2>&1',
-        :port => '80',
-        :process => 'nginx'
+        :command => '/usr/sbin/nginx -v 2>&1'#,
+        #:port => '80',
+        #:process => 'nginx'
     },
     :jupyter => {
         :version => '4.3',
