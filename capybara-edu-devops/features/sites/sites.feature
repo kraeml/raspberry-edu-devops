@@ -2,8 +2,7 @@ Feature: Looking for websites on raspberry
 
   Scenario Outline: Checking all pages
     When I go on the page "http://localhost:<port>/<path>"
-    # Then the page has no HTTP error response
-    And see the content of "<content>"
+    Then see the content of "<content>"
       Examples:
         | port | content            | path |
         | 80   | PHP Version 7.0.19 |      |
@@ -11,8 +10,8 @@ Feature: Looking for websites on raspberry
         | 80   | Hallo Welt!        | ~pi  |
         | 80   | PHP Version 7.0.19 | ~pi/index.php  |
         | 8888 | Password:          |      |
-        | 1880 | Raspberr Pi        |      |
+        | 1880 | Raspberry Pi       |      |
         | 9001 | oder ein Pad mit folgendem Namen |      |
-        | 8181 | Welcome to Cloud9  |      |
+        | 8181 | Server Status      |      |
 
 # ToDo Port 9002 etherdraw; Jupyter login
