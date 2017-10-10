@@ -119,5 +119,5 @@
     become: yes
     shell: sudo sysctl -w net.ipv4.ip_forward=1
 
-  - name: Wlan_up
+  - name: wlan_up
     shell: sudo ifdown wlan0; sudo ifup wlan0
