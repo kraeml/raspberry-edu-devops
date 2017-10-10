@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: "{{target}}"
 
   tasks:
   - name: Ensure access point packages are installed
