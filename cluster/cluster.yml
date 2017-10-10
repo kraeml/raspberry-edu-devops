@@ -80,6 +80,7 @@
   - name: dnsmasq.conf
     become: yes
     blockinfile:
+        create: yes
         dest: /etc/dnsmasq.conf
         content: |
             interface=wlan0      # Use interface wlan0
