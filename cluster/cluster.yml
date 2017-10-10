@@ -4,8 +4,8 @@
   tasks:
   - name: Virtual etho config
     become: yes
-    blockinfile:
-        create: yes
+    template:
+        src: vlan.j2
         dest: /etc/network/interfaces.d/vlan0
         content: |
             allow-hotplug {{vlan_interface}}
