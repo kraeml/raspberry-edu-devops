@@ -24,6 +24,7 @@ apt-get update
 apt-get upgrade -y
 sleep 20
 apt-get install -y dphys-swapfile lsb-core
+apt-get install -y avahi-utils avahi-daemon
 
 #HTML5 Validator
 apt-get install -y openjdk-8-jre
