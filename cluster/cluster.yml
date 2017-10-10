@@ -10,6 +10,7 @@
     with_items:
         - dnsmasq
         - hostapd
+        - iptables
 
   - name: Wlan config
     become: yes
