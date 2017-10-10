@@ -76,6 +76,8 @@
   - name: Backup dnsmasq.conf
     become: yes
     command: mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+    args:
+        creates: /etc/dnsmasq.conf.orig
 
   - name: dnsmasq.conf
     become: yes
