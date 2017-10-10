@@ -1,0 +1,45 @@
+---
+all:
+    hosts:
+        cluster-00.local:
+            ansible_connection: local
+            wlan:
+                interface: wlan0
+                address: 172.24.1.1
+                netmask: 255.255.255.0
+                network: 172.24.1.0
+                broadcast: 172.24.1.255
+            vlan:
+                interface: eth0:1
+                address: 172.24.2.1
+                netmask: 255.255.255.0
+                network: 172.24.2.0
+                broadcast: 172.24.2.255
+        cluster-01.local:
+            vlan:
+                interface: eth0:1
+                address: 172.24.2.2
+                netmask: 255.255.255.0
+                network: 172.24.2.0
+                broadcast: 172.24.2.255
+        cluster-02.local:
+            vlan:
+                interface: eth0:1
+                address: 172.24.2.3
+                netmask: 255.255.255.0
+                network: 172.24.2.0
+                broadcast: 172.24.2.255
+        cluster-03.local:
+            vlan:
+                interface: eth0:1
+                address: 172.24.2.4
+                netmask: 255.255.255.0
+                network: 172.24.2.0
+                broadcast: 172.24.2.255
+        cluster-04.local:
+            vlan:
+                interface: eth0:1
+                address: 172.24.2.5
+                netmask: 255.255.255.0
+                network: 172.24.2.0
+                broadcast: 172.24.2.255
