@@ -114,7 +114,6 @@
 
   - name: NAT eth0 and wlan0
     iptables:
-        table: nat
         chain: FORWARD
         in_interface: eth0
         out_interface: wlan0
@@ -125,7 +124,6 @@
 
   - name: NAT eth0 and wlan0
     iptables:
-        table: nat
         chain: FORWARD
         in_interface: wlan0
         out_interface: eth0
