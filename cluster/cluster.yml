@@ -104,7 +104,7 @@
 
   - name: iptabeles
     become: yes
-    shell: sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE  && sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT && sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+    shell: /sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE  && /sbin/iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT && /sbin/iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
 
   handlers:
 
