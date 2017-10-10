@@ -2,6 +2,27 @@
 - hosts: all
 
   tasks:
+  - name: Virtual etho config
+    become: yes
+    blockinfile:
+        create: yes
+        dest: /etc/network/interfaces.d/vlan0
+        content: |
+            allow-hotplug eth0:1
+            iface eth0:1 inet static
+                address "{{vlan.address}}"
+                netmask 255.255.255.0
+                network 172.24.2.0
+                broadcast 172.24.2.255
+    notify: vlan_up
+
+  handlers:
+  - name: vlan_up
+    shell: sudo ifdown eth0:1 || true; sudo ifup eth0:1
+
+- hosts: cluster-00.local
+
+  tasks:
   - name: Ensure access point packages are installed
     become: yes
     package:
@@ -26,20 +47,6 @@
                 broadcast 172.24.1.255
             #    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
     notify: wlan_up
-
-  - name: Virtual etho config
-    become: yes
-    blockinfile:
-        create: yes
-        dest: /etc/network/interfaces.d/vlan0
-        content: |
-            allow-hotplug eth0:1
-            iface eth0:1 inet static
-                address "{{vlan.address}}"
-                netmask 255.255.255.0
-                network 172.24.2.0
-                broadcast 172.24.2.255
-    notify: vlan_up
 
   - name: Access Point config
     become: yes
@@ -158,6 +165,3 @@
 
   - name: wlan_up
     shell: sudo ifdown wlan0 || true; sudo ifup wlan0
-
-  - name: vlan_up
-    shell: sudo ifdown eth0:1 || true; sudo ifup eth0:1
