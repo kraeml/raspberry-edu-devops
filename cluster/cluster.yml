@@ -27,6 +27,20 @@
             #    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
     notify: wlan_up
 
+  - name: Virtual etho config
+    become: yes
+    blockinfile:
+        create: yes
+        dest: /etc/network/interfaces.d/wlan0
+        content: |
+            allow-hotplug eth0:1
+            iface eth0:1 inet static
+                address 172.24.2.1
+                netmask 255.255.255.0
+                network 172.24.2.0
+                broadcast 172.24.2.255
+    notify: vlan_up
+
   - name: Access Point config
     become: yes
     blockinfile:
@@ -143,4 +157,7 @@
         name: hostapd
 
   - name: wlan_up
-    shell: sudo ifdown wlan0; sudo ifup wlan0
+    shell: sudo ifdown wlan0 || true; sudo ifup wlan0
+
+  - name: vlan_up
+    shell: sudo ifdown eth0:1 || true; sudo ifup eth0:1
