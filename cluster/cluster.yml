@@ -31,11 +31,11 @@
     become: yes
     blockinfile:
         create: yes
-        dest: /etc/network/interfaces.d/wlan0
+        dest: /etc/network/interfaces.d/vlan0
         content: |
             allow-hotplug eth0:1
             iface eth0:1 inet static
-                address 172.24.2.1
+                address "{{vlan.address}}"
                 netmask 255.255.255.0
                 network 172.24.2.0
                 broadcast 172.24.2.255
