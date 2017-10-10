@@ -69,7 +69,7 @@
     lineinfile:
         dest: /etc/default/hostapd
         regexp: '^#DAEMON_CONF=""'
-        line: 'DAEMON_CONF="\/etc\/hostapd\/hostapd.conf"'
+        line: 'DAEMON_CONF="/etc/hostapd/hostapd.conf"'
         state: present
     notify: restart_hostapd
 
