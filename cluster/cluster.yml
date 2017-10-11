@@ -11,9 +11,11 @@
 
   - name: Install pip
     become: yes
-    package:
+    apt:
         state: installed
         name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
     with_items:
         - python-pip
 
