@@ -9,15 +9,15 @@
         dest: /etc/network/interfaces.d/vlan0
     notify: vlan_up
 
-  - name: Install pip
+  - name: Deinstall pip
     become: yes
     apt:
-        state: absent
+        state: present
         name: "{{item}}"
         update_cache: yes
         cache_valid_time: 3600
     with_items:
-        - python-pip
+        - python-setuptools
 
   - name: Install pip via easy_install
     become: yes
