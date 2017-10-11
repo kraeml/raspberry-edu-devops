@@ -10,6 +10,7 @@
     notify: vlan_up
 
   - name: Install pip
+    become: yes
     package:
         state: installed
         name: "{{item}}"
