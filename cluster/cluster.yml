@@ -9,6 +9,13 @@
         dest: /etc/network/interfaces.d/vlan0
     notify: vlan_up
 
+  - name: Install docker-py
+    pip:
+        executable: pip3
+        name: "{{item}}"
+    with_items:
+        - docker
+
   - name: pull cluster images
     docker_image:
         name: "{{item}}"
