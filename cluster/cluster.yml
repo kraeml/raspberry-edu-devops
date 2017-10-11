@@ -9,6 +9,13 @@
         dest: /etc/network/interfaces.d/vlan0
     notify: vlan_up
 
+  - name: Install pip
+    package:
+        state: installed
+        name: "{{item}}"
+    with_items:
+        - python-pip
+
   - name: Install docker-py
     become: yes
     pip:
