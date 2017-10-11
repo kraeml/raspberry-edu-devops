@@ -12,12 +12,18 @@
   - name: Install pip
     become: yes
     apt:
-        state: installed
+        state: absent
         name: "{{item}}"
         update_cache: yes
         cache_valid_time: 3600
     with_items:
         - python-pip
+
+  - name: Install pip via easy_install
+    become: yes
+    easy_install:
+      name: pip
+      state: present
 
   - name: Install docker-py
     become: yes
