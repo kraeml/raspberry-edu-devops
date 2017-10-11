@@ -9,6 +9,14 @@
         dest: /etc/network/interfaces.d/vlan0
     notify: vlan_up
 
+  - name: pull cluster images
+    docker_image:
+        name: "{{item}}"
+    with_items:
+        - stefanscherer/monitor:1.1.0
+        - stefanscherer/whoami:1.1.0
+        - stefanscherer/whoami:1.2.0
+
   handlers:
   - name: vlan_up
     shell: sudo ifdown eth0:1 || true; sudo ifup eth0:1
@@ -16,6 +24,12 @@
 - hosts: cluster-00.local
 
   tasks:
+  - name: pull cluster images
+    docker_image:
+        name: "{{item}}"
+    with_items:
+        - alexellis2/visualizer-arm
+
   - name: Ensure access point packages are installed
     become: yes
     package:
