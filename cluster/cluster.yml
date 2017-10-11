@@ -9,7 +9,7 @@
         dest: /etc/network/interfaces.d/vlan0
     notify: vlan_up
 
-  - name: Deinstall pip
+  - name: Install python packages
     become: yes
     apt:
         state: present
@@ -119,11 +119,10 @@
 
   - name: Start access Point
     become: yes
-    lineinfile:
+    replace:
         dest: /etc/default/hostapd
         regexp: '^#DAEMON_CONF=""'
         line: 'DAEMON_CONF="/etc/hostapd/hostapd.conf"'
-        state: present
     notify: restart_hostapd
 
   - name: Backup dnsmasq.conf
