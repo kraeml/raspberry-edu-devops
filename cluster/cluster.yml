@@ -122,7 +122,7 @@
     replace:
         dest: /etc/default/hostapd
         regexp: '^#DAEMON_CONF=""'
-        line: 'DAEMON_CONF="/etc/hostapd/hostapd.conf"'
+        replace: 'DAEMON_CONF="/etc/hostapd/hostapd.conf"'
     notify: restart_hostapd
 
   - name: Backup dnsmasq.conf
