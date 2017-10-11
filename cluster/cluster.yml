@@ -10,6 +10,7 @@
     notify: vlan_up
 
   - name: Install docker-py
+    become: yes
     pip:
         executable: pip3
         name: "{{item}}"
