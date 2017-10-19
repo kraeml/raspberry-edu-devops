@@ -11,9 +11,9 @@ if ! [ $(id -u) = 0 ]; then
 fi
 
 ## Apt pinning see: https://wiki.ubuntuusers.de/Apt-Pinning/
-echo "deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi" > /etc/apt/sources.list.d/stretch.list
-echo -e "Package: *\nPin: release n=jessie\nPin-Priority: 600" > /etc/apt/preferences.d/jessie.pref
-echo "APT::Default-Release \"jessie\";" > /etc/apt/apt.conf.d/99-default-release
+#echo "deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi" > /etc/apt/sources.list.d/stretch.list
+#echo -e "Package: *\nPin: release n=jessie\nPin-Priority: 600" > /etc/apt/preferences.d/jessie.pref
+#echo "APT::Default-Release \"jessie\";" > /etc/apt/apt.conf.d/99-default-release
 apt-get update
 apt-get install -y nmap curl sudo expect
 # Needed for nodered
