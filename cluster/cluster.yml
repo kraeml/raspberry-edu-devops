@@ -1,0 +1,197 @@
+---
+- hosts: all
+
+  tasks:
+  - name: Virtual etho config
+    become: yes
+    template:
+        src: vlan.j2
+        dest: /etc/network/interfaces.d/vlan0
+    notify: vlan_up
+
+  - name: Install python packages
+    become: yes
+    apt:
+        state: present
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+    with_items:
+        - python-setuptools
+
+  - name: Install pip via easy_install
+    become: yes
+    easy_install:
+      name: pip
+      state: present
+
+  - name: Install docker-py
+    become: yes
+    pip:
+        executable: pip
+        name: "{{item}}"
+    with_items:
+        - docker
+
+  - name: pull cluster images
+    docker_image:
+        name: "{{item}}"
+    with_items:
+        - stefanscherer/monitor:1.1.0
+        - stefanscherer/whoami:1.1.0
+        - stefanscherer/whoami:1.2.0
+
+  handlers:
+  - name: vlan_up
+    shell: sudo ifdown eth0:1 || true; sudo ifup eth0:1
+
+- hosts: cluster-00.local
+
+  tasks:
+  - name: pull cluster images
+    docker_image:
+        name: "{{item}}"
+    with_items:
+        - alexellis2/visualizer-arm
+
+  - name: Ensure access point packages are installed
+    become: yes
+    package:
+        state: present
+        name: "{{item}}"
+    with_items:
+        - dnsmasq
+        - hostapd
+        - iptables
+
+  - name: Wlan config
+    become: yes
+    blockinfile:
+        create: yes
+        dest: /etc/network/interfaces.d/wlan0
+        content: |
+            allow-hotplug wlan0
+            iface wlan0 inet static
+                address 172.24.1.1
+                netmask 255.255.255.0
+                network 172.24.1.0
+                broadcast 172.24.1.255
+            #    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+    notify: wlan_up
+
+  - name: Access Point config
+    become: yes
+    blockinfile:
+        create: yes
+        dest: /etc/hostapd/hostapd.conf
+        content: |
+            # This is the name of the WiFi interface we configured above
+            interface=wlan0
+            # Use the nl80211 driver with the brcmfmac driver
+            driver=nl80211
+            # This is the name of the network
+            ssid=Pi3-AP
+            # Use the 2.4GHz band
+            hw_mode=g
+            # Use channel 6
+            channel=6
+            # Enable 802.11n
+            ieee80211n=1
+            # Enable WMM
+            wmm_enabled=1
+            # Enable 40MHz channels with 20ns guard interval
+            ht_capab=[HT40][SHORT-GI-20][DSSS_CCK-40]
+            # Accept all MAC addresses
+            macaddr_acl=0
+            # Use WPA authentication
+            auth_algs=1
+            # Require clients to know the network name
+            ignore_broadcast_ssid=0
+            # Use WPA2
+            wpa=2
+            # Use a pre-shared key
+            wpa_key_mgmt=WPA-PSK
+            # The network passphrase
+            wpa_passphrase=raspberry
+            # Use AES, instead of TKIP
+            rsn_pairwise=CCMP
+    notify: restart_hostapd
+
+  - name: Start access Point
+    become: yes
+    replace:
+        dest: /etc/default/hostapd
+        regexp: '^#DAEMON_CONF=""'
+        replace: 'DAEMON_CONF="/etc/hostapd/hostapd.conf"'
+    notify: restart_hostapd
+
+  - name: Backup dnsmasq.conf
+    become: yes
+    command: mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+    args:
+        creates: /etc/dnsmasq.conf.orig
+
+  - name: dnsmasq.conf
+    become: yes
+    blockinfile:
+        create: yes
+        dest: /etc/dnsmasq.conf
+        content: |
+            interface=wlan0      # Use interface wlan0
+            listen-address=172.24.1.1 # Explicitly specify the address to listen on
+            bind-interfaces      # Bind to the interface to make sure we aren't sending things elsewhere
+            server=8.8.8.8       # Forward DNS requests to Google DNS
+            domain-needed        # Don't forward short names
+            bogus-priv           # Never forward addresses in the non-routed address spaces.
+            dhcp-range=172.24.1.50,172.24.1.150,12h # Assign IP addresses between 172.24.1.50 and 172.24.1.150 with a 12 hour lease time
+    notify: restart_dnsmasq
+
+  - name: Set ip forwarding on in /proc and in the sysctl file and reload if necessary
+    become: yes
+    sysctl:
+        name: net.ipv4.ip_forward
+        value: 1
+        # sysctl_set: yes
+        state: present
+        reload: yes
+
+  - name: NAT iptables
+    iptables:
+        table: nat
+        chain: POSTROUTING
+        out_interface: eth0
+        jump: MASQUERADE
+    become: yes
+
+  - name: NAT eth0 and wlan0
+    iptables:
+        chain: FORWARD
+        in_interface: eth0
+        out_interface: wlan0
+        ctstate: RELATED,ESTABLISHED
+        jump: ACCEPT
+        match: state
+    become: yes
+
+  - name: NAT eth0 and wlan0
+    iptables:
+        chain: FORWARD
+        in_interface: wlan0
+        out_interface: eth0
+        jump: ACCEPT
+    become: yes
+
+  handlers:
+
+  - name: restart_dnsmasq
+    become: yes
+    service:
+        name: dnsmasq
+
+  - name: restart_hostapd
+    become: yes
+    service:
+        name: hostapd
+
+  - name: wlan_up
+    shell: sudo ifdown wlan0 || true; sudo ifup wlan0

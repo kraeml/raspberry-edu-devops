@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 # script name:     install_python.sh
 # sudo:            yes
 #
@@ -19,11 +19,16 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 # Packages Dependencies for building python3
 #------------------------------------------------------
-apt-get install -y build-essential libncursesw5-dev
-apt-get install -y libgdbm-dev libc6-dev
-apt-get install -y zlib1g-dev libsqlite3-dev tk-dev
-apt-get install -y libssl-dev openssl
-apt-get install -y libreadline-dev libbz2-dev
+apt-get install --yes build-essential libncursesw5-dev
+apt-get install --yes libgdbm-dev libc6-dev
+apt-get install --yes zlib1g-dev libsqlite3-dev tk-dev
+apt-get install --yes libssl-dev openssl
+apt-get install --yes libreadline-dev libbz2-dev
+### install rest of the libraries, as well as freetrype
+apt-get install --yes libcairo2-dev libjpeg-dev libpango1.0-dev
+apt-get install --yes libgif-dev build-essential
+apt-get install --yes libjpeg62-turbo libjpeg62-turbo-dev liblcms1-dev liblcms1
+apt-get install --yes zlib1g libjpeg8 libjpeg-dev libfreetype6 libfreetype6-dev
 #------------------------------------------------------
 
 wget --quiet "https://www.python.org/ftp/python/$version/Python-$version.tgz"
@@ -33,9 +38,7 @@ cd "Python-$version"
 make
 make install
 pip3 install pip --upgrade
-
-### install rest of the libraries, as well as freetrype
-apt-get install libjpeg-dev libfreetype6 libfreetype6-dev
+pip3 install -U virtualenv
 
 ### install PIL
 pip3 install pillow sense-hat rpi.gpio

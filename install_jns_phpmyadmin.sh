@@ -2,7 +2,6 @@
 # script name:     install_jns_phpmyadmin.sh
 # sudo:            no
 
-cd /tmp
 version="4.7.3"
 wget --quiet https://files.phpmyadmin.net/phpMyAdmin/${version}/phpMyAdmin-${version}-all-languages.tar.gz
 tar xvf phpMyAdmin-${version}-all-languages.tar.gz
