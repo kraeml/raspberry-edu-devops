@@ -8,23 +8,23 @@ if ! [ $(id -u) = 0 ]; then
 fi
 
 export DEBIAN_FRONTEND=noninteractive
-# Packages Dependencies for building Jupyter
+echo "Packages Dependencies for building Jupyter"
 #------------------------------------------------------
 apt-get -y install libncurses5-dev python-dev pandoc
 #------------------------------------------------------
 
-# Install Jupyter
+echo "Install Jupyter"
 pip3 install jupyter
 pip3 install readline
 pip3 install ipyparallel
 
-# Install additional kernels
+echo "Install additional kernels"
 pip3 install bash_kernel
 python3 -m bash_kernel.install
 # No nodejs
 # npm install -g ijavascript
-# ijsinstall
+echo "ijsinstall"
 pip3 install ipython-sql
 
-# Activate jupyter extensions
+echo "Activate jupyter extensions"
 jupyter nbextension enable --py --sys-prefix widgetsnbextension

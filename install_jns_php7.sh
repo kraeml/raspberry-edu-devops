@@ -21,19 +21,25 @@ fi
 # Remove old nginx-packages
 sudo apt-get purge --yes nginx
 
-sudo apt-get install --yes -t stretch php7.0 php7.0-curl php7.0-gd php7.0-fpm php7.0-cli php7.0-opcache php7.0-mbstring php7.0-xml php7.0-zip php7.0-mysql
-sudo apt-get install -t stretch -y nginx-full
+sudo apt-get install --yes php7.0 php7.0-curl php7.0-gd php7.0-fpm php7.0-cli php7.0-opcache php7.0-mbstring php7.0-xml php7.0-zip php7.0-mysql
+sudo apt-get install --yes nginx-full
 sudo apt-get autoremove --yes
 sudo cp default /etc/nginx/sites-available/default
+sudo cp php7_common /etc/nginx/php7_common
 sudo update-rc.d nginx defaults
 sudo update-rc.d php7.0-fpm defaults
 
 # ToDo Write some inspec tests
 sudo echo "<?php phpinfo();?>" | sudo tee /var/www/html/index.php
 sudo chown -R www-data:www-data /var/www
-sudo chmod -R 775 /var/www
+sudo find /var/www/ -type d -exec sudo chmod 775 {} \;
+# sudo find /var/www/ -type f -exec sudo chmod 644 {} \;
 
 sudo usermod -aG www-data pi
+sudo usermod -aG gpio www-data
 
 sudo systemctl restart nginx
 sudo systemctl restart php7.0-fpm
+
+mkdir /home/pi/www
+cp index.* /home/pi/www/

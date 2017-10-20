@@ -42,6 +42,7 @@ git clone http://github.com/pimoroni/node-red-nodes pimoroni-nodes
 cd -
 
 sudo systemctl restart nodered.service
+# Sleep 20 seconds to nodered come up
 sleep 20
 # Disable unused nodes
 node-red-admin login
@@ -80,11 +81,4 @@ sudo npm install -g async-you
 sudo npm install -g test-anything
 sudo npm install -g learnyoumongo
 sudo npm install -g torrential
-
-# ToDo could in a seperate file
-cd /home/pi/
-git clone git://git.drogon.net/wiringPi
-cd wiringPi/
-./build
-cd -
-rm -rf wiringPi
+sudo npm install -g html-validator-cli
