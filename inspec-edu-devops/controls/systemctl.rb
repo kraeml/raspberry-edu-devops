@@ -13,12 +13,12 @@ services = [
     "etherdraw",
     "dphys-swapfile",
     "mosquitto",
-    "mongodb",
-    "lxc.service"
+    "mongodb"
+    #lxc.service"
 ]
 tools = {
     :ansible => {
-        :version => '2.3',
+        :version => '2.4',
         :command => 'ansible --version'
     },
     :python3 => {
@@ -26,14 +26,14 @@ tools = {
         :command => 'python3 --version'
     },
     :inspec => {
-        :version => '1.33',
+        :version => '1.42',
         :command => 'inspec --version'
     },
     :php => {
         :version => '7.0.19',
         :command => 'php --version' },
     :mysql => {
-        :version => '5.5',
+        :version => '10.1',
         :command => '/usr/sbin/mysqld --version',
         :port => '3306',
         :process => 'mysqld'
@@ -73,7 +73,7 @@ tools = {
         :process => 'sshd'
     },
     :pillow => {
-        :version => '4.2',
+        :version => '4.3',
         :command => 'pip3 show pillow'
     },
     :rpigpio => {
@@ -93,7 +93,7 @@ tools = {
         :command => 'pip3 show requests'
     },
     :psutil => {
-        :version => '5.2',
+        :version => '5.4',
         :command => 'pip3 show psutil'
     },
     :pahomqtt => {
@@ -115,7 +115,7 @@ tools = {
         :command => 'node-red-admin info node-red-contrib-bigtimer'
     },
     :dashboard => {
-        :version => '2.4',
+        :version => '2.5',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-dashboard'
     },
@@ -172,10 +172,10 @@ tools = {
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-mysql/mysql'
     },
-    :lxc => {
-        :version => '1.0',
-        :command => 'lxc-create --version'
-    },
+    #:lxc => {
+    #    :version => '1.0',
+    #    :command => 'lxc-create --version'
+    #},
     :abiword => {
         :version => '3.0',
         :command => '/usr/bin/abiword --version'
