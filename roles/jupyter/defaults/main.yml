@@ -9,3 +9,5 @@ pip3_packages:
     - jupyter
     - readline
     - ipyparallel
+    - bash_kernel
+    - ipython-sql

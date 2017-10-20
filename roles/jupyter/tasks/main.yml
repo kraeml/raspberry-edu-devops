@@ -20,7 +20,7 @@
     name: python3-pip
   when: pip3_version|failed
 
-- name: Ensure Jupyer is installed
+- name: Ensure Jupyter is installed
   become: yes
   pip:
     name: "{{item}}"
