@@ -22,19 +22,19 @@ gem_packages = {
         :version => "1.15.4"
     },
     :capybara => {
-        :version => "2.15.1"
+        :version => "2.15.4"
     },
     :inspec => {
-        :version => "1.35.1"
+        :version => "1.42.3"
     },
     :"selenium-webdriver" => {
-        :version => "3.5.1"
+        :version => "3.6.0"
     },
     :"cucumber" => {
-        :version => "2.4.0"
+        :version => "3.0.1"
     },
     :"rspec-expectations" => {
-        :version => "3.6.0"
+        :version => "3.7.0"
     },
     :"poltergeist" => {
         :version => "1.16.0"
@@ -304,7 +304,7 @@ tools = {
         :command => 'phantomjs --version'
     },
     :pip3_selenium => {
-        :version => '3.5.0',
+        :version => '3.6.0',
         :command => 'pip3 show selenium'
     },
     :geckodriver => {
