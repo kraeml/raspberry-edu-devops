@@ -4,3 +4,8 @@ dependencies_packages:
     - libncurses5-dev
     - python-dev
     - pandoc
+
+pip3_packages:
+    - jupyter
+    - readline
+    - ipyparallel

@@ -7,7 +7,7 @@
       state: present
       name: "{{dependencies_packages}}"
 
-- name:
+- name: Pip3 Version
   command: pip3 --version
   register: pip3_version
   ignore_errors: yes
@@ -16,6 +16,14 @@
 - name: Ensure pip3 is installed
   become: yes
   package:
-      state: present
-      name: python3-pip
+    state: present
+    name: python3-pip
   when: pip3_version|failed
+
+- name: Ensure Jupyer is installed
+  become: yes
+  pip:
+    name: "{{item}}"
+    executable: pip3
+    state: present
+  with_items: "{{pip3_packages}}"
