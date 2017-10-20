@@ -11,3 +11,5 @@ pip3_packages:
     - ipyparallel
     - bash_kernel
     - ipython-sql
+
+nodejs_version: "6.x"
