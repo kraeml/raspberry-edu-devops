@@ -1,0 +1,17 @@
+---
+# defaults file for jupyter
+dependencies_packages:
+    - libncurses5-dev
+    - python-dev
+    - pandoc
+
+pip3_packages:
+    - jupyter
+    - readline
+    - ipyparallel
+    - bash_kernel
+    - ipython-sql
+
+nodejs_version: "6.x"
+nodejs_npm_global_packages:
+    - ijavascript

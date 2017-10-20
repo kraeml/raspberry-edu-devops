@@ -13,8 +13,8 @@ services = [
     "etherdraw",
     "dphys-swapfile",
     "mosquitto",
-    "mongodb"#,
-    #"lxc.service"
+    "mongodb"
+    #lxc.service"
 ]
 
 gem_packages = {
@@ -22,19 +22,19 @@ gem_packages = {
         :version => "1.15.4"
     },
     :capybara => {
-        :version => "2.15.1"
+        :version => "2.15.4"
     },
     :inspec => {
-        :version => "1.35.1"
+        :version => "1.42.3"
     },
     :"selenium-webdriver" => {
-        :version => "3.5.1"
+        :version => "3.6.0"
     },
     :"cucumber" => {
-        :version => "2.4.0"
+        :version => "3.0.1"
     },
     :"rspec-expectations" => {
-        :version => "3.6.0"
+        :version => "3.7.0"
     },
     :"poltergeist" => {
         :version => "1.16.0"
@@ -97,18 +97,22 @@ users = {
 
 tools = {
     :ansible => {
-        :version => '2.3',
+        :version => '2.4',
         :command => 'ansible --version'
     },
     :python3 => {
         :version => '3.6.2',
         :command => 'python3 --version'
     },
+    :inspec => {
+        :version => '1.42',
+        :command => 'inspec --version'
+    },
     :php => {
         :version => '7.0.19',
         :command => 'php --version' },
     :mysql => {
-        :version => '5.5',
+        :version => '10.1',
         :command => '/usr/sbin/mysqld --version',
         :port => '3306',
         :process => 'mysqld'
@@ -184,7 +188,7 @@ tools = {
         :process => 'sshd'
     },
     :pillow => {
-        :version => '4.2',
+        :version => '4.3',
         :command => 'pip3 show pillow'
     },
     :rpigpio => {
@@ -204,7 +208,7 @@ tools = {
         :command => 'pip3 show requests'
     },
     :psutil => {
-        :version => '5.3',
+        :version => '5.4',
         :command => 'pip3 show psutil'
     },
     :pahomqtt => {
@@ -226,7 +230,7 @@ tools = {
         :command => 'node-red-admin info node-red-contrib-bigtimer'
     },
     :dashboard => {
-        :version => '2.4',
+        :version => '2.5',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-dashboard'
     },
@@ -300,7 +304,7 @@ tools = {
         :command => 'phantomjs --version'
     },
     :pip3_selenium => {
-        :version => '3.5.0',
+        :version => '3.6.0',
         :command => 'pip3 show selenium'
     },
     :geckodriver => {

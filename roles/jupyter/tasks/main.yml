@@ -1,0 +1,51 @@
+---
+# tasks file for jupyter
+
+- name: Install jupyter dependencies
+  become: yes
+  package:
+      state: present
+      name: "{{dependencies_packages}}"
+
+- name: Pip3 Version
+  command: pip3 --version
+  register: pip3_version
+  ignore_errors: yes
+  changed_when: False
+
+- name: Ensure pip3 is installed
+  become: yes
+  package:
+    state: present
+    name: python3-pip
+  when: pip3_version|failed
+
+- name: Ensure Jupyter and some kernel/extensions are installed
+  become: yes
+  pip:
+    name: "{{item}}"
+    executable: pip3
+    state: present
+  with_items: "{{pip3_packages}}"
+
+- name: Ensure bash kernel is installed
+  become: yes
+  command: python3 -m bash_kernel.install
+  args:
+    creates: /usr/local/share/jupyter/kernels/bash
+
+- name: Ensure ijavascript kernel is installed
+  become: yes
+  command: ijsinstall
+  args:
+    creates: /usr/local/share/jupyter/kernels/javascript
+
+- name: Get nbextensions
+  command: jupyter nbextension list
+  register: jupyter_nbextensions
+  changed_when: False
+
+- name: Ensure widgetsnbextension activated
+  become: yes
+  command: jupyter nbextension enable --py --sys-prefix widgetsnbextension
+  when: not jupyter_nbextensions.stdout.find("jupyter-js-widgets/extension  enabled")
