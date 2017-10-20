@@ -13,3 +13,5 @@ pip3_packages:
     - ipython-sql
 
 nodejs_version: "6.x"
+nodejs_npm_global_packages:
+    - ijavascript
