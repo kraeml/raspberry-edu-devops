@@ -2,4 +2,5 @@
 - hosts: all
 
   roles:
-   - jupyter
+   - role: jupyter
+     become: yes
