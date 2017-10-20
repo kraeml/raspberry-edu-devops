@@ -1,0 +1,21 @@
+---
+# tasks file for jupyter
+
+- name: Install jupyter dependencies
+  become: yes
+  package:
+      state: present
+      name: "{{dependencies_packages}}"
+
+- name:
+  command: pip3 --version
+  register: pip3_version
+  ignore_errors: yes
+  changed_when: False
+
+- name: Ensure pip3 is installed
+  become: yes
+  package:
+      state: present
+      name: python3-pip
+  when: pip3_version|failed

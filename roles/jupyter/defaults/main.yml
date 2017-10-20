@@ -1,0 +1,6 @@
+---
+# defaults file for jupyter
+dependencies_packages:
+    - libncurses5-dev
+    - python-dev
+    - pandoc
