@@ -30,9 +30,9 @@ cd -
 # Visit http://elementalselenium.com/tips/38-headless
 sudo apt-get install -y xvfb firefox-esr
 
-sudo apt-get install libfontconfig1 libfreetype6 phantomjs
-# curl -o /tmp/phantomjs_2.1.1_armhf.deb -sSL https://github.com/fg2it/phantomjs-on-raspberry/releases/download/v2.1.1-wheezy-jessie/phantomjs_2.1.1_armhf.deb
-# sudo dpkg -i /tmp/phantomjs_2.1.1_armhf.deb
+sudo apt-get install --yes libfontconfig1 libfreetype6 libicu57 libssl1.0.2 fontconfig
+sudo curl -o /usr/local/bin/phantomjs -sSL https://github.com/piksel/phantomjs-raspberrypi/raw/stretch/bin/phantomjs
+sudo chmod +x /usr/local/bin/phantomjs
 curl -L https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-arm7hf.tar.gz | sudo tar xz -C /usr/local/bin/
 
 # Visit https://realpython.com/blog/python/headless-selenium-testing-with-python-and-phantomjs/
