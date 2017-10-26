@@ -29,7 +29,7 @@ if [ ! -e $HOME/.firstboot ]; then
         # sudo ./install_jupyter.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t jupyter-post-boot
         # ./configure_jupyter.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t configure-jupyter-boot
         # sudo ./enable_jupyter.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t jupyter-post-service
-        #sudo ./install_dependencies.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t dependencies-post-boot
+        # sudo ./install_dependencies.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t dependencies-post-boot
         sudo ./install_tex.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t tex-post-boot
         ./install_nodered.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t nodered-post-boot
         ./install_cloud9.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t cloud9-post-boot
