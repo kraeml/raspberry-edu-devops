@@ -44,7 +44,7 @@
         executable: pip3
         state: present
 
-  - name: Ensure raspberry dependencies are installed
+  - name: Ensure tex dependencies are installed
     become: yes
     apt:
         name: "{{item}}"
@@ -58,3 +58,96 @@
         - texlive-xetex
         - texlive-latex-recommended
         - texlive-fonts-recommended
+
+  - name: Ensure nodred is installed
+    become: yes
+    npm:
+        name: "{{item}}"
+        global: yes
+    with_items:
+        - node-red
+        - node-red-node-random
+        - node-red-node-ping
+        - node-red-node-smooth
+        #- node-red-contrib-ibm-watson-iot
+        - node-red-contrib-play-audio
+        #- node-red-node-ledborg
+        - node-red-node-pi-sense-hat
+        - node-red-node-serialport
+        - npm-check
+        - node-red-admin
+
+  - name: add the shortcut and start/stop/log scripts
+    become: yes
+    get_url:
+        dest: "{{item.des}}"
+        url: "{{item.url}}"
+        mode: 0777
+    with_items:
+        - des: /usr/bin/node-red-start
+          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-start2
+        - des: /usr/bin/node-red-stop
+          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-stop
+        - des: /usr/bin/node-red-log
+          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-log
+
+  - name: add systemd script and configure it for $USER
+    become: yes
+    get_url:
+        dest: /lib/systemd/system/nodered.service
+        url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/nodered.service
+    register: restart_nodred
+
+  - name: Flush handlers
+    meta: flush_handlers
+
+  - name: Install node-red addons
+    npm:
+        name: "{{item}}"
+        state: present
+        path: /home/pi/.node-red
+    with_items:
+        - node-red-dashboard
+        - node-red-contrib-bigtimer
+        - node-red-node-mongodb
+        - node-red-node-mysql
+        - node-red-contrib-looptimer
+
+  - name: Ensure tex dependencies are installed
+    become: yes
+    apt:
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+        install_recommends: yes
+    with_items:
+        - sqlite3
+
+  - name: Additional packages for web-dev learning
+    npm:
+        name: "{{item}}"
+        state: present
+        global: yes
+    with_items:
+        - pm2
+        - socket.io
+        - sqlite3
+        - mongoose
+        - mysql
+        - express
+        - javascripting
+        - how-to-npm
+        - scope-chains-closures
+        - stream-adventure
+        - how-to-markdown
+        - learnyouhtml
+        - learnyounode
+        - functional-javascript-workshop
+        - bytewiser
+        - expressworks
+        - bug-clinic
+        - async-you
+        - test-anything
+        - learnyoumongo
+        - torrential
+        - html-validator-cli
