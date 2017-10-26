@@ -36,7 +36,7 @@
 
 - name: Ensure ijavascript kernel is installed
   become: yes
-  command: ijsinstall
+  command: /usr/bin/ijsinstall
   args:
     creates: /usr/local/share/jupyter/kernels/javascript
 
@@ -49,3 +49,12 @@
   become: yes
   command: jupyter nbextension enable --py --sys-prefix widgetsnbextension
   when: not jupyter_nbextensions.stdout.find("jupyter-js-widgets/extension  enabled")
+
+- name: Ensure notebook directory exists
+  file:
+      path: /home/pi/notebooks
+
+- name:
+  template:
+      src: jupyter_notebook_config.py.j2
+      dest: /home/pi/.jupyter/jupyter_notebook_config.py
