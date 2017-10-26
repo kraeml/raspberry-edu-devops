@@ -59,7 +59,7 @@
         - texlive-latex-recommended
         - texlive-fonts-recommended
 
-  - name: Ensure nodred is installed
+  - name: Ensure nodred and some dependencies are installed
     become: yes
     npm:
         name: "{{item}}"
@@ -124,6 +124,7 @@
         - sqlite3
 
   - name: Additional packages for web-dev learning
+    become: yes
     npm:
         name: "{{item}}"
         state: present
