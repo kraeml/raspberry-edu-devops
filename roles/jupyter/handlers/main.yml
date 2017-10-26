@@ -1,2 +1,7 @@
 ---
 # handlers file for jupyter
+- name: restart_jupyter
+  service:
+      enabled: yes
+      state: restarted
+      name: jupyter
