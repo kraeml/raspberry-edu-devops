@@ -19,7 +19,7 @@
         - sudo
         - expect
         - sense-hat
-        - rpi.gpio
+        - raspi-gpio
         - debian-keyring
         - debian-archive-keyring
         - wiringpi
@@ -43,3 +43,18 @@
         name: html5validator
         executable: pip3
         state: present
+
+  - name: Ensure raspberry dependencies are installed
+    become: yes
+    apt:
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+        install_recommends: yes
+    with_items:
+        - texlive
+        - texlive-latex-extra
+        - dvipng
+        - texlive-xetex
+        - texlive-latex-recommended
+        - texlive-fonts-recommended
