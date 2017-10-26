@@ -1,7 +1,15 @@
 ---
 # handlers file for jupyter
 - name: restart_jupyter
+  become: yes
   service:
       enabled: yes
       state: restarted
       name: jupyter
+
+- name: restart_nodred
+  become: yes
+  service:
+    enabled: yes
+    state: restarted
+    name: nodered.service
