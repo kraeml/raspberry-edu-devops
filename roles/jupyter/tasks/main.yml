@@ -54,7 +54,20 @@
   file:
       path: /home/pi/notebooks
 
-- name:
+- name: Create jupyter config
   template:
       src: jupyter_notebook_config.py.j2
       dest: /home/pi/.jupyter/jupyter_notebook_config.py
+  notify:
+    - restart_jupyter
+
+- name: Enable and start Jupyter as service
+  become: yes
+  template:
+      src: jupyter.service.j2
+      dest: /lib/systemd/system/jupyter.service
+      mode: 0644
+      owner: root
+      group: root
+  notify:
+    - restart_jupyter
