@@ -30,4 +30,4 @@ apt-get install -y avahi-utils avahi-daemon
 apt-get install -y openjdk-8-jre
 alternatives --set java /usr/lib/jvm/java-8-openjdk-armhf/jre/bin/java
 pip3 install html5validator
-sudo apt-get install --yes -t stretch tidy
+sudo apt-get install --yes tidy

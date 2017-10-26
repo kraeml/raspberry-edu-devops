@@ -2,5 +2,42 @@
 - hosts: all
 
   roles:
-   - role: jupyter
-     become: yes
+  - role: jupyter
+    become: yes
+
+  tasks:
+  - name: Ensure raspberry dependencies are installed
+    apt:
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+        upgrade: yes
+        install_recommends: yes
+    with_items:
+        - nmap
+        - curl
+        - sudo
+        - expect
+        - sense-hat
+        - rpi.gpio
+        - debian-keyring
+        - debian-archive-keyring
+        - wiringpi
+        - raspi-gpio
+        - dphys-swapfile
+        - lsb-core
+        - avahi-utils
+        - avahi-daemon
+        - openjdk-8-jre
+        - tidy
+
+  - name: Alternatives set
+    alternatives:
+        path: /usr/lib/jvm/java-8-openjdk-armhf/jre/bin/java
+        name: java
+
+  - name: Pip3 dependencies
+    pip:
+        name: html5validator
+        executable: pip3
+        state: present
