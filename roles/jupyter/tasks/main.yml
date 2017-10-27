@@ -60,6 +60,7 @@
 - name: Ensure notebook directory exists
   file:
       path: /home/pi/notebooks
+      state: directory
 
 - name: Create jupyter config
   template:
