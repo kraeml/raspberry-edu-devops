@@ -59,7 +59,11 @@
 
 - name: Ensure notebook directory exists
   file:
-      path: /home/pi/notebooks
+      path: "/home/pi/{{item}}"
+      state: directory
+  with_items:
+      - notebooks
+      - .jupyter
 
 - name: Create jupyter config
   template:
