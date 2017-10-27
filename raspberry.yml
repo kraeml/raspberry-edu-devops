@@ -189,7 +189,7 @@
     args:
         chdir: /home/pi/cloud9/
     when: clone_cloud9.changed
-    register:
+    notify:
         - restart_cloud9
 
   - name: Install cloud9 systemd scripts
