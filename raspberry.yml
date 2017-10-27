@@ -117,6 +117,10 @@
   - name: Flush handlers
     meta: flush_handlers
 
+  - name: NPM unsafe-perm
+    become: yes
+    command: npm config --global set unsafe-perm=true
+
   - name: Install node-red addons
     npm:
         name: "{{item}}"
@@ -148,7 +152,7 @@
     with_items:
         - pm2
         - socket.io
-        - sqlite3
+        #- sqlite3
         - mongoose
         - mysql
         - express
