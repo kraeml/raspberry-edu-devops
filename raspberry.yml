@@ -89,7 +89,7 @@
         - node-red-contrib-play-audio
         #- node-red-node-ledborg
         - node-red-node-pi-sense-hat
-        - node-red-node-serialport
+        #- node-red-node-serialport
         - npm-check
         - node-red-admin
 
