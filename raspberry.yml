@@ -82,7 +82,7 @@
     get_url:
         dest: "{{item.des}}"
         url: "{{item.url}}"
-        mode: 0777
+        mode: 0755
     with_items:
         - des: /usr/bin/node-red-start
           url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-start2
@@ -113,7 +113,7 @@
         - node-red-node-mysql
         - node-red-contrib-looptimer
 
-  - name: Ensure tex dependencies are installed
+  - name: Ensure sqlite3 is installed
     become: yes
     apt:
         name: "{{item}}"
@@ -152,3 +152,49 @@
         - learnyoumongo
         - torrential
         - html-validator-cli
+
+  - name: Ensure cloud9 dependencies are installed
+    apt:
+        name: tmux
+        update_cache: yes
+        cache_valid_time: 3600
+        install_recommends: yes
+
+  - name: Clone cloud9
+    git:
+        dest: /home/pi/cloud9
+        repo: https://github.com/c9/core.git
+        clone: yes
+        update: yes
+    register: clone_cloud9
+
+  - name: Install cloud9
+    script: /home/pi/cloud9/scripts/install-sdk.sh
+    args:
+        chdir: /home/pi/cloud9/
+    when: clone_cloud9.changed
+    register:
+        - restart_cloud9
+
+  - name: Install cloud9 systemd scripts
+    template:
+        src: cloud9.service.j2
+        dest: /lib/systemd/system/cloud9.service
+        mode: 0644
+    register:
+        - restart_cloud9
+
+  handlers:
+  - name: restart_nodred
+    become: yes
+    service:
+      enabled: yes
+      state: restarted
+      name: nodered.service
+
+  - name: restart_cloud9
+    become: yes
+    service:
+      enabled: yes
+      state: restarted
+      name: cloud9.service
