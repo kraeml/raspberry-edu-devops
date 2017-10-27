@@ -4,6 +4,10 @@
   roles:
   - role: jupyter
     become: yes
+    nodejs_version: "6.x"
+    nodejs_npm_global_packages:
+        - ijavascript
+
   - role: geerlingguy.docker
     become: yes
     docker_apt_release_channel: stable
@@ -89,7 +93,7 @@
         - node-red-contrib-play-audio
         #- node-red-node-ledborg
         - node-red-node-pi-sense-hat
-        #- node-red-node-serialport
+        - node-red-node-serialport
         - npm-check
         - node-red-admin
 
@@ -152,7 +156,7 @@
     with_items:
         - pm2
         - socket.io
-        #- sqlite3
+        - sqlite3
         - mongoose
         - mysql
         - express
