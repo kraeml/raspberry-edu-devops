@@ -112,7 +112,7 @@
     get_url:
         dest: /lib/systemd/system/nodered.service
         url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/nodered.service
-    register: restart_nodred
+    notify: restart_nodred
 
   - name: Flush handlers
     meta: flush_handlers
