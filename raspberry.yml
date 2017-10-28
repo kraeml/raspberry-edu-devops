@@ -184,6 +184,8 @@
         update_cache: yes
         cache_valid_time: 3600
         install_recommends: yes
+    tags:
+        - cloud9
 
   - name: Clone cloud9
     git:
@@ -192,22 +194,38 @@
         clone: yes
         update: yes
     register: clone_cloud9
+    tags:
+        - cloud9
 
   - name: Install cloud9
-    script: /home/pi/cloud9/scripts/install-sdk.sh
+    become: yes
+    script: ./scripts/install-sdk.sh
     args:
         chdir: /home/pi/cloud9/
     when: clone_cloud9.changed
     notify:
         - restart_cloud9
+    tags:
+        - cloud9
+
+  - name: Ensure /home/pi/cloud9 owned by pi
+    file:
+        path: /home/pi/cloud9
+        state: directory
+        recurse: yes
+        owner: pi
+        group: pi
 
   - name: Install cloud9 systemd scripts
+    become: yes
     template:
         src: cloud9.service.j2
         dest: /lib/systemd/system/cloud9.service
         mode: 0644
     notify:
         - restart_cloud9
+    tags:
+        - cloud9
 
 
   - name: Ensure PHP ist installed
