@@ -199,7 +199,7 @@
 
   - name: Install cloud9
     become: yes
-    script: ./scripts/install-sdk.sh
+    script: /home/pi/cloud9/scripts/install-sdk.sh
     args:
         chdir: /home/pi/cloud9/
     when: clone_cloud9.changed
