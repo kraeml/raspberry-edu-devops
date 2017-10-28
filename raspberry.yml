@@ -229,7 +229,6 @@
     tags:
         - cloud9
 
-
   - name: Ensure PHP ist installed
     become: yes
     apt:
@@ -249,6 +248,9 @@
         - php7.0-xml
         - php7.0-zip
         - php7.0-mysql
+    tags:
+        - php
+        - nginx
 
   - name: Default nginx config
     become: yes
@@ -269,6 +271,9 @@
     notify:
         - restart_nginx
         - restart_php-fpm
+    tags:
+        - php
+        - nginx
 
   - name: Ensure /var/www owned by www-data
     file:
@@ -277,6 +282,9 @@
         recurse: yes
         owner: www-data
         group: www-data
+    tags:
+        - php
+        - nginx
 
   - name: Ensure some users in group www-data
     become: yes
@@ -286,7 +294,10 @@
         append: yes
     with_items:
         - pi
-        - gpio
+        - gpi
+    tags:
+        - php
+        - nginx
 
   - name: Ensure www directory for pi exists
     file:
@@ -294,6 +305,9 @@
         state: directory
         owner: pi
         group: pi
+    tags:
+        - php
+        - nginx
 
   - name: Ensure some html for pi exists
     template:
@@ -304,6 +318,9 @@
     with_items:
         - index.html
         - index.php
+    tags:
+        - php
+        - nginx
 
   handlers:
   - name: restart_nodred
