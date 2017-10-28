@@ -230,6 +230,7 @@
         - cloud9
 
   - name: Ensure /home/pi/cloud9 owned by pi
+    become: yes
     file:
         path: /home/pi/cloud9
         state: directory
