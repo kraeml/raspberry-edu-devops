@@ -208,6 +208,82 @@
     notify:
         - restart_cloud9
 
+
+  - name: Ensure PHP ist installed
+    become: yes
+    apt:
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+        install_recommends: yes
+    with_items:
+        - nginx-full
+        - php7.0
+        - php7.0-curl
+        - php7.0-gd
+        - php7.0-fpm
+        - php7.0-cli
+        - php7.0-opcache
+        - php7.0-mbstring
+        - php7.0-xml
+        - php7.0-zip
+        - php7.0-mysql
+
+  - name: Default nginx config
+    become: yes
+    template:
+        src: "{{item.src}}"
+        dest: "{{item.dest}}"
+        owner: "{{item.owner | default('root')}}"
+        group: "{{item.group | default('root')}}"
+    with_items:
+        - src: default.j2
+          dest: /etc/nginx/sites-available/default
+        - src: php7_common.j2
+          dest: /etc/nginx/php7_common
+        - src: index.php.j2
+          dest: /var/www/index.php
+          owner: www-data
+          group: www-data
+    notify:
+        - restart_nginx
+        - restart_php-fpm
+
+  - name: Ensure /var/www owned by www-data
+    file:
+        path: /var/www
+        state: directory
+        recurse: yes
+        owner: www-data
+        group: www-data
+
+  - name: Ensure some users in group www-data
+    become: yes
+    user:
+        name: "{{item}}"
+        groups: www-data
+        append: yes
+    with_items:
+        - pi
+        - gpio
+
+  - name: Ensure www directory for pi exists
+    file:
+        path: /home/pi/www
+        state: directory
+        owner: pi
+        group: pi
+
+  - name: Ensure some html for pi exists
+    template:
+        src: "{{item}}.j2"
+        dest: "/home/pi/www/{{item}}"
+        owner: pi
+        group: pi
+    with_items:
+        - index.html
+        - index.php
+
   handlers:
   - name: restart_nodred
     become: yes
@@ -222,3 +298,17 @@
       enabled: yes
       state: restarted
       name: cloud9.service
+
+  - name: restart_nginx
+    become: yes
+    service:
+      enabled: yes
+      state: restarted
+      name: nginx
+
+  - name: restart_php-fpm
+    become: yes
+    service:
+      enabled: yes
+      state: restarted
+      name: php7.0-fpm
