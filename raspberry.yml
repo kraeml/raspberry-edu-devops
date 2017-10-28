@@ -215,6 +215,8 @@
         recurse: yes
         owner: pi
         group: pi
+    tags:
+        - cloud9
 
   - name: Install cloud9 systemd scripts
     become: yes
