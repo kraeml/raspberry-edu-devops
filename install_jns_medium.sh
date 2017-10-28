@@ -35,7 +35,7 @@ if [ ! -e $HOME/.firstboot ]; then
         # ./install_cloud9.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t cloud9-post-boot
         # ./install_docker.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t docker-post-boot
         # ./install_jns_php7.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t php7-post-boot
-        ./install_jns_mysql.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t mysql-post-boot
+        # ./install_jns_mysql.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t mysql-post-boot
         ./install_jns_phpmyadmin.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t phpmyadmin-post-boot
         ./install_mongodb.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t mongodb-post-boot
         # ./install_lxc.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t lxc-post-boot

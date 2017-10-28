@@ -5,6 +5,7 @@
   - db_user:
       name: "example_user"
       password: "passw0rd"
+  - phpmyadmin: "4.7.3"
 
   roles:
   - role: jupyter
@@ -343,6 +344,26 @@
     tags:
         - php
         - nginx
+
+  - name: Ensure phpmyadmin ist installed
+    become: yes
+    get_url:
+        dest: /var/www/html/phpMyAdmin
+        url: https://files.phpmyadmin.net/phpMyAdmin/{{phpmyadmin_version}}/phpMyAdmin-{{phpmyadmin_version}}-all-languages.tar.gz
+        group: www-data
+        owner: www-data
+    tags:
+        - phpmyadmin
+
+  - name: Ensure phpmyadmin config is installed
+    become: yes
+    template:
+        src: config.inc.php.j2
+        dest: /var/www/html/phpMyAdmin/config.inc.php
+        owner: www-data
+        group: www-data
+    tags:
+        - phpmyadmin
 
   handlers:
   - name: restart_nodred
