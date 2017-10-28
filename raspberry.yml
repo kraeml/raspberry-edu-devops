@@ -1,6 +1,12 @@
 ---
 - hosts: all
 
+  vars:
+  - db_user:
+      name: "example_user"
+      password: "passw0rd"
+  - phpmyadmin_version: "4.7.3"
+
   roles:
   - role: jupyter
     become: yes
@@ -15,6 +21,22 @@
     docker_install_compose: false
     docker_compose_version: "1.16.1"
     docker_compose_path: /usr/local/bin/docker-compose
+
+  - role: geerlingguy.mysql
+    become: yes
+    mysql_user_name: root
+    mysql_user_password: root
+    mysql_databases:
+    - name: example_db
+      encoding: latin1
+      collation: latin1_general_ci
+    mysql_users:
+    - name: "{{db_user.name}}"
+      host: "%"
+      password: "{{db_user.password}}"
+      priv: "example_db.*:ALL"
+    tags:
+      - db_mysql
 
   tasks:
   - name: Ensure user pi is member of group docker
@@ -79,6 +101,10 @@
         - texlive-latex-recommended
         - texlive-fonts-recommended
 
+  - name: NPM unsafe-perm
+    become: yes
+    command: npm config --global set unsafe-perm=true
+
   - name: Ensure nodred and some dependencies are installed
     become: yes
     npm:
@@ -120,10 +146,6 @@
 
   - name: Flush handlers
     meta: flush_handlers
-
-  - name: NPM unsafe-perm
-    become: yes
-    command: npm config --global set unsafe-perm=true
 
   - name: Install node-red addons
     npm:
@@ -178,11 +200,14 @@
         - html-validator-cli
 
   - name: Ensure cloud9 dependencies are installed
+    become: yes
     apt:
         name: tmux
         update_cache: yes
         cache_valid_time: 3600
         install_recommends: yes
+    tags:
+        - cloud9
 
   - name: Clone cloud9
     git:
@@ -191,22 +216,154 @@
         clone: yes
         update: yes
     register: clone_cloud9
+    tags:
+        - cloud9
 
   - name: Install cloud9
-    script: /home/pi/cloud9/scripts/install-sdk.sh
+    become: yes
+    shell: cd /home/pi/cloud9/ && sudo ./scripts/install-sdk.sh
     args:
         chdir: /home/pi/cloud9/
     when: clone_cloud9.changed
     notify:
         - restart_cloud9
+    tags:
+        - cloud9
+
+  - name: Ensure /home/pi/cloud9 owned by pi
+    become: yes
+    file:
+        path: /home/pi/cloud9
+        state: directory
+        recurse: yes
+        owner: pi
+        group: pi
+    tags:
+        - cloud9
 
   - name: Install cloud9 systemd scripts
+    become: yes
     template:
         src: cloud9.service.j2
         dest: /lib/systemd/system/cloud9.service
         mode: 0644
     notify:
         - restart_cloud9
+    tags:
+        - cloud9
+
+  - name: Ensure PHP ist installed
+    become: yes
+    apt:
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+        install_recommends: yes
+    with_items:
+        - nginx-full
+        - php7.0
+        - php7.0-curl
+        - php7.0-gd
+        - php7.0-fpm
+        - php7.0-cli
+        - php7.0-opcache
+        - php7.0-mbstring
+        - php7.0-xml
+        - php7.0-zip
+        - php7.0-mysql
+    tags:
+        - php
+        - nginx
+
+  - name: Default nginx config
+    become: yes
+    template:
+        src: "{{item.src}}"
+        dest: "{{item.dest}}"
+        owner: "{{item.owner | default('root')}}"
+        group: "{{item.group | default('root')}}"
+    with_items:
+        - src: default.j2
+          dest: /etc/nginx/sites-available/default
+        - src: php7_common.j2
+          dest: /etc/nginx/php7_common
+        - src: index.php.j2
+          dest: /var/www/index.php
+          owner: www-data
+          group: www-data
+    notify:
+        - restart_nginx
+        - restart_php-fpm
+    tags:
+        - php
+        - nginx
+
+  - name: Ensure /var/www owned by www-data
+    file:
+        path: /var/www
+        state: directory
+        recurse: yes
+        owner: www-data
+        group: www-data
+    tags:
+        - php
+        - nginx
+
+  - name: Ensure some users in group www-data
+    become: yes
+    user:
+        name: "{{item}}"
+        groups: www-data
+        append: yes
+    with_items:
+        - pi
+        - gpi
+    tags:
+        - php
+        - nginx
+
+  - name: Ensure www directory for pi exists
+    file:
+        path: /home/pi/www
+        state: directory
+        owner: pi
+        group: pi
+    tags:
+        - php
+        - nginx
+
+  - name: Ensure some html for pi exists
+    template:
+        src: "{{item}}.j2"
+        dest: "/home/pi/www/{{item}}"
+        owner: pi
+        group: pi
+    with_items:
+        - index.html
+        - index.php
+    tags:
+        - php
+        - nginx
+
+  - name: Ensure phpmyadmin ist installed
+    become: yes
+    get_url:
+        dest: /var/www/html/phpMyAdmin
+        url: https://files.phpmyadmin.net/phpMyAdmin/{{phpmyadmin_version}}/phpMyAdmin-{{phpmyadmin_version}}-all-languages.tar.gz
+        group: www-data
+        owner: www-data
+    tags:
+        - phpmyadmin
+
+  - name: Ensure phpmyadmin config is installed
+    become: yes
+    template:
+        src: config.inc.php.j2
+        dest: /var/www/html/phpMyAdmin/config.inc.php
+        owner: www-data
+        group: www-data
+    tags:
+        - phpmyadmin
 
   handlers:
   - name: restart_nodred
@@ -222,3 +379,17 @@
       enabled: yes
       state: restarted
       name: cloud9.service
+
+  - name: restart_nginx
+    become: yes
+    service:
+      enabled: yes
+      state: restarted
+      name: nginx
+
+  - name: restart_php-fpm
+    become: yes
+    service:
+      enabled: yes
+      state: restarted
+      name: php7.0-fpm
