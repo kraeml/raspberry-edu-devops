@@ -5,7 +5,7 @@
   - db_user:
       name: "example_user"
       password: "passw0rd"
-  - phpmyadmin: "4.7.3"
+  - phpmyadmin_version: "4.7.3"
 
   roles:
   - role: jupyter
