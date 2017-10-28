@@ -178,6 +178,7 @@
         - html-validator-cli
 
   - name: Ensure cloud9 dependencies are installed
+    become: yes
     apt:
         name: tmux
         update_cache: yes
