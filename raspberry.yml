@@ -353,6 +353,8 @@
         state: directory
         owner: www-data
         group: www-data
+    tags:
+        - phpmyadmin
 
   - name: Ensure phpmyadmin ist installed
     become: yes
@@ -374,6 +376,15 @@
         group: www-data
     tags:
         - phpmyadmin
+
+  - name: Ensure mongodb is installed
+    apt:
+        name: mongodb-server
+        update_cache: # Run the equivalent of C(apt-get update) before the operation. Can be run as part of the package installation or as a separate step.
+        cache_valid_time: 3600
+        install_recommends: yes
+    tags:
+        - mongodb
 
   handlers:
   - name: restart_nodred
