@@ -476,7 +476,15 @@
   - name: Install etherpad
     become: yes
     become_user: etherpad
-    shell: /opt/etherpad/bin/installDeps.sh
+    shell: "{{item}}"
+    args:
+        chdir: /opt/etherpad
+    with_items:
+        - /opt/etherpad/bin/installDeps.sh
+        - /usr/bin/npm install ep_activepads ep_adminpads ep_copy_paste_images ep_cursortrace
+        - /usr/bin/npm install ep_font_family ep_font_size ep_horizontal_line ep_latexexport
+        - /usr/bin/npm install ep_markdown ep_markdownify ep_padlist ep_print ep_printer
+        - /usr/bin/npm install ep_search ep_spellcheck ep_tables ep_xmlexport  
     tags:
         - etherpad
 
