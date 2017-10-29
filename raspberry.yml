@@ -426,6 +426,7 @@
         repo: "{{item.repo}}"
         clone: yes
         update: yes
+    register: "git_{{item}}"
     with_items:
         - dest: etherpad
           repo: git://github.com/ether/etherpad-lite.git
@@ -505,7 +506,7 @@
     args:
         chdir: /opt/etherdraw
     with_items:
-        - /opt/etherpad/bin/installDeps.sh
+        - /opt/etherdraw/bin/installDeps.sh
     tags:
         - etherpad
 
