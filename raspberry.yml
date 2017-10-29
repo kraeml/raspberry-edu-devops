@@ -299,6 +299,7 @@
         - nginx
 
   - name: Ensure /var/www owned by www-data
+    become: yes
     file:
         path: /var/www
         state: directory
@@ -345,13 +346,24 @@
         - php
         - nginx
 
+  - name: Ensure /var/www/html/phpMyAdmin is directory
+    become: yes
+    file:
+        path: /var/www/html/phpMyAdmin
+        state: directory
+        owner: www-data
+        group: www-data
+    tags:
+        - phpmyadmin
+
   - name: Ensure phpmyadmin ist installed
     become: yes
-    get_url:
+    unarchive:
         dest: /var/www/html/phpMyAdmin
-        url: https://files.phpmyadmin.net/phpMyAdmin/{{phpmyadmin_version}}/phpMyAdmin-{{phpmyadmin_version}}-all-languages.tar.gz
+        src: https://files.phpmyadmin.net/phpMyAdmin/{{phpmyadmin_version}}/phpMyAdmin-{{phpmyadmin_version}}-all-languages.tar.gz
         group: www-data
         owner: www-data
+        remote_src: yes
     tags:
         - phpmyadmin
 
@@ -364,6 +376,160 @@
         group: www-data
     tags:
         - phpmyadmin
+
+  - name: Ensure mongodb is installed
+    become: yes
+    apt:
+        name: mongodb-server
+        update_cache: yes
+        cache_valid_time: 3600
+        install_recommends: yes
+    tags:
+        - mongodb
+
+  - name: Ensure mqtt is installed
+    become: yes
+    apt:
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+        install_recommends: yes
+    with_items:
+        - mosquitto
+        - mosquitto-clients
+    tags:
+        - mqtt
+
+  - name: Ensure etherpad and etherdraw is installed
+    become: yes
+    apt:
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+        install_recommends: yes
+    with_items:
+        - libreoffice
+        - abiword
+        - libcairo2-dev
+        - libjpeg-dev
+        - libpango1.0-dev
+        - libgif-dev
+        - build-essential
+        - g++
+    tags:
+        - etherpad
+
+  - name:
+    become: yes
+    git:
+        dest: "/opt/{{item.dest}}"
+        repo: "{{item.repo}}"
+        clone: yes
+        update: yes
+    register: git_etherpad
+    with_items:
+        - dest: etherpad
+          repo: git://github.com/ether/etherpad-lite.git
+        - dest: etherdraw
+          repo: git://github.com/ether/etherpad-lite.git
+    tags:
+        - etherpad
+
+  - name: Ensure etherpad user exists
+    become: yes
+    user:
+        name: "{{item}}"
+        home: "/opt/{{item}}"
+        move_home: no
+        createhome: yes
+        system: yes
+        state: present
+    with_items:
+        - etherpad
+        - etherdraw
+    tags:
+        - etherpad
+
+  - name: Ensure etherpad home owned by etherpad
+    become: yes
+    file:
+        path: "/opt/{{item}}"
+        owner: "{{item}}"
+        group: "{{item}}"
+        recurse: yes
+        state: directory
+    with_items:
+        - etherpad
+        - etherdraw
+    tags:
+        - etherpad
+
+  - name: Settings for etherpad
+    become: yes
+    template:
+        src: settings.json.j2
+        dest: /opt/etherpad/settings.json
+        owner: etherpad
+        group: etherpad
+    tags:
+        - etherpad
+
+  - name: Install etherpad
+    become: yes
+    become_user: etherpad
+    shell: "{{item}}"
+    args:
+        chdir: /opt/etherpad
+    when: git_etherpad.changed
+    with_items:
+        - /opt/etherpad/bin/installDeps.sh
+        - /usr/bin/npm install ep_activepads ep_adminpads ep_copy_paste_images ep_cursortrace
+        - /usr/bin/npm install ep_font_family ep_font_size ep_horizontal_line ep_latexexport
+        - /usr/bin/npm install ep_markdown ep_markdownify ep_padlist ep_print ep_printer
+        - /usr/bin/npm install ep_search ep_spellcheck ep_tables ep_xmlexport
+    tags:
+        - etherpad
+
+  - name: Settings for etherpad
+    become: yes
+    template:
+        src: etherpad-lite.service.j2
+        dest: /etc/systemd/system/etherpad-lite.service
+    notify:
+        - restart_etherpad
+    tags:
+        - etherpad
+
+  - name: Install etherdraw
+    become: yes
+    become_user: etherdraw
+    shell: "{{item}}"
+    args:
+        chdir: /opt/etherdraw
+    when: git_etherpad.changed
+    with_items:
+        - /opt/etherdraw/bin/installDeps.sh
+    tags:
+        - etherpad
+
+  - name: Ensure etherdraw log exists
+    become: yes
+    file:
+        path: /var/log/etherdraw/
+        mode: 0777
+    tags:
+        - etherpad
+
+  - name: service etherdraw
+    become: yes
+    template:
+        src: etherdraw.j2
+        dest: /etc/init.d/etherdraw
+        mode: 0774
+    notify:
+        - restart_etherdraw
+    tags:
+        - etherpad
 
   handlers:
   - name: restart_nodred
@@ -393,3 +559,17 @@
       enabled: yes
       state: restarted
       name: php7.0-fpm
+
+  - name: restart_etherpad-lite.service
+    become: yes
+    service:
+      enabled: yes
+      state: restarted
+      name: etherpad-lite.service
+
+  - name: restart_etherdraw
+    become: yes
+    service:
+      enabled: yes
+      state: restarted
+      name: etherdraw
