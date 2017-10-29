@@ -387,7 +387,7 @@
     tags:
         - mongodb
 
-  - name: Ensure mongodb is installed
+  - name: Ensure mqtt is installed
     become: yes
     apt:
         name: "{{item}}"
@@ -399,6 +399,39 @@
         - mosquitto-clients
     tags:
         - mqtt
+
+  - name: Ensure etherpad and etherdraw is installed
+    become: yes
+    apt:
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+        install_recommends: yes
+    with_items:
+        - libreoffice
+        - abiword
+        - libcairo2-dev
+        - libjpeg-dev
+        - libpango1.0-dev
+        - libgif-dev
+        - build-essential
+        - g++
+    tags:
+        - etherpad
+
+  - name: Ensure etherpad user exists
+    user:
+        name: "{{item}}"
+        home: "/opt/{{item}}"
+        move_home: no
+        createhome: yes
+        system: yes
+        state: present
+    with_items:
+        - etherpad
+        - etherdraw
+    tags:
+        - etherpad
 
   handlers:
   - name: restart_nodred
