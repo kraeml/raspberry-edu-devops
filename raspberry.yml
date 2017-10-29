@@ -463,6 +463,23 @@
     tags:
         - etherpad
 
+  - name: Settings for etherpad
+    become: yes
+    template:
+        src: settings.json.j2
+        dest: /opt/etherpad/settings.json
+        owner: etherpad
+        group: etherpad
+    tags:
+        - etherpad
+
+  - name: Install etherpad
+    become: yes
+    become_user: etherpad
+    shell: /opt/etherpad/bin/installDeps.sh
+    tags:
+        - etherpad
+
   handlers:
   - name: restart_nodred
     become: yes
