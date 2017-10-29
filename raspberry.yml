@@ -346,13 +346,15 @@
         - php
         - nginx
 
-  - name:
+  - name: Ensure phpMyAdmin is directory
     become: yes
     file:
         path: /var/www/html/phpMyAdmin
         state: directory
         owner: www-data
         group: www-data
+    tags:
+        - phpmyadmin
 
   - name: Ensure phpmyadmin ist installed
     become: yes
