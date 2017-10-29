@@ -363,6 +363,7 @@
         dest: /var/www/html/phpMyAdmin/config.inc.php
         owner: www-data
         group: www-data
+        remote_src: yes
     tags:
         - phpmyadmin
 
