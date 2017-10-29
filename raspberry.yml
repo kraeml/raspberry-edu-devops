@@ -449,6 +449,20 @@
     tags:
         - etherpad
 
+  - name: Ensure etherpad home owned by etherpad
+    become: yes
+    file:
+        path: "/opt/{{item}}"
+        owner: "{{item}}"
+        group: "{{item}}"
+        recurse: yes
+        state: directory
+    with_items:
+        - etherpad
+        - etherdraw
+    tags:
+        - etherpad
+
   handlers:
   - name: restart_nodred
     become: yes
