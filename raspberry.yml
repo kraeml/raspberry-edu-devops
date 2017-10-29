@@ -480,6 +480,7 @@
     shell: "{{item}}"
     args:
         chdir: /opt/etherpad
+    when: git_etherpad.changed
     with_items:
         - /opt/etherpad/bin/installDeps.sh
         - /usr/bin/npm install ep_activepads ep_adminpads ep_copy_paste_images ep_cursortrace
@@ -505,6 +506,7 @@
     shell: "{{item}}"
     args:
         chdir: /opt/etherdraw
+    when: git_etherdraw.changed
     with_items:
         - /opt/etherdraw/bin/installDeps.sh
     tags:
