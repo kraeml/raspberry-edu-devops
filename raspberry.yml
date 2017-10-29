@@ -299,6 +299,7 @@
         - nginx
 
   - name: Ensure /var/www owned by www-data
+    become: yes
     file:
         path: /var/www
         state: directory
