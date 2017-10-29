@@ -353,6 +353,7 @@
         src: https://files.phpmyadmin.net/phpMyAdmin/{{phpmyadmin_version}}/phpMyAdmin-{{phpmyadmin_version}}-all-languages.tar.gz
         group: www-data
         owner: www-data
+        remote_src: yes
     tags:
         - phpmyadmin
 
@@ -363,7 +364,6 @@
         dest: /var/www/html/phpMyAdmin/config.inc.php
         owner: www-data
         group: www-data
-        remote_src: yes
     tags:
         - phpmyadmin
 
