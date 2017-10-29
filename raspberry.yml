@@ -515,7 +515,8 @@
   - name: Ensure etherdraw log exists
     become: yes
     file:
-        path: /var/log/etherdraw/
+        path: /var/log/etherdraw
+        state: directory
         mode: 0777
     tags:
         - etherpad
