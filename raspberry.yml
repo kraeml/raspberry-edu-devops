@@ -398,7 +398,7 @@
         - mosquitto
         - mosquitto-clients
     tags:
-        - mongodb
+        - mqtt
 
   handlers:
   - name: restart_nodred
