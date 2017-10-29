@@ -484,7 +484,47 @@
         - /usr/bin/npm install ep_activepads ep_adminpads ep_copy_paste_images ep_cursortrace
         - /usr/bin/npm install ep_font_family ep_font_size ep_horizontal_line ep_latexexport
         - /usr/bin/npm install ep_markdown ep_markdownify ep_padlist ep_print ep_printer
-        - /usr/bin/npm install ep_search ep_spellcheck ep_tables ep_xmlexport  
+        - /usr/bin/npm install ep_search ep_spellcheck ep_tables ep_xmlexport
+    tags:
+        - etherpad
+
+  - name: Settings for etherpad
+    become: yes
+    template:
+        src: etherpad-lite.service.j2
+        dest: /etc/systemd/system/etherpad-lite.service
+    notify:
+        - restart_etherpad
+    tags:
+        - etherpad
+
+  - name: Install etherdraw
+    become: yes
+    become_user: etherdraw
+    shell: "{{item}}"
+    args:
+        chdir: /opt/etherdraw
+    with_items:
+        - /opt/etherpad/bin/installDeps.sh
+    tags:
+        - etherpad
+
+  - name: Ensure etherdraw log exists
+    become: yes
+    file:
+        path: /var/log/etherdraw/
+        mode: 0777
+    tags:
+        - etherpad
+
+  - name: service etherdraw
+    become: yes
+    template:
+        src: etherdraw.j2
+        dest: /etc/init.d/etherdraw
+        mode: 0774
+    notify:
+        - restart_etherdraw
     tags:
         - etherpad
 
@@ -516,3 +556,17 @@
       enabled: yes
       state: restarted
       name: php7.0-fpm
+
+  - name: restart_etherpad-lite.service
+    become: yes
+    service:
+      enabled: yes
+      state: restarted
+      name: etherpad-lite.service
+
+  - name: restart_etherdraw
+    become: yes
+    service:
+      enabled: yes
+      state: restarted
+      name: etherdraw
