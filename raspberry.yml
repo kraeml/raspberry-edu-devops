@@ -378,11 +378,25 @@
         - phpmyadmin
 
   - name: Ensure mongodb is installed
+    become: yes
     apt:
         name: mongodb-server
-        update_cache: # Run the equivalent of C(apt-get update) before the operation. Can be run as part of the package installation or as a separate step.
+        update_cache: yes
         cache_valid_time: 3600
         install_recommends: yes
+    tags:
+        - mongodb
+
+  - name: Ensure mongodb is installed
+    become: yes
+    apt:
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+        install_recommends: yes
+    with_items:
+        - mosquitto
+        - mosquitto-clients
     tags:
         - mongodb
 
