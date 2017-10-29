@@ -419,7 +419,23 @@
     tags:
         - etherpad
 
+  - name:
+    become: yes
+    git:
+        dest: "/opt/{{item.dest}}"
+        repo: "{{item.repo}}"
+        clone: yes
+        update: yes
+    with_items:
+        - dest: etherpad
+          repo: git://github.com/ether/etherpad-lite.git
+        - dest: etherdraw
+          repo: git://github.com/ether/etherpad-lite.git
+    tags:
+        - etherpad
+
   - name: Ensure etherpad user exists
+    become: yes
     user:
         name: "{{item}}"
         home: "/opt/{{item}}"
