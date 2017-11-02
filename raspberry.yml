@@ -130,7 +130,7 @@
         creates: /usr/bin/update-nodejs-and-nodered
         responses:
             Are you really .*: y
-        timeout: 30 # Amount of time in seconds to wait for the expected strings
+        timeout: 600 # Amount of time in seconds to wait for the expected strings
     notify: restart_nodred
     tags:
         - node-red
