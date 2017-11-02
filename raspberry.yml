@@ -109,6 +109,8 @@
     stat:
         path: /usr/bin/update-nodejs-and-nodered
     register: update-nodejs-and-nodered
+    tags:
+        - node-red
 
   - name: Get nodered script
     get_url:
@@ -116,7 +118,8 @@
         url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
         mode: 777
     when: update-nodejs-and-nodered.stat.exists = False
-
+    tags:
+        - node-red
 
   - name: Execute nodered script
     expect:
@@ -125,6 +128,9 @@
         response:
             Are you really .*: y
         timeout: 30 # Amount of time in seconds to wait for the expected strings
+    notify: restart_nodred
+    tags:
+        - node-red
 
 #  - name: Ensure nodred and some dependencies are installed
 #    become: yes
@@ -144,29 +150,29 @@
 #        - npm-check
 #        - node-red-admin
 
-  - name: add the shortcut and start/stop/log scripts
-    become: yes
-    get_url:
-        dest: "{{item.des}}"
-        url: "{{item.url}}"
-        mode: 0755
-    with_items:
-        - des: /usr/bin/node-red-start
-          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-start2
-        - des: /usr/bin/node-red-stop
-          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-stop
-        - des: /usr/bin/node-red-log
-          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-log
+#  - name: add the shortcut and start/stop/log scripts
+#    become: yes
+#    get_url:
+#        dest: "{{item.des}}"
+#        url: "{{item.url}}"
+#        mode: 0755
+#    with_items:
+#        - des: /usr/bin/node-red-start
+#          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-start2
+#        - des: /usr/bin/node-red-stop
+#          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-stop
+#        - des: /usr/bin/node-red-log
+#          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-log
 
-  - name: add systemd script and configure it for $USER
-    become: yes
-    get_url:
-        dest: /lib/systemd/system/nodered.service
-        url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/nodered.service
-    notify: restart_nodred
+ # - name: add systemd script and configure it for $USER
+#    become: yes
+#    get_url:
+#        dest: /lib/systemd/system/nodered.service
+#        url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/nodered.service
+#    notify: restart_nodred
 
-  - name: Flush handlers
-    meta: flush_handlers
+#  - name: Flush handlers
+#    meta: flush_handlers
 
   - name: Install node-red addons
     npm:
@@ -179,6 +185,7 @@
         - node-red-node-mongodb
         - node-red-node-mysql
         - node-red-contrib-looptimer
+    notify: restart_nodred
 
   - name: Ensure sqlite3 is installed
     become: yes
