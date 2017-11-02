@@ -127,30 +127,32 @@
     expect:
         command: /tmp/update-nodejs-and-nodered
         creates: /usr/bin/update-nodejs-and-nodered
-        response:
+        responses:
             Are you really .*: y
         timeout: 30 # Amount of time in seconds to wait for the expected strings
     notify: restart_nodred
     tags:
         - node-red
 
-#  - name: Ensure nodred and some dependencies are installed
-#    become: yes
-#    npm:
-#        name: "{{item}}"
-#        global: yes
-#    with_items:
+  - name: Ensure nodred and some dependencies are installed
+    become: yes
+    npm:
+        name: "{{item}}"
+        global: yes
+    with_items:
 #        - node-red
 #        - node-red-node-random
 #        - node-red-node-ping
 #        - node-red-node-smooth
-#        #- node-red-contrib-ibm-watson-iot
+        #- node-red-contrib-ibm-watson-iot
 #        - node-red-contrib-play-audio
-#        #- node-red-node-ledborg
+        #- node-red-node-ledborg
 #        - node-red-node-pi-sense-hat
 #        - node-red-node-serialport
-#        - npm-check
-#        - node-red-admin
+        - npm-check
+        - node-red-admin
+    tags:
+        - node-red
 
 #  - name: add the shortcut and start/stop/log scripts
 #    become: yes
