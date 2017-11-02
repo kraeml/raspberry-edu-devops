@@ -238,6 +238,8 @@
         - learnyoumongo
         - torrential
         - html-validator-cli
+    tags:
+        - web-dev
 
   - name: Ensure cloud9 dependencies are installed
     become: yes
