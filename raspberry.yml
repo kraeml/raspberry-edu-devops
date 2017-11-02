@@ -72,6 +72,7 @@
         - avahi-daemon
         - openjdk-8-jre
         - tidy
+        - python-pexpect
 
   - name: Alternatives set
     become: yes
@@ -118,7 +119,7 @@
     get_url:
         dest: /tmp/update-nodejs-and-nodered
         url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
-        mode: 777
+        mode: 0777
     when: update_nodejs_and_nodered.stat.exists != True
     tags:
         - node-red
@@ -189,10 +190,11 @@
         - node-red-node-mongodb
         - node-red-node-mysql
         - node-red-contrib-looptimer
-    notify: restart_nodred
+    notify:
+        - restart_nodred
+        - rebuild-node-red
     tags:
         - node-red
-        - rebuild-node-red
 
   - name: Ensure sqlite3 is installed
     become: yes
