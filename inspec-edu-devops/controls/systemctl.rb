@@ -19,7 +19,7 @@ services = [
 
 gem_packages = {
     :bundler => {
-        :version => "1.15.4"
+        :version => "1.16.0"
     },
     :capybara => {
         :version => "2.15.4"
@@ -105,7 +105,7 @@ tools = {
         :command => 'python3 --version'
     },
     :inspec => {
-        :version => '1.42',
+        :version => '1.43',
         :command => 'inspec --version'
     },
     :php => {
@@ -124,7 +124,7 @@ tools = {
         #:process => 'nginx'
     },
     :jupyter => {
-        :version => '4.3',
+        :version => '4.4',
         :command => 'jupyter --version',
         :port => '8888',
         :process => 'jupyter-noteboo'
@@ -230,7 +230,7 @@ tools = {
         :command => 'node-red-admin info node-red-contrib-bigtimer'
     },
     :dashboard => {
-        :version => '2.5',
+        :version => '2.6',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-dashboard'
     },
