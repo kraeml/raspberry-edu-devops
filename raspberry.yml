@@ -358,7 +358,18 @@
         append: yes
     with_items:
         - pi
-        - gpio
+    tags:
+        - php
+        - nginx
+
+  - name: Ensure some users in group gpio
+    become: yes
+    user:
+        name: "{{item}}"
+        groups: gpio
+        append: yes
+    with_items:
+        - www-data
     tags:
         - php
         - nginx
