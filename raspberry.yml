@@ -153,6 +153,8 @@
     file:
         path: /home/pi/.node-red/nodes
         state: directory
+    tags:
+        - node-red
 
   - name: Ensure pimoroni plugins are installed
     git:
@@ -162,6 +164,8 @@
         update: yes # If C(no), do not retrieve new revisions from the origin repository
     notify: restart_nodred
     register: pimoroni
+    tags:
+        - node-red
 
   - name: Flush handlers
     meta: flush_handlers
@@ -175,6 +179,8 @@
         - node-red-admin disable node-red/rpi-explorerhat
         - node-red-admin disable node-red/rpi-unicorn
     when: pimoroni.changed
+    tags:
+        - node-red
 
   - name: Install node-red addons
     npm:
@@ -322,7 +328,7 @@
         - src: php7_common.j2
           dest: /etc/nginx/php7_common
         - src: index.php.j2
-          dest: /var/www/index.php
+          dest: /var/www/html/index.php
           owner: www-data
           group: www-data
     notify:
@@ -352,7 +358,7 @@
         append: yes
     with_items:
         - pi
-        - gpi
+        - gpio
     tags:
         - php
         - nginx
