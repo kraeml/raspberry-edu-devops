@@ -62,10 +62,10 @@
         - expect
         - sense-hat
         - raspi-gpio
+        - python-rpi.gpio
         - debian-keyring
         - debian-archive-keyring
         - wiringpi
-        - raspi-gpio
         - dphys-swapfile
         - lsb-core
         - avahi-utils
@@ -79,7 +79,7 @@
         path: /usr/lib/jvm/java-8-openjdk-armhf/jre/bin/java
         name: java
 
-  - name: Pip3 dependencies
+  - name: html5validator via pip
     become: yes
     pip:
         name: html5validator
@@ -105,23 +105,44 @@
     become: yes
     command: npm config --global set unsafe-perm=true
 
-  - name: Ensure nodred and some dependencies are installed
-    become: yes
-    npm:
-        name: "{{item}}"
-        global: yes
-    with_items:
-        - node-red
-        - node-red-node-random
-        - node-red-node-ping
-        - node-red-node-smooth
-        #- node-red-contrib-ibm-watson-iot
-        - node-red-contrib-play-audio
-        #- node-red-node-ledborg
-        - node-red-node-pi-sense-hat
-        - node-red-node-serialport
-        - npm-check
-        - node-red-admin
+  - name: test update-nodejs-and-nodered exists
+    stat:
+        path: /usr/bin/update-nodejs-and-nodered
+    register: update-nodejs-and-nodered
+
+  - name: Get nodered script
+    get_url:
+        dest: /tmp/update-nodejs-and-nodered
+        url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
+        mode: 777
+    when: update-nodejs-and-nodered.stat.exists = False
+
+
+  - name: Execute nodered script
+    expect:
+        command: /tmp/update-nodejs-and-nodered
+        creates: /usr/bin/update-nodejs-and-nodered
+        response:
+            Are you really .*: y
+        timeout: 30 # Amount of time in seconds to wait for the expected strings
+
+#  - name: Ensure nodred and some dependencies are installed
+#    become: yes
+#    npm:
+#        name: "{{item}}"
+#        global: yes
+#    with_items:
+#        - node-red
+#        - node-red-node-random
+#        - node-red-node-ping
+#        - node-red-node-smooth
+#        #- node-red-contrib-ibm-watson-iot
+#        - node-red-contrib-play-audio
+#        #- node-red-node-ledborg
+#        - node-red-node-pi-sense-hat
+#        - node-red-node-serialport
+#        - npm-check
+#        - node-red-admin
 
   - name: add the shortcut and start/stop/log scripts
     become: yes
