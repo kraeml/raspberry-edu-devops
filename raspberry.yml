@@ -108,7 +108,7 @@
   - name: test update-nodejs-and-nodered exists
     stat:
         path: /usr/bin/update-nodejs-and-nodered
-    register: update-nodejs-and-nodered
+    register: update_nodejs_and_nodered
     changed_when: false
     ignore_errors: yes
     tags:
@@ -119,7 +119,7 @@
         dest: /tmp/update-nodejs-and-nodered
         url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
         mode: 777
-    when: update-nodejs-and-nodered.stat.exists != True
+    when: update_nodejs_and_nodered.stat.exists != True
     tags:
         - node-red
 
