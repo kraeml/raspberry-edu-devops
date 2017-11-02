@@ -62,16 +62,17 @@
         - expect
         - sense-hat
         - raspi-gpio
+        - python-rpi.gpio
         - debian-keyring
         - debian-archive-keyring
         - wiringpi
-        - raspi-gpio
         - dphys-swapfile
         - lsb-core
         - avahi-utils
         - avahi-daemon
         - openjdk-8-jre
         - tidy
+        - python-pexpect
 
   - name: Alternatives set
     become: yes
@@ -79,7 +80,7 @@
         path: /usr/lib/jvm/java-8-openjdk-armhf/jre/bin/java
         name: java
 
-  - name: Pip3 dependencies
+  - name: html5validator via pip
     become: yes
     pip:
         name: html5validator
@@ -105,47 +106,78 @@
     become: yes
     command: npm config --global set unsafe-perm=true
 
+  - name: test update-nodejs-and-nodered exists
+    stat:
+        path: /usr/bin/update-nodejs-and-nodered
+    register: update_nodejs_and_nodered
+    changed_when: false
+    ignore_errors: yes
+    tags:
+        - node-red
+
+  - name: Get nodered script
+    get_url:
+        dest: /tmp/update-nodejs-and-nodered
+        url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
+        mode: 0777
+    when: update_nodejs_and_nodered.stat.exists != True
+    tags:
+        - node-red
+
+  - name: Execute nodered script
+    expect:
+        command: /tmp/update-nodejs-and-nodered
+        creates: /usr/bin/update-nodejs-and-nodered
+        responses:
+            Are you really .*: y
+        timeout: 600 # Amount of time in seconds to wait for the expected strings
+    notify: restart_nodred
+    tags:
+        - node-red
+
   - name: Ensure nodred and some dependencies are installed
     become: yes
     npm:
         name: "{{item}}"
         global: yes
     with_items:
-        - node-red
-        - node-red-node-random
-        - node-red-node-ping
-        - node-red-node-smooth
+#        - node-red
+#        - node-red-node-random
+#        - node-red-node-ping
+#        - node-red-node-smooth
         #- node-red-contrib-ibm-watson-iot
-        - node-red-contrib-play-audio
+#        - node-red-contrib-play-audio
         #- node-red-node-ledborg
-        - node-red-node-pi-sense-hat
-        - node-red-node-serialport
+#        - node-red-node-pi-sense-hat
+#        - node-red-node-serialport
         - npm-check
         - node-red-admin
+    tags:
+        - node-red
 
-  - name: add the shortcut and start/stop/log scripts
-    become: yes
-    get_url:
-        dest: "{{item.des}}"
-        url: "{{item.url}}"
-        mode: 0755
-    with_items:
-        - des: /usr/bin/node-red-start
-          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-start2
-        - des: /usr/bin/node-red-stop
-          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-stop
-        - des: /usr/bin/node-red-log
-          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-log
+#  - name: add the shortcut and start/stop/log scripts
+#    become: yes
+#    get_url:
+#        dest: "{{item.des}}"
+#        url: "{{item.url}}"
+#        mode: 0755
+#    with_items:
+#        - des: /usr/bin/node-red-start
+#          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-start2
+#        - des: /usr/bin/node-red-stop
+#          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-stop
+#        - des: /usr/bin/node-red-log
+#          url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-log
 
-  - name: add systemd script and configure it for $USER
-    become: yes
-    get_url:
-        dest: /lib/systemd/system/nodered.service
-        url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/nodered.service
-    notify: restart_nodred
+ # - name: add systemd script and configure it for $USER
+#    become: yes
+#    get_url:
+#        dest: /lib/systemd/system/nodered.service
+#        url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/nodered.service
+#    notify: restart_nodred
 
-  - name: Flush handlers
-    meta: flush_handlers
+#  - name: Flush handlers
+#    meta: flush_handlers
 
   - name: Install node-red addons
     npm:
@@ -158,6 +190,11 @@
         - node-red-node-mongodb
         - node-red-node-mysql
         - node-red-contrib-looptimer
+    notify:
+        - restart_nodred
+        - rebuild-node-red
+    tags:
+        - node-red
 
   - name: Ensure sqlite3 is installed
     become: yes
@@ -539,6 +576,11 @@
       enabled: yes
       state: restarted
       name: nodered.service
+
+  - name: rebuild_node_red
+    command: npm rebuild
+    args:
+        chdir: /home/pi/.node-red
 
   - name: restart_cloud9
     become: yes
