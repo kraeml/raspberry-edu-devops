@@ -265,7 +265,7 @@ tools = {
         :command => 'node-red-admin info node-red-node-ledborg/ledborg'
     },
     :noderedunicorn => {
-        :version => '0.0.18',
+        :version => '0.17.5',
         :commend => 'disabled',
         :command => 'node-red-admin info node-red/rpi-unicorn'
     },
