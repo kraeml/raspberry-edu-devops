@@ -109,6 +109,8 @@
     stat:
         path: /usr/bin/update-nodejs-and-nodered
     register: update-nodejs-and-nodered
+    changed_when: false
+    ignore_errors: yes
     tags:
         - node-red
 
@@ -117,7 +119,7 @@
         dest: /tmp/update-nodejs-and-nodered
         url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
         mode: 777
-    when: update-nodejs-and-nodered.stat.exists = False
+    when: update-nodejs-and-nodered.stat.exists != True
     tags:
         - node-red
 
@@ -186,6 +188,9 @@
         - node-red-node-mysql
         - node-red-contrib-looptimer
     notify: restart_nodred
+    tags:
+        - node-red
+        - rebuild-node-red
 
   - name: Ensure sqlite3 is installed
     become: yes
@@ -567,6 +572,11 @@
       enabled: yes
       state: restarted
       name: nodered.service
+
+  - name: rebuild_node_red
+    command: npm rebuild
+    args:
+        chdir: /home/pi/.node-red
 
   - name: restart_cloud9
     become: yes
