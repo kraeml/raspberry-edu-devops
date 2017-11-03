@@ -54,7 +54,7 @@
 
 - name: Display nbextension
   debug:
-      var: nbextension
+      var: nbextensions
       verbosity: 2
 
 - name: Ensure widgetsnbextension activated
