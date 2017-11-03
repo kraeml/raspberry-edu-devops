@@ -148,8 +148,22 @@
         timeout: 3600
     notify: restart_nodred
     register: nodered
+    ignore_errors: yes
     tags:
         - node-red
+
+  - name: Execute nodered script twice as workaround
+    expect:
+        command: /tmp/update-nodejs-and-nodered
+        creates: /usr/bin/update-nodejs-and-nodered
+        responses:
+            Are you really .*: y
+        timeout: 3600
+    notify: restart_nodred
+    # register: nodered
+    tags:
+        - node-red
+    when: nodered|failed
 
   - name: Ensure nodred and some dependencies are installed
     become: yes
