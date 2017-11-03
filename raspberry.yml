@@ -132,6 +132,7 @@
             Are you really .*: y
         timeout: 3600
     notify: restart_nodred
+    register: nodred
     tags:
         - node-red
 
@@ -178,7 +179,7 @@
         - node-red-admin disable node-red-node-ledborg/ledborg
         - node-red-admin disable node-red/rpi-explorerhat
         - node-red-admin disable node-red/rpi-unicorn
-    when: pimoroni.changed
+    when: pimoroni.changed or nodered.changed
     tags:
         - node-red
 
@@ -195,7 +196,7 @@
         - node-red-contrib-looptimer
     notify:
         - restart_nodred
-        - rebuild-node-red
+        #- rebuild-node-red
     tags:
         - node-red
 
