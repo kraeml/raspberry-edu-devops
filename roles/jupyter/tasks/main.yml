@@ -34,7 +34,7 @@
   args:
     creates: /usr/local/share/jupyter/kernels/bash
 
-- name: Ensure ijavascript ist installed
+- name: Ensure ijavascript is installed
   become: yes
   npm:
       name: ijavascript
