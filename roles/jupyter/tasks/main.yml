@@ -43,7 +43,7 @@
 
 - name: Ensure ijavascript kernel is installed
   become: yes
-  command: /usr/bin/ijsinstall
+  command: /usr/bin/ijsinstall --install=global
   args:
     creates: /usr/local/share/jupyter/kernels/javascript
 
@@ -52,10 +52,15 @@
   register: jupyter_nbextensions
   changed_when: False
 
+- name: Display nbextension
+  debug:
+      var: jupyter_nbextensions
+      verbosity: 2
+
 - name: Ensure widgetsnbextension activated
   become: yes
   command: jupyter nbextension enable --py --sys-prefix widgetsnbextension
-  when: not jupyter_nbextensions.stdout.find("jupyter-js-widgets/extension  enabled")
+  when: jupyter_nbextensions.stdout.find("jupyter-js-widgets/extension \u001b[32m enabled") != -1
 
 - name: Ensure notebook directory exists
   file:
