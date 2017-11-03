@@ -11,6 +11,7 @@
   - role: jupyter
     become: yes
     nodejs_version: "6.x"
+    tags: jupyter
     nodejs_npm_global_packages:
         - ijavascript
 
