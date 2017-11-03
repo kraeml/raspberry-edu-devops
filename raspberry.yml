@@ -564,6 +564,8 @@
         - /opt/etherdraw/bin/installDeps.sh
     tags:
         - etherpad
+    notify:
+        - restart_etherpad
 
   - name: Ensure etherdraw log exists
     become: yes
@@ -619,7 +621,7 @@
       state: restarted
       name: php7.0-fpm
 
-  - name: restart_etherpad-lite.service
+  - name: restart_etherpad
     become: yes
     service:
       enabled: yes
