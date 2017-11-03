@@ -130,7 +130,7 @@
         creates: /usr/bin/update-nodejs-and-nodered
         responses:
             Are you really .*: y
-        timeout: 600 # Amount of time in seconds to wait for the expected strings
+        timeout: 3600
     notify: restart_nodred
     tags:
         - node-red
@@ -564,6 +564,8 @@
         - /opt/etherdraw/bin/installDeps.sh
     tags:
         - etherpad
+    notify:
+        - restart_etherpad
 
   - name: Ensure etherdraw log exists
     become: yes
@@ -619,7 +621,7 @@
       state: restarted
       name: php7.0-fpm
 
-  - name: restart_etherpad-lite.service
+  - name: restart_etherpad
     become: yes
     service:
       enabled: yes
