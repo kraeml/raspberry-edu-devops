@@ -60,7 +60,7 @@
 - name: Ensure widgetsnbextension activated
   become: yes
   command: jupyter nbextension enable --py --sys-prefix widgetsnbextension
-  when: jupyter_nbextensions.stdout.find("jupyter-js-widgets/extension  enabled")
+  when: not (jupyter_nbextensions.stdout.find("jupyter-js-widgets/extension \u001b[32m enabled"))
 
 - name: Ensure notebook directory exists
   file:
