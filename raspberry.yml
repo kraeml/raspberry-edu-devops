@@ -171,6 +171,11 @@
   - name: Flush handlers
     meta: flush_handlers
 
+  - name: Wait 300 seconds for port 1880 to become open on the host, don't start checking for 10 seconds
+    wait_for:
+        port: 1880
+        delay: 10
+
   - name: Ensure some pimoroni plugins are disabled
     command: "{{item}}"
     with_items:
