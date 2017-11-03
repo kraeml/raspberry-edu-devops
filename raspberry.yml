@@ -22,6 +22,8 @@
     docker_install_compose: false
     docker_compose_version: "1.16.1"
     docker_compose_path: /usr/local/bin/docker-compose
+    tags:
+        - docker
 
   - role: geerlingguy.mysql
     become: yes
@@ -48,6 +50,8 @@
         ssh_key_type: rsa
         groups: docker
         append: yes
+    tags:
+        - docker
 
   - name: Ensure raspberry dependencies are installed
     become: yes
@@ -74,12 +78,16 @@
         - openjdk-8-jre
         - tidy
         - python-pexpect
+    tags:
+        - base
 
   - name: Alternatives set
     become: yes
     alternatives:
         path: /usr/lib/jvm/java-8-openjdk-armhf/jre/bin/java
         name: java
+    tags:
+        - base
 
   - name: html5validator via pip
     become: yes
@@ -87,6 +95,8 @@
         name: html5validator
         executable: pip3
         state: present
+    tags:
+        - web-dev
 
   - name: Ensure tex dependencies are installed
     become: yes
@@ -102,10 +112,14 @@
         - texlive-xetex
         - texlive-latex-recommended
         - texlive-fonts-recommended
+    tags:
+        - tex
 
   - name: NPM unsafe-perm
     become: yes
     command: npm config --global set unsafe-perm=true
+    tags:
+        - node-red
 
   - name: test update-nodejs-and-nodered exists
     stat:

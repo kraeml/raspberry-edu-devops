@@ -52,6 +52,11 @@
   register: jupyter_nbextensions
   changed_when: False
 
+- name: Display nbextension
+  debug:
+      var: nbextension
+      verbosity: 2
+
 - name: Ensure widgetsnbextension activated
   become: yes
   command: jupyter nbextension enable --py --sys-prefix widgetsnbextension
