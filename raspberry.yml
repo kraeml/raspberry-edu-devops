@@ -190,7 +190,7 @@
     tags:
         - node-red
 
-  - name: Execute nodered script twice as workaround
+  - name: Execute nodered script again as workaround
     expect:
         command: /tmp/update-nodejs-and-nodered
         creates: /usr/bin/update-nodejs-and-nodered
@@ -223,11 +223,15 @@
 
   - name: Flush handlers
     meta: flush_handlers
+    tags:
+        - node-red
 
   - name: Wait 300 seconds for port 1880 to become open on the host, don't start checking for 10 seconds
     wait_for:
         port: 1880
         delay: 10
+    tags:
+        - node-red
 
   - name: Ensure some pimoroni plugins are disabled
     command: "{{item}}"
@@ -267,6 +271,8 @@
         install_recommends: yes
     with_items:
         - sqlite3
+    tags:
+        - web-dev
 
   - name: Additional packages for web-dev learning
     become: yes
