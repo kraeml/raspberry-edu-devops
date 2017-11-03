@@ -169,6 +169,21 @@
     wait_for:
         port: 1880
         delay: 10
+    register: nodered-service
+    ignore_errors: yes
+
+  - name: Execute nodered script twice as workaround
+    expect:
+        command: /tmp/update-nodejs-and-nodered
+        creates: /usr/bin/update-nodejs-and-nodered
+        responses:
+            Are you really .*: y
+        timeout: 3600
+    notify: restart_nodred
+    # register: nodered
+    tags:
+        - node-red
+    when: nodered-service|failed
 
   - name: Ensure pimoroni directory created
     file:
