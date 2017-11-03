@@ -25,7 +25,7 @@ if [ ! -e $HOME/.firstboot ]; then
         # run scripts
         ./install_jns_fast.sh
         ansible-galaxy install -r requirements.yml| tee -a /var/log/pi/post-boot.log | logger -p local7.info -t ansible-galaxy-install-post-boot
-        ansible-playbook raspberry.yml | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t ansible-playbook-post-boot
+        ANSIBLE_NOCOWS=1 ansible-playbook raspberry.yml | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t ansible-playbook-post-boot
         # sudo ./install_jupyter.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t jupyter-post-boot
         # ./configure_jupyter.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t configure-jupyter-boot
         # sudo ./enable_jupyter.sh | tee -a /var/log/pi/post-boot.log | logger -p local7.info -t jupyter-post-service
