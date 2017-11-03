@@ -147,7 +147,7 @@
             Are you really .*: y
         timeout: 3600
     notify: restart_nodred
-    register: nodred
+    register: nodered
     tags:
         - node-red
 
