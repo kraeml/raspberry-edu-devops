@@ -183,7 +183,7 @@
     wait_for:
         port: 1880
         delay: 10
-    register: nodered-service
+    register: nodered_service
     ignore_errors: yes
 
   - name: Execute nodered script twice as workaround
@@ -197,7 +197,7 @@
     # register: nodered
     tags:
         - node-red
-    when: nodered-service|failed
+    when: nodered_service|failed
 
   - name: Ensure pimoroni directory created
     file:
