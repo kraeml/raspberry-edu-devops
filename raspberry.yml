@@ -193,7 +193,6 @@
   - name: Execute nodered script again as workaround
     expect:
         command: /tmp/update-nodejs-and-nodered
-        creates: /usr/bin/update-nodejs-and-nodered
         responses:
             Are you really .*: y
         timeout: 3600
@@ -230,8 +229,22 @@
     wait_for:
         port: 1880
         delay: 10
+    register: nodered_service
+    ignore_errors: yes
     tags:
         - node-red
+
+  - name: Execute nodered script again as workaround
+    expect:
+        command: /tmp/update-nodejs-and-nodered
+        responses:
+            Are you really .*: y
+        timeout: 3600
+    notify: restart_nodred
+    # register: nodered
+    tags:
+        - node-red
+    when: nodered_service|failed
 
   - name: Ensure some pimoroni plugins are disabled
     command: "{{item}}"
@@ -242,6 +255,7 @@
         - node-red-admin disable node-red/rpi-explorerhat
         - node-red-admin disable node-red/rpi-unicorn
     when: pimoroni.changed or nodered.changed
+    ignore_errors: yes
     tags:
         - node-red
 
