@@ -254,7 +254,7 @@
         - node-red-admin disable node-red-node-ledborg/ledborg
         - node-red-admin disable node-red/rpi-explorerhat
         - node-red-admin disable node-red/rpi-unicorn
-    when: pimoroni.changed or nodered.changed
+    # when: pimoroni.changed or nodered.changed
     ignore_errors: yes
     tags:
         - node-red
