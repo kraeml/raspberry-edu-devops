@@ -139,7 +139,7 @@
 
       - name: Execute nodered script
         expect:
-            command: bash -l /tmp/update-nodejs-and-nodered
+            command: HOME=/home/pi USER=pi /tmp/update-nodejs-and-nodered
             creates: /usr/bin/update-nodejs-and-nodered
             responses:
                 Are you really .*: y
@@ -151,7 +151,7 @@
 
       - name: Execute nodered script twice as workaround
         expect:
-            shell: bash -l /tmp/update-nodejs-and-nodered
+            command: bash -l /tmp/update-nodejs-and-nodered
             creates: /usr/bin/update-nodejs-and-nodered
             responses:
                 Are you really .*: y
@@ -159,6 +159,7 @@
             timeout: 3600
         notify: restart_nodred
         when: nodered|failed
+        ignore_errors: yes
 
       - name: Ensure nodred and some dependencies are installed
         become: yes
@@ -197,6 +198,7 @@
             timeout: 3600
         notify: restart_nodred
         when: nodered_service|failed
+        ignore_errors: yes
 
       - name: Ensure pimoroni directory created
         file:
@@ -211,6 +213,21 @@
             update: yes # If C(no), do not retrieve new revisions from the origin repository
         notify: restart_nodred
         register: pimoroni
+
+      - name: Install node-red addons
+        npm:
+            name: "{{item}}"
+            state: present
+            path: /home/pi/.node-red
+        with_items:
+            - node-red-dashboard
+            - node-red-contrib-bigtimer
+            - node-red-node-mongodb
+            - node-red-node-mysql
+            - node-red-contrib-looptimer
+        notify:
+            - rebuild_node_red
+            - restart_nodred
 
       - name: Trigger handler
         run_handler: name=restart_nodred
@@ -252,21 +269,6 @@
             - node-red-admin disable node-red/rpi-unicorn
         # when: pimoroni.changed or nodered.changed
         ignore_errors: yes
-
-      - name: Install node-red addons
-        npm:
-            name: "{{item}}"
-            state: present
-            path: /home/pi/.node-red
-        with_items:
-            - node-red-dashboard
-            - node-red-contrib-bigtimer
-            - node-red-node-mongodb
-            - node-red-node-mysql
-            - node-red-contrib-looptimer
-        notify:
-            - rebuild_node_red
-            - restart_nodred
     rescue:
         - name: Get nodered script
           become: yes
@@ -274,6 +276,7 @@
               dest: /usr/bin/update-nodejs-and-nodered
               url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
               mode: 0777
+    ignore_errors: yes
     tags:
         - node-red
 
