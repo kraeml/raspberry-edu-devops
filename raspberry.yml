@@ -179,19 +179,11 @@
         register: nodered_service
         ignore_errors: yes
 
-      - name: test update-nodejs-and-nodered exists
-        stat:
-            path: /usr/bin/update-nodejs-and-nodered
-        register: update_nodejs_and_nodered
-        changed_when: false
-        ignore_errors: yes
-
       - name: Get nodered script
         get_url:
             dest: /tmp/update-nodejs-and-nodered
             url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
             mode: 0777
-        when: update_nodejs_and_nodered.stat.exists != True
 
       - name: Execute nodered script again as workaround
         expect:
@@ -227,19 +219,11 @@
         register: nodered_service
         ignore_errors: yes
 
-      - name: test update-nodejs-and-nodered exists
-        stat:
-            path: /usr/bin/update-nodejs-and-nodered
-        register: update_nodejs_and_nodered
-        changed_when: false
-        ignore_errors: yes
-
       - name: Get nodered script
         get_url:
             dest: /tmp/update-nodejs-and-nodered
             url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
             mode: 0777
-        when: update_nodejs_and_nodered.stat.exists != True
 
       - name: Execute nodered script again as workaround
         expect:
@@ -277,6 +261,13 @@
         notify:
             - rebuild_node_red
             - restart_nodred
+    rescue:
+        - name: Get nodered script
+          become: yes
+          get_url:
+              dest: /usr/bin/update-nodejs-and-nodered
+              url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
+              mode: 0777
     tags:
         - node-red
 
