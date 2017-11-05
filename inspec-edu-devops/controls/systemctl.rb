@@ -28,7 +28,7 @@ gem_packages = {
         :version => "1.43.8"
     },
     :"selenium-webdriver" => {
-        :version => "3.6.0"
+        :version => "3.7.0"
     },
     :"cucumber" => {
         :version => "3.0.1"
