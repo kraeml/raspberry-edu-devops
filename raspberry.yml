@@ -142,8 +142,8 @@
             command: bash -l /tmp/update-nodejs-and-nodered
             creates: /usr/bin/update-nodejs-and-nodered
             responses:
-                - Are you really .*: y
-                - .*Pi-specific nodes.*: y
+                Are you really .*: y
+                .*Pi-specific nodes.*: y
             timeout: 3600
         notify: restart_nodred
         register: nodered
@@ -154,8 +154,8 @@
             shell: bash -l /tmp/update-nodejs-and-nodered
             creates: /usr/bin/update-nodejs-and-nodered
             responses:
-                - Are you really .*: y
-                - .*Pi-specific nodes.*: y
+                Are you really .*: y
+                .*Pi-specific nodes.*: y
             timeout: 3600
         notify: restart_nodred
         when: nodered|failed
@@ -197,8 +197,8 @@
         expect:
             command: bash -l /tmp/update-nodejs-and-nodered
             responses:
-                - Are you really .*: y
-                - .*Pi-specific nodes.*: y
+                Are you really .*: y
+                .*Pi-specific nodes.*: y
             timeout: 3600
         notify: restart_nodred
         when: nodered_service|failed
@@ -245,8 +245,8 @@
         expect:
             command: bash -l /tmp/update-nodejs-and-nodered
             responses:
-                - Are you really .*: y
-                - .*Pi-specific nodes.*: y
+                Are you really .*: y
+                .*Pi-specific nodes.*: y
             timeout: 3600
         notify: restart_nodred
         when: nodered_service|failed
