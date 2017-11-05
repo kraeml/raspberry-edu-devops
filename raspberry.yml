@@ -170,8 +170,8 @@
             - npm-check
             - node-red-admin
 
-      - name: Trigger handler
-        run_handler: name=restart_nodred
+#      - name: Trigger handler
+#        run_handler: name=restart_nodred
 
       - name: Flush handlers
         meta: flush_handlers
@@ -229,8 +229,8 @@
             - rebuild_node_red
             - restart_nodred
 
-      - name: Trigger handler
-        run_handler: name=restart_nodred
+#      - name: Trigger handler
+#        run_handler: name=restart_nodred
 
       - name: Flush handlers
         meta: flush_handlers
