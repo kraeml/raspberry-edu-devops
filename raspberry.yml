@@ -154,7 +154,7 @@
 
   - name: Execute nodered script twice as workaround
     expect:
-        command: /tmp/update-nodejs-and-nodered
+        shell: bash -l /tmp/update-nodejs-and-nodered
         creates: /usr/bin/update-nodejs-and-nodered
         responses:
             Are you really .*: y
