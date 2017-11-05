@@ -169,6 +169,9 @@
             - npm-check
             - node-red-admin
 
+      - name: Trigger handler
+        run_handler: name=restart_nodred
+
       - name: Flush handlers
         meta: flush_handlers
 
@@ -208,6 +211,9 @@
             update: yes # If C(no), do not retrieve new revisions from the origin repository
         notify: restart_nodred
         register: pimoroni
+
+      - name: Trigger handler
+        run_handler: name=restart_nodred
 
       - name: Flush handlers
         meta: flush_handlers
