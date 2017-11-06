@@ -101,7 +101,7 @@ tools = {
         :command => 'ansible --version'
     },
     :python3 => {
-        :version => '3.6.2',
+        :version => '3.6.3',
         :command => 'python3 --version'
     },
     :inspec => {
