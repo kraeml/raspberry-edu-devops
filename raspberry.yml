@@ -59,7 +59,6 @@
         name: "{{item}}"
         update_cache: yes
         cache_valid_time: 3600
-        install_recommends: yes
     with_items:
         - nmap
         - curl
@@ -139,20 +138,10 @@
 
       - name: Execute nodered script
         shell: yes | ./nodered.sh
+        args:
+            creates: /usr/bin/update-nodejs-and-nodered
         notify: restart_nodred
         register: nodered
-        ignore_errors: yes
-
-      - name: Execute nodered script twice as workaround
-        expect:
-            command: bash -l /tmp/update-nodejs-and-nodered
-            creates: /usr/bin/update-nodejs-and-nodered
-            responses:
-                Are you really .*: y
-                .*Pi-specific nodes.*: y
-            timeout: 3600
-        notify: restart_nodred
-        when: nodered|failed
         ignore_errors: yes
 
       - name: Ensure nodred and some dependencies are installed
@@ -164,10 +153,6 @@
             - npm-check
             - node-red-admin
 
-      - name: Trigger handler
-        command: /bin/true
-        notify: restart_nodred
-
       - name: Flush handlers
         meta: flush_handlers
 
@@ -176,23 +161,6 @@
             port: 1880
             delay: 10
         register: nodered_service
-        ignore_errors: yes
-
-      - name: Get nodered script
-        get_url:
-            dest: /tmp/update-nodejs-and-nodered
-            url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
-            mode: 0777
-
-      - name: Execute nodered script again as workaround
-        expect:
-            command: bash -l /tmp/update-nodejs-and-nodered
-            responses:
-                Are you really .*: y
-                .*Pi-specific nodes.*: y
-            timeout: 3600
-        notify: restart_nodred
-        when: nodered_service|failed
         ignore_errors: yes
 
       - name: Ensure pimoroni directory created
@@ -224,10 +192,6 @@
             - rebuild_node_red
             - restart_nodred
 
-      - name: Trigger handler
-        command: /bin/true
-        notify: restart_nodred
-
       - name: Flush handlers
         meta: flush_handlers
 
@@ -236,23 +200,6 @@
             port: 1880
             delay: 10
         register: nodered_service
-        ignore_errors: yes
-
-      - name: Get nodered script
-        get_url:
-            dest: /tmp/update-nodejs-and-nodered
-            url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
-            mode: 0777
-
-      - name: Execute nodered script again as workaround
-        expect:
-            command: bash -l /tmp/update-nodejs-and-nodered
-            responses:
-                Are you really .*: y
-                .*Pi-specific nodes.*: y
-            timeout: 3600
-        notify: restart_nodred
-        when: nodered_service|failed
         ignore_errors: yes
 
       - name: Ensure some pimoroni plugins are disabled
@@ -282,7 +229,7 @@
         name: "{{item}}"
         update_cache: yes
         cache_valid_time: 3600
-        install_recommends: yes
+
     with_items:
         - sqlite3
     tags:
@@ -326,7 +273,7 @@
         name: tmux
         update_cache: yes
         cache_valid_time: 3600
-        install_recommends: yes
+
     tags:
         - cloud9
 
@@ -379,7 +326,7 @@
         name: "{{item}}"
         update_cache: yes
         cache_valid_time: 3600
-        install_recommends: yes
+
     with_items:
         - nginx-full
         - php7.0
@@ -515,7 +462,7 @@
         name: mongodb-server
         update_cache: yes
         cache_valid_time: 3600
-        install_recommends: yes
+
     tags:
         - mongodb
 
@@ -525,7 +472,7 @@
         name: "{{item}}"
         update_cache: yes
         cache_valid_time: 3600
-        install_recommends: yes
+
     with_items:
         - mosquitto
         - mosquitto-clients
@@ -538,7 +485,7 @@
         name: "{{item}}"
         update_cache: yes
         cache_valid_time: 3600
-        install_recommends: yes
+
     with_items:
         - libreoffice
         - abiword
