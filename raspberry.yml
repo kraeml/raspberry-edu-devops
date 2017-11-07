@@ -43,7 +43,7 @@
     - name: admin
       host: "127.0.0.1"
       password: "admin"
-      priv: "mysql.*:ALL"
+      priv: "*.*:ALL"
     tags:
       - db_mysql
 
