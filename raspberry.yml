@@ -442,7 +442,7 @@
         dest: /var/www/html/phpMyAdmin
         src: https://files.phpmyadmin.net/phpMyAdmin/{{phpmyadmin_version}}/phpMyAdmin-{{phpmyadmin_version}}-all-languages.tar.gz
         extra_opts: --strip-components=1
-        creates: /var/www/html/phpMyAdmin
+        creates: /var/www/html/phpMyAdmin/LICENSE
         group: www-data
         owner: www-data
         remote_src: yes
