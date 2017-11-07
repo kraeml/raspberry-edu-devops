@@ -40,6 +40,10 @@
       host: "%"
       password: "{{db_user.password}}"
       priv: "example_db.*:ALL"
+    - name: admin
+      host: "127.0.0.1"
+      password: "admin"
+      priv: "mysql.*:ALL"
     tags:
       - db_mysql
 
