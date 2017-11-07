@@ -9,7 +9,7 @@ services = [
     "docker",
     "cloud9",
     "mysql",
-    "etherpad-lite",
+    "etherpad-lite.service",
     "etherdraw",
     "dphys-swapfile",
     "mosquitto",
@@ -127,7 +127,7 @@ tools = {
         :version => '4.4',
         :command => 'jupyter --version',
         :port => '8888',
-        :process => 'jupyter-noteboo'
+        :process => 'jupyter-noteboo' # This is right without k
     },
     :pip3_jupyter => {
         :version => '1.0',
@@ -172,7 +172,7 @@ tools = {
         :process => 'node-red'
     },
     :nodejs => {
-        :version => '6.11',
+        :version => '6.12',
         :command => 'nodejs -v'
     },
     :npm => {
@@ -259,11 +259,11 @@ tools = {
         :commend => 'disabled',
         :command => 'node-red-admin info node-red/node-flotilla'
     },
-    :noderedledborg => {
-        :version => '0.17',
-        :commend => 'disabled',
-        :command => 'node-red-admin info node-red-node-ledborg/ledborg'
-    },
+#    :noderedledborg => {
+#        :version => '0.17',
+#        :commend => 'disabled',
+#        :command => 'node-red-admin info node-red-node-ledborg/ledborg'
+#    },
     :noderedunicorn => {
         :version => '0.17.5',
         :commend => 'disabled',
