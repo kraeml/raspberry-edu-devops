@@ -188,6 +188,7 @@
             - node-red-node-mongodb
             - node-red-node-mysql
             - node-red-contrib-looptimer
+            - node-red-node-pi-sense-hat
         notify:
             - rebuild_node_red
             - restart_nodred
@@ -425,21 +426,13 @@
         - php
         - nginx
 
-  - name: Ensure /var/www/html/phpMyAdmin is directory
-    become: yes
-    file:
-        path: /var/www/html/phpMyAdmin
-        state: directory
-        owner: www-data
-        group: www-data
-    tags:
-        - phpmyadmin
-
   - name: Ensure phpmyadmin ist installed
     become: yes
     unarchive:
-        dest: /var/www/html/phpMyAdmin
-        src: https://files.phpmyadmin.net/phpMyAdmin/{{phpmyadmin_version}}/phpMyAdmin-{{phpmyadmin_version}}-all-languages.zip
+        dest: /var/www/html/
+        src: https://files.phpmyadmin.net/phpMyAdmin/{{phpmyadmin_version}}/phpMyAdmin-{{phpmyadmin_version}}-all-languages.tar.gz
+        extra_opts: -C /var/www/html/phpMyAdmin
+        creates: /var/www/html/phpMyAdmin
         group: www-data
         owner: www-data
         remote_src: yes
