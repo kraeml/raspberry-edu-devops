@@ -172,7 +172,7 @@ tools = {
         :process => 'node-red'
     },
     :nodejs => {
-        :version => '6.11',
+        :version => '6.12',
         :command => 'nodejs -v'
     },
     :npm => {
