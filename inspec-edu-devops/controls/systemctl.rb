@@ -9,7 +9,7 @@ services = [
     "docker",
     "cloud9",
     "mysql",
-    "etherpad-lite",
+    "etherpad-lite.service",
     "etherdraw",
     "dphys-swapfile",
     "mosquitto",
