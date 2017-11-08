@@ -661,7 +661,7 @@
     service:
       enabled: yes
       state: restarted
-      name: etherpad-lite.service
+      name: etherpad-lite
 
   - name: restart_etherdraw
     become: yes
