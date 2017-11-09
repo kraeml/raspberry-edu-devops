@@ -296,7 +296,7 @@
 
   - name: Install cloud9
     become: yes
-    shell: cd /home/pi/cloud9/ && sudo ./scripts/install-sdk.sh
+    shell: bash -c 'HOME=/home/pi ./scripts/install-sdk.sh'
     args:
         chdir: /home/pi/cloud9/
     when: clone_cloud9.changed
@@ -308,11 +308,14 @@
   - name: Ensure /home/pi/cloud9 owned by pi
     become: yes
     file:
-        path: /home/pi/cloud9
+        path: "/home/pi/{{item}}"
         state: directory
         recurse: yes
         owner: pi
         group: pi
+    with_items:
+        - cloud9
+        - .c9
     tags:
         - cloud9
 
