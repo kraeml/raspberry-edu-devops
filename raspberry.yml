@@ -522,7 +522,7 @@
         - dest: etherpad
           repo: git://github.com/ether/etherpad-lite.git
         - dest: etherdraw
-          repo: git://github.com/ether/etherpad-lite.git
+          repo: git://github.com/JohnMcLear/draw.git
     tags:
         - etherpad
 
