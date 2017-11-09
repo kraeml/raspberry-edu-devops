@@ -74,7 +74,7 @@
 
 - name: Ensure link to rdf-edu-notbooks exitst
   file:
-    path: notebooks
+    src: notebooks
     dest: /home/pi/notebooks/
     state: link
 
