@@ -66,14 +66,24 @@
   file:
       path: "/home/pi/{{item}}"
       state: directory
+      owner: pi
+      group: pi
   with_items:
       - notebooks
       - .jupyter
+
+- name: Ensure link to rdf-edu-notbooks exitst
+  file:
+    src: /home/pi/.raspberry-edu-devops/notebooks
+    dest: /home/pi/notebooks/raspberry-edu-devops
+    state: link
 
 - name: Create jupyter config
   template:
       src: jupyter_notebook_config.py.j2
       dest: /home/pi/.jupyter/jupyter_notebook_config.py
+      owner: pi
+      group: pi
   notify:
     - restart_jupyter
 
