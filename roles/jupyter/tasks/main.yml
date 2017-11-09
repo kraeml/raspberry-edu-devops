@@ -66,6 +66,8 @@
   file:
       path: "/home/pi/{{item}}"
       state: directory
+      owner: pi
+      group: pi
   with_items:
       - notebooks
       - .jupyter
