@@ -603,7 +603,7 @@
     tags:
         - etherpad
     notify:
-        - restart_etherpad
+        - restart_etherdraw
 
   - name: Ensure etherdraw log exists
     become: yes
