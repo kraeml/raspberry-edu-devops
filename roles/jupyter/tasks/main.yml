@@ -76,6 +76,8 @@
   template:
       src: jupyter_notebook_config.py.j2
       dest: /home/pi/.jupyter/jupyter_notebook_config.py
+      owner: pi
+      group: pi
   notify:
     - restart_jupyter
 
