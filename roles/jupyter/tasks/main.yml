@@ -72,6 +72,12 @@
       - notebooks
       - .jupyter
 
+- name: Ensure link to rdf-edu-notbooks exitst
+  file:
+    path: notebooks
+    dest: /home/pi/notebooks/
+    state: link
+
 - name: Create jupyter config
   template:
       src: jupyter_notebook_config.py.j2
