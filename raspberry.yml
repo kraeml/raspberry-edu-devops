@@ -54,10 +54,14 @@
         name: pi
         generate_ssh_key: yes
         ssh_key_type: rsa
-        groups: docker
+        groups: "{{item}}"
         append: yes
+    with_items:
+        - docker
+        - input
     tags:
         - docker
+        - sense-hat
 
   - name: Ensure raspberry dependencies are installed
     become: yes
