@@ -62,6 +62,7 @@
     tags:
         - docker
         - sense-hat
+        - user
 
   - name: Ensure raspberry dependencies are installed
     become: yes
