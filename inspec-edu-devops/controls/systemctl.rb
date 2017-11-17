@@ -25,13 +25,13 @@ gem_packages = {
         :version => "2.15.4"
     },
     :inspec => {
-        :version => "1.43.8"
+        :version => "1.44.8"
     },
     :"selenium-webdriver" => {
         :version => "3.7.0"
     },
     :"cucumber" => {
-        :version => "3.0.1"
+        :version => "3.0.2"
     },
     :"rspec-expectations" => {
         :version => "3.7.0"
@@ -74,6 +74,7 @@ users = {
         'www-data',
         'video',
         'users',
+        'input',
         'gpio',
 	    'docker'
         ],
@@ -103,10 +104,6 @@ tools = {
     :python3 => {
         :version => '3.6.3',
         :command => 'python3 --version'
-    },
-    :inspec => {
-        :version => '1.43',
-        :command => 'inspec --version'
     },
     :php => {
         :version => '7.0.19',
