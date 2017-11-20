@@ -213,6 +213,8 @@
             - node-red-node-pi-sense-hat
             - node-red-contrib-opcua
             - node-red-contrib-iiot-opcua
+            - node-red-contrib-solar-power-forecast
+            - node-red-node-openweathermap
         notify:
             - rebuild_node_red
             - restart_nodred
