@@ -211,6 +211,7 @@
             - node-red-node-mysql
             - node-red-contrib-looptimer
             - node-red-node-pi-sense-hat
+            - node-red-contrib-opcua
         notify:
             - rebuild_node_red
             - restart_nodred
