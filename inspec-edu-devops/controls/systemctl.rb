@@ -241,6 +241,11 @@ tools = {
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-pi-sense-hat'
     },
+    :noderedopcua => {
+        version => '0.0.15',
+        :commend => 'enabled',
+        :command => 'node-red-admin info node-red-node-pi-sense-hat'
+    },
     :noderedblinkt => {
         :version => '0.17',
         :commend => 'enabled',
