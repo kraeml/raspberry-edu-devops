@@ -242,7 +242,7 @@ tools = {
         :command => 'node-red-admin info node-red-node-pi-sense-hat'
     },
     :noderedopcua => {
-        version => '0.2.22',
+        :version => '0.2.22',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-opcua'
     },
