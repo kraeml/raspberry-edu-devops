@@ -11,6 +11,9 @@ pip3_packages:
     - ipyparallel
     - bash_kernel
     - ipython-sql
+    - ihtml
+    - ExpectException
+    - RISE
 
 nodejs_version: "6.x"
 nodejs_npm_global_packages:
