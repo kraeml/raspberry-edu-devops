@@ -241,6 +241,26 @@ tools = {
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-pi-sense-hat'
     },
+    :noderedopcua => {
+        :version => '0.2.22',
+        :commend => 'enabled',
+        :command => 'node-red-admin info node-red-contrib-opcua'
+    },
+    :noderedopcuaiiot => {
+        :version => '1.0.15',
+        :commend => 'enabled',
+        :command => 'node-red-admin info node-red-contrib-iiot-opcua'
+    },
+    :noderedopcuaiiot => {
+        :version => '1.0.3',
+        :commend => 'enabled',
+        :command => 'node-red-admin info node-red-contrib-solar-power-forecast'
+    },
+    :noderedopcuaiiot => {
+        :version => '0.1.16',
+        :commend => 'enabled',
+        :command => 'node-red-admin info node-red-node-openweathermap'
+    },
     :noderedblinkt => {
         :version => '0.17',
         :commend => 'enabled',

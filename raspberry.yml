@@ -99,6 +99,17 @@
     tags:
         - base
 
+  - name: Ensure ansible.cfg is present in /etc/ansible
+    become: yes
+    get_url:
+        dest: /etc/ansible/ansible.cfg
+        url: https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg
+        owner: root
+        group: root
+        mode: 0644
+    tags:
+        - ansible
+
   - name: html5validator via pip
     become: yes
     pip:
@@ -200,6 +211,10 @@
             - node-red-node-mysql
             - node-red-contrib-looptimer
             - node-red-node-pi-sense-hat
+            - node-red-contrib-opcua
+            - node-red-contrib-iiot-opcua
+            - node-red-contrib-solar-power-forecast
+            - node-red-node-openweathermap
         notify:
             - rebuild_node_red
             - restart_nodred
