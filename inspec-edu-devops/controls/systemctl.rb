@@ -22,16 +22,16 @@ gem_packages = {
         :version => "1.16.0"
     },
     :capybara => {
-        :version => "2.15.4"
+        :version => "2.16.1"
     },
     :inspec => {
-        :version => "1.44.8"
+        :version => "1.46.2"
     },
     :"selenium-webdriver" => {
         :version => "3.7.0"
     },
     :"cucumber" => {
-        :version => "3.0.2"
+        :version => "3.1.0"
     },
     :"rspec-expectations" => {
         :version => "3.7.0"
@@ -257,7 +257,7 @@ tools = {
         :command => 'node-red-admin info node-red-contrib-solar-power-forecast'
     },
     :noderedopcuaiiot => {
-        :version => '0.1.16',
+        :version => '0.1.18',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-openweathermap'
     },
@@ -321,7 +321,7 @@ tools = {
         :command => 'phantomjs --version'
     },
     :pip3_selenium => {
-        :version => '3.7.0',
+        :version => '3.8.0',
         :command => 'pip3 show selenium'
     },
     :geckodriver => {
