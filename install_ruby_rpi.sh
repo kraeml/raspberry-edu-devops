@@ -12,6 +12,7 @@ export DEBIAN_FRONTEND=noninteractive
 START_TIME=$SECONDS
 
 # Check out rbenv into ~/.rbenv
+sudo rm -rf /usr/local/src/rbenv
 sudo git clone https://github.com/rbenv/rbenv.git /usr/local/src/rbenv
 cd /usr/local/src/rbenv
 sudo src/configure && sudo make -C src
@@ -37,6 +38,7 @@ echo -e "\n${String}" | sudo tee /etc/profile.d/rbenv.sh
 eval "${String}"
 
 # Install ruby-build as an rbenv plugin, adds `rbenv install` command
+sudo rm -rf /usr/local/rbenv/plugins/ruby-build
 sudo git clone https://github.com/rbenv/ruby-build.git /usr/local/rbenv/plugins/ruby-build
 
 # Install dependencies

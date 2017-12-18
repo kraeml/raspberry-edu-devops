@@ -3,6 +3,7 @@
 # sudo:            yes
 #
 # see: http://sowingseasons.com/blog/building-python-3-4-on-raspberry-pi-2.html
+set -x
 
 if ! [ $(id -u) = 0 ]; then
    echo "to be run with sudo"
@@ -59,6 +60,4 @@ python3 setup.py install
 cd -
 rm -rf RTIMULib
 
-# Python3.6.2 not supported by cyp
-#echo 'python=python3.6' | tee /home/$USER/.npmrc | /root/.npmrc
-#chown pi:pi /home/$USER/.npmrc
+set +x

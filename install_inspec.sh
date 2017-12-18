@@ -1,6 +1,7 @@
 #!/bin/bash -l
 # script name:     install_inspec.sh
 # sudo:            no
+set -x
 
 if [ $(id -u) = 0 ]; then
    echo "to be run with no sudo"
@@ -37,3 +38,4 @@ curl -L https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodr
 
 # Visit https://realpython.com/blog/python/headless-selenium-testing-with-python-and-phantomjs/
 sudo pip3 install selenium pyvirtualdisplay
+set +x
