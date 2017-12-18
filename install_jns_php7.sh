@@ -41,5 +41,5 @@ sudo usermod -aG gpio www-data
 sudo systemctl restart nginx
 sudo systemctl restart php7.0-fpm
 
-mkdir /home/pi/www
-cp index.* /home/pi/www/
+mkdir /home/$USER/www
+cp index.* /home/$USER/www/

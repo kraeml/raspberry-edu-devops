@@ -76,7 +76,7 @@
 
 - name: Ensure notebook directory exists
   file:
-      path: "/home/pi/{{item}}"
+      path: "/home/$USER/{{item}}"
       state: directory
       owner: pi
       group: pi
@@ -86,14 +86,14 @@
 
 - name: Ensure link to rdf-edu-notbooks exitst
   file:
-    src: /home/pi/.raspberry-edu-devops/notebooks
-    dest: /home/pi/notebooks/raspberry-edu-devops
+    src: /home/$USER/.raspberry-edu-devops/notebooks
+    dest: /home/$USER/notebooks/raspberry-edu-devops
     state: link
 
 - name: Create jupyter config
   template:
       src: jupyter_notebook_config.py.j2
-      dest: /home/pi/.jupyter/jupyter_notebook_config.py
+      dest: /home/$USER/.jupyter/jupyter_notebook_config.py
       owner: pi
       group: pi
   notify:

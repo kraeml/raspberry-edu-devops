@@ -11,7 +11,7 @@ fi
 if [[ -f /usr/bin/node-red ]]; then
   echo "Nodered already installed"
 else
-  # chmod u+x /home/pi/bin/update-nodejs-and-nodered
+  # chmod u+x /home/$USER/bin/update-nodejs-and-nodered
   #./expect_nodered.sh
   ./update-nodejs-and-nodered
   sudo systemctl daemon-reload
@@ -29,7 +29,7 @@ sudo npm config --global set unsafe-perm=true
 sudo npm install -g node-red-admin
 
 # Install node-red addons
-cd /home/pi/.node-red
+cd /home/$USER/.node-red
 npm i node-red-dashboard
 npm install node-red-contrib-bigtimer
 npm install node-red-node-mongodb

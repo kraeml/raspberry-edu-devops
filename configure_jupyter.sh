@@ -41,4 +41,4 @@ for key in ${!arr[@]};do
 done
 
 # Create raspberry-edu-devops link into notebooks
-ln -s /home/pi/.raspberry-edu-devops/notebooks/ /home/pi/notebooks/raspberry-edu-devops
+ln -s /home/$USER/.raspberry-edu-devops/notebooks/ /home/$USER/notebooks/raspberry-edu-devops
