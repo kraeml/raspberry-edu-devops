@@ -20,5 +20,5 @@ fi
 echo "deb [arch=armhf] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | \
 sudo tee /etc/apt/sources.list.d/docker.list
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-sudo apt update && sudo apt install --yes docker-ce
+sudo apt-get update && sudo apt-get install --yes docker-ce
 sudo usermod -aG docker pi
