@@ -44,8 +44,8 @@ pip3 install -U virtualenv
 pip3 install pillow sense-hat rpi.gpio
 pip3 install blinkt requests psutil paho-mqtt tweepy
 
-git clone https://github.com/pimoroni/blinkt.git /home/pi/blinkt
-chown -R pi: /home/pi/blinkt
+git clone https://github.com/pimoroni/blinkt.git /home/$USER/blinkt
+chown -R $USER: /home/$USER/blinkt
 
 # clean up
 cd ..
@@ -60,5 +60,5 @@ cd -
 rm -rf RTIMULib
 
 # Python3.6.2 not supported by cyp
-#echo 'python=python3.6' | tee /home/pi/.npmrc | /root/.npmrc
-#chown pi:pi /home/pi/.npmrc
+#echo 'python=python3.6' | tee /home/$USER/.npmrc | /root/.npmrc
+#chown pi:pi /home/$USER/.npmrc
