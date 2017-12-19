@@ -48,10 +48,10 @@
       - db_mysql
 
   tasks:
-  - name: Ensure user pi is member of group docker
+  - name: Ensure user {{ansible_user}} is member of group docker
     become: yes
     user:
-        name: pi
+        name: "{{ansible_user}}"
         generate_ssh_key: yes
         ssh_key_type: rsa
         groups: "{{item}}"
@@ -187,12 +187,12 @@
 
       - name: Ensure pimoroni directory created
         file:
-            path: /home/$USER/.node-red/nodes
+            path: "/home/{{ansible_user}}/.node-red/nodes"
             state: directory
 
       - name: Ensure pimoroni plugins are installed
         git:
-            dest: /home/$USER/.node-red/nodes/pimoroni-nodes
+            dest: "/home/{{ansible_user}}/.node-red/nodes/pimoroni-nodes"
             repo: http://github.com/pimoroni/node-red-nodes
             clone: yes # If C(no), do not clone the repository if it does not exist locally
             update: yes # If C(no), do not retrieve new revisions from the origin repository
@@ -203,7 +203,7 @@
         npm:
             name: "{{item}}"
             state: present
-            path: /home/$USER/.node-red
+            path: "/home/{{ansible_user}}/.node-red"
         with_items:
             - node-red-dashboard
             - node-red-contrib-bigtimer
@@ -306,7 +306,7 @@
 
   - name: Clone cloud9
     git:
-        dest: /home/$USER/cloud9
+        dest: "/home/{{ansible_user}}/cloud9"
         repo: https://github.com/c9/core.git
         clone: yes
         update: yes
@@ -316,23 +316,23 @@
 
   - name: Install cloud9
     become: yes
-    shell: bash -c 'HOME=/home/pi ./scripts/install-sdk.sh'
+    shell: bash -c 'HOME=/home/{{ansible_user}} ./scripts/install-sdk.sh'
     args:
-        chdir: /home/$USER/cloud9/
+        chdir: "/home/{{ansible_user}}/cloud9/"
     when: clone_cloud9.changed
     notify:
         - restart_cloud9
     tags:
         - cloud9
 
-  - name: Ensure /home/$USER/cloud9 owned by pi
+  - name: Ensure /home/{{ansible_user}}/cloud9 owned by {{ansible_user}}
     become: yes
     file:
-        path: "/home/$USER/{{item}}"
+        path: "/home/{{ansible_user}}/{{item}}"
         state: directory
         recurse: yes
-        owner: pi
-        group: pi
+        owner: "{{ansible_user}}"
+        group: "{{ansible_user}}"
     with_items:
         - cloud9
         - .c9
@@ -415,7 +415,7 @@
         groups: www-data
         append: yes
     with_items:
-        - pi
+        - "{{ansible_user}}"
     tags:
         - php
         - nginx
@@ -432,22 +432,22 @@
         - php
         - nginx
 
-  - name: Ensure www directory for pi exists
+  - name: Ensure www directory for {{ansible_user}} exists
     file:
-        path: /home/$USER/www
+        path: "/home/{{ansible_user}}/www"
         state: directory
-        owner: pi
-        group: pi
+        owner: "{{ansible_user}}"
+        group: "{{ansible_user}}"
     tags:
         - php
         - nginx
 
-  - name: Ensure some html for pi exists
+  - name: Ensure some html for {{ansible_user}} exists
     template:
         src: "{{item}}.j2"
-        dest: "/home/$USER/www/{{item}}"
-        owner: pi
-        group: pi
+        dest: "/home/{{ansible_user}}/www/{{item}}"
+        owner: "{{ansible_user}}"
+        group: "{{ansible_user}}"
     with_items:
         - index.html
         - index.php
@@ -656,7 +656,7 @@
   - name: rebuild_node_red
     command: npm rebuild
     args:
-        chdir: /home/$USER/.node-red
+        chdir: "/home/{{ansible_user}}/.node-red"
 
   - name: restart_cloud9
     become: yes
