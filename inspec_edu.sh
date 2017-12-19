@@ -2,7 +2,7 @@
 # script name:     inspec_edu.sh
 # sudo:            no
 node-red-admin login
-LC_MESSAGES=C USER_CALL=$USER sudo bash -l -c 'inspec exec /home/$USER_CALL/.raspberry-edu-devops/inspec-edu-devops'
+LC_MESSAGES=C sudo bash -l -c "inspec exec /home/$USER/.raspberry-edu-devops/inspec-edu-devops"
 
 cd /home/$USER/.raspberry-edu-devops/capybara-edu-devops
 sudo sed -i 's/jns:jns$/:/' /lib/systemd/system/cloud9.service

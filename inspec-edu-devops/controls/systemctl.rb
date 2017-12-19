@@ -251,12 +251,12 @@ tools = {
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-iiot-opcua'
     },
-    :noderedopcuaiiot => {
+    :noderedsolarpowerforecast => {
         :version => '1.0.3',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-solar-power-forecast'
     },
-    :noderedopcuaiiot => {
+    :noderedopenweathermap => {
         :version => '0.1.18',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-openweathermap'
