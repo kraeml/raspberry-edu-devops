@@ -6,6 +6,7 @@ if [ ! -e $HOME/.firstboot_basic ]; then
     touch $HOME/.firstboot_basic
     # Timestamp the logfile
     date
+    USER=${USER:-$(basename $HOME)}
 
     if [ $(id -u) = 0 ]; then
        echo "to be run without sudo"
