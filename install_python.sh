@@ -45,8 +45,8 @@ pip3 install -U virtualenv
 pip3 install pillow sense-hat rpi.gpio
 pip3 install blinkt requests psutil paho-mqtt tweepy
 
-git clone https://github.com/pimoroni/blinkt.git /home/$USER/blinkt
-chown -R $USER: /home/$USER/blinkt
+git clone https://github.com/pimoroni/blinkt.git /home/$USER_CALL/blinkt
+chown -R $USER_CALL: /home/$USER_CALL/blinkt
 
 # clean up
 cd ..

@@ -1,7 +1,7 @@
 #!/bin/bash -l
 # script name:     install_nodered.sh
 # sudo:            no
-
+set -x
 export DEBIAN_FRONTEND=noninteractive
 if [ $(id -u) = 0 ]; then
    echo "to be run with no sudo"
@@ -82,3 +82,5 @@ sudo npm install -g test-anything
 sudo npm install -g learnyoumongo
 sudo npm install -g torrential
 sudo npm install -g html-validator-cli
+
+set +x

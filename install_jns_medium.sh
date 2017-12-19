@@ -6,6 +6,7 @@
 # Additional scripts to be executed on the first boot after install.
 # This makes the `raspbian-ua-netinst` installer more uniform and easier
 # to maintain regardless of the use.
+set -x
 if [ ! -e $HOME/.firstboot ]; then
     touch $HOME/.firstboot
     sudo rm /etc/cron.d/raspboot
@@ -16,7 +17,7 @@ if [ ! -e $HOME/.firstboot ]; then
        echo "to be run without sudo"
        exit 1
     fi
-    sudo chown -R pi: .
+    sudo chown -R $USER: .
     export DEBIAN_FRONTEND=noninteractive
     # Change PWD to the binaries directory
     pushd $HOME/.raspberry-edu-devops
@@ -53,3 +54,4 @@ if [ ! -e $HOME/.firstboot ]; then
 else
     echo "First boot script still running"
 fi
+set +x

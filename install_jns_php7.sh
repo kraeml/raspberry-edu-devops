@@ -3,7 +3,7 @@
 # sudo:            no
 # See: https://getgrav.org/blog/raspberrypi-nginx-php7-dev
 # See: https://gist.github.com/Lewiscowles1986/ce14296e3f5222082dbaa088ca1954f7
-
+set -x
 if [ $(id -u) = 0 ]; then
    echo "to be run with no sudo"
    exit 1
@@ -43,3 +43,4 @@ sudo systemctl restart php7.0-fpm
 
 mkdir /home/$USER/www
 cp index.* /home/$USER/www/
+set +x

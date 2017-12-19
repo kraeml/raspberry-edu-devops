@@ -1,7 +1,7 @@
 #!/bin/bash
 # script name:     install_jns.sh
 # sudo:            no
-
+set -x
 if [ ! -e $HOME/.firstboot_basic ]; then
     touch $HOME/.firstboot_basic
     # Timestamp the logfile
@@ -16,7 +16,7 @@ if [ ! -e $HOME/.firstboot_basic ]; then
     pushd $HOME/.raspberry-edu-devops
         # run scripts
         ./update-scripts.sh | tee -a /var/log/$USER/post-boot.log | logger -p local7.info -t update-scripts-post-boot
-        sudo ./install_python.sh | tee -a /var/log/$USER/post-boot.log | logger -p local7.info -t python-post-boot
+        sudo USER_CALL=$USER ./install_python.sh | tee -a /var/log/$USER/post-boot.log | logger -p local7.info -t python-post-boot
         ./install_ansible.sh | tee -a /var/log/$USER/post-boot.log | logger -p local7.info -t ansible-post-boot
         ./install_inspec.sh | tee -a /var/log/$USER/post-boot.log | logger -p local7.info -t inspec-post-boot
         date
@@ -30,3 +30,4 @@ if [ ! -e $HOME/.firstboot_basic ]; then
 else
     echo "First boot base script still running"
 fi
+set +x
