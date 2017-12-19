@@ -11,12 +11,12 @@ if ! [ $(id -u) = 0 ]; then
 fi
 
 #Python 3 version to install
-version="3.6.3"
-which python3
-if [ "$?" -eq 0 ] && [ "${version}" = "$(python3 --version | cut -d\  -f 2)" ]
-then
-    exit
-fi
+#version="3.6.3"
+#which python3
+#if [ "$?" -eq 0 ] && [ "${version}" = "$(python3 --version | cut -d\  -f 2)" ]
+#then
+#    exit
+#fi
 export DEBIAN_FRONTEND=noninteractive
 # Packages Dependencies for building python3
 #------------------------------------------------------
@@ -32,13 +32,15 @@ apt-get install --yes libjpeg62-turbo libjpeg62-turbo-dev liblcms1-dev liblcms1
 apt-get install --yes zlib1g libjpeg8 libjpeg-dev libfreetype6 libfreetype6-dev
 #------------------------------------------------------
 
-wget --quiet "https://www.python.org/ftp/python/$version/Python-$version.tgz"
-tar zxvf "Python-$version.tgz"
-cd "Python-$version"
-./configure
-make
-make install
-pip3 install pip --upgrade
+#wget --quiet "https://www.python.org/ftp/python/$version/Python-$version.tgz"
+#tar zxvf "Python-$version.tgz"
+#cd "Python-$version"
+#./configure
+#make
+#make install
+pip3 install pip --upgrade || \
+    sudo apt-get install --yes python3-pip && sudo pip3 install pip --upgrade
+#pip3 install pip --upgrade
 pip3 install -U virtualenv
 
 ### install PIL

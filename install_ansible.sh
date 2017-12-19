@@ -9,8 +9,42 @@ if [ $(id -u) = 0 ]; then
 fi
 
 echo "Install ansible via pip"
-sudo apt-get install -y libffi-dev libssl-dev cowsay sshpass
-sudo pip3 install ansible pywinrm
+sudo apt-get install -y libffi-dev libssl-dev cowsay sshpass ieee-data
+
+#ToDo kerberos dependencies
+sudo pip3 install ansible \
+ pywinrm \
+ enum34 \
+ httplib2 \
+ idna \
+ ipaddress \
+ jinja2 \
+ crypto \
+ cryptography \
+ markupsafe \
+ netaddr \
+ paramiko \
+ pyasn1 \
+ six \
+ xmltodict \
+ yaml || \
+    sudo apt-get install python3-pip && \
+    sudo pip3 install ansible \
+     pywinrm \
+     enum34 \
+     httplib2 \
+     idna \
+     ipaddress \
+     jinja2 \
+     crypto \
+     cryptography \
+     markupsafe \
+     netaddr \
+     paramiko \
+     pyasn1 \
+     six \
+     xmltodict \
+     yaml
 
 sudo mkdir -p /etc/ansible
 sudo cp files/etc/ansible/hosts /etc/ansible/

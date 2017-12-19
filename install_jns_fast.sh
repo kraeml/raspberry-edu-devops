@@ -17,7 +17,7 @@ if [ ! -e $HOME/.firstboot_basic ]; then
     pushd $HOME/.raspberry-edu-devops
         # run scripts
         ./update-scripts.sh | tee -a /var/log/$USER/post-boot.log | logger -p local7.info -t update-scripts-post-boot
-        sudo "USER_CALL=$USER ./install_python.sh" | tee -a /var/log/$USER/post-boot.log | logger -p local7.info -t python-post-boot
+        sudo USER_CALL=$USER ./install_python.sh | tee -a /var/log/$USER/post-boot.log | logger -p local7.info -t python-post-boot
         ./install_ansible.sh | tee -a /var/log/$USER/post-boot.log | logger -p local7.info -t ansible-post-boot
         ./install_inspec.sh | tee -a /var/log/$USER/post-boot.log | logger -p local7.info -t inspec-post-boot
         date

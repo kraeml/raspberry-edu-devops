@@ -13,17 +13,18 @@ sudo apt-get update
 # wget https://gist.githubusercontent.com/blacktm/8302741/raw/b498c27c03e2b7dcf79ca00183b6ccdf361b7001/install_ruby_rpi.sh
 # chmod u+x install_ruby_rpi.sh
 #sed -i 's/read -p "  Continue? (y\/n) " ans/ans="y"/g' install_ruby_rpi.sh
-./install_ruby_rpi.sh
-source /etc/profile.d/rbenv.sh
+#./install_ruby_rpi.sh
+sudo apt-get install --yes ruby ruby-dev gem
+#source /etc/profile.d/rbenv.sh
 # rbenv
 #export PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
-gem update system
-gem cleanup
-gem install inspec
+sudo gem update system
+sudo gem cleanup
+sudo gem install inspec
 
 # Install webserver tests with capybara and co.
-gem install 'bundler'
+sudo gem install 'bundler'
 cd capybara-edu-devops
 bundle install
 cd -
