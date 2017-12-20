@@ -91,7 +91,8 @@
         - lsb-core
         - avahi-utils
         - avahi-daemon
-        - openjdk-8-jre
+        - openjdk-9-jdk
+        - oracle-java8-jdk
         - tidy
         - python-pexpect
     tags:
@@ -100,7 +101,7 @@
   - name: Alternatives set
     become: yes
     alternatives:
-        path: /usr/lib/jvm/java-8-openjdk-armhf/jre/bin/java
+        path: /usr/lib/jvm/java-9-openjdk-armhf/jre/bin/java
         name: java
     tags:
         - base

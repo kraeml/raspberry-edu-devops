@@ -45,7 +45,7 @@ if [ ! -e $HOME/.firstboot ]; then
         # ./install_mqtt.sh | tee -a /var/log/$USER/post-boot.log | logger -p local7.info -t mqtt-post-boot
         # ./install_etherpadlite.sh | tee -a /var/log/$USER/post-boot.log | logger -p local7.info -t etherpadlite-post-boot
         sudo apt-get update
-        sudo apt-get dist-upgrade --yes --force-yes
+        sudo apt-get dist-upgrade --yes
         sudo shutdown -r +1 "First boot installation completed. Please log off now."
         echo -n "First boot installation completed on "
         date
