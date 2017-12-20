@@ -48,6 +48,10 @@
       - db_mysql
 
   tasks:
+  - name: Debug info
+    debug:
+        var: "{{ansible_user}}"
+        #verbosity: # A number that controls when the debug is run, if you set to 3 it will only run debug when -vvv or above
   - name: Ensure user {{ansible_user}} is member of group docker
     become: yes
     user:

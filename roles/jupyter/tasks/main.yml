@@ -76,7 +76,7 @@
 
 - name: Ensure notebook directory exists
   file:
-      path: "/home/$USER/{{item}}"
+      path: "/home/{{ansible_user}}/{{item}}"
       state: directory
       owner: pi
       group: pi
@@ -85,15 +85,17 @@
       - .jupyter
 
 - name: Ensure link to rdf-edu-notbooks exitst
+  become: yes
+  become: "{{ansible_user}}"
   file:
-    src: /home/$USER/.raspberry-edu-devops/notebooks
-    dest: /home/$USER/notebooks/raspberry-edu-devops
+    src: "/home/{{ansible_user}}/.raspberry-edu-devops/notebooks"
+    dest: "/home/{{ansible_user}}/notebooks/raspberry-edu-devops"
     state: link
 
 - name: Create jupyter config
   template:
       src: jupyter_notebook_config.py.j2
-      dest: /home/$USER/.jupyter/jupyter_notebook_config.py
+      dest: "/home/{{ansible_user}}/.jupyter/jupyter_notebook_config.py"
       owner: pi
       group: pi
   notify:

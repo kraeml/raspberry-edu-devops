@@ -9,6 +9,7 @@
 set -x
 if [ ! -e $HOME/.firstboot ]; then
     touch $HOME/.firstboot
+    echo $(whoami)
     USER=${USER:-$(basename $HOME)}
     sudo rm /etc/cron.d/raspboot
     # Timestamp the logfile
