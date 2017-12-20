@@ -50,7 +50,7 @@
   pre_tasks:
   - name: Debug info
     debug:
-        var: "{{ansible_user_id}}"
+        msg: "USER_ID is {{ansible_user_id}} and Home is {{ansible_user_dir}}"
         #verbosity: # A number that controls when the debug is run, if you set to 3 it will only run debug when -vvv or above
 
   tasks:
