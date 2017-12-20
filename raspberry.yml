@@ -50,12 +50,12 @@
   tasks:
   - name: Debug info
     debug:
-        var: "{{ansible_user}}"
+        var: "{{ansible_user_id}}"
         #verbosity: # A number that controls when the debug is run, if you set to 3 it will only run debug when -vvv or above
-  - name: Ensure user {{ansible_user}} is member of group docker
+  - name: Ensure user {{ansible_user_id}} is member of group docker
     become: yes
     user:
-        name: "{{ansible_user}}"
+        name: "{{ansible_user_id}}"
         generate_ssh_key: yes
         ssh_key_type: rsa
         groups: "{{item}}"
@@ -191,12 +191,12 @@
 
       - name: Ensure pimoroni directory created
         file:
-            path: "/home/{{ansible_user}}/.node-red/nodes"
+            path: "/home/{{ansible_user_id}}/.node-red/nodes"
             state: directory
 
       - name: Ensure pimoroni plugins are installed
         git:
-            dest: "/home/{{ansible_user}}/.node-red/nodes/pimoroni-nodes"
+            dest: "/home/{{ansible_user_id}}/.node-red/nodes/pimoroni-nodes"
             repo: http://github.com/pimoroni/node-red-nodes
             clone: yes # If C(no), do not clone the repository if it does not exist locally
             update: yes # If C(no), do not retrieve new revisions from the origin repository
@@ -207,7 +207,7 @@
         npm:
             name: "{{item}}"
             state: present
-            path: "/home/{{ansible_user}}/.node-red"
+            path: "/home/{{ansible_user_id}}/.node-red"
         with_items:
             - node-red-dashboard
             - node-red-contrib-bigtimer
@@ -310,7 +310,7 @@
 
   - name: Clone cloud9
     git:
-        dest: "/home/{{ansible_user}}/cloud9"
+        dest: "/home/{{ansible_user_id}}/cloud9"
         repo: https://github.com/c9/core.git
         clone: yes
         update: yes
@@ -320,23 +320,23 @@
 
   - name: Install cloud9
     become: yes
-    shell: bash -c 'HOME=/home/{{ansible_user}} ./scripts/install-sdk.sh'
+    shell: bash -c 'HOME=/home/{{ansible_user_id}} ./scripts/install-sdk.sh'
     args:
-        chdir: "/home/{{ansible_user}}/cloud9/"
+        chdir: "/home/{{ansible_user_id}}/cloud9/"
     when: clone_cloud9.changed
     notify:
         - restart_cloud9
     tags:
         - cloud9
 
-  - name: Ensure /home/{{ansible_user}}/cloud9 owned by {{ansible_user}}
+  - name: Ensure /home/{{ansible_user_id}}/cloud9 owned by {{ansible_user_id}}
     become: yes
     file:
-        path: "/home/{{ansible_user}}/{{item}}"
+        path: "/home/{{ansible_user_id}}/{{item}}"
         state: directory
         recurse: yes
-        owner: "{{ansible_user}}"
-        group: "{{ansible_user}}"
+        owner: "{{ansible_user_id}}"
+        group: "{{ansible_user_id}}"
     with_items:
         - cloud9
         - .c9
@@ -419,7 +419,7 @@
         groups: www-data
         append: yes
     with_items:
-        - "{{ansible_user}}"
+        - "{{ansible_user_id}}"
     tags:
         - php
         - nginx
@@ -436,22 +436,22 @@
         - php
         - nginx
 
-  - name: Ensure www directory for {{ansible_user}} exists
+  - name: Ensure www directory for {{ansible_user_id}} exists
     file:
-        path: "/home/{{ansible_user}}/www"
+        path: "/home/{{ansible_user_id}}/www"
         state: directory
-        owner: "{{ansible_user}}"
-        group: "{{ansible_user}}"
+        owner: "{{ansible_user_id}}"
+        group: "{{ansible_user_id}}"
     tags:
         - php
         - nginx
 
-  - name: Ensure some html for {{ansible_user}} exists
+  - name: Ensure some html for {{ansible_user_id}} exists
     template:
         src: "{{item}}.j2"
-        dest: "/home/{{ansible_user}}/www/{{item}}"
-        owner: "{{ansible_user}}"
-        group: "{{ansible_user}}"
+        dest: "/home/{{ansible_user_id}}/www/{{item}}"
+        owner: "{{ansible_user_id}}"
+        group: "{{ansible_user_id}}"
     with_items:
         - index.html
         - index.php
@@ -660,7 +660,7 @@
   - name: rebuild_node_red
     command: npm rebuild
     args:
-        chdir: "/home/{{ansible_user}}/.node-red"
+        chdir: "/home/{{ansible_user_id}}/.node-red"
 
   - name: restart_cloud9
     become: yes
