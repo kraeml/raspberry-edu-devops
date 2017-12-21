@@ -25,10 +25,10 @@ gem_packages = {
         :version => "2.16.1"
     },
     :inspec => {
-        :version => "1.46.2"
+        :version => "1.48.0"
     },
     :"selenium-webdriver" => {
-        :version => "3.7.0"
+        :version => "3.8.0"
     },
     :"cucumber" => {
         :version => "3.1.0"
@@ -37,7 +37,7 @@ gem_packages = {
         :version => "3.7.0"
     },
     :"poltergeist" => {
-        :version => "1.16.0"
+        :version => "1.17.0"
     },
     :"launchy" => {
         :version => "2.4.3"
@@ -102,7 +102,7 @@ tools = {
         :command => 'ansible --version'
     },
     :python3 => {
-        :version => '3.6.3',
+        :version => '3.5.3',
         :command => 'python3 --version'
     },
     :php => {
@@ -222,12 +222,12 @@ tools = {
         :command => 'node-red-admin info node-red/rpi-gpio'
     },
     :bigtimer => {
-        :version => '1.7',
+        :version => '1.8',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-bigtimer'
     },
     :dashboard => {
-        :version => '2.6',
+        :version => '2.7',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-dashboard'
     },
@@ -247,7 +247,7 @@ tools = {
         :command => 'node-red-admin info node-red-contrib-opcua'
     },
     :noderedopcuaiiot => {
-        :version => '1.0.15',
+        :version => '1.0.17',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-iiot-opcua'
     },
@@ -257,7 +257,7 @@ tools = {
         :command => 'node-red-admin info node-red-contrib-solar-power-forecast'
     },
     :noderedopenweathermap => {
-        :version => '0.1.18',
+        :version => '0.1.20',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-openweathermap'
     },
@@ -337,7 +337,7 @@ tools = {
         :command => 'gpio -v'
     },
     :gem => {
-        :version => '2.6',
+        :version => '2.5',
         :command => 'gem -v'
     },
     :tidy => {
@@ -345,7 +345,7 @@ tools = {
         :command => 'tidy --version'
     },
     :java => {
-        :version => '1.8',
+        :version => 'build 9',
         :command => 'java -version 2>&1'
     }
 }
