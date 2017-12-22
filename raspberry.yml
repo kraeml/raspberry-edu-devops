@@ -96,7 +96,8 @@
         - avahi-utils
         - avahi-daemon
         - openjdk-8-jdk
-        - oracle-java8-jdk
+        #ToDo Not working with hypriot.os
+        #- oracle-java8-jdk
         - tidy
         - python-pexpect
     tags:
