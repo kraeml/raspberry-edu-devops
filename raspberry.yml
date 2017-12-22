@@ -81,36 +81,30 @@
         - curl
         - sudo
         - expect
-        #ToDo Not working with hypriot.os
-        #- sense-hat
-        #ToDo Not working with hypriot.os
-        #- raspi-gpio
-        #ToDo Not working with hypriot.os
-        #- python-rpi.gpio
+        - sense-hat
+        - raspi-gpio
+        - python-rpi.gpio
         - debian-keyring
         - debian-archive-keyring
-        #ToDo Not working with hypriot.os
-        #- wiringpi
+        - wiringpi
         - dphys-swapfile
         - lsb-core
         - avahi-utils
         - avahi-daemon
-        - openjdk-8-jdk
-        #ToDo Not working with hypriot.os
-        #- oracle-java8-jdk
+        - openjdk-9-jdk
+        - oracle-java8-jdk
         - tidy
         - python-pexpect
     tags:
         - base
 
-  #ToDo Not working with hypriot.os
-  #- name: Alternatives set
-#    become: yes
-#    alternatives:
-#        path: /usr/lib/jvm/java-8-openjdk-armhf/bin/java
-#        name: java
-#    tags:
-#        - base
+  - name: Alternatives set
+    become: yes
+    alternatives:
+        path: /usr/lib/jvm/java-9-openjdk-armhf/bin/java
+        name: java
+    tags:
+        - base
 
   - name: Ensure ansible.cfg is present in /etc/ansible
     become: yes

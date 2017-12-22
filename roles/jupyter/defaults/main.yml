@@ -7,8 +7,7 @@ dependencies_packages:
 
 pip3_packages:
     - jupyter
-    #ToDo: Not working with hypriot.os
-    #- readline
+    - readline
     - ipyparallel
     - bash_kernel
     - ipython-sql
