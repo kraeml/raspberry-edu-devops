@@ -78,8 +78,8 @@
   file:
       path: "{{ansible_user_dir}}/{{item}}"
       state: directory
-      owner: pi
-      group: pi
+      owner: "{{ansible_user_id}}"
+      group: "{{ansible_user_id}}"
   with_items:
       - notebooks
       - .jupyter
@@ -96,8 +96,8 @@
   template:
       src: jupyter_notebook_config.py.j2
       dest: "{{ansible_user_dir}}/.jupyter/jupyter_notebook_config.py"
-      owner: pi
-      group: pi
+      owner: "{{ansible_user_id}}"
+      group: "{{ansible_user_id}}"
   notify:
     - restart_jupyter
 
