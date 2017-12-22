@@ -18,6 +18,7 @@ fi
 #    exit
 #fi
 export DEBIAN_FRONTEND=noninteractive
+sudo apt-get update
 # Packages Dependencies for building python3
 #------------------------------------------------------
 apt-get install --yes build-essential libncursesw5-dev
@@ -51,9 +52,9 @@ git clone https://github.com/pimoroni/blinkt.git /home/$USER_CALL/blinkt
 chown -R $USER_CALL: /home/$USER_CALL/blinkt
 
 # clean up
-cd ..
-rm -rf "./Python-$version"
-rm "./Python-$version.tgz"
+#cd ..
+#rm -rf "./Python-$version"
+#rm "./Python-$version.tgz"
 
 git clone https://github.com/RPi-Distro/RTIMULib.git
 cd RTIMULib/Linux/python/
