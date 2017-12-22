@@ -85,10 +85,12 @@
         #- sense-hat
         #ToDo Not working with hypriot.os
         #- raspi-gpio
-        - python-rpi.gpio
+        #ToDo Not working with hypriot.os
+        #- python-rpi.gpio
         - debian-keyring
         - debian-archive-keyring
-        - wiringpi
+        #ToDo Not working with hypriot.os
+        #- wiringpi
         - dphys-swapfile
         - lsb-core
         - avahi-utils
