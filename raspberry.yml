@@ -83,7 +83,8 @@
         - expect
         #ToDo Not working with hypriot.os
         #- sense-hat
-        - raspi-gpio
+        #ToDo Not working with hypriot.os
+        #- raspi-gpio
         - python-rpi.gpio
         - debian-keyring
         - debian-archive-keyring
