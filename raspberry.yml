@@ -81,7 +81,8 @@
         - curl
         - sudo
         - expect
-        - sense-hat
+        #ToDo Not working with hypriot.os
+        #- sense-hat
         - raspi-gpio
         - python-rpi.gpio
         - debian-keyring
