@@ -10,7 +10,7 @@
   roles:
   - role: jupyter
     become: yes
-    nodejs_version: "6.x"
+    nodejs_version: "8.x"
     tags: jupyter
     nodejs_npm_global_packages:
         - ijavascript
