@@ -149,114 +149,6 @@
     tags:
         - node-red
 
-  - name: Node-red block
-    block:
-      - name: test update-nodejs-and-nodered exists
-        stat:
-            path: /usr/bin/update-nodejs-and-nodered
-        register: update_nodejs_and_nodered
-        changed_when: false
-        ignore_errors: yes
-
-      - name: Get nodered script
-        get_url:
-            dest: /tmp/update-nodejs-and-nodered
-            url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
-            mode: 0777
-        when: update_nodejs_and_nodered.stat.exists != True
-
-      - name: Execute nodered script
-        shell: yes | ./nodered.sh
-        args:
-            creates: /usr/bin/update-nodejs-and-nodered
-        notify: restart_nodred
-        register: nodered
-        ignore_errors: yes
-
-      - name: Ensure nodred and some dependencies are installed
-        become: yes
-        npm:
-            name: "{{item}}"
-            global: yes
-        with_items:
-            - npm-check
-            - node-red-admin
-
-      - name: Flush handlers
-        meta: flush_handlers
-
-      - name: Wait 300 seconds for port 1880 to become open on the host, don't start checking for 10 seconds
-        wait_for:
-            port: 1880
-            delay: 10
-        register: nodered_service
-        ignore_errors: yes
-
-      - name: Ensure pimoroni directory created
-        file:
-            path: "{{ansible_user_dir}}/.node-red/nodes"
-            state: directory
-
-      - name: Ensure pimoroni plugins are installed
-        git:
-            dest: "{{ansible_user_dir}}/.node-red/nodes/pimoroni-nodes"
-            repo: http://github.com/pimoroni/node-red-nodes
-            clone: yes # If C(no), do not clone the repository if it does not exist locally
-            update: yes # If C(no), do not retrieve new revisions from the origin repository
-        notify: restart_nodred
-        register: pimoroni
-
-      - name: Install node-red addons
-        npm:
-            name: "{{item}}"
-            state: present
-            path: "{{ansible_user_dir}}/.node-red"
-        with_items:
-            - node-red-dashboard
-            - node-red-contrib-bigtimer
-            - node-red-node-mongodb
-            - node-red-node-mysql
-            - node-red-contrib-looptimer
-            - node-red-node-pi-sense-hat
-            - node-red-contrib-opcua
-            - node-red-contrib-iiot-opcua
-            - node-red-contrib-solar-power-forecast
-            - node-red-node-openweathermap
-        notify:
-            - rebuild_node_red
-            - restart_nodred
-
-      - name: Flush handlers
-        meta: flush_handlers
-
-      - name: Wait 300 seconds for port 1880 to become open on the host, don't start checking for 10 seconds
-        wait_for:
-            port: 1880
-            delay: 10
-        register: nodered_service
-        ignore_errors: yes
-
-      - name: Ensure some pimoroni plugins are disabled
-        command: "{{item}}"
-        with_items:
-            - node-red-admin login
-            - node-red-admin disable node-red/node-flotilla
-            - node-red-admin disable node-red-node-ledborg/ledborg
-            - node-red-admin disable node-red/rpi-explorerhat
-            - node-red-admin disable node-red/rpi-unicorn
-        # when: pimoroni.changed or nodered.changed
-        ignore_errors: yes
-    rescue:
-        - name: Get nodered script
-          become: yes
-          get_url:
-              dest: /usr/bin/update-nodejs-and-nodered
-              url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
-              mode: 0777
-    ignore_errors: yes
-    tags:
-        - node-red
-
   - name: Ensure sqlite3 is installed
     become: yes
     apt:
@@ -652,6 +544,115 @@
         - restart_etherdraw
     tags:
         - etherpad
+
+  - name: Node-red block
+    block:
+    - name: test update-nodejs-and-nodered exists
+      stat:
+        path: /usr/bin/update-nodejs-and-nodered
+      register: update_nodejs_and_nodered
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Get nodered script
+      get_url:
+        dest: /tmp/update-nodejs-and-nodered
+        url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
+        mode: 0777
+      when: update_nodejs_and_nodered.stat.exists != True
+
+    - name: Execute nodered script
+      shell: yes | ./nodered.sh
+      args:
+          creates: /usr/bin/update-nodejs-and-nodered
+      notify: restart_nodred
+      register: nodered
+      ignore_errors: yes
+
+    - name: Ensure nodred and some dependencies are installed
+      become: yes
+      npm:
+        name: "{{item}}"
+        global: yes
+      with_items:
+        - npm-check
+        - node-red-admin
+
+    - name: Flush handlers
+      meta: flush_handlers
+
+    - name: Wait 300 seconds for port 1880 to become open on the host, don't start checking for 10 seconds
+      wait_for:
+          port: 1880
+          delay: 10
+      register: nodered_service
+      ignore_errors: yes
+
+    - name: Ensure pimoroni directory created
+      file:
+          path: "{{ansible_user_dir}}/.node-red/nodes"
+          state: directory
+
+    - name: Ensure pimoroni plugins are installed
+      git:
+          dest: "{{ansible_user_dir}}/.node-red/nodes/pimoroni-nodes"
+          repo: http://github.com/pimoroni/node-red-nodes
+          clone: yes # If C(no), do not clone the repository if it does not exist locally
+          update: yes # If C(no), do not retrieve new revisions from the origin repository
+      notify: restart_nodred
+      register: pimoroni
+
+    - name: Install node-red addons
+      npm:
+          name: "{{item}}"
+          state: present
+          path: "{{ansible_user_dir}}/.node-red"
+      with_items:
+          - node-red-dashboard
+          - node-red-contrib-bigtimer
+          - node-red-node-mongodb
+          - node-red-node-mysql
+          - node-red-contrib-looptimer
+          - node-red-node-pi-sense-hat
+          - node-red-contrib-opcua
+          - node-red-contrib-iiot-opcua
+          - node-red-contrib-solar-power-forecast
+          - node-red-node-openweathermap
+      notify:
+          - rebuild_node_red
+          - restart_nodred
+
+    - name: Flush handlers
+      meta: flush_handlers
+
+    - name: Wait 300 seconds for port 1880 to become open on the host, don't start checking for 10 seconds
+      wait_for:
+          port: 1880
+          delay: 10
+      register: nodered_service
+      ignore_errors: yes
+
+    - name: Ensure some pimoroni plugins are disabled
+      command: "{{item}}"
+      with_items:
+          - node-red-admin login
+          - node-red-admin disable node-red/node-flotilla
+          - node-red-admin disable node-red-node-ledborg/ledborg
+          - node-red-admin disable node-red/rpi-explorerhat
+          - node-red-admin disable node-red/rpi-unicorn
+          # when: pimoroni.changed or nodered.changed
+      ignore_errors: yes
+
+    rescue:
+    - name: Get nodered script
+      become: yes
+      get_url:
+        dest: /usr/bin/update-nodejs-and-nodered
+        url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
+        mode: 0777
+      ignore_errors: yes
+  tags:
+      - node-red
 
   handlers:
   - name: restart_nodred
