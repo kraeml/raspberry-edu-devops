@@ -19,10 +19,10 @@ services = [
 
 gem_packages = {
     :bundler => {
-        :version => "1.16.0"
+        :version => "1.16.1"
     },
     :capybara => {
-        :version => "2.16.1"
+        :version => "2.17.0"
     },
     :inspec => {
         :version => "1.48.0"
@@ -71,6 +71,7 @@ users = {
         'adm',
         'dialout',
         'sudo',
+        'audio',
         'www-data',
         'video',
         'users',
@@ -169,11 +170,11 @@ tools = {
         :process => 'node-red'
     },
     :nodejs => {
-        :version => '6.12',
+        :version => '8.9',
         :command => 'nodejs -v'
     },
     :npm => {
-        :version => '3.10',
+        :version => '5.6',
         :command => 'npm -v'
     },
     :cloud9 => {
@@ -185,7 +186,7 @@ tools = {
         :process => 'sshd'
     },
     :pillow => {
-        :version => '4.3',
+        :version => '5.0',
         :command => 'pip3 show pillow'
     },
     :rpigpio => {
@@ -247,7 +248,7 @@ tools = {
         :command => 'node-red-admin info node-red-contrib-opcua'
     },
     :noderedopcuaiiot => {
-        :version => '1.0.17',
+        :version => '1.2.0',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-iiot-opcua'
     },
