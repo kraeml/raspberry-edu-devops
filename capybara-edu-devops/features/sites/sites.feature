@@ -10,7 +10,7 @@ Feature: Looking for websites on raspberry
         | 80   | Hallo Welt!        | ~pi  |
         | 80   | PHP Version 7.0.19 | ~pi/index.php  |
         | 8888 | Password:          |      |
-        | 1880 | Raspberry Pi       |      |
+        | 1880 | Node-RED Deploy info debug ctrl |      |
         | 9001 | New Pad or create/open a Pad |      |
         | 8181 | Server Status      |      |
 
