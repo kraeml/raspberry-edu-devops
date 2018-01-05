@@ -25,7 +25,7 @@ gem_packages = {
         :version => "2.17.0"
     },
     :inspec => {
-        :version => "1.48.0"
+        :version => "1.49.2"
     },
     :"selenium-webdriver" => {
         :version => "3.8.0"
@@ -322,7 +322,7 @@ tools = {
         :command => 'phantomjs --version'
     },
     :pip3_selenium => {
-        :version => '3.8.0',
+        :version => '3.8.1',
         :command => 'pip3 show selenium'
     },
     :geckodriver => {

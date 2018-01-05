@@ -6,12 +6,12 @@ Feature: Looking for websites on raspberry
       Examples:
         | port | content            | path |
         | 80   | PHP Version 7.0.19 |      |
-        | 80   | Willkommen bei phpMyAdmin | phpMyAdmin/ |
+        | 80   | Welcome to phpMyAdmin | phpMyAdmin/ |
         | 80   | Hallo Welt!        | ~pi  |
         | 80   | PHP Version 7.0.19 | ~pi/index.php  |
         | 8888 | Password:          |      |
         | 1880 | Raspberry Pi       |      |
-        | 9001 | oder ein Pad mit folgendem Namen |      |
+        | 9001 | New Pad or create/open a Pad |      |
         | 8181 | Server Status      |      |
 
 # ToDo Port 9002 etherdraw; Jupyter login
