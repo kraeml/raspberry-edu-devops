@@ -248,7 +248,7 @@ tools = {
         :command => 'node-red-admin info node-red-contrib-opcua'
     },
     :noderedopcuaiiot => {
-        :version => '1.2.0',
+        :version => '1.3.1',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-iiot-opcua'
     },
