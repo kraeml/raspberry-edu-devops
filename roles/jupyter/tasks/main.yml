@@ -28,6 +28,12 @@
     state: present
   with_items: "{{pip3_packages}}"
 
+- name: Ensure jupyter_c_kernel is installed
+  become: yes
+  command: /usr/local/bin/install_c_kernel --sys-prefix
+  args:
+    creates: /usr/share/jupyter/kernels/bash/kernel.json
+
 - name: Ensure bash kernel is installed
   become: yes
   command: python3 -m bash_kernel.install

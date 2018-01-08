@@ -4,6 +4,10 @@ dependencies_packages:
     - libncurses5-dev
     - python-dev
     - pandoc
+    - cmake
+    - llvm
+    - llvm-dev
+    - clang
 
 pip3_packages:
     - jupyter
@@ -14,6 +18,7 @@ pip3_packages:
     - ihtml
     - ExpectException
     - RISE
+    - jupyter_c_kernel
 
 nodejs_version: "6.x"
 nodejs_npm_global_packages:
