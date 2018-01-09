@@ -40,8 +40,8 @@
     executable: pip3
     state: forcereinstall
   with_items:
-    - https://raw.githubusercontent.com/kraeml/jupyter-c-kernel/master/dist/jupyter_c_kernel-1.2.8.tar.gz
-  when: p.stat.isdir is not defined and p.stat.isdir == FALSE
+    - https://raw.githubusercontent.com/kraeml/jupyter-c-kernel/release/1.2.8/dist/jupyter_c_kernel-1.2.8.tar.gz
+  when: p.stat.exists == False
 
 - name: Ensure jupyter_c_kernel is installed
   become: yes
