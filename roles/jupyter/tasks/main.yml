@@ -28,6 +28,11 @@
     state: present
   with_items: "{{pip3_packages}}"
 
+- name: Stat of jupyter_c_kernel resources
+  stat:
+    path: /usr/local/lib/python3.5/dist-packages/jupyter_c_kernel/resources/
+  register: p
+
 - name: Ensure jupyter_c_kernel is installed via pip url
   become: yes
   pip:
@@ -36,6 +41,7 @@
     state: forcereinstall
   with_items:
     - https://raw.githubusercontent.com/kraeml/jupyter-c-kernel/master/dist/jupyter_c_kernel-1.2.8.tar.gz
+  when: p.stat.isdir is not defined and p.stat.isdir == FALSE
 
 - name: Ensure jupyter_c_kernel is installed
   become: yes
