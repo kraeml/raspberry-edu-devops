@@ -8,6 +8,12 @@ dependencies_packages:
     - llvm
     - llvm-dev
     - clang
+    - git
+    - g++
+    - debhelper
+    - devscripts
+    - gnupg
+    - python
 
 pip3_packages:
     - jupyter
@@ -18,7 +24,7 @@ pip3_packages:
     - ihtml
     - ExpectException
     - RISE
-    - jupyter_c_kernel
+    #- jupyter_c_kernel
 
 nodejs_version: "6.x"
 nodejs_npm_global_packages:

@@ -28,11 +28,20 @@
     state: present
   with_items: "{{pip3_packages}}"
 
+- name: Ensure jupyter_c_kernel is installed via pip url
+  become: yes
+  pip:
+    name: "{{item}}"
+    executable: pip3
+    state: forcereinstall
+  with_items:
+    - https://raw.githubusercontent.com/kraeml/jupyter-c-kernel/master/dist/jupyter_c_kernel-1.2.8.tar.gz
+
 - name: Ensure jupyter_c_kernel is installed
   become: yes
   command: /usr/local/bin/install_c_kernel --sys-prefix
   args:
-    creates: /usr/share/jupyter/kernels/bash/kernel.json
+    creates: /usr/share/jupyter/kernels/c/kernel.json
 
 - name: Ensure bash kernel is installed
   become: yes
