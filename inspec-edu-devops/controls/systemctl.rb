@@ -107,7 +107,7 @@ tools = {
         :command => 'python3 --version'
     },
     :php => {
-        :version => '7.0.19',
+        :version => '7.0.27',
         :command => 'php --version' },
     :mysql => {
         :version => '10.1',
@@ -248,7 +248,7 @@ tools = {
         :command => 'node-red-admin info node-red-contrib-opcua'
     },
     :noderedopcuaiiot => {
-        :version => '1.3.1',
+        :version => '1.3.2',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-iiot-opcua'
     },
