@@ -6,12 +6,36 @@
       name: "example_user"
       password: "passw0rd"
   - phpmyadmin_version: "4.7.5"
+  - webdev_packages:
+        - pm2
+        - socket.io
+        - sqlite3
+        - mongoose
+        - mysql
+        - express
+        - javascripting
+        - how-to-npm
+        - scope-chains-closures
+        - stream-adventure
+        - how-to-markdown
+        - learnyouhtml
+        - learnyounode
+        - functional-javascript-workshop
+        - bytewiser
+        - expressworks
+        - bug-clinic
+        - async-you
+        - test-anything
+        - learnyoumongo
+        - torrential
+        - html-validator-cli
+    - nodejsVersion: "8"
 
   roles:
   - role: jupyter
     become: yes
-    nodejs_version: "6.x"
     tags: jupyter
+    nodejs_version: "{{nodejsVersion}}.x"
     nodejs_npm_global_packages:
         - ijavascript
 
@@ -167,30 +191,34 @@
         name: "{{item}}"
         state: present
         global: yes
-    with_items:
-        - pm2
-        - socket.io
-        - sqlite3
-        - mongoose
-        - mysql
-        - express
-        - javascripting
-        - how-to-npm
-        - scope-chains-closures
-        - stream-adventure
-        - how-to-markdown
-        - learnyouhtml
-        - learnyounode
-        - functional-javascript-workshop
-        - bytewiser
-        - expressworks
-        - bug-clinic
-        - async-you
-        - test-anything
-        - learnyoumongo
-        - torrential
-        - html-validator-cli
+    with_items: "webdev_packages"
     ignore_errors: yes
+    register: webdev
+    tags:
+        - web-dev
+  - name: Workaround webdev
+    apt:
+        force: yes
+        # If C(yes), force installs/removes.
+        name: "nodejs=4.*"
+        # A package name, like C(foo), or package specifier with version,
+        # like C(foo=1.0). Name wildcards (fnmatch) like C(apt*) and
+        # version wildcards like C(foo=1.0*) are also supported.
+        #  Note that the apt-get commandline supports implicit regex matches
+        # here but we do not because it can let typos through easier
+        # (If you typo C(foo) as C(fo) apt-get would install packages that have
+        # "fo" in their name with a warning and a prompt for the user.
+        # Since we don't have warnings and prompts before installing we disallow
+        # this.  Use an explicit fnmatch pattern if you want wildcarding)
+    when: webdev|failed
+  - name: Additional packages for web-dev learning
+    become: yes
+    npm:
+        name: "{{item}}"
+        state: present
+        global: yes
+    with_items: "webdev_packages"
+    when: webdev|failed
     tags:
         - web-dev
 
@@ -249,6 +277,22 @@
         - restart_cloud9
     tags:
         - cloud9
+        
+  - name: Workaround webdev
+    apt:
+        force: yes
+        # If C(yes), force installs/removes.
+        name: "nodejs={{nodejsVersion}}.*"
+        # A package name, like C(foo), or package specifier with version,
+        # like C(foo=1.0). Name wildcards (fnmatch) like C(apt*) and
+        # version wildcards like C(foo=1.0*) are also supported.
+        #  Note that the apt-get commandline supports implicit regex matches
+        # here but we do not because it can let typos through easier
+        # (If you typo C(foo) as C(fo) apt-get would install packages that have
+        # "fo" in their name with a warning and a prompt for the user.
+        # Since we don't have warnings and prompts before installing we disallow
+        # this.  Use an explicit fnmatch pattern if you want wildcarding)
+    when: webdev|failed
 
   - name: Ensure PHP ist installed
     become: yes
