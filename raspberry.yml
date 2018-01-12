@@ -171,7 +171,7 @@
   - name: NPM unsafe-perm
     become: yes
     become_method: sudo
-    become_flags: "su -"
+    become_flags: "-H"
     command: npm config --global set unsafe-perm=true
     tags:
         - node-red
@@ -192,7 +192,7 @@
   - name: Additional packages for web-dev learning
     become: yes
     become_method: sudo
-    become_flags: "su -"
+    become_flags: "-H"
     npm:
         name: "{{item}}"
         state: present
@@ -224,7 +224,7 @@
   - name: Install cloud9
     become: yes
     become_method: sudo
-    become_flags: "su -"
+    become_flags: "-H"
     shell: bash -c 'HOME={{ansible_user_dir}} ./scripts/install-sdk.sh'
     args:
         chdir: "{{ansible_user_dir}}/cloud9/"
