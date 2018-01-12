@@ -29,13 +29,14 @@
     - learnyoumongo
     - torrential
     - html-validator-cli
-  - nodejsVersion: "8"
+  - nodejs_minor_version: "8"
 
   roles:
   - role: jupyter
     become: yes
     tags: jupyter
-    nodejs_version: "{{nodejsVersion}}.x"
+    nodejs_version: "{{nodejs_minor_version}}.x"
+    npm_config_unsafe_perm: "true"
     nodejs_npm_global_packages:
         - ijavascript
 
@@ -169,6 +170,8 @@
 
   - name: NPM unsafe-perm
     become: yes
+    become_method: su
+    become_flags: "--login"
     command: npm config --global set unsafe-perm=true
     tags:
         - node-red
@@ -187,12 +190,14 @@
 
   - name: Additional packages for web-dev learning
     become: yes
+    become_method: su
+    become_flags: "--login"
     npm:
         name: "{{item}}"
         state: present
         global: yes
     with_items: "webdev_packages"
-    ignore_errors: yes
+    #ignore_errors: yes
     register: webdev
     tags:
         - web-dev
@@ -282,7 +287,7 @@
     apt:
         force: yes
         # If C(yes), force installs/removes.
-        name: "nodejs={{nodejsVersion}}.*"
+        name: "nodejs={{nodejs_minor_version}}.*"
         # A package name, like C(foo), or package specifier with version,
         # like C(foo=1.0). Name wildcards (fnmatch) like C(apt*) and
         # version wildcards like C(foo=1.0*) are also supported.
