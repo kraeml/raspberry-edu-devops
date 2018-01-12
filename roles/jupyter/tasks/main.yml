@@ -57,6 +57,8 @@
 
 - name: Ensure ijavascript is installed
   become: yes
+  become_method: sudo
+  become_flags: "-H"
   npm:
       name: ijavascript
       global: yes

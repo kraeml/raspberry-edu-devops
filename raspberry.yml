@@ -37,8 +37,6 @@
     tags: jupyter
     nodejs_version: "{{nodejs_minor_version}}.x"
     npm_config_unsafe_perm: "true"
-    nodejs_npm_global_packages:
-        - ijavascript
 
   - role: geerlingguy.docker
     become: yes
