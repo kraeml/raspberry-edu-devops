@@ -197,7 +197,7 @@
         name: "{{item}}"
         state: present
         global: yes
-    with_items: "webdev_packages"
+    with_items: "{{webdev_packages}}"
     tags:
         - web-dev
 
