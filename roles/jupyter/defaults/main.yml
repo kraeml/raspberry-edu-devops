@@ -24,7 +24,7 @@ pip3_packages:
     - ihtml
     - ExpectException
     - RISE
-    #- jupyter_c_kernel
+    - jupyter_contrib_nbextensions
 
 nodejs_version: "6.x"
 nodejs_npm_global_packages:

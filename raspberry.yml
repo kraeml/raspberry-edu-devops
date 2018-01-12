@@ -198,6 +198,7 @@
         state: present
         global: yes
     with_items: "{{webdev_packages}}"
+    ignore_errors: yes
     tags:
         - web-dev
 
