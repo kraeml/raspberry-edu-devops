@@ -170,11 +170,12 @@
 
   - name: NPM unsafe-perm
     become: yes
-    become_method: su
-    become_flags: "--login"
+    become_method: sudo
+    become_flags: "su --login"
     command: npm config --global set unsafe-perm=true
     tags:
         - node-red
+        - web-dev
 
   - name: Ensure sqlite3 is installed
     become: yes
@@ -190,40 +191,13 @@
 
   - name: Additional packages for web-dev learning
     become: yes
-    become_method: su
-    become_flags: "--login"
+    become_method: sudo
+    become_flags: "su --login"
     npm:
         name: "{{item}}"
         state: present
         global: yes
     with_items: "webdev_packages"
-    #ignore_errors: yes
-    register: webdev
-    tags:
-        - web-dev
-  - name: Workaround webdev
-    apt:
-        force: yes
-        # If C(yes), force installs/removes.
-        name: "nodejs=4.*"
-        # A package name, like C(foo), or package specifier with version,
-        # like C(foo=1.0). Name wildcards (fnmatch) like C(apt*) and
-        # version wildcards like C(foo=1.0*) are also supported.
-        #  Note that the apt-get commandline supports implicit regex matches
-        # here but we do not because it can let typos through easier
-        # (If you typo C(foo) as C(fo) apt-get would install packages that have
-        # "fo" in their name with a warning and a prompt for the user.
-        # Since we don't have warnings and prompts before installing we disallow
-        # this.  Use an explicit fnmatch pattern if you want wildcarding)
-    when: webdev|failed
-  - name: Additional packages for web-dev learning
-    become: yes
-    npm:
-        name: "{{item}}"
-        state: present
-        global: yes
-    with_items: "webdev_packages"
-    when: webdev|failed
     tags:
         - web-dev
 
@@ -249,6 +223,8 @@
 
   - name: Install cloud9
     become: yes
+    become_method: sudo
+    become_flags: "su --login"
     shell: bash -c 'HOME={{ansible_user_dir}} ./scripts/install-sdk.sh'
     args:
         chdir: "{{ansible_user_dir}}/cloud9/"
@@ -282,22 +258,6 @@
         - restart_cloud9
     tags:
         - cloud9
-
-  - name: Workaround webdev
-    apt:
-        force: yes
-        # If C(yes), force installs/removes.
-        name: "nodejs={{nodejs_minor_version}}.*"
-        # A package name, like C(foo), or package specifier with version,
-        # like C(foo=1.0). Name wildcards (fnmatch) like C(apt*) and
-        # version wildcards like C(foo=1.0*) are also supported.
-        #  Note that the apt-get commandline supports implicit regex matches
-        # here but we do not because it can let typos through easier
-        # (If you typo C(foo) as C(fo) apt-get would install packages that have
-        # "fo" in their name with a warning and a prompt for the user.
-        # Since we don't have warnings and prompts before installing we disallow
-        # this.  Use an explicit fnmatch pattern if you want wildcarding)
-    when: webdev|failed
 
   - name: Ensure PHP ist installed
     become: yes
