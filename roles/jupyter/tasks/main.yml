@@ -122,6 +122,16 @@
   notify:
     - restart_jupyter
 
+- name: copies the nbextensions’ javascript and css files
+  become: yes
+  become_user: "{{ansible_user_id}}"
+  command: jupyter contrib nbextension install --user
+
+- name:
+  become: yes
+  become_user: "{{ansible_user_id}}"
+  command: jupyter nbextensions_configurator enable --user
+
 - name: Enable and start Jupyter as service
   become: yes
   template:
