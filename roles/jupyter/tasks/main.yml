@@ -129,10 +129,14 @@
   become_user: "{{ansible_user_id}}"
   command: jupyter contrib nbextension install --user
 
-- name:
+- name: Enable nbextensions
   become: yes
   become_user: "{{ansible_user_id}}"
   command: jupyter nbextensions_configurator enable --user
+
+- name: Enable ipyleaflet
+  become: yes
+  command: jupyter nbextension enable --py --sys-prefix ipyleaflet
 
 - name: Enable and start Jupyter as service
   become: yes

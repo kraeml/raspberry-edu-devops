@@ -26,6 +26,7 @@ pip3_packages:
     - ExpectException
     - RISE
     - jupyter_contrib_nbextensions
+    - ipyleaflet
 
 nodejs_version: "6.x"
 nodejs_npm_global_packages:
