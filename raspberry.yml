@@ -77,14 +77,14 @@
         #verbosity: # A number that controls when the debug is run, if you set
         # to 3 it will only run debug when -vvv or above
   - name: Get nodejs info
-    command: nodejs --version
+    shell: nodejs --version
     ignore_errors: yes
-    register: nodejs_pi_version
+    register: nodejs_pi_version | cut -d '.' -f 1
 
   - name: Output nodejs Version
     debug:
         var: nodejs_pi_version
-        # Want this "stdout": "v6.12.3"
+        # Want this "stdout": "v6"
   - name:
     become: yes
     apt:
@@ -106,7 +106,7 @@
         cache_valid_time: 3600
         # Update the apt cache if its older than the I(cache_valid_time).
         # This option is set in seconds.
-    when: nodejs_pi_version.stdout|version_compare('{{nodejs_minor_version}}', '>')
+    when: nodejs_pi_version.stdout != "v6"
 
 
   tasks:
