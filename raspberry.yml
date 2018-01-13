@@ -74,7 +74,13 @@
   - name: Debug info
     debug:
         msg: "USER_ID is {{ansible_user_id}} and Home is {{ansible_user_dir}}"
-        #verbosity: # A number that controls when the debug is run, if you set to 3 it will only run debug when -vvv or above
+        #verbosity: # A number that controls when the debug is run, if you set
+        # to 3 it will only run debug when -vvv or above
+  - name: Get nodejs info
+    command: nodejs --version
+    ignore_errors: yes
+    register: nodejs_pi_version
+
 
   tasks:
   - name: Ensure user {{ansible_user_id}} is member of group docker
@@ -568,6 +574,21 @@
         url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
         mode: 0777
       when: update_nodejs_and_nodered.stat.exists != True
+
+    - name: Change to nodejs minor version
+      win_lineinfile:
+          dest: /tmp/update-nodejs-and-nodered
+          /re# The path of the file to modify.,Note that the Windows path delimiter '' must be escaped as '' (see examples below)
+          regexp: "8."
+          # The regular expression to look for in every line of the file.
+          # For C(state=present), the pattern to replace if found; only the last
+          # line found will be replaced. For C(state=absent), the pattern of the
+          # line to remove.  Uses .NET compatible regular expressions;
+          # see U(https://msdn.microsoft.com/en-us/library/hs600312%28v=vs.110%29.aspx).
+          line: "{{nodejs_minor_version}}."
+          # Required for C(state=present). The line to insert/replace into the
+          # file. If C(backrefs) is set, may contain backreferences that will
+          # get expanded with the C(regexp) capture groups if the regexp matches.
 
     - name: Execute nodered script
       shell: yes | ./nodered.sh
