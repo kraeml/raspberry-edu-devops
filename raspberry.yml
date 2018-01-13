@@ -81,6 +81,10 @@
     ignore_errors: yes
     register: nodejs_pi_version
 
+  - name: Output nodejs Version
+    debug:
+        var: nodejs_pi_version
+
 
   tasks:
   - name: Ensure user {{ansible_user_id}} is member of group docker
@@ -578,7 +582,7 @@
     - name: Change to nodejs minor version
       win_lineinfile:
           dest: /tmp/update-nodejs-and-nodered
-          /re# The path of the file to modify.,Note that the Windows path delimiter '' must be escaped as '' (see examples below)
+          # The path of the file to modify.,Note that the Windows path delimiter '' must be escaped as '' (see examples below)
           regexp: "8."
           # The regular expression to look for in every line of the file.
           # For C(state=present), the pattern to replace if found; only the last
