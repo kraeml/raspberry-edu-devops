@@ -2,4 +2,5 @@
 - src: geerlingguy.nodejs
 - src: geerlingguy.docker
 - src: geerlingguy.mysql
-- src: kraeml.jupyter
+- src: https://github.com/kraeml/ansible-role-jupyter
+  version: master
