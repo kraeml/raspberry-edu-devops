@@ -603,7 +603,7 @@
       when: update_nodejs_and_nodered.stat.exists != True
 
     - name: Change to nodejs minor version
-      win_lineinfile:
+      lineinfile:
           dest: /tmp/update-nodejs-and-nodered
           # The path of the file to modify.,Note that the Windows path delimiter '' must be escaped as '' (see examples below)
           regexp: "8."
