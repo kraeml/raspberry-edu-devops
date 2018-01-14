@@ -32,7 +32,7 @@
   - nodejs_minor_version: "6"
 
   roles:
-  - role: jupyter
+  - role: kraeml.jupyter
     become: yes
     tags: jupyter
     nodejs_version: "{{nodejs_minor_version}}.x"
