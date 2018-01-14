@@ -4,3 +4,4 @@
 - src: geerlingguy.mysql
 - src: https://github.com/kraeml/ansible-role-jupyter
   version: master
+  name: kraeml.jupyter
