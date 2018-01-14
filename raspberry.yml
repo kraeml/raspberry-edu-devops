@@ -151,6 +151,7 @@
         - oracle-java8-jdk
         - tidy
         - python-pexpect
+        - sl
     tags:
         - base
 
@@ -628,6 +629,7 @@
       when: update_nodejs_and_nodered.stat.exists != True
 
     - name: Change nodered update skript for minor nodejs
+      become: yes
       replace:
           dest: /usr/bin/update-nodejs-and-nodered
           regexp: "bash <"
