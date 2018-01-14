@@ -31,6 +31,7 @@ apt-get install --yes libcairo2-dev libjpeg-dev libpango1.0-dev
 apt-get install --yes libgif-dev build-essential
 apt-get install --yes libjpeg62-turbo libjpeg62-turbo-dev liblcms1-dev liblcms1
 apt-get install --yes zlib1g libjpeg8 libjpeg-dev libfreetype6 libfreetype6-dev
+apt-get install --yes libxslt1.1 libgirepository1.0-dev python3-cairo-dev
 #------------------------------------------------------
 
 #wget --quiet "https://www.python.org/ftp/python/$version/Python-$version.tgz"
@@ -62,5 +63,7 @@ python3 setup.py build
 python3 setup.py install
 cd -
 rm -rf RTIMULib
+
+pip3 install -U $(pip3 freeze | awk '{split($0, a, "=="); print a[1]}')
 
 set +x
