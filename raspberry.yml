@@ -106,7 +106,7 @@
         cache_valid_time: 3600
         # Update the apt cache if its older than the I(cache_valid_time).
         # This option is set in seconds.
-    when: nodejs_pi_version.stdout != "v6"
+    when: nodejs_pi_version.stdout == "v8"
 
 
   tasks:
