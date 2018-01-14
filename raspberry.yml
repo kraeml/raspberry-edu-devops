@@ -616,7 +616,7 @@
           # Required for C(state=present). The line to insert/replace into the
           # file. If C(backrefs) is set, may contain backreferences that will
           # get expanded with the C(regexp) capture groups if the regexp matches.
-       when: update_nodejs_and_nodered.stat.exists != True
+      when: update_nodejs_and_nodered.stat.exists != True
 
     - name: Execute nodered script
       shell: yes | ./nodered.sh
