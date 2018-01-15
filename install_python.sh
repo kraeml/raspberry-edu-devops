@@ -40,8 +40,8 @@ apt-get install --yes libxslt1.1 libgirepository1.0-dev python3-cairo-dev
 #./configure
 #make
 #make install
-pip3 install pip --upgrade || \
-    sudo apt-get install --yes python3-pip && sudo pip3 install pip --upgrade
+pip3 install --ignore-installed pip || \
+    apt-get install --yes python3-pip && pip3 install --ignore-installed pip
 #pip3 install pip --upgrade
 pip3 install -U virtualenv
 
@@ -64,6 +64,6 @@ python3 setup.py install
 cd -
 rm -rf RTIMULib
 
-pip3 list --outdated --format=legacy | grep -v ansible | cut -d' ' -f1 | xargs pip3 install --upgrade
+pip3 list --outdated --format=legacy | cut -d' ' -f1 | xargs pip3 install --upgrade
 
 set +x
