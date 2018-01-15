@@ -64,6 +64,6 @@ python3 setup.py install
 cd -
 rm -rf RTIMULib
 
-pip3 install -U $(pip3 freeze | awk '{split($0, a, "=="); print a[1]}')
+pip3 list --outdated --format=legacy | grep -v ansible | cut -d' ' -f1 | xargs pip3 install --upgrade
 
 set +x
