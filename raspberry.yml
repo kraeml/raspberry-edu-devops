@@ -3,8 +3,8 @@
 
   vars:
   - db_user:
-    name: "example_user"
-    password: "passw0rd"
+        name: "example_user"
+        password: "passw0rd"
   - phpmyadmin_version: "4.7.5"
   - webdev_packages:
     - pm2
