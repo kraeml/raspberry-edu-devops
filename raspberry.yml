@@ -124,7 +124,7 @@
     register:
         - dphy-swapfile
 
-  - name:
+  - name: Install nodejs in minor version
     become: yes
     apt:
         force: yes
