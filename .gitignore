@@ -4,3 +4,5 @@
 Gemfile.lock
 Berksfile.lock
 inspec.lock
+roles
+raspberry.retry

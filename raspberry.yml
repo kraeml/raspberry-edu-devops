@@ -85,6 +85,45 @@
     debug:
         var: nodejs_pi_version
         # Want this "stdout": "v6"
+
+  - name: Install swap
+    become: yes
+    apt:
+        name: dphys-swapfile
+        update_cache: yes
+        cache_valid_time: 3600
+    register:
+        - dphys-swapfile
+
+  - name: Configure swap
+    become: yes
+    replace:
+        regex: "^#CONF_SWAPSIZE="
+        replace: "CONF_SWAPSIZE=1024"
+        path: /etc/dphys-swapfile
+    register:
+        - dphy-swapfile
+
+  - name: Ensure dphys is not running
+    become: yes
+    service:
+        name: dphys-swapfile
+        state: stopped
+    register:
+        - dphy-swapfile
+
+  - name: Ensure swap-file exists
+    become: yes
+    command: dd if=/dev/zero of=/var/swap count=1024 bs=1MiB
+    register:
+        - dphy-swapfile
+
+  - name: Make swap
+    become: yes
+    command: mkswap /var/swap
+    register:
+        - dphy-swapfile
+
   - name:
     become: yes
     apt:
@@ -107,7 +146,6 @@
         # Update the apt cache if its older than the I(cache_valid_time).
         # This option is set in seconds.
     when: nodejs_pi_version.stdout == "v8"
-
 
   tasks:
   - name: Ensure user {{ansible_user_id}} is member of group docker
@@ -149,7 +187,6 @@
         - debian-keyring
         - debian-archive-keyring
         - wiringpi
-        - dphys-swapfile
         - lsb-core
         - avahi-utils
         - avahi-daemon
@@ -165,6 +202,8 @@
         #- liblcms1
     tags:
         - base
+
+  -
 
   - name: Alternatives set
     become: yes
@@ -734,6 +773,13 @@
       - node-red
 
   handlers:
+  - name: dphy-swapfile
+    become: yes
+    service:
+        name: dphys-swapfile
+        state: restarted
+        enabled: yes
+
   - name: restart_nodred
     become: yes
     service:
