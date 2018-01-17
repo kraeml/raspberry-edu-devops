@@ -126,6 +126,12 @@
         - sense-hat
         - user
 
+  - name: Ensure link to rdf-edu-notbooks exitst
+    file:
+      src: "{{ansible_user_dir}}/.raspberry-edu-devops/notebooks"
+      dest: "{{ansible_user_dir}}/notebooks/raspberry-edu-devops"
+      state: link
+
   - name: Ensure raspberry dependencies are installed
     become: yes
     apt:
@@ -152,6 +158,11 @@
         - tidy
         - python-pexpect
         - sl
+        - libjpeg62-turbo
+        - libjpeg62-turbo-dev
+        # Not in Ubuntu 1604
+        #- liblcms1-dev
+        #- liblcms1
     tags:
         - base
 
