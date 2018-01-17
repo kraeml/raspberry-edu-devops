@@ -98,7 +98,7 @@
   - name: Configure swap
     become: yes
     replace:
-        regex: "^#CONF_SWAPSIZE="
+        regexp: "^#CONF_SWAPSIZE="
         replace: "CONF_SWAPSIZE=1024"
         path: /etc/dphys-swapfile
     notify:
