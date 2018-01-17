@@ -203,8 +203,6 @@
     tags:
         - base
 
-  -
-
   - name: Alternatives set
     become: yes
     alternatives:
