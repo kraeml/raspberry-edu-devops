@@ -92,7 +92,7 @@
         name: dphys-swapfile
         update_cache: yes
         cache_valid_time: 3600
-    register:
+    notify:
         - dphys-swapfile
 
   - name: Configure swap
@@ -101,7 +101,7 @@
         regex: "^#CONF_SWAPSIZE="
         replace: "CONF_SWAPSIZE=1024"
         path: /etc/dphys-swapfile
-    register:
+    notify:
         - dphy-swapfile
 
   - name: Ensure dphys is not running
@@ -109,19 +109,19 @@
     service:
         name: dphys-swapfile
         state: stopped
-    register:
+    notify:
         - dphy-swapfile
 
   - name: Ensure swap-file exists
     become: yes
     command: dd if=/dev/zero of=/var/swap count=1024 bs=1MiB
-    register:
+    notify:
         - dphy-swapfile
 
   - name: Make swap
     become: yes
     command: mkswap /var/swap
-    register:
+    notify:
         - dphy-swapfile
 
   - name: Install nodejs in minor version
