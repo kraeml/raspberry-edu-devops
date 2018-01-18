@@ -187,6 +187,7 @@
         update_cache: yes
         cache_valid_time: 3600
     with_items:
+        - git
         - nmap
         - curl
         - sudo
@@ -212,6 +213,23 @@
         #- liblcms1
     tags:
         - base
+
+  - name: Git config
+    git_config:
+        name: "{{item.name}}"
+        value: "{{item.value}}"
+        scope: global
+    with_items:
+        - name: "user.email"
+          value: "{{ansible_user_id}}@example.com"
+        - name: "user.name"
+          value: "{{ansible_user_id}}"
+        - name: "core.editor"
+          value: "vim"
+        - name: "push.default"
+          value: "current"    
+    tags:
+        - git
 
   - name: Alternatives set
     become: yes
