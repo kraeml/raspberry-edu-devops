@@ -25,7 +25,7 @@ gem_packages = {
         :version => "2.17.0"
     },
     :inspec => {
-        :version => "1.49.2"
+        :version => "1.50.1"
     },
     :"selenium-webdriver" => {
         :version => "3.8.0"
@@ -248,7 +248,7 @@ tools = {
         :command => 'node-red-admin info node-red-contrib-opcua'
     },
     :noderedopcuaiiot => {
-        :version => '1.3.2',
+        :version => '1.3.3',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-iiot-opcua'
     },
