@@ -418,10 +418,10 @@
     become: yes
     unarchive:
         src: https://pi-control.de/?service=download&file=Pi-Control-2.1%5B7d7ab709%5D
-        dest: /var/www/
+        dest: /var/www/html
         owner: www-data
         group: www-data
-        creates: /var/www/public_html
+        creates: /var/www/html/public_html
         remote_src: yes
         extra_opts: --strip-components=1
     tags:
