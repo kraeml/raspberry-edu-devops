@@ -227,7 +227,7 @@
         - name: "core.editor"
           value: "vim"
         - name: "push.default"
-          value: "current"    
+          value: "current"
     tags:
         - git
 
@@ -387,6 +387,10 @@
         - php7.0-xml
         - php7.0-zip
         - php7.0-mysql
+        - libmcrypt4
+        - php-pear
+        - php-ssh2
+        - php7.0-mcrypt
     tags:
         - php
         - nginx
@@ -403,16 +407,21 @@
           dest: /etc/nginx/sites-available/default
         - src: php7_common.j2
           dest: /etc/nginx/php7_common
-        - src: index.php.j2
-          dest: /var/www/html/index.php
-          owner: www-data
-          group: www-data
     notify:
         - restart_nginx
         - restart_php-fpm
     tags:
         - php
         - nginx
+
+  - name: Install pi-controll
+    become: yes
+    unarchive:
+        src: https://pi-control.de/?service=download&file=Pi-Control-2.1%5B7d7ab709%5D
+        dest: /var/www/
+        owner: www-data
+        group: www-data
+        creates: /var/www/public_html
 
   - name: Ensure /var/www owned by www-data
     become: yes
