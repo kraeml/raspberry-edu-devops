@@ -811,6 +811,11 @@
   tags:
       - node-red
 
+  - name: install LXC
+    become: yes
+    apt:
+      name: lxc
+
   handlers:
   - name: dphy-swapfile
     become: yes
