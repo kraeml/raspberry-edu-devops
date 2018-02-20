@@ -652,6 +652,11 @@
     tags:
         - etherpad
 
+  - name: install LXC
+    become: yes
+    apt:
+      name: lxc
+
   handlers:
   - name: restart_nodred
     become: yes
