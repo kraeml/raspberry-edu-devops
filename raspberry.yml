@@ -808,7 +808,7 @@
         url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
         mode: 0777
       ignore_errors: yes
-  tags:
+    tags:
       - node-red
 
   - name: install LXC
