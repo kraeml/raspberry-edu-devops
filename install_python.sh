@@ -33,7 +33,8 @@ apt-get install --yes libjpeg62-turbo libjpeg62-turbo-dev liblcms1-dev liblcms1
 apt-get install --yes zlib1g libjpeg8 libjpeg-dev libfreetype6 libfreetype6-dev
 apt-get install --yes libxslt1.1 libgirepository1.0-dev python3-cairo-dev
 #------------------------------------------------------
-
+# Needed for python-numpy
+apt-get install --yes libatlas-base-dev
 #wget --quiet "https://www.python.org/ftp/python/$version/Python-$version.tgz"
 #tar zxvf "Python-$version.tgz"
 #cd "Python-$version"
