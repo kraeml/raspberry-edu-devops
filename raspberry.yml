@@ -417,7 +417,7 @@
   - name: Install pi-controll
     become: yes
     unarchive:
-        src: https://pi-control.de/?service=download&file=Pi-Control-2.1%5B7d7ab709%5D
+        src: https://pi-control.de/?service=download&file=Pi-Control-2.1.1%5B61a2e654%5D
         dest: /var/www/html
         owner: www-data
         group: www-data
