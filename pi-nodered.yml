@@ -13,14 +13,14 @@
     - name: Ensure raspberry dependencies are installed
       become: yes
       apt:
-          name:
-            - expect
-            - sense-hat
-            - raspi-gpio
-            - python-rpi.gpio
-            - python-pexpect
-          update_cache: yes
-          cache_valid_time: 3600
+        name:
+          - expect
+          - sense-hat
+          - raspi-gpio
+          - python-rpi.gpio
+          - python-pexpect
+        update_cache: yes
+        cache_valid_time: 3600
 
     - name: Ensure group gpio exists
       become: yes
@@ -52,7 +52,7 @@
         HOME={{ansible_user_dir}}
         yes | /tmp/update-nodejs-and-nodered
       args:
-          creates: /usr/bin/update-nodejs-and-nodered
+        creates: /usr/bin/update-nodejs-and-nodered
       notify: restart_nodred
       register: nodered
 
@@ -87,21 +87,21 @@
 
     - name: Wait 300 seconds for port 1880 to become open on the host, don't start checking for 10 seconds
       wait_for:
-          port: 1880
-          delay: 10
+        port: 1880
+        delay: 10
       ignore_errors: yes
 
     - name: Ensure pimoroni directory created
       file:
-          path: "{{ansible_user_dir}}/.node-red/nodes"
-          state: directory
+        path: "{{ansible_user_dir}}/.node-red/nodes"
+        state: directory
 
     - name: Ensure pimoroni plugins are installed
       git:
-          dest: "{{ansible_user_dir}}/.node-red/nodes/pimoroni-nodes"
-          repo: http://github.com/pimoroni/node-red-nodes
-          clone: yes # If C(no), do not clone the repository if it does not exist locally
-          update: yes # If C(no), do not retrieve new revisions from the origin repository
+        dest: "{{ansible_user_dir}}/.node-red/nodes/pimoroni-nodes"
+        repo: http://github.com/pimoroni/node-red-nodes
+        clone: yes # If C(no), do not clone the repository if it does not exist locally
+        update: yes # If C(no), do not retrieve new revisions from the origin repository
       notify: restart_nodred
       register: pimoroni
 
@@ -111,37 +111,37 @@
           state: present
           path: "{{ansible_user_dir}}/.node-red"
       with_items:
-          - node-red-dashboard
-          - node-red-contrib-bigtimer
-          - node-red-node-mongodb
-          - node-red-node-mysql
-          - node-red-contrib-looptimer
-          - node-red-node-pi-sense-hat
-          - node-red-contrib-opcua
-          - node-red-contrib-iiot-opcua
-          - node-red-contrib-solar-power-forecast
-          - node-red-node-openweathermap
+        - node-red-dashboard
+        - node-red-contrib-bigtimer
+        - node-red-node-mongodb
+        - node-red-node-mysql
+        - node-red-contrib-looptimer
+        - node-red-node-pi-sense-hat
+        - node-red-contrib-opcua
+        - node-red-contrib-iiot-opcua
+        - node-red-contrib-solar-power-forecast
+        - node-red-node-openweathermap
       notify:
-          - rebuild_node_red
-          - restart_nodred
+        - rebuild_node_red
+        - restart_nodred
 
     - name: Flush handlers
       meta: flush_handlers
 
     - name: Wait 300 seconds for port 1880 to become open on the host, don't start checking for 10 seconds
       wait_for:
-          port: 1880
-          delay: 10
+        port: 1880
+        delay: 10
 
     - name: Ensure some pimoroni plugins are disabled
       command: "{{item}}"
       with_items:
-          - node-red-admin login
-          - node-red-admin disable node-red/node-flotilla
-          - node-red-admin disable node-red-node-ledborg/ledborg
-          - node-red-admin disable node-red/rpi-explorerhat
-          - node-red-admin disable node-red/rpi-unicorn
-          # when: pimoroni.changed or nodered.changed
+        - node-red-admin login
+        - node-red-admin disable node-red/node-flotilla
+        - node-red-admin disable node-red-node-ledborg/ledborg
+        - node-red-admin disable node-red/rpi-explorerhat
+        - node-red-admin disable node-red/rpi-unicorn
+        # when: pimoroni.changed or nodered.changed
       notify: restart_nodred
     tags:
       - node-red
@@ -152,8 +152,8 @@
     become_flags: "-H"
     command: npm config --global set unsafe-perm=true
     tags:
-        - node-red
-        - web-dev
+      - node-red
+      - web-dev
 
   handlers:
   - name: restart_nodred
@@ -166,4 +166,4 @@
   - name: rebuild_node_red
     command: npm rebuild
     args:
-        chdir: "{{ansible_user_dir}}/.node-red"
+      chdir: "{{ansible_user_dir}}/.node-red"
