@@ -5,7 +5,8 @@
   tasks:
   - name: Debug info
     debug:
-        msg: "USER_ID is {{ansible_user_id}} and Home is {{ansible_user_dir}}"
+      msg: "USER_ID is {{ansible_user_id}} and Home is {{ansible_user_dir}}"
+      verbosity: 1
 
   - name: Node-red block
     block:
@@ -32,6 +33,11 @@
       register: update_nodejs_and_nodered
       changed_when: false
       ignore_errors: yes
+
+    - name: Output variable
+      debug:
+        var: update_nodejs_and_nodered
+        verbosity: 1
 
     - name: Get nodered script
       get_url:
