@@ -64,6 +64,8 @@
       notify: restart_nodred
       register: nodered
       when: update_nodejs_and_nodered.stat.exists == true
+      tags:
+        - node_red_update
 
     - name: Ensure noder-red is enabled as service
       become: yes
