@@ -87,7 +87,6 @@
       wait_for:
           port: 1880
           delay: 10
-      register: nodered_service
       ignore_errors: yes
 
     - name: Ensure pimoroni directory created
@@ -131,7 +130,6 @@
       wait_for:
           port: 1880
           delay: 10
-      register: nodered_service
 
     - name: Ensure some pimoroni plugins are disabled
       command: "{{item}}"
