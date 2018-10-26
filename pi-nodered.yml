@@ -12,15 +12,14 @@
     - name: Ensure raspberry dependencies are installed
       become: yes
       apt:
-          name: "{{item}}"
+          name:
+            - expect
+            - sense-hat
+            - raspi-gpio
+            - python-rpi.gpio
+            - python-pexpect
           update_cache: yes
           cache_valid_time: 3600
-      with_items:
-          - expect
-          - sense-hat
-          - raspi-gpio
-          - python-rpi.gpio
-          - python-pexpect
 
     - name: test update-nodejs-and-nodered exists
       stat:
