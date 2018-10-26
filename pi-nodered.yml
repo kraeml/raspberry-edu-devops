@@ -63,6 +63,12 @@
       ignore_errors: yes
       when: update_nodejs_and_nodered.stat.exists != True
 
+    - name: Ensure noder-red is enabled as service
+      become: yes
+      service:
+        name: nodered
+        state: enabled
+
     #- name: Change nodered update skript for minor nodejs
     #  become: yes
     #  replace:
