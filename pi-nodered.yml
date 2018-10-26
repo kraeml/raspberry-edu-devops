@@ -44,7 +44,7 @@
         dest: /tmp/update-nodejs-and-nodered
         url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
         mode: 0777
-      when: update_nodejs_and_nodered.stat.exists != True
+      when: update_nodejs_and_nodered.stat.exists == false
 
     - name: Execute nodered script
       shell: >
@@ -55,7 +55,6 @@
           creates: /usr/bin/update-nodejs-and-nodered
       notify: restart_nodred
       register: nodered
-      when: update_nodejs_and_nodered.stat.exists != True
 
     - name: Execute nodered script
       shell: >
@@ -64,7 +63,7 @@
         yes | /usr/bin/update-nodejs-and-nodered
       notify: restart_nodred
       register: nodered
-      when: update_nodejs_and_nodered.stat.exists == True
+      when: update_nodejs_and_nodered.stat.exists == true
 
     - name: Ensure noder-red is enabled as service
       become: yes
