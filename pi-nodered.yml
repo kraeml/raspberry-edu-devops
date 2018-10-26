@@ -67,7 +67,7 @@
       become: yes
       service:
         name: nodered
-        state: enabled
+        enabled: yes
 
     #- name: Change nodered update skript for minor nodejs
     #  become: yes
