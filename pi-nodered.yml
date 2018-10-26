@@ -14,11 +14,9 @@
       become: yes
       apt:
         name:
-          - expect
           - sense-hat
           - raspi-gpio
           - python-rpi.gpio
-          - python-pexpect
         update_cache: yes
         cache_valid_time: 3600
 
