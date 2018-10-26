@@ -53,9 +53,9 @@
 
     - name: Execute nodered script
       shell: >
-        User={{ansible_user_id}}
+        USER={{ansible_user_id}}
         HOME={{ansible_user_dir}}
-        yes | /tmp/update_nodejs_and_nodered
+        yes | /tmp/update-nodejs-and-nodered
       args:
           creates: /usr/bin/update-nodejs-and-nodered
       notify: restart_nodred
