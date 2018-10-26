@@ -143,15 +143,6 @@
           - node-red-admin disable node-red/rpi-unicorn
           # when: pimoroni.changed or nodered.changed
       notify: restart_nodred
-
-    rescue:
-    - name: Get nodered script
-      become: yes
-      get_url:
-        dest: /usr/bin/update-nodejs-and-nodered
-        url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
-        mode: 0777
-      ignore_errors: yes
     tags:
       - node-red
 
