@@ -65,6 +65,6 @@ python3 setup.py install
 cd -
 rm -rf RTIMULib
 
-pip3 list --outdated --format=legacy | cut -d' ' -f1 | xargs pip3 install --upgrade
-
+# pip3 list --outdated --format=legacy | cut -d' ' -f1 | xargs pip3 install --upgrade
+pip3 list --outdated --format=columns | cut -d' ' -f1 | tail +3 | xargs pip3 install --upgrade
 set +x

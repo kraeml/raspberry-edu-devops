@@ -109,14 +109,14 @@
     stat:
         path: /var/swap
     register: swap_file
-    when_change: False
+    #when_change: False
 
   - name: Ensure dphys is not running
     become: yes
     service:
         name: dphys-swapfile
         state: stopped
-    when: dphys|changed or swap_file.stat.size!=1073741824
+    when: dphys is changed or swap_file.stat.size!=1073741824
     notify:
         - dphy-swapfile
 
