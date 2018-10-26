@@ -146,15 +146,6 @@
     tags:
       - node-red
 
-  - name: NPM unsafe-perm
-    become: yes
-    become_method: sudo
-    become_flags: "-H"
-    command: npm config --global set unsafe-perm=true
-    tags:
-      - node-red
-      - web-dev
-
   handlers:
   - name: restart_nodred
     become: yes
