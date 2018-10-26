@@ -21,6 +21,11 @@
           update_cache: yes
           cache_valid_time: 3600
 
+    - name: Ensure group gpio exists
+      become: yes
+      group:
+        name: gpio
+
     - name: test update-nodejs-and-nodered exists
       stat:
         path: /usr/bin/update-nodejs-and-nodered
@@ -35,22 +40,6 @@
         mode: 0777
       when: update_nodejs_and_nodered.stat.exists != True
 
-    #- name: Change to nodejs minor version
-    #  lineinfile:
-    #      dest: /tmp/update-nodejs-and-nodered
-          # The path of the file to modify.,Note that the Windows path delimiter '' must be escaped as '' (see examples below)
-    #      regexp: "8."
-          # The regular expression to look for in every line of the file.
-          # For C(state=present), the pattern to replace if found; only the last
-          # line found will be replaced. For C(state=absent), the pattern of the
-          # line to remove.  Uses .NET compatible regular expressions;
-          # see U(https://msdn.microsoft.com/en-us/library/hs600312%28v=vs.110%29.aspx).
-    #      line: "{{nodejs_minor_version}}."
-          # Required for C(state=present). The line to insert/replace into the
-          # file. If C(backrefs) is set, may contain backreferences that will
-          # get expanded with the C(regexp) capture groups if the regexp matches.
-    #  when: update_nodejs_and_nodered.stat.exists != True
-
     - name: Execute nodered script
       shell: >
         USER={{ansible_user_id}}
@@ -60,23 +49,22 @@
           creates: /usr/bin/update-nodejs-and-nodered
       notify: restart_nodred
       register: nodered
-      ignore_errors: yes
       when: update_nodejs_and_nodered.stat.exists != True
+
+    - name: Execute nodered script
+      shell: >
+        USER={{ansible_user_id}}
+        HOME={{ansible_user_dir}}
+        yes | /usr/bin/update-nodejs-and-nodered
+      notify: restart_nodred
+      register: nodered
+      when: update_nodejs_and_nodered.stat.exists == True
 
     - name: Ensure noder-red is enabled as service
       become: yes
       service:
         name: nodered
         enabled: yes
-
-    #- name: Change nodered update skript for minor nodejs
-    #  become: yes
-    #  replace:
-    #      dest: /usr/bin/update-nodejs-and-nodered
-    #      regexp: "bash <"
-    #      replace: "bash < sed s/8./{{nodejs_minor_version}}./g <"
-    #  ignore_errors: yes
-    #  changed_when: false
 
     - name: Ensure nodred and some dependencies are installed
       become: yes
@@ -139,7 +127,6 @@
           port: 1880
           delay: 10
       register: nodered_service
-      ignore_errors: yes
 
     - name: Ensure some pimoroni plugins are disabled
       command: "{{item}}"
@@ -150,7 +137,7 @@
           - node-red-admin disable node-red/rpi-explorerhat
           - node-red-admin disable node-red/rpi-unicorn
           # when: pimoroni.changed or nodered.changed
-      ignore_errors: yes
+      notify: restart_nodred
 
     rescue:
     - name: Get nodered script
