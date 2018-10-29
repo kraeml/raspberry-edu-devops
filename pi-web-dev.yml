@@ -88,12 +88,10 @@
   - name: Ensure sqlite3 is installed
     become: yes
     apt:
-        name: "{{item}}"
+        name:
+          - sqlite3
         update_cache: yes
         cache_valid_time: 3600
-
-    with_items:
-        - sqlite3
     tags:
         - web-dev
 
