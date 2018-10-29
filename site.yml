@@ -1,0 +1,13 @@
+---
+- name: Setup the pi for ansible playbooks
+  hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Ensure directory roles exists
+    file:
+      path: roles
+      state: directory
+
+  - name: Ensure ansible-roles installed
+    command: ansible-galaxy install -r requirements.yml --force
