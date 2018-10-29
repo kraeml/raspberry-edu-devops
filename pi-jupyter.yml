@@ -2,7 +2,7 @@
 - hosts: localhost
   connection: local
   vars:
-    - nodejs_minor_version: "8"
+    - nodejs_minor_version: "v8"
 
   roles:
   - role: kraeml.jupyter
@@ -59,7 +59,7 @@
         become_method: sudo
         become_flags: "-H"
         command: npm config --global set unsafe-perm=true
-    when: nodejs_pi_version.stdout != "{{nodejs_minor_version}}"
+    when: nodejs_pi_version.stdout != nodejs_minor_version
 
   tasks:
   - name: Ensure link to rdf-edu-notbooks exitst
