@@ -50,8 +50,10 @@
       mode: 0755
 
   - name: Get geckodriver
-    shell: curl -L https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-arm7hf.tar.gz | sudo tar xz -C /usr/local/bin/
-
+    become: yes
+    unarchive:
+      src: https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-arm7hf.tar.gz
+      dest: /usr/local/bin/
   - name: Get selenium
     become: yes
     pip:
