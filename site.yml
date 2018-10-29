@@ -14,7 +14,7 @@
 - import_playbook: pi-databases.yml
 - import_playbook: pi-cloud9.yml
 - import_playbook: pi-inspec.yml
-- import_playbook: pi-etherpad.yml
+- import_playbook: pi-etherwrite.yml
 - import_playbook: pi-tex.yml
 - import_playbook: pi-web-dev.yml
 # ToDo Refactor next playbook
