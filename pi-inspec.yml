@@ -27,10 +27,11 @@
   - name: Install inspec
     become: yes
     gem:
-      name:
-        - inspec
-        - bundler
+      name: "{{item}}"
       user_install: no
+    with_items:
+      - inspec
+      - bundler
 
   - name: Install capybara-edu-devops
     bundler:
