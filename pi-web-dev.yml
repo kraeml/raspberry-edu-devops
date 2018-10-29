@@ -20,7 +20,8 @@
     - functional-javascript-workshop
     - bytewiser
     - expressworks
-    - bug-clinic
+    # Not working wiht 8.x
+    # - bug-clinic
     - async-you
     - test-anything
     - learnyoumongo
