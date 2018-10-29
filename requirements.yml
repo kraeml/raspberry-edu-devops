@@ -1,13 +1,13 @@
 ---
-- src: geerlingguy.nodejs
-- src: geerlingguy.docker
+#- src: geerlingguy.nodejs
+#- src: geerlingguy.docker
 - src: geerlingguy.mysql
 - src: https://github.com/kraeml/ansible-role-jupyter
   version: release/ubuntu1804
   name: kraeml.jupyter
 - src: geerlingguy.nginx
 - src: geerlingguy.php
-- src: geerlingguy.php-versions
+#- src: geerlingguy.php-versions
 # Workaround galaxy errors
 #- src: https://github.com/geerlingguy/ansible-role-php-versions/archive/2.1.3.tar.gz
 #  name: geerlingguy.php-versions
