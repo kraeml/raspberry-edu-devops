@@ -41,10 +41,13 @@
       chdir: capybara-edu-devops
 
   - name: Install phantomjs
-    shell: sudo curl -o /usr/local/bin/phantomjs -sSL https://github.com/piksel/phantomjs-raspberrypi/raw/stretch/bin/phantomjs
-
-  - name: Rights for phantomjs
-    command: sudo chmod +x /usr/local/bin/phantomjs
+    become: yes
+    get_url:
+      url: https://github.com/piksel/phantomjs-raspberrypi/raw/stretch/bin/phantomjs
+      dest: /usr/local/bin/phantomjs
+      owner: root
+      group: root
+      mode: 0755
 
   - name: Get geckodriver
     shell: curl -L https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-arm7hf.tar.gz | sudo tar xz -C /usr/local/bin/
