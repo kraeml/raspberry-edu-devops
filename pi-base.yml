@@ -64,12 +64,10 @@
   - name: Ensure mqtt is installed
     become: yes
     apt:
-        name: "{{item}}"
+        name:
+          - mosquitto
+          - mosquitto-clients
         update_cache: yes
         cache_valid_time: 3600
-
-    with_items:
-        - mosquitto
-        - mosquitto-clients
     tags:
         - mqtt
