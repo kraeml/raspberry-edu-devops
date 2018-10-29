@@ -143,6 +143,7 @@
       notify: restart_nodered
 
     - name: Ensure gpiomem rights for group gpio
+      become: yes
       file:
         path: /dev/gpiomem
         owner: root
