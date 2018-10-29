@@ -3,5 +3,5 @@
 - src: geerlingguy.docker
 - src: geerlingguy.mysql
 - src: https://github.com/kraeml/ansible-role-jupyter
-  version: master
+  version: release/ubuntu1804
   name: kraeml.jupyter

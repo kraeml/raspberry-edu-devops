@@ -1,0 +1,69 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+    - nodejs_minor_version: "8"
+
+  roles:
+  - role: kraeml.jupyter
+    become: yes
+    tags: jupyter
+    nodejs_version: "{{nodejs_minor_version}}.x"
+    npm_config_unsafe_perm: "true"
+
+  pre_tasks:
+  - name: Debug info
+    debug:
+        msg: "USER_ID is {{ansible_user_id}} and Home is {{ansible_user_dir}}"
+        #verbosity: # A number that controls when the debug is run, if you set
+        # to 3 it will only run debug when -vvv or above
+  - name: Get nodejs info
+    shell: nodejs --version | cut -d '.' -f 1
+    ignore_errors: yes
+    register: nodejs_pi_version
+
+  - name: Output nodejs Version
+    debug:
+        var: nodejs_pi_version
+        verbosity: 1
+
+  - name: Install nodejs
+    block:
+      - name: Shell script nodejs
+        shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - 2>&1 | sudo tee -a /var/log/node-install.log >>/dev/null
+
+      - name: Install nodejs in minor version
+        become: yes
+        apt:
+          force: yes
+          # If C(yes), force installs/removes.
+          name: "nodejs={{nodejs_minor_version}}.*"
+          # A package name, like C(foo), or package specifier with version,
+          # like C(foo=1.0). Name wildcards (fnmatch) like C(apt*) and version
+          # wildcards like C(foo=1.0*) are also supported.  Note that the apt-get
+          # commandline supports implicit regex matches here but we do not because
+          # it can let typos through easier (If you typo C(foo) as C(fo) apt-get
+          # would install packages that have "fo" in their name with a warning and
+          # a prompt for the user.  Since we don't have warnings and prompts
+          # before installing we disallow this.  Use an explicit fnmatch pattern
+          # if you want wildcarding)
+          update_cache: yes
+          # Run the equivalent of C(apt-get update) before the operation. Can be
+          # run as part of the package installation or as a separate step.
+          cache_valid_time: 3600
+          # Update the apt cache if its older than the I(cache_valid_time).
+          # This option is set in seconds.
+
+      - name: NPM unsafe-perm
+        become: yes
+        become_method: sudo
+        become_flags: "-H"
+        command: npm config --global set unsafe-perm=true
+    when: nodejs_pi_version.stdout != "{{nodejs_minor_version}}"
+
+  tasks:
+  - name: Ensure link to rdf-edu-notbooks exitst
+    file:
+      src: "{{ansible_user_dir}}/.raspberry-edu-devops/notebooks"
+      dest: "{{ansible_user_dir}}/notebooks/raspberry-edu-devops"
+      state: link
