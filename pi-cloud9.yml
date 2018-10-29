@@ -1,0 +1,117 @@
+---
+- hosts: localhost
+  connection: local
+
+  vars:
+    - nodejs_minor_version: "v8"
+
+  pre_tasks:
+  - name: Get nodejs info
+    shell: nodejs --version | cut -d '.' -f 1
+    ignore_errors: yes
+    register: nodejs_pi_version
+
+  - name: Output nodejs Version
+    debug:
+        var: nodejs_pi_version
+        verbosity: 1
+
+  - name: Install nodejs
+    block:
+      - name: Shell script nodejs
+        shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - 2>&1 | sudo tee -a /var/log/node-install.log >>/dev/null
+
+      - name: Install nodejs in minor version
+        become: yes
+        apt:
+          force: yes
+          # If C(yes), force installs/removes.
+          name: "nodejs={{nodejs_minor_version}}.*"
+          # A package name, like C(foo), or package specifier with version,
+          # like C(foo=1.0). Name wildcards (fnmatch) like C(apt*) and version
+          # wildcards like C(foo=1.0*) are also supported.  Note that the apt-get
+          # commandline supports implicit regex matches here but we do not because
+          # it can let typos through easier (If you typo C(foo) as C(fo) apt-get
+          # would install packages that have "fo" in their name with a warning and
+          # a prompt for the user.  Since we don't have warnings and prompts
+          # before installing we disallow this.  Use an explicit fnmatch pattern
+          # if you want wildcarding)
+          update_cache: yes
+          # Run the equivalent of C(apt-get update) before the operation. Can be
+          # run as part of the package installation or as a separate step.
+          cache_valid_time: 3600
+          # Update the apt cache if its older than the I(cache_valid_time).
+          # This option is set in seconds.
+
+      - name: NPM unsafe-perm
+        become: yes
+        become_method: sudo
+        become_flags: "-H"
+        command: npm config --global set unsafe-perm=true
+    when: nodejs_pi_version.stdout != nodejs_minor_version
+
+  tasks:
+  - name: Ensure cloud9 dependencies are installed
+    become: yes
+    apt:
+        name: tmux
+        update_cache: yes
+        cache_valid_time: 3600
+    tags:
+        - cloud9
+
+  - name: Clone cloud9
+    git:
+        dest: "{{ansible_user_dir}}/cloud9"
+        repo: https://github.com/c9/core.git
+        clone: yes
+        update: yes
+    register: clone_cloud9
+    tags:
+        - cloud9
+
+  - name: Install cloud9
+    become: yes
+    become_method: sudo
+    become_flags: "-H"
+    shell: bash -c 'HOME={{ansible_user_dir}} ./scripts/install-sdk.sh'
+    args:
+        chdir: "{{ansible_user_dir}}/cloud9/"
+    when: clone_cloud9.changed
+    notify:
+        - restart_cloud9
+    tags:
+        - cloud9
+
+  - name: Ensure {{ansible_user_dir}}/cloud9 owned by {{ansible_user_id}}
+    become: yes
+    file:
+        path: "{{ansible_user_dir}}/{{item}}"
+        state: directory
+        recurse: yes
+        owner: "{{ansible_user_id}}"
+        group: "{{ansible_user_id}}"
+    with_items:
+        - cloud9
+        - .c9
+    tags:
+        - cloud9
+
+  - name: Install cloud9 systemd scripts
+    become: yes
+    template:
+        src: cloud9.service.j2
+        dest: /lib/systemd/system/cloud9.service
+        mode: 0644
+    notify:
+        - restart_cloud9
+    tags:
+        - cloud9
+
+  handlers:
+    - name: restart_cloud9
+      become: yes
+      service:
+        enabled: yes
+        state: restarted
+        name: cloud9.service

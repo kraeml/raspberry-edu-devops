@@ -1,0 +1,205 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+    - nodejs_minor_version: "v8"
+
+  pre_tasks:
+  - name: Debug info
+    debug:
+        msg: "USER_ID is {{ansible_user_id}} and Home is {{ansible_user_dir}}"
+        #verbosity: # A number that controls when the debug is run, if you set
+        # to 3 it will only run debug when -vvv or above
+  - name: Get nodejs info
+    shell: nodejs --version | cut -d '.' -f 1
+    ignore_errors: yes
+    register: nodejs_pi_version
+
+  - name: Output nodejs Version
+    debug:
+        var: nodejs_pi_version
+        verbosity: 1
+
+  - name: Install nodejs
+    block:
+      - name: Shell script nodejs
+        shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - 2>&1 | sudo tee -a /var/log/node-install.log >>/dev/null
+
+      - name: Install nodejs in minor version
+        become: yes
+        apt:
+          force: yes
+          # If C(yes), force installs/removes.
+          name: "nodejs={{nodejs_minor_version}}.*"
+          # A package name, like C(foo), or package specifier with version,
+          # like C(foo=1.0). Name wildcards (fnmatch) like C(apt*) and version
+          # wildcards like C(foo=1.0*) are also supported.  Note that the apt-get
+          # commandline supports implicit regex matches here but we do not because
+          # it can let typos through easier (If you typo C(foo) as C(fo) apt-get
+          # would install packages that have "fo" in their name with a warning and
+          # a prompt for the user.  Since we don't have warnings and prompts
+          # before installing we disallow this.  Use an explicit fnmatch pattern
+          # if you want wildcarding)
+          update_cache: yes
+          # Run the equivalent of C(apt-get update) before the operation. Can be
+          # run as part of the package installation or as a separate step.
+          cache_valid_time: 3600
+          # Update the apt cache if its older than the I(cache_valid_time).
+          # This option is set in seconds.
+
+      - name: NPM unsafe-perm
+        become: yes
+        become_method: sudo
+        become_flags: "-H"
+        command: npm config --global set unsafe-perm=true
+    when: nodejs_pi_version.stdout != nodejs_minor_version
+
+  tasks:
+  - name: Ensure etherpad and etherdraw is installed
+    become: yes
+    apt:
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+
+    with_items:
+        - libreoffice
+        - abiword
+        - libcairo2-dev
+        - libjpeg-dev
+        - libpango1.0-dev
+        - libgif-dev
+        - build-essential
+        - g++
+    tags:
+        - etherpad
+
+  - name:
+    become: yes
+    git:
+        dest: "/opt/{{item.dest}}"
+        repo: "{{item.repo}}"
+        clone: yes
+        update: yes
+    register: git_etherpad
+    with_items:
+        - dest: etherpad
+          repo: git://github.com/ether/etherpad-lite.git
+        - dest: etherdraw
+          repo: git://github.com/JohnMcLear/draw.git
+    tags:
+        - etherpad
+
+  - name: Ensure etherpad user exists
+    become: yes
+    user:
+        name: "{{item}}"
+        home: "/opt/{{item}}"
+        move_home: no
+        createhome: yes
+        system: yes
+        state: present
+    with_items:
+        - etherpad
+        - etherdraw
+    tags:
+        - etherpad
+
+  - name: Ensure etherpad home owned by etherpad
+    become: yes
+    file:
+        path: "/opt/{{item}}"
+        owner: "{{item}}"
+        group: "{{item}}"
+        recurse: yes
+        state: directory
+    with_items:
+        - etherpad
+        - etherdraw
+    tags:
+        - etherpad
+
+  - name: Settings for etherpad
+    become: yes
+    template:
+        src: settings.json.j2
+        dest: /opt/etherpad/settings.json
+        owner: etherpad
+        group: etherpad
+    tags:
+        - etherpad
+
+  - name: Install etherpad
+    become: yes
+    become_user: etherpad
+    shell: "{{item}}"
+    args:
+        chdir: /opt/etherpad
+    when: git_etherpad.changed
+    with_items:
+        - /opt/etherpad/bin/installDeps.sh
+        - /usr/bin/npm install ep_activepads ep_adminpads ep_copy_paste_images ep_cursortrace
+        - /usr/bin/npm install ep_font_family ep_font_size ep_horizontal_line ep_latexexport
+        - /usr/bin/npm install ep_markdown ep_markdownify ep_padlist ep_print ep_printer
+        - /usr/bin/npm install ep_search ep_spellcheck ep_tables ep_xmlexport
+    tags:
+        - etherpad
+
+  - name: Settings for etherpad
+    become: yes
+    template:
+        src: etherpad-lite.service.j2
+        dest: /etc/systemd/system/etherpad-lite.service
+    notify:
+        - restart_etherpad
+    tags:
+        - etherpad
+
+  - name: Install etherdraw
+    become: yes
+    become_user: etherdraw
+    shell: "{{item}}"
+    args:
+        chdir: /opt/etherdraw
+    when: git_etherpad.changed
+    with_items:
+        - /opt/etherdraw/bin/installDeps.sh
+    tags:
+        - etherpad
+    notify:
+        - restart_etherdraw
+
+  - name: Ensure etherdraw log exists
+    become: yes
+    file:
+        path: /var/log/etherdraw
+        state: directory
+        mode: 0777
+    tags:
+        - etherpad
+
+  - name: service etherdraw
+    become: yes
+    template:
+        src: etherdraw.j2
+        dest: /etc/init.d/etherdraw
+        mode: 0774
+    notify:
+        - restart_etherdraw
+    tags:
+        - etherpad
+
+  handlers:
+  - name: restart_etherpad
+    become: yes
+    service:
+      enabled: yes
+      state: restarted
+      name: etherpad-lite
+
+  - name: restart_etherdraw
+    become: yes
+    service:
+      enabled: yes
+      state: restarted
+      name: etherdraw

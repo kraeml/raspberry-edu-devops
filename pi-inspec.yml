@@ -1,0 +1,8 @@
+---
+- name: Install inspec on pi
+  hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Run old inspec script
+    script: install_inspec.sh

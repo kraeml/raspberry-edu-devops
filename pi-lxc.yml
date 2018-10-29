@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+  - name: install LXC
+    become: yes
+    apt:
+      name: "{{item}}"
+    with_items:
+    - lxc

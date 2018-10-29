@@ -1,0 +1,76 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Ensure raspberry dependencies are installed
+    become: yes
+    apt:
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+    with_items:
+        - git
+        - nmap
+        - curl
+        - sudo
+        - expect
+        - sense-hat
+        - raspi-gpio
+        - python-rpi.gpio
+        - debian-keyring
+        - debian-archive-keyring
+        - wiringpi
+        - lsb-core
+        - avahi-utils
+        - avahi-daemon
+        - openjdk-9-jdk
+        - oracle-java8-jdk
+        - tidy
+        - python-pexpect
+        - sl
+        - libjpeg62-turbo
+        - libjpeg62-turbo-dev
+        # Not in Ubuntu 1604
+        #- liblcms1-dev
+        #- liblcms1
+    tags:
+        - base
+
+  - name: Git config
+    git_config:
+        name: "{{item.name}}"
+        value: "{{item.value}}"
+        scope: global
+    with_items:
+        - name: "user.email"
+          value: "{{ansible_user_id}}@example.com"
+        - name: "user.name"
+          value: "{{ansible_user_id}}"
+        - name: "core.editor"
+          value: "vim"
+        - name: "push.default"
+          value: "current"
+    tags:
+        - git
+
+  - name: Alternatives set
+    become: yes
+    alternatives:
+        path: /usr/lib/jvm/java-9-openjdk-armhf/bin/java
+        name: java
+    tags:
+        - base
+
+  - name: Ensure mqtt is installed
+    become: yes
+    apt:
+        name: "{{item}}"
+        update_cache: yes
+        cache_valid_time: 3600
+
+    with_items:
+        - mosquitto
+        - mosquitto-clients
+    tags:
+        - mqtt
