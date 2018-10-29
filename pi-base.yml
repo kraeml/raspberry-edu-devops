@@ -6,34 +6,33 @@
   - name: Ensure raspberry dependencies are installed
     become: yes
     apt:
-        name: "{{item}}"
+        name:
+          - git
+          - nmap
+          - curl
+          - sudo
+          - expect
+          - sense-hat
+          - raspi-gpio
+          - python-rpi.gpio
+          - debian-keyring
+          - debian-archive-keyring
+          - wiringpi
+          - lsb-core
+          - avahi-utils
+          - avahi-daemon
+          - openjdk-9-jdk
+          - oracle-java8-jdk
+          - tidy
+          - python-pexpect
+          - sl
+          - libjpeg62-turbo
+          - libjpeg62-turbo-dev
+          # Not in Ubuntu 1604
+          #- liblcms1-dev
+          #- liblcms1
         update_cache: yes
         cache_valid_time: 3600
-    with_items:
-        - git
-        - nmap
-        - curl
-        - sudo
-        - expect
-        - sense-hat
-        - raspi-gpio
-        - python-rpi.gpio
-        - debian-keyring
-        - debian-archive-keyring
-        - wiringpi
-        - lsb-core
-        - avahi-utils
-        - avahi-daemon
-        - openjdk-9-jdk
-        - oracle-java8-jdk
-        - tidy
-        - python-pexpect
-        - sl
-        - libjpeg62-turbo
-        - libjpeg62-turbo-dev
-        # Not in Ubuntu 1604
-        #- liblcms1-dev
-        #- liblcms1
     tags:
         - base
 
