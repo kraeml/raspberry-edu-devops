@@ -34,6 +34,7 @@
     shell: nodejs --version | cut -d '.' -f 1
     ignore_errors: yes
     register: nodejs_pi_version
+    changed_when: false
 
   - name: Output nodejs Version
     debug:
@@ -73,7 +74,7 @@
         become_flags: "-H"
         command: npm config --global set unsafe-perm=true
     when: nodejs_pi_version.stdout != nodejs_minor_version
-    
+
   tasks:
   - name: html5validator via pip
     become: yes
