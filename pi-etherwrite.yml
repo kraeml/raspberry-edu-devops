@@ -59,19 +59,17 @@
   - name: Ensure etherpad and etherdraw is installed
     become: yes
     apt:
-        name: "{{item}}"
+        name:
+          - libreoffice
+          - abiword
+          - libcairo2-dev
+          - libjpeg-dev
+          - libpango1.0-dev
+          - libgif-dev
+          - build-essential
+          - g++
         update_cache: yes
         cache_valid_time: 3600
-
-    with_items:
-        - libreoffice
-        - abiword
-        - libcairo2-dev
-        - libjpeg-dev
-        - libpango1.0-dev
-        - libgif-dev
-        - build-essential
-        - g++
     tags:
         - etherpad
 
