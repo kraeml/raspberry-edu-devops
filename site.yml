@@ -14,5 +14,5 @@
     command: ansible-galaxy install -r requirements.yml --force
     changed_when: false
 
-- import_role: pi-nodered.yml
-- import_role: pi-jupyter.yml
+- import_playbook: pi-nodered.yml
+- import_playbook: pi-jupyter.yml
