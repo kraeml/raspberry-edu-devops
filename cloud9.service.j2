@@ -5,7 +5,7 @@ Wants=network.target
 [Service]
 Type=simple
 # Capybara with poltergeist couldn't test alerts
-ExecStart=/usr/bin/node {{ansible_user_dir}}/cloud9/server.js -w {{ansible_user_dir}} -l 0.0.0.0 -a jns:jns
+ExecStart=/usr/bin/node {{ansible_user_dir}}/cloud9/server.js --port 8181 -w {{ansible_user_dir}} --listen 0.0.0.0 --auth jns:jns
 Restart=on-failure
 Nice=5
 User={{ansible_user_id}}
