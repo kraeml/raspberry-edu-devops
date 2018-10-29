@@ -29,7 +29,7 @@
     - learnyoumongo
     - torrential
     - html-validator-cli
-  - nodejs_minor_version: "6"
+  - nodejs_minor_version: "8"
 
   roles:
   - role: kraeml.jupyter
