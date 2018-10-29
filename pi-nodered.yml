@@ -147,7 +147,7 @@
         path: /dev/gpiomem
         owner: root
         group: gpio
-        mode: 0760
+        mode: 0660
       notify: restart_nodered
     tags:
       - node-red
