@@ -95,6 +95,12 @@
     tags:
         - web-dev
 
+  - name: NPM unsafe-perm
+    become: yes
+    become_method: sudo
+    become_flags: "-H"
+    command: npm config --global set unsafe-perm=true
+
   - name: Additional packages for web-dev learning
     become: yes
     become_method: sudo
