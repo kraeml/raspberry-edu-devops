@@ -54,6 +54,8 @@
     unarchive:
       src: https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-arm7hf.tar.gz
       dest: /usr/local/bin/
+      remote_src: yes
+
   - name: Get selenium
     become: yes
     pip:
