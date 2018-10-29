@@ -4,5 +4,54 @@
   connection: local
 
   tasks:
-  - name: Run old inspec script
-    script: install_inspec.sh
+  #- name: Run old inspec script
+  #  script: install_inspec.sh
+
+  - name: Install inspec dependencies
+    become: yes
+    apt:
+      name:
+        - ruby
+        - ruby-dev
+        - gem
+        - xvfb
+        - firefox-esr
+        - libfontconfig1
+        - libfreetype6
+        - libicu57
+        - libssl1.0.2
+        - fontconfig
+      update_cache: yes
+      cache_valid_time: 3600
+
+  - name: Install inspec
+    become: yes
+    gem:
+      name:
+        - inspec
+        - bundler
+      user_install: no
+
+  - name: Install capybara-edu-devops
+    bundler:
+      state: present # The desired state of the Gem bundle. C(latest) updates gems to the most recent, acceptable version
+      gemfile: Gemfile in current directory # Only applies if state is C(present). The path to the gemfile to use to install gems.
+      user_install: yes # Only applies if state is C(present). Installs gems in the local user's cache or for all users
+      chdir: capybara-edu-devops
+
+  - name: Install phantomjs
+    shell: sudo curl -o /usr/local/bin/phantomjs -sSL https://github.com/piksel/phantomjs-raspberrypi/raw/stretch/bin/phantomjs
+
+  - name: Rights for phantomjs
+    command: sudo chmod +x /usr/local/bin/phantomjs
+
+  - name: Get geckodriver
+    shell: curl -L https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-arm7hf.tar.gz | sudo tar xz -C /usr/local/bin/
+
+  - name: Get selenium
+    become: yes
+    pip:
+      name:
+        - selenium
+        - pyvirtualdisplay
+      executable: pip3
