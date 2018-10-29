@@ -51,7 +51,7 @@
         yes | /tmp/update-nodejs-and-nodered
       args:
         creates: /usr/bin/update-nodejs-and-nodered
-      notify: restart_nodred
+      notify: restart_nodered
       register: nodered
 
     - name: Execute nodered script
@@ -59,7 +59,7 @@
         USER={{ansible_user_id}}
         HOME={{ansible_user_dir}}
         yes | /usr/bin/update-nodejs-and-nodered
-      notify: restart_nodred
+      notify: restart_nodered
       register: nodered
       when: update_nodejs_and_nodered.stat.exists == true
       tags:
@@ -100,7 +100,7 @@
         repo: http://github.com/pimoroni/node-red-nodes
         clone: yes # If C(no), do not clone the repository if it does not exist locally
         update: yes # If C(no), do not retrieve new revisions from the origin repository
-      notify: restart_nodred
+      notify: restart_nodered
       register: pimoroni
 
     - name: Install node-red addons
@@ -121,7 +121,7 @@
         - node-red-node-openweathermap
       notify:
         - rebuild_node_red
-        - restart_nodred
+        - restart_nodered
 
     - name: Flush handlers
       meta: flush_handlers
@@ -140,12 +140,20 @@
         - node-red-admin disable node-red/rpi-explorerhat
         - node-red-admin disable node-red/rpi-unicorn
         # when: pimoroni.changed or nodered.changed
-      notify: restart_nodred
+      notify: restart_nodered
+
+    - name: Ensure gpiomem rights for group gpio
+      file:
+        path: /dev/gpiomem
+        owner: root
+        group: gpio
+        mode: 0760
+      notify: restart_nodered
     tags:
       - node-red
 
   handlers:
-  - name: restart_nodred
+  - name: restart_nodered
     become: yes
     service:
       enabled: yes
