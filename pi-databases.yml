@@ -2,10 +2,10 @@
 - hosts: all
 
   vars:
-  - db_user:
+    db_user:
         name: "example_user"
         password: "passw0rd"
-  - phpmyadmin_version: "4.8.3"
+    phpmyadmin_version: "4.8.3"
 
   roles:
   - role: geerlingguy.mysql
@@ -191,7 +191,7 @@
       state: restarted
       name: nginx
 
-  - name: restart_php-fpm
+  - name: restart_php7.0-fpm
     become: yes
     service:
       enabled: yes
