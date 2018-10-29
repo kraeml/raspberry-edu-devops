@@ -73,7 +73,7 @@
     tags:
         - etherpad
 
-  - name:
+  - name: Git clone ehterpad and etherdraw
     become: yes
     git:
         dest: "/opt/{{item.dest}}"
