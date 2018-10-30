@@ -21,8 +21,8 @@
         dest: "/etc/ansible/{{item}}"
         src: "{{item}}.j2"
       with_items:
-        - hosts
-        - ansible.cfg
+        - "hosts"
+        - "ansible.cfg"
 
 - import_playbook: pi-inspec.yml
 - import_playbook: pi-nodered.yml
