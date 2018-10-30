@@ -217,9 +217,9 @@ tools = {
         :version => '5.4',
         :command => 'pip3 show psutil'
     },
-    
+
     :pahomqtt => {
-        :version => '1.3',
+        :version => '1.4',
         :command => 'pip3 show paho-mqtt'
     },
     :tweepy => {
@@ -292,7 +292,7 @@ tools = {
 #        :command => 'node-red-admin info node-red-node-ledborg/ledborg'
 #    },
     :noderedunicorn => {
-        :version => '0.17.5',
+        :version => '0.19',
         :commend => 'disabled',
         :command => 'node-red-admin info node-red/rpi-unicorn'
     },
@@ -305,7 +305,7 @@ tools = {
         :command => 'gpio -v'
     },
     :noderedmongo => {
-        :version => '0.0.13',
+        :version => '0.0.14',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-mongodb/mongo'
     },

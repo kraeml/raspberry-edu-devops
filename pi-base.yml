@@ -46,6 +46,7 @@
       name:
         - paho-mqtt
         - tweepy
+        - psutil
       executable: pip3
       state: present # The state of module,The 'forcereinstall' option is only available in Ansible 2.1 and above.
 
