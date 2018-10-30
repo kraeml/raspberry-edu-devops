@@ -16,7 +16,7 @@
         name:
           - sense-hat
           - raspi-gpio
-          - pyhton3-rpi.gpio
+          - python3-rpi.gpio
           - python-rpi.gpio
           - python3-blinkt
           - python-blinkt
