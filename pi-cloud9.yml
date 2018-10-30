@@ -73,7 +73,6 @@
         repo: https://github.com/c9/core.git
         clone: yes
         update: no
-    register: clone_cloud9
     tags:
         - cloud9
 
@@ -82,8 +81,6 @@
     args:
         chdir: "{{ansible_user_dir}}/cloud9/"
         creates: "{{ansible_user_dir}}/cloud9/node_modules/accepts"
-    when: clone_cloud9.changed
-    ignore_errors: true
     notify:
         - restart_cloud9
     tags:
