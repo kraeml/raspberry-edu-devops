@@ -21,6 +21,8 @@
         - libicu57
         - libssl1.0.2
         - fontconfig
+        - zlib1g-dev
+        - zlib1g
       update_cache: yes
       cache_valid_time: 3600
 
