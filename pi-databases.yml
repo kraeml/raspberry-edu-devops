@@ -187,17 +187,17 @@
         - php
         - nginx
 
-    - name: Ensure some html for {{ansible_user_id}} exists
-      template:
-          src: "{{item}}.j2"
-          dest: "/var/www/html/{{item}}"
-          owner: www-data
-          group: www-data
-      with_items:
-          - index.php
-      tags:
-          - php
-          - nginx
+  - name: Ensure some html for {{ansible_user_id}} exists
+    template:
+        src: "{{item}}.j2"
+        dest: "/var/www/html/{{item}}"
+        owner: www-data
+        group: www-data
+    with_items:
+        - index.php
+    tags:
+        - php
+        - nginx
 
   - name: Ensure /var/www/html/phpMyAdmin is directory
     become: yes
