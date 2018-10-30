@@ -22,7 +22,12 @@
         src: "{{item}}.j2"
       with_items:
         - "hosts"
-        - "ansible.cfg"
+
+    - name: Ensure global ansible inventory exists workaround no loop
+      become: yes
+      template:
+        dest: "/etc/ansible/ansible.cfg"
+        src: "ansible.cfg.j2"
 
 - import_playbook: pi-inspec.yml
 - import_playbook: pi-nodered.yml
