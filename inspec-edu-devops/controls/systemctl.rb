@@ -19,25 +19,25 @@ services = [
 
 gem_packages = {
     :bundler => {
-        :version => "1.16.1"
+        :version => "1.17.1"
     },
     :capybara => {
-        :version => "2.17.0"
+        :version => "3.10.0"
     },
     :inspec => {
-        :version => "1.50.1"
+        :version => "3.0.12"
     },
     :"selenium-webdriver" => {
-        :version => "3.8.0"
+        :version => "3.14.1"
     },
     :"cucumber" => {
-        :version => "3.1.0"
+        :version => "3.1.2"
     },
     :"rspec-expectations" => {
-        :version => "3.7.0"
+        :version => "3.8.2"
     },
     :"poltergeist" => {
-        :version => "1.17.0"
+        :version => "1.18.1"
     },
     :"launchy" => {
         :version => "2.4.3"
@@ -99,7 +99,7 @@ users = {
 
 tools = {
     :ansible => {
-        :version => '2.4',
+        :version => '2.7.1',
         :command => 'ansible --version'
     },
     :python3 => {
@@ -107,7 +107,7 @@ tools = {
         :command => 'python3 --version'
     },
     :php => {
-        :version => '7.0.27',
+        :version => '7.0.30',
         :command => 'php --version' },
     :mysql => {
         :version => '10.1',
@@ -164,13 +164,13 @@ tools = {
         :command => 'pip3 show ipython-sql'
     },
     :nodered => {
-        :version => '0.17',
+        :version => '0.19',
         :command => 'node-red --help',
         :port => '1880',
         :process => 'node-red'
     },
     :nodejs => {
-        :version => '8.9',
+        :version => '8.12',
         :command => 'nodejs -v'
     },
     :npm => {
@@ -186,7 +186,7 @@ tools = {
         :process => 'sshd'
     },
     :pillow => {
-        :version => '5.0',
+        :version => '4.0',
         :command => 'pip3 show pillow'
     },
     :rpigpio => {
@@ -218,17 +218,17 @@ tools = {
         :command => 'pip3 show tweepy'
     },
     :noderedrpigpio => {
-        :version => '0.17',
+        :version => '0.19',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red/rpi-gpio'
     },
     :bigtimer => {
-        :version => '1.8',
+        :version => '2.0',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-bigtimer'
     },
     :dashboard => {
-        :version => '2.7',
+        :version => '2.10',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-dashboard'
     },
@@ -238,17 +238,17 @@ tools = {
         :command => 'node-red-admin info node-red-contrib-looptimer'
     },
     :noderedsensehat => {
-        :version => '0.0.15',
+        :version => '0.0.18',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-pi-sense-hat'
     },
     :noderedopcua => {
-        :version => '0.2.22',
+        :version => '0.2.32',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-opcua'
     },
     :noderedopcuaiiot => {
-        :version => '1.3.3',
+        :version => '3.3.0',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-contrib-iiot-opcua'
     },
@@ -258,22 +258,22 @@ tools = {
         :command => 'node-red-admin info node-red-contrib-solar-power-forecast'
     },
     :noderedopenweathermap => {
-        :version => '0.1.20',
+        :version => '0.2.1',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-openweathermap'
     },
     :noderedblinkt => {
-        :version => '0.17',
+        :version => '0.19',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red/rpi-blinkt'
     },
     :noderedexplorehat => {
-        :version => '0.17',
+        :version => '0.19',
         :commend => 'disabled',
         :command => 'node-red-admin info node-red/rpi-explorerhat'
     },
     :noderedflotilla => {
-        :version => '0.17',
+        :version => '0.19',
         :commend => 'disabled',
         :command => 'node-red-admin info node-red/node-flotilla'
     },
@@ -292,7 +292,7 @@ tools = {
         :command => 'mongod --version'
     },
     :gpio => {
-        :version => '2.44',
+        :version => '2.46',
         :command => 'gpio -v'
     },
     :noderedmongo => {
@@ -301,7 +301,7 @@ tools = {
         :command => 'node-red-admin info node-red-node-mongodb/mongo'
     },
     :noderedmysql => {
-        :version => '0.0.16',
+        :version => '0.0.17',
         :commend => 'enabled',
         :command => 'node-red-admin info node-red-node-mysql/mysql'
     },
@@ -314,7 +314,7 @@ tools = {
         :command => '/usr/bin/abiword --version'
     },
     :libreoffice => {
-        :version => '4.3',
+        :version => '5.2',
         :command => '/usr/bin/libreoffice --version'
     },
     :phantomjs => {
@@ -322,7 +322,7 @@ tools = {
         :command => 'phantomjs --version'
     },
     :pip3_selenium => {
-        :version => '3.8.1',
+        :version => '3.14.1',
         :command => 'pip3 show selenium'
     },
     :geckodriver => {
@@ -334,7 +334,7 @@ tools = {
         :command => 'pip3 show pyvirtualdisplay'
     },
     :wiringpi => {
-        :version => '2.44',
+        :version => '2.46',
         :command => 'gpio -v'
     },
     :gem => {
