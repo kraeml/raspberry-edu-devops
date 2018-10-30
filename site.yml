@@ -9,12 +9,12 @@
       debug:
         verbosity: 1
 
+- import_playbook: pi-inspec.yml
 - import_playbook: pi-nodered.yml
 - import_playbook: pi-jupyter.yml
 - import_playbook: pi-databases.yml
 - import_playbook: pi-cloud9.yml
   ignore_errors: yes
-- import_playbook: pi-inspec.yml
 - import_playbook: pi-etherwrite.yml
 - import_playbook: pi-tex.yml
 - import_playbook: pi-web-dev.yml

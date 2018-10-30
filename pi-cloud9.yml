@@ -52,6 +52,12 @@
     when: nodejs_pi_version.stdout != nodejs_minor_version
 
   tasks:
+  - name: NPM unsafe-perm
+    become: yes
+    become_method: sudo
+    become_flags: "-H"
+    command: npm config --global set unsafe-perm=true
+
   - name: Ensure cloud9 dependencies are installed
     become: yes
     apt:
@@ -72,13 +78,14 @@
         - cloud9
 
   - name: Install cloud9
-    become: yes
-    become_method: sudo
-    become_flags: "-H"
+    #become: yes
+    #become_method: sudo
+    #become_flags: "-H"
     shell: bash -c 'HOME={{ansible_user_dir}} ./scripts/install-sdk.sh'
     args:
         chdir: "{{ansible_user_dir}}/cloud9/"
     when: clone_cloud9.changed
+    ignore_errors: true
     notify:
         - restart_cloud9
     tags:
