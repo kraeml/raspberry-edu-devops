@@ -15,6 +15,9 @@
           - sense-hat
           - raspi-gpio
           - python-rpi.gpio
+          - python3-rpi.gpio
+          - python3-blinkt
+          - python-blinkt
           - debian-keyring
           - debian-archive-keyring
           - wiringpi
@@ -31,10 +34,20 @@
           # Not in Ubuntu 1604
           #- liblcms1-dev
           #- liblcms1
+
         update_cache: yes
         cache_valid_time: 3600
     tags:
         - base
+
+  - name: Ensure python packages are installed
+    become: yes
+    pip:
+      name:
+        - paho-mqtt
+        - tweepy
+      executable: pip3
+      state: present # The state of module,The 'forcereinstall' option is only available in Ansible 2.1 and above.
 
   - name: Git config
     git_config:

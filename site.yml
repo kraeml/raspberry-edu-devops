@@ -9,6 +9,21 @@
       debug:
         verbosity: 1
 
+    - name: Ensure global ansible dir exists
+      become: yes
+      file:
+        path: /etc/ansible/roles
+        state: directory
+
+    - name: Ensure global ansible inventory exists
+      become: yes
+      template:
+        dest: "/etc/ansible/{{item}}"
+        src: "{{item}}.j2"
+      with_items:
+        - hosts
+        - ansible.cfg
+
 - import_playbook: pi-inspec.yml
 - import_playbook: pi-nodered.yml
 - import_playbook: pi-jupyter.yml

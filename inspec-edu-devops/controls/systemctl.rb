@@ -133,14 +133,16 @@ tools = {
         :version => '1.0',
         :command => 'pip3 show jupyter'
     },
-    :pip3_readline => {
-        :version => '6.2',
-        :command => 'pip3 show readline'
-    },
-    :pip3_ipyparallel => {
-        :version => '6.0',
-        :command => 'pip3 show ipyparallel'
-    },
+    # Not included in hypriot
+    #:pip3_readline => {
+    #    :version => '6.2',
+    #    :command => 'pip3 show readline'
+    #},
+    # Not included in hypriot
+    #:pip3_ipyparallel => {
+    #    :version => '6.0',
+    #    :command => 'pip3 show ipyparallel'
+    #},
     :pip3_bash_kernel => {
         :version => '0.7.1',
         :command => 'pip3 show bash_kernel'
@@ -153,18 +155,20 @@ tools = {
         :version => 'python3',
         :command => 'jupyter-kernelspec list'
     },
-    :jupyter_javascript => {
-        :version => 'javascript',
-        :command => 'jupyter-kernelspec list'
-    },
+    # Not included in hypriot
+    #:jupyter_javascript => {
+    #    :version => 'javascript',
+    #    :command => 'jupyter-kernelspec list'
+    #},
     :jupyter_widgets => {
         :version => 'widgets.*enabled',
         :command => 'jupyter nbextension list'
     },
-    :pip3_ipython_sql => {
-        :version => '0.3',
-        :command => 'pip3 show ipython-sql'
-    },
+    # Not included in hypriot
+    #:pip3_ipython_sql => {
+    #    :version => '0.3',
+    #    :command => 'pip3 show ipython-sql'
+    #},
     :nodered => {
         :version => '0.19',
         :command => 'node-red --help',
@@ -172,11 +176,11 @@ tools = {
         :process => 'node-red'
     },
     :nodejs => {
-        :version => '8.12',
+        :version => '8.',
         :command => 'nodejs -v'
     },
     :npm => {
-        :version => '5.6',
+        :version => '6.',
         :command => 'npm -v'
     },
     :cloud9 => {
@@ -191,26 +195,29 @@ tools = {
         :version => '4.0',
         :command => 'pip3 show pillow'
     },
-    :rpigpio => {
-        :version => '0.6',
-        :command => 'pip3 show rpi.gpio'
-    },
+    # On hypriot the stretch packages will installed
+    #:rpigpio => {
+    #    :version => '0.6',
+    #    :command => 'pip3 show rpi.gpio'
+    #},
     :sensehat => {
         :version => '2.2',
         :command => 'pip3 show sense-hat'
     },
-    :blinkt => {
-        :version => '0.1',
-        :command => 'pip3 show blinkt'
-    },
+    # On hypriot the stretch packages will installed
+    #:blinkt => {
+    #    :version => '0.1',
+    #    :command => 'pip3 show blinkt'
+    #},
     :requests => {
-        :version => '2.18',
+        :version => '2.12',
         :command => 'pip3 show requests'
     },
     :psutil => {
         :version => '5.4',
         :command => 'pip3 show psutil'
     },
+    
     :pahomqtt => {
         :version => '1.3',
         :command => 'pip3 show paho-mqtt'

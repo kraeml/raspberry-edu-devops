@@ -16,7 +16,10 @@
         name:
           - sense-hat
           - raspi-gpio
+          - pyhton3-rpi.gpio
           - python-rpi.gpio
+          - python3-blinkt
+          - python-blinkt
         update_cache: yes
         cache_valid_time: 3600
 
