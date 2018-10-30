@@ -18,4 +18,4 @@
 - import_playbook: pi-tex.yml
 - import_playbook: pi-web-dev.yml
 # ToDo Refactor next playbook
-# - import_playbook: pi-base.yml
+- import_playbook: pi-base.yml
