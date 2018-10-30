@@ -140,18 +140,6 @@
         update_cache: yes
         cache_valid_time: 3600
 
-  - name: Ensure /var/www owned by www-data
-    become: yes
-    file:
-        path: /var/www
-        state: directory
-        recurse: yes
-        owner: www-data
-        group: www-data
-    tags:
-        - php
-        - nginx
-
   - name: Ensure {{ansible_user_id}} is in group www-data
     become: yes
     user:
@@ -199,6 +187,18 @@
         - php
         - nginx
 
+    - name: Ensure some html for {{ansible_user_id}} exists
+      template:
+          src: "{{item}}.j2"
+          dest: "/var/www/html/{{item}}"
+          owner: www-data
+          group: www-data
+      with_items:
+          - index.php
+      tags:
+          - php
+          - nginx
+
   - name: Ensure /var/www/html/phpMyAdmin is directory
     become: yes
     file:
@@ -231,3 +231,15 @@
         group: www-data
     tags:
         - phpmyadmin
+
+  - name: Ensure /var/www owned by www-data
+    become: yes
+    file:
+        path: /var/www
+        state: directory
+        recurse: yes
+        owner: www-data
+        group: www-data
+    tags:
+        - php
+        - nginx
