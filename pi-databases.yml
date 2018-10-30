@@ -188,6 +188,7 @@
         - nginx
 
   - name: Ensure some html for {{ansible_user_id}} exists
+    become: yes
     template:
         src: "{{item}}.j2"
         dest: "/var/www/html/{{item}}"
