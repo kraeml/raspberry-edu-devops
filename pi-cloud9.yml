@@ -67,23 +67,21 @@
     tags:
         - cloud9
 
-  - name: Clone cloud9
+  - name: Clone cloud9 no update
     git:
         dest: "{{ansible_user_dir}}/cloud9"
         repo: https://github.com/c9/core.git
         clone: yes
-        update: yes
+        update: no
     register: clone_cloud9
     tags:
         - cloud9
 
   - name: Install cloud9
-    #become: yes
-    #become_method: sudo
-    #become_flags: "-H"
-    shell: bash -c 'HOME={{ansible_user_dir}} ./scripts/install-sdk.sh'
+    shell: HOME={{ansible_user_dir}} ./scripts/install-sdk.sh
     args:
         chdir: "{{ansible_user_dir}}/cloud9/"
+        creates: "{{ansible_user_dir}}/cloud9/node_modules/accepts"
     when: clone_cloud9.changed
     ignore_errors: true
     notify:
