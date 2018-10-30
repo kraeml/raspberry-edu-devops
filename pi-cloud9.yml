@@ -57,6 +57,7 @@
     become_method: sudo
     become_flags: "-H"
     command: npm config --global set unsafe-perm=true
+    changed_when: false
 
   - name: Ensure cloud9 dependencies are installed
     become: yes
