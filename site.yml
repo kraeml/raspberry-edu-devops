@@ -25,7 +25,7 @@
 
     - name: Ensure global ansible inventory exists workaround no loop
       become: yes
-      template:
+      copy:
         dest: "/etc/ansible/ansible.cfg"
         src: "ansible.cfg.j2"
 
