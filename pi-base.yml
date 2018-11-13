@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Base packages - ToDo Refactor
+  hosts: pi3
   connection: local
 
   tasks:

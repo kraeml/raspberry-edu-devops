@@ -1,6 +1,6 @@
 ---
 - name: Setup the pi for ansible playbooks
-  hosts: localhost
+  hosts: pi3
   connection: local
   gather_facts: no
 

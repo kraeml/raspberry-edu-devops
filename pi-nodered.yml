@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: pi3
   connection: local
 
   tasks:
