@@ -1,5 +1,6 @@
 ---
-- hosts: pi3
+- name: Install Jupyter
+  hosts: pi3
   connection: local
   vars:
     - nodejs_minor_version: "v8"
