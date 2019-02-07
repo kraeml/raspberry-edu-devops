@@ -366,7 +366,7 @@ control 'gem packages' do
     gem_packages.each do | key, value|
         describe gem(key) do
             it { should be_installed }
-            its('version') { should eq "#{value[:version]}" }
+            its('version') { should cmp >= value[:version] }
         end
     end
 end
@@ -426,7 +426,7 @@ control 'packages-1.0' do
     tools.each do |key, value|
         if value[:command]
             describe command(value[:command]) do
-              its(:stdout) { should match /#{value[:version]}/ }
+              its(:stdout) { should cmp >= value[:version] }
               if value[:commend]
                   its(:stdout) { should match /#{value[:commend]}/ }
               end
