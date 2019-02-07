@@ -4,7 +4,8 @@
   connection: local
 
   vars:
-    - nodejs_minor_version: "v8"
+    - nodejs_minor_version_number: "10"
+    - nodejs_minor_version: "v{{nodejs_minor_version_number}}"
 
   pre_tasks:
   - name: Get nodejs info
@@ -21,14 +22,14 @@
   - name: Install nodejs
     block:
       - name: Shell script nodejs
-        shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - 2>&1 | sudo tee -a /var/log/node-install.log >>/dev/null
+        shell: curl -sL https://deb.nodesource.com/setup_{{nodejs_minor_version_number}}.x | sudo -E bash - 2>&1 | sudo tee -a /var/log/node-install.log >>/dev/null
 
       - name: Install nodejs in minor version
         become: yes
         apt:
           force: yes
           # If C(yes), force installs/removes.
-          name: "nodejs={{nodejs_minor_version}}.*"
+          name: "node={{nodejs_minor_version}}.*"
           # A package name, like C(foo), or package specifier with version,
           # like C(foo=1.0). Name wildcards (fnmatch) like C(apt*) and version
           # wildcards like C(foo=1.0*) are also supported.  Note that the apt-get
