@@ -1,7 +1,19 @@
 [lokal]
 localhost ansible_connection=local
 
+[cluster]
+cluster-00
+cluster-01
+cluster-02
+cluster-03
+cluster-04
+
 [pi3]
+cluster-00
+cluster-01
+cluster-02
+cluster-03
+cluster-04
 pi3-home
 pi3-extend
 pi3-00
