@@ -347,7 +347,7 @@ tools = {
         :version => '0.0.14',
         :version_command => ' | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  ',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red-node-mongodb/mongo | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \   '
+        :command => 'node-red-admin info node-red-node-mongodb/mongo'
     },
     :noderedmysql => {
         :version => '0.0.17',
