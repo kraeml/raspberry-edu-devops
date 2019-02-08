@@ -335,10 +335,12 @@ tools = {
     },
     :mongodb => {
         :version => '2.4',
+        :version_command => '',
         :command => 'mongod --version'
     },
     :gpio => {
         :version => '2.46',
+        :version_command => '',
         :command => 'gpio -v'
     },
     :noderedmongo => {
