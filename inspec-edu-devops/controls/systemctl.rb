@@ -148,11 +148,11 @@ tools = {
         :command => 'pip3 show bash_kernel'
     },
     :jupyter_bash_kernel => {
-        :version => 'bash',
+        :commend => 'bash',
         :command => 'jupyter-kernelspec list'
     },
     :jupyter_python3 => {
-        :version => 'python3',
+        :commend => 'python3',
         :command => 'jupyter-kernelspec list'
     },
     # Not included in hypriot
@@ -161,7 +161,7 @@ tools = {
     #    :command => 'jupyter-kernelspec list'
     #},
     :jupyter_widgets => {
-        :version => 'widgets.*enabled',
+        :commend => 'widgets.*enabled',
         :command => 'jupyter nbextension list'
     },
     # Not included in hypriot
@@ -176,11 +176,11 @@ tools = {
         :process => 'node-red'
     },
     :nodejs => {
-        :version => '8.',
+        :version => '8.0',
         :command => 'nodejs -v'
     },
     :npm => {
-        :version => '6.',
+        :version => '6.0',
         :command => 'npm -v'
     },
     :cloud9 => {
@@ -355,7 +355,7 @@ tools = {
         :command => 'tidy --version'
     },
     :java => {
-        :version => 'build 9',
+        :commend => 'build 9',
         :command => 'java -version 2>&1'
     }
 }
@@ -426,7 +426,9 @@ control 'packages-1.0' do
     tools.each do |key, value|
         if value[:command]
             describe command(value[:command]) do
-              its(:stdout) { should cmp >= value[:version] }
+              if value[:version]
+                  its(:stdout) { should cmp >= value[:version] }
+              end
               if value[:commend]
                   its(:stdout) { should match /#{value[:commend]}/ }
               end
