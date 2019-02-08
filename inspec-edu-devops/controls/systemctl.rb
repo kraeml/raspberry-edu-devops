@@ -229,72 +229,72 @@ tools = {
     :noderedrpigpio => {
         :version => '0.19',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red/rpi-gpio | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red/rpi-gpio | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     :bigtimer => {
         :version => '2.0',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red-contrib-bigtimer | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red-contrib-bigtimer | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     :dashboard => {
         :version => '2.10',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red-dashboard | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red-dashboard | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     :looptimer => {
         :version => '0.0.8',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red-contrib-looptimer | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red-contrib-looptimer | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     :noderedsensehat => {
         :version => '0.0.18',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red-node-pi-sense-hat | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red-node-pi-sense-hat | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     :noderedopcua => {
         :version => '0.2.32',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red-contrib-opcua | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red-contrib-opcua | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     :noderedopcuaiiot => {
         :version => '3.3.0',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red-contrib-iiot-opcua | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red-contrib-iiot-opcua | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     :noderedsolarpowerforecast => {
         :version => '1.0.3',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red-contrib-solar-power-forecast | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red-contrib-solar-power-forecast | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     :noderedopenweathermap => {
         :version => '0.2.1',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red-node-openweathermap | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red-node-openweathermap | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     :noderedblinkt => {
         :version => '0.19',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red/rpi-blinkt | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red/rpi-blinkt | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     :noderedexplorehat => {
         :version => '0.19',
         :commend => 'disabled',
-        :command => 'node-red-admin info node-red/rpi-explorerhat | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red/rpi-explorerhat | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     :noderedflotilla => {
         :version => '0.19',
         :commend => 'disabled',
-        :command => 'node-red-admin info node-red/node-flotilla | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red/node-flotilla | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
 #    :noderedledborg => {
 #        :version => '0.17',
 #        :commend => 'disabled',
-#        :command => 'node-red-admin info node-red-node-ledborg/ledborg | grep -i version | cut -d : -f 2 | tr -d \ '
+#        :command => 'node-red-admin info node-red-node-ledborg/ledborg | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
 #    },
     :noderedunicorn => {
         :version => '0.19',
         :commend => 'disabled',
-        :command => 'node-red-admin info node-red/rpi-unicorn | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red/rpi-unicorn | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     :mongodb => {
         :version => '2.4',
@@ -307,12 +307,12 @@ tools = {
     :noderedmongo => {
         :version => '0.0.14',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red-node-mongodb/mongo | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red-node-mongodb/mongo | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \   '
     },
     :noderedmysql => {
         :version => '0.0.17',
         :commend => 'enabled',
-        :command => 'node-red-admin info node-red-node-mysql/mysql | grep -i version | cut -d : -f 2 | tr -d \ '
+        :command => 'node-red-admin info node-red-node-mysql/mysql | grep -i version | cut -d : -f 2 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" | tr -d \  '
     },
     #:lxc => {
     #    :version => '1.0',
