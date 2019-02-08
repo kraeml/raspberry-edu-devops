@@ -28,7 +28,7 @@
     - learnyoumongo
     - torrential
     - html-validator-cli
-  - nodejs_minor_version: "v8"
+  - nodejs_minor_version: "10"
 
   pre_tasks:
   # ToDo pip3 installed?

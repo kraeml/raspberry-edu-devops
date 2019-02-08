@@ -3,7 +3,7 @@
   hosts: pi3
   connection: local
   vars:
-    - nodejs_minor_version: "v8"
+    - nodejs_minor_version: "10"
 
   pre_tasks:
   - name: Debug info
