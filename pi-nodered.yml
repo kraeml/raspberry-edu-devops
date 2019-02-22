@@ -123,6 +123,8 @@
         - node-red-contrib-iiot-opcua
         - node-red-contrib-solar-power-forecast
         - node-red-node-openweathermap
+        - node-red-node-arduino
+        - node-red-node-pi-gpiod
       notify:
         - rebuild_node_red
         - restart_nodered

@@ -19,7 +19,7 @@
         #verbosity: # A number that controls when the debug is run, if you set
         # to 3 it will only run debug when -vvv or above
   - name: Get nodejs info
-    shell: nodejs --version | cut -d '.' -f 1
+    shell: nodejs --version | cut -d '.' -f 1 | tr -d v
     ignore_errors: yes
     register: nodejs_pi_version
     changed_when: false
@@ -32,7 +32,7 @@
   - name: Install nodejs
     block:
       - name: Shell script nodejs
-        shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - 2>&1 | sudo tee -a /var/log/node-install.log >>/dev/null
+        shell: curl -sL https://deb.nodesource.com/setup_{{nodejs_minor_version}}.x | sudo -E bash - 2>&1 | sudo tee -a /var/log/node-install.log >>/dev/null
 
       - name: Install nodejs in minor version
         become: yes
