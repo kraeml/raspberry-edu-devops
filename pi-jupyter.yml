@@ -19,7 +19,7 @@
         #verbosity: # A number that controls when the debug is run, if you set
         # to 3 it will only run debug when -vvv or above
   - name: Get nodejs info
-    shell: nodejs --version | cut -d '.' -f 1 | tr -d v
+    shell: nodejs --version | cut -d '.' -f 1 | tr -d 'v'
     ignore_errors: yes
     register: nodejs_pi_version
     changed_when: false

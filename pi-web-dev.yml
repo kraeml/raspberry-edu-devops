@@ -33,7 +33,7 @@
   pre_tasks:
   # ToDo pip3 installed?
   - name: Get nodejs info
-    shell: nodejs --version | cut -d '.' -f 1
+    shell: nodejs --version | cut -d '.' -f 1 | tr -d 'v'
     ignore_errors: yes
     register: nodejs_pi_version
     changed_when: false
