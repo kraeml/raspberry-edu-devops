@@ -46,7 +46,7 @@
         name:
           - oracle-java8-jdk
           - openjdk-9-jdk
-    when: ansible_architecture != armv6l
+    when: ansible_architecture != "armv6l"
 
   - name: Ensure python packages are installed
     become: yes
