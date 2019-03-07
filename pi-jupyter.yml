@@ -46,6 +46,7 @@
         file:
           src: /opt/nodejs/bin/node
           dest: "{{item}}/nodejs"
+          state: link
         with_items:
           - /usr/bin
           - /usr/sbin
