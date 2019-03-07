@@ -1,6 +1,6 @@
 ---
 - name: Install Jupyter
-  hosts: pi3
+  hosts: all
   connection: local
   vars:
     - nodejs_minor_version: "10"
@@ -35,6 +35,24 @@
     block:
       - name: Shell script nodejs
         shell: curl -sL https://deb.nodesource.com/setup_{{nodejs_minor_version}}.x | sudo -E bash - 2>&1 | sudo tee -a /var/log/node-install.log >>/dev/null
+        when: ansible_architecture != "armv6l"
+
+      - name: Shell script nodejs armv6l
+        shell: wget -O - https://raw.githubusercontent.com/sdesalas/node-pi-zero/master/install-node-v.lts.sh | bash
+        when: ansible_architecture == "armv6l"
+
+      - name: Ensure nodejs as link exists
+        become: yes
+        file:
+          src: /opt/nodejs/bin/node
+          dest: "{{item}}/nodejs"
+        with_items:
+          - /usr/bin
+          - /usr/sbin
+          - /sbin/nodejs
+          - /usr/local/bin
+          - /opt/nodejs/bin
+        when: ansible_architecture == "armv6l"
 
       - name: Install nodejs in minor version
         become: yes
@@ -57,6 +75,7 @@
           cache_valid_time: 3600
           # Update the apt cache if its older than the I(cache_valid_time).
           # This option is set in seconds.
+        when: ansible_architecture != "armv6l"
 
       - name: NPM unsafe-perm
         become: yes
