@@ -1,12 +1,9 @@
 ---
-- name: Setup base installations
-  hosts: all
-  connection: local
-  # ToDo Refactor next playbook
-  - import_playbook: pi-base.yml
-  
+# ToDo Refactor next playbook
+- import_playbook: pi-base.yml
+
 - name: Setup the pi for ansible playbooks
-  hosts: pi3
+  hosts: all
   connection: local
   gather_facts: no
 
