@@ -50,7 +50,7 @@
         with_items:
           - /usr/bin
           - /usr/sbin
-          - /sbin/nodejs
+          - /sbin
           - /usr/local/bin
           - /opt/nodejs/bin
         when: ansible_architecture == "armv6l"
