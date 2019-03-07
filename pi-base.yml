@@ -26,7 +26,7 @@
           - avahi-utils
           - avahi-daemon
           - openjdk-9-jdk
-          - oracle-java8-jdk
+          #- oracle-java8-jdk
           - tidy
           - python-pexpect
           - sl
@@ -40,6 +40,12 @@
         cache_valid_time: 3600
     tags:
         - base
+  - name: Ensure raspberry dependencies are installed
+    become: yes
+    apt:
+        name:
+          - oracle-java8-jdk
+    when: ansible_architecture != armv6l
 
   - name: Ensure python packages are installed
     become: yes

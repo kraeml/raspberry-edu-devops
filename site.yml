@@ -1,4 +1,10 @@
 ---
+- name: Setup base installations
+  hosts: all
+  connection: local
+  # ToDo Refactor next playbook
+  - import_playbook: pi-base.yml
+  
 - name: Setup the pi for ansible playbooks
   hosts: pi3
   connection: local
@@ -37,5 +43,3 @@
 - import_playbook: pi-etherwrite.yml
 - import_playbook: pi-tex.yml
 - import_playbook: pi-web-dev.yml
-# ToDo Refactor next playbook
-- import_playbook: pi-base.yml
