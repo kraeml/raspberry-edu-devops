@@ -30,8 +30,6 @@
         verbosity: 1
 
   - name: Install nodejs
-    # Für Pi-Zero armv6l https://github.com/sdesalas/node-pi-zero
-    # ToDo Pi-Zero
     block:
       - name: Shell script nodejs
         shell: curl -sL https://deb.nodesource.com/setup_{{nodejs_minor_version}}.x | sudo -E bash - 2>&1 | sudo tee -a /var/log/node-install.log >>/dev/null
@@ -59,23 +57,9 @@
         become: yes
         apt:
           force: yes
-          # If C(yes), force installs/removes.
           name: "nodejs={{nodejs_minor_version}}.*"
-          # A package name, like C(foo), or package specifier with version,
-          # like C(foo=1.0). Name wildcards (fnmatch) like C(apt*) and version
-          # wildcards like C(foo=1.0*) are also supported.  Note that the apt-get
-          # commandline supports implicit regex matches here but we do not because
-          # it can let typos through easier (If you typo C(foo) as C(fo) apt-get
-          # would install packages that have "fo" in their name with a warning and
-          # a prompt for the user.  Since we don't have warnings and prompts
-          # before installing we disallow this.  Use an explicit fnmatch pattern
-          # if you want wildcarding)
           update_cache: yes
-          # Run the equivalent of C(apt-get update) before the operation. Can be
-          # run as part of the package installation or as a separate step.
           cache_valid_time: 3600
-          # Update the apt cache if its older than the I(cache_valid_time).
-          # This option is set in seconds.
         when: ansible_architecture != "armv6l"
 
       - name: NPM unsafe-perm

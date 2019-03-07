@@ -4,6 +4,13 @@
   connection: local
 
   tasks:
+  - name: Ensure jupyter dependencies for armv6l are installed
+    become: yes
+    apt:
+        name:
+          - libxml2-dev
+          - libxslt1-dev
+    when: ansible_architecture == "armv6l"
   - name: Ensure raspberry dependencies are installed
     become: yes
     apt:
