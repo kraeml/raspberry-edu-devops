@@ -40,12 +40,20 @@
         cache_valid_time: 3600
     tags:
         - base
-  - name: Ensure raspberry dependencies are installed
-    become: yes
-    apt:
-        name:
-          - oracle-java8-jdk
-          - openjdk-9-jdk
+  - block:
+    - name: Ensure raspberry dependencies are installed
+      become: yes
+      apt:
+          name:
+            - oracle-java8-jdk
+            - openjdk-9-jdk
+    - name: Alternatives set
+      become: yes
+      alternatives:
+          path: /usr/lib/jvm/java-9-openjdk-armhf/bin/java
+          name: java
+      tags:
+          - base
     when: ansible_architecture != "armv6l"
 
   - name: Ensure python packages are installed
@@ -74,14 +82,6 @@
           value: "current"
     tags:
         - git
-
-  - name: Alternatives set
-    become: yes
-    alternatives:
-        path: /usr/lib/jvm/java-9-openjdk-armhf/bin/java
-        name: java
-    tags:
-        - base
 
 - name: Base packages for pi3 only - ToDo Refactor
   hosts: pi3
