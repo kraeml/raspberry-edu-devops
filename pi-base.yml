@@ -81,7 +81,7 @@
       state: forcereinstall
     with_items:
       - six
-    when: ansible_architecture == armv6l
+    when: ansible_architecture == "armv6l"
 
   - name: Git config
     git_config:
