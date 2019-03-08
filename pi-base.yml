@@ -76,7 +76,7 @@
   - name: Ensure Jupyter and some kernel/extensions are installed
     become: yes
     pip:
-      name: "{{items}}"
+      name: "{{item}}"
       executable: pip3
       state: forcereinstall
     with_items:
