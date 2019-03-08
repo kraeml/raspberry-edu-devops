@@ -24,8 +24,8 @@
           - raspi-gpio
           - python-rpi.gpio
           - python3-rpi.gpio
-          - python3-blinkt
-          - python-blinkt
+          #- python3-blinkt
+          #- python-blinkt
           - debian-keyring
           - debian-archive-keyring
           - wiringpi
@@ -72,6 +72,16 @@
         - psutil
       executable: pip3
       state: present # The state of module,The 'forcereinstall' option is only available in Ansible 2.1 and above.
+
+  - name: Ensure Jupyter and some kernel/extensions are installed
+    become: yes
+    pip:
+      name: "{{items}}"
+      executable: pip3
+      state: forcereinstall
+    with_items:
+      - six
+    when: ansible_architecture == armv6l
 
   - name: Git config
     git_config:
