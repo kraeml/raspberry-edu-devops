@@ -4,13 +4,13 @@
   connection: local
 
   tasks:
-  - name: Ensure jupyter dependencies for armv6l are installed
+    # ToDo into Jupyternotebook??
+  - name: Ensure jupyter dependencies are installed
     become: yes
     apt:
         name:
           - libxml2-dev
           - libxslt1-dev
-    when: ansible_architecture == "armv6l"
   - name: Ensure raspberry dependencies are installed
     become: yes
     apt:
@@ -47,6 +47,7 @@
         cache_valid_time: 3600
     tags:
         - base
+    # ToDo Jave could not installed because certificates are wrong
   - block:
     - name: Ensure raspberry dependencies are installed
       become: yes
@@ -61,7 +62,7 @@
           name: java
       tags:
           - base
-    when: ansible_architecture != "armv6l"
+    when: ansible_architecture != "never"
 
   - name: Ensure python packages are installed
     become: yes
@@ -73,15 +74,14 @@
       executable: pip3
       state: present # The state of module,The 'forcereinstall' option is only available in Ansible 2.1 and above.
 
+    #ToDo remove into jupyter role
   - name: Ensure Jupyter and some kernel/extensions are installed
     become: yes
     pip:
-      name: "{{item}}"
+      name:
+        - six
       executable: pip3
       state: forcereinstall
-    with_items:
-      - six
-    when: ansible_architecture == "armv6l"
 
   - name: Git config
     git_config:
