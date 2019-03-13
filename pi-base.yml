@@ -62,7 +62,7 @@
           name: java
       tags:
           - base
-    when: ansible_architecture != "never"
+    when: ansible_architecture == "never"
 
   - name: Ensure python packages are installed
     become: yes
