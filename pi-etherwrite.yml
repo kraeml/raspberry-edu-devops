@@ -54,7 +54,7 @@
         become_method: sudo
         become_flags: "-H"
         command: npm config --global set unsafe-perm=true
-    when: nodejs_pi_version.stdout != nodejs_minor_version
+    when: nodejs_pi_version.stdout != nodejs_minor_version_number
 
   tasks:
   - name: Ensure etherpad and etherdraw is installed
