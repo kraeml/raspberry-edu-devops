@@ -57,7 +57,7 @@
         become: yes
         apt:
           force: yes
-          name: "nodejs={{nodejs_minor_version}}.*"
+          name: "nodejs={{nodejs_minor_version_number}}.*"
           update_cache: yes
           cache_valid_time: 3600
         when: ansible_architecture != "armv6l"

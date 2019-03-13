@@ -139,7 +139,7 @@
     apt:
         force: yes
         # If C(yes), force installs/removes.
-        name: "nodejs={{nodejs_minor_version}}.*"
+        name: "nodejs={{nodejs_minor_version_number}}.*"
         # A package name, like C(foo), or package specifier with version,
         # like C(foo=1.0). Name wildcards (fnmatch) like C(apt*) and version
         # wildcards like C(foo=1.0*) are also supported.  Note that the apt-get
