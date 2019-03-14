@@ -10,6 +10,10 @@ cluster-04
 
 [base]
 pi2-keller
+
+[pi-hole]
+pi2-keller
+
 [pi3]
 piZero-home
 cluster-00
