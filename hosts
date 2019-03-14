@@ -8,8 +8,9 @@ cluster-02
 cluster-03
 cluster-04
 
-[pi3]
+[base]
 pi2-keller
+[pi3]
 piZero-home
 cluster-00
 cluster-01
