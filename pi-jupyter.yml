@@ -77,3 +77,5 @@
       src: "{{ansible_user_dir}}/.raspberry-edu-devops/notebooks"
       dest: "{{ansible_user_dir}}/notebooks/raspberry-edu-devops"
       state: link
+    # ToDo ignore wegen pi-gen install
+    ignore_errors: yes
