@@ -68,6 +68,7 @@
         become_method: sudo
         become_flags: "-H"
         command: npm config --global set unsafe-perm=true
+        ignore_errors: yes
     when: nodejs_pi_version.stdout != nodejs_minor_version_number
 
   tasks:
