@@ -69,6 +69,7 @@
         cache_valid_time: 3600
     tags:
         - cloud9
+        - install
 
   - name: Clone cloud9 no update
     git:

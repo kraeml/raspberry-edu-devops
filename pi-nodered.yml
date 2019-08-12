@@ -23,6 +23,8 @@
           - python-blinkt
         update_cache: yes
         cache_valid_time: 3600
+      tags:
+        - install
 
     - name: Ensure group gpio exists
       become: yes
@@ -35,6 +37,8 @@
       register: update_nodejs_and_nodered
       changed_when: false
       ignore_errors: yes
+      tags:
+        - install
 
     - name: Output variable
       debug:
@@ -47,6 +51,8 @@
         url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
         mode: 0777
       when: update_nodejs_and_nodered.stat.exists == false
+      tags:
+        - install
 
     - name: Execute nodered script
       shell: >
@@ -57,6 +63,8 @@
         creates: /usr/bin/update-nodejs-and-nodered
       notify: restart_nodered
       register: nodered
+      tags:
+        - install
 
     - name: Execute nodered script
       shell: >
@@ -83,6 +91,8 @@
       with_items:
         - npm-check
         - node-red-admin
+      tags:
+        - install
 
     - name: Flush handlers
       meta: flush_handlers

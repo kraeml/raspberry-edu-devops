@@ -9,7 +9,9 @@
   roles:
   - role: kraeml.jupyter
     become: yes
-    tags: jupyter
+    tags:
+      - jupyter
+      - install
     nodejs_version: "{{nodejs_minor_version}}.x"
     npm_config_unsafe_perm: "true"
 
@@ -24,11 +26,15 @@
     ignore_errors: yes
     register: nodejs_pi_version
     changed_when: false
+    tags:
+      - install
 
   - name: Output nodejs Version
     debug:
         var: nodejs_pi_version
         verbosity: 1
+    tags:
+      - install
 
   - name: Install nodejs
     block:
@@ -70,6 +76,8 @@
         command: npm config --global set unsafe-perm=true
         ignore_errors: yes
     when: nodejs_pi_version.stdout != nodejs_minor_version_number
+    tags:
+      - install
 
   tasks:
   - name: Ensure link to rdf-edu-notbooks exitst

@@ -29,7 +29,7 @@
           - debian-keyring
           - debian-archive-keyring
           - wiringpi
-          - lsb-core
+          #- lsb-core
           - avahi-utils
           - avahi-daemon
           #- openjdk-9-jdk
@@ -71,17 +71,10 @@
         - paho-mqtt
         - tweepy
         - psutil
-      executable: pip3
-      state: present # The state of module,The 'forcereinstall' option is only available in Ansible 2.1 and above.
-
-    #ToDo remove into jupyter role
-  - name: Ensure Jupyter and some kernel/extensions are installed
-    become: yes
-    pip:
-      name:
+        #ToDo remove into jupyter role
         - six
       executable: pip3
-      state: forcereinstall
+      state: present
 
   - name: Git config
     git_config:
