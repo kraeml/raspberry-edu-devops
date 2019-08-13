@@ -18,7 +18,8 @@
         - firefox-esr
         - libfontconfig1
         - libfreetype6
-        - libicu57
+        #ToDo inspec could not installed in buster
+        #- libicu63
         - libssl1.0.2
         - fontconfig
         - zlib1g-dev
@@ -33,7 +34,8 @@
       name: "{{item}}"
       user_install: no
     with_items:
-      - inspec
+      #ToDo inspec could not installed in buster
+      #- inspec
       - bundler
 
   - name: Install capybara-edu-devops

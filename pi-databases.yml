@@ -5,7 +5,8 @@
 
   vars:
     # Not working on pi. No solution yet disable php-version also
-    # php_version: '7.1'
+    php_default_version_debian: '7.3'
+    php_mysql_package: 'php7.3-mysql'
     db_user:
       name: "example_user"
       password: "passw0rd"
