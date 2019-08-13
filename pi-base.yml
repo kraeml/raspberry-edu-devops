@@ -15,33 +15,47 @@
     become: yes
     apt:
         name:
-          - git
-          - nmap
-          - curl
-          - sudo
-          - expect
-          - sense-hat
-          - raspi-gpio
-          - python-rpi.gpio
-          - python3-rpi.gpio
-          #- python3-blinkt
-          #- python-blinkt
-          - debian-keyring
-          - debian-archive-keyring
-          - wiringpi
-          #- lsb-core
           - avahi-utils
           - avahi-daemon
-          #- openjdk-9-jdk
-          #- oracle-java8-jdk
-          - tidy
-          - python-pexpect
-          - sl
+          - acl
+          - build-essential
+          - curl
+          - cowsay
+          - debian-keyring
+          - debian-archive-keyring
+          - dphys-swapfile
+          - expect
+          - git
+          - ieee-data
           - libjpeg62-turbo
           - libjpeg62-turbo-dev
-          # Not in Ubuntu 1604
-          #- liblcms1-dev
-          #- liblcms1
+          - libffi-dev
+          - libssl-dev
+          - lsof
+          - nmap
+          - python-rpi.gpio
+          - python3-rpi.gpio
+          - python-pexpect
+          - python-dev
+          - python3-dev
+          - python3-pip
+          #- python3-blinkt
+          #- python-blinkt
+          - raspi-gpio
+          - rsync
+          - sudo
+          - sl
+          - sshpass
+          - sense-hat
+          - screen
+          - tree
+          - tidy
+          - vim
+          - wiringpi
+          - zip
+          #- lsb-core
+          #- openjdk-9-jdk
+          #- oracle-java8-jdk
 
         update_cache: yes
         cache_valid_time: 3600
