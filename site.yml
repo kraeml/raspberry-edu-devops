@@ -32,7 +32,7 @@
         dest: "/etc/ansible/ansible.cfg"
         src: "ansible.cfg.j2"
 
-- import_playbook: pi-inspec.yml
+#- import_playbook: pi-inspec.yml
 - import_playbook: pi-nodered.yml
 - import_playbook: pi-jupyter.yml
 - import_playbook: pi-databases.yml
