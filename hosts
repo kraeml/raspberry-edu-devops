@@ -11,7 +11,7 @@ cluster-04
 [base]
 pi2-keller
 
-[pi-hole]
+[pihole]
 pi2-keller
 
 [pi3]

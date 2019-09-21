@@ -4,6 +4,27 @@
   connection: local
 
   tasks:
+  - name: Remove realvnc - vnc - server
+    become: yes
+    apt:
+      name:
+        - realvnc-vnc-server
+      state: absent
+    register: realvnc-vnc-server
+  - name: Remove realvnc-vnc-server as a service
+    become: yes
+    service:
+      name: vncserver-x11-serviced
+      state: stopped
+      enabeld: no
+    when: realvnc-vnc-server is changed
+  - name: Add RDP
+    become: yes
+    apt:
+      name:
+        - xrdp
+      update_cache: yes
+      cache_valid_time: 3600
     # ToDo into Jupyternotebook??
   - name: Ensure jupyter dependencies are installed
     become: yes
