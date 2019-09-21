@@ -10,14 +10,14 @@
       name:
         - realvnc-vnc-server
       state: absent
-    register: realvnc-vnc-server
+    register: realvnc_vnc_server
   - name: Remove realvnc-vnc-server as a service
     become: yes
     service:
       name: vncserver-x11-serviced
       state: stopped
       enabeld: no
-    when: realvnc-vnc-server is changed
+    when: realvnc_vnc_server is changed
   - name: Add RDP
     become: yes
     apt:
