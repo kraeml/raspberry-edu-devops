@@ -4,7 +4,7 @@
   connection: local
 
   tasks:
-  - name: Remove realvnc - vnc - server
+  - name: Remove realvnc-vnc-server
     become: yes
     apt:
       name:
