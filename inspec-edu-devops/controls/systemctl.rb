@@ -406,7 +406,7 @@ tools = {
         :command => 'tidy --version'
     },
     :java => {
-        :commend => 'build 9',
+        :commend => 'build 11',
         :command => 'java -version 2>&1'
     }
 }
