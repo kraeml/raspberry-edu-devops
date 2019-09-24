@@ -370,11 +370,11 @@ tools = {
         :version_command => '',
         :command => '/usr/bin/libreoffice --version'
     },
-    :phantomjs => {
-        :version => '2.1',
-        :version_command => '',
-        :command => 'phantomjs --version'
-    },
+    #:phantomjs => {
+    #    :version => '2.1',
+    #    :version_command => '',
+    #    :command => 'phantomjs --version'
+    #},
     :pip3_selenium => {
         :version => '3.14.1',
         :version_command => '',
