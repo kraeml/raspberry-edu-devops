@@ -118,7 +118,7 @@ tools = {
         :version => '10.1',
         :version_command => '',
         :command => '/usr/sbin/mysqld --version |sed "s/  / /g" | cut -d \  -f 3',
-        :port => '3306',
+        #:port => '3306',
         :process => 'mysqld'
     },
     :nginx => {
