@@ -16,7 +16,7 @@
     service:
       name: vncserver-x11-serviced
       state: stopped
-      enabeld: no
+      enabled: no
     when: realvnc_vnc_server is changed
   - name: Add RDP
     become: yes
