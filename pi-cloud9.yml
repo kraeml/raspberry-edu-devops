@@ -1,6 +1,6 @@
 ---
 - name: Install Cloud9
-  hosts: pi3
+  hosts: pis
   connection: local
 
   vars:

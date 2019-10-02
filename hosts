@@ -1,12 +1,19 @@
 [lokal]
 localhost ansible_connection=local
 
-[cluster]
+[pi3cluster]
 cluster-00
 cluster-01
 cluster-02
 cluster-03
 cluster-04
+
+[piZerocluster]
+piz-cluster-00
+piz-cluster-01
+piz-cluster-02
+piz-cluster-03
+piz-cluster-04
 
 [base]
 pi2-keller
@@ -14,14 +21,17 @@ pi2-keller
 [pihole]
 pi2-keller
 
-[pi3]
+[pizero]
 piZero-home
-cluster-00
-cluster-01
-cluster-02
-cluster-03
-cluster-04
+
+[pi2]
+pi2-home
+
+[pi4]
 pi4-home
+
+[pi3]
+pi3-display
 pi3-home
 pi3-extend
 pi3-00
@@ -56,3 +66,9 @@ pi3-27
 pi3-28
 pi3-29
 pi3-30
+
+[pis:children]
+pizero
+pi2
+pi3
+pi4

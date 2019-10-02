@@ -1,6 +1,6 @@
 ---
 - name: Install LXC
-  hosts: pi3
+  hosts: pis
   connection: local
 
   tasks:

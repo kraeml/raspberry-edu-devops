@@ -129,7 +129,7 @@
         - git
 
 - name: Base packages for pi3 only - ToDo Refactor
-  hosts: pi3
+  hosts: pis
   connection: local
 
   tasks:

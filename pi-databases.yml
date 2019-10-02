@@ -1,6 +1,6 @@
 ---
 - name: Install sql and some nosql databases
-  hosts: pi3
+  hosts: pis
   connection: local
 
   vars:

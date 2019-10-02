@@ -1,6 +1,6 @@
 ---
 - name: Install tex tools
-  hosts: pi3
+  hosts: pis
   connection: local
 
   tasks:

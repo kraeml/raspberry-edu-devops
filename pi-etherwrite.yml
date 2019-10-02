@@ -1,6 +1,6 @@
 ---
 - name: Install collaboration tools etherpad
-  hosts: pi3
+  hosts: pis
   connection: local
   vars:
     - nodejs_minor_version_number: "10"

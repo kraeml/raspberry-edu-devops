@@ -1,6 +1,6 @@
 ---
 - name: Install inspec on pi
-  hosts: pi3
+  hosts: pis
   connection: local
 
   tasks:
