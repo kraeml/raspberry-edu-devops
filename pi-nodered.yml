@@ -29,11 +29,17 @@
         - install
 
     - name: Ensure we have our own pigpiod in /etc/rc.local
+      become: yes
       lineinfile:
         path: /etc/rc.local
         regexp: '^pigpiod -p 9999'
         insertbefore: '^exit\s.0'
         line: 'pigpiod -p 9999'
+      register: pigpiodinstll
+
+    - name: Ensure pigpiod is running
+      become: yes
+      command: pigpiod -p 9999
 
     - name: Ensure group gpio exists
       become: yes
