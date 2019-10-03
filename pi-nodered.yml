@@ -35,11 +35,12 @@
         regexp: '^pigpiod -p 9999'
         insertbefore: '^exit\s.0'
         line: 'pigpiod -p 9999'
-      register: pigpiodinstll
+      register: pigpiodinstall
 
     - name: Ensure pigpiod is running
       become: yes
       command: pigpiod -p 9999
+      when: pigpiodinstall is changed
 
     - name: Ensure group gpio exists
       become: yes
