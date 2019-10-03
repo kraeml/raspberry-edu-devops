@@ -22,10 +22,18 @@
           - python3-blinkt
           - python-blinkt
           - build-essential
+          - pigpiod
         update_cache: yes
         cache_valid_time: 3600
       tags:
         - install
+
+    - name: Ensure we have our own pigpiod in /etc/rc.local
+      lineinfile:
+        path: /etc/rc.local
+        regexp: '^pigpiod -p 9999'
+        insertbefore: '^exit\s.0'
+        line: 'pigpiod -p 9999'
 
     - name: Ensure group gpio exists
       become: yes
