@@ -33,7 +33,7 @@
       lineinfile:
         path: /etc/rc.local
         regexp: '^pigpiod -p 9999'
-        insertbefore: '^exit\s.0'
+        insertbefore: '^exit 0'
         line: 'pigpiod -p 9999'
       register: pigpiodinstall
 
