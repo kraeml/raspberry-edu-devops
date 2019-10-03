@@ -21,6 +21,7 @@
           - python-rpi.gpio
           - python3-blinkt
           - python-blinkt
+          - build-essential
         update_cache: yes
         cache_valid_time: 3600
       tags:
@@ -31,51 +32,23 @@
       group:
         name: gpio
 
-    - name: test update-nodejs-and-nodered exists
-      stat:
-        path: /usr/bin/update-nodejs-and-nodered
-      register: update_nodejs_and_nodered
-      changed_when: false
-      ignore_errors: yes
-      tags:
-        - install
-
-    - name: Output variable
-      debug:
-        var: update_nodejs_and_nodered
-        verbosity: 1
-
     - name: Get nodered script
       get_url:
         dest: /tmp/update-nodejs-and-nodered
-        url: https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered
+        url: https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered
         mode: 0777
-      when: update_nodejs_and_nodered.stat.exists == false
       tags:
         - install
 
-    - name: Execute nodered script
+    - name: Execute nodered script via /tmp
       shell: >
         USER={{ansible_user_id}}
         HOME={{ansible_user_dir}}
         yes | /tmp/update-nodejs-and-nodered
-      args:
-        creates: /usr/bin/update-nodejs-and-nodered
       notify: restart_nodered
       register: nodered
       tags:
         - install
-
-    - name: Execute nodered script
-      shell: >
-        USER={{ansible_user_id}}
-        HOME={{ansible_user_dir}}
-        yes | /usr/bin/update-nodejs-and-nodered
-      notify: restart_nodered
-      register: nodered
-      when: update_nodejs_and_nodered.stat.exists == true
-      tags:
-        - node_red_update
 
     - name: Ensure noder-red is enabled as service
       become: yes
