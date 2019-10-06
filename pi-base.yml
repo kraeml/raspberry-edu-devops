@@ -4,6 +4,58 @@
   connection: local
 
   tasks:
+  - name: Install swap
+    become: yes
+    apt:
+        name: dphys-swapfile
+        update_cache: yes
+        cache_valid_time: 3600
+    notify:
+        - dphys-swapfile
+
+  - name: Configure swap
+    become: yes
+    lineinfile:
+        regexp: "^CONF_SWAPSIZE=*"
+        line: "CONF_SWAPSIZE=1024"
+        path: /etc/dphys-swapfile
+        state: present
+    register: dphys
+    notify:
+        - dphy-swapfile
+
+  - name: Ensure swap file is 1GiB
+    stat:
+        path: /var/swap
+    register: swap_file
+    #when_change: False
+
+  - name: Ensure dphys is not running
+    become: yes
+    service:
+        name: dphys-swapfile
+        state: stopped
+    when: dphys is changed or swap_file.stat.size!=1073741824
+    notify:
+        - dphy-swapfile
+
+  - name: Ensure swap-file exists
+    become: yes
+    command: dd if=/dev/zero of=/var/swap count=1024 bs=1MiB
+    when: swap_file.stat.size!=1073741824
+    notify:
+        - dphy-swapfile
+
+  - name: Make swap
+    become: yes
+    command: mkswap /var/swap
+    when: swap_file.stat.size!=1073741824
+    notify:
+        - dphy-swapfile
+
+  - name: Flush handlers
+    meta: flush_handlers
+
   - name: Remove realvnc-vnc-server
     become: yes
     apt:
