@@ -1,0 +1,20 @@
+[Unit]
+Description=cloud9
+Wants=network.target
+
+[Service]
+Type=simple
+# Capybara with poltergeist couldn't test alerts
+ExecStart=/usr/bin/node {{ansible_user_dir}}/cloud9/server.js --port 8181 -w {{ansible_user_dir}} --listen 0.0.0.0 --auth jns:jns
+Restart=on-failure
+Nice=5
+User={{ansible_user_id}}
+Group={{ansible_user_id}}
+Environment=PATH=/usr/bin:/usr/local/bin:/bin
+Environment=NODE_ENV=production
+WorkingDirectory={{ansible_user_dir}}/cloud9/
+# Tag things in the log
+SyslogIdentifier=Cloud9
+
+[Install]
+WantedBy=multi-user.target
