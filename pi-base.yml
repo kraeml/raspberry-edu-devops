@@ -180,6 +180,14 @@
     tags:
         - git
 
+  handlers:
+  - name: dphy-swapfile
+    become: yes
+    service:
+        name: dphys-swapfile
+        state: restarted
+        enabled: yes
+
 - name: Base packages for pi3 only - ToDo Refactor
   hosts: pis
   connection: local
