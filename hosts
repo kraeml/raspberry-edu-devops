@@ -24,8 +24,13 @@ pi2-keller
 [pizero]
 piZero-home
 
-[pi2]
+[pi2home]
 pi2-home
+pi2-loragw
+
+[pi2:children]
+pihole
+pi2home
 
 [pi4]
 pi4-home
