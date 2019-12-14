@@ -23,6 +23,7 @@ pi2-keller
 
 [pizero]
 piZero-home
+piZero-romi
 
 [pi2home]
 pi2-home
@@ -34,8 +35,10 @@ pi2home
 
 [pi4]
 pi4-home
+pi4-romi
 
 [pi3]
+pi3-romi
 pi3-joy
 pi3-display
 pi3-home
