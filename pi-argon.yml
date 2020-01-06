@@ -1,0 +1,36 @@
+---
+- name: Argon One Case
+  hosts: pi4-home
+  connection: local
+
+  tasks:
+  - name: check if argonone file exists
+    stat:
+      path: '/usr/bin/argonone-config'
+    register: argonone
+  - name: Install Argon scripts
+    block:
+    - name: Get argon script
+      get_url:
+        url: https://download.argon40.com/argon1.sh
+        dest: /tmp/argon1.sh
+        mode: 0755
+    - name: Replace pi with {{ansible_user}}
+      replace:
+        path: /tmp/argon1.sh
+        regexp: '/home/pi/'
+        replace: '/home/{{ansible_user}}'
+    - name: Run argon script
+      shell: /tmp/argon1.sh
+      args:
+        creates: '/usr/bin/argonone-config'
+        executable: /bin/bash
+      #notify:
+      #  - reboot
+    when: argonone.stat.exists != True
+
+  handlers:
+  - name: reboot
+    become: yes
+    reboot:
+...
