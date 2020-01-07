@@ -1,0 +1,9 @@
+---
+- name: Romi chasis setup
+  hosts: piromi
+  connection: local
+
+  tasks:
+  - debug:
+      var: ansible_user
+...
