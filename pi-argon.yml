@@ -1,6 +1,6 @@
 ---
 - name: Argon One Case
-  hosts: pi4-home
+  hosts: pi4-argon
   connection: local
 
   tasks:
