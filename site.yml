@@ -35,3 +35,4 @@
 - import_playbook: pi-etherwrite.yml
 - import_playbook: pi-tex.yml
 - import_playbook: pi-web-dev.yml
+- import_playbook: pi-argon.yml
