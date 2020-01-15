@@ -7,15 +7,14 @@
   - name: install LXC
     become: yes
     apt:
-      name: "{{item}}"
-    with_items:
-    - lxc
-    - lxctl
-    - xz-utils
-    - bridge-utils
-    - dnsmasq-base
-    - iptables
-    - debootstrap
+      name:
+        - lxc
+        - lxctl
+        - xz-utils
+        - bridge-utils
+        - dnsmasq-base
+        - iptables
+        - debootstrap
 
   - name: Modeprobe
     become: yes
@@ -26,6 +25,7 @@
     command: lxc-checkconfig
 
   - name: LXC Config
+    become: yes
     template:
       src: "{{item}}.j2"
       dest: "/{{item}}"
