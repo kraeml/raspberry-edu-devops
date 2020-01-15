@@ -10,3 +10,34 @@
       name: "{{item}}"
     with_items:
     - lxc
+    - lxctl
+    - xz-utils
+    - bridge-utils
+    - dnsmasq-base
+    - iptables
+    - debootstrap
+
+  - name: Modeprobe
+    become: yes
+    command: modprobe configs
+
+  - name: LXC Test
+    become: yes
+    command: lxc-checkconfig
+
+  - name: LXC Config
+    template:
+      src: "{{item}}.j2"
+      dest: "/{{item}}"
+    notify:
+      - lxc_restart
+    with_items:
+      - "etc/lxc/default.conf"
+      - "etc/default/lxc-net"
+
+  handlers:
+  - name: lxc_restart
+    become: yes
+    service:
+      name: lxc-net
+      state: restarted
