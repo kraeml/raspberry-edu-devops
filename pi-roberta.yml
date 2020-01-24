@@ -44,7 +44,11 @@
           src: https://github.com/OpenRoberta/openroberta-lab/archive/ORA-3.8.0.zip
           dest: /tmp
           remote_src: yes
+          creates: "{{ansible_user_dir}}/OpenRoberta"
 
       - name: Rename openroberta-lab-ORA-3.8.0
         command: mv /tmp/openroberta-lab-ORA-3.8.0 OpenRoberta
-    creates: "{{ansible_user_dir}}/OpenRoberta"
+        args:
+          creates: "{{ansible_user_dir}}/OpenRoberta"
+    tag:
+      - get_ora
