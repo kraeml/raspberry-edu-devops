@@ -41,7 +41,7 @@
     file:
       path: OpenRoberta
       state: directory
-      
+
   - name: Unarchive Open Roberta
     unarchive:
       src: https://github.com/OpenRoberta/openroberta-lab/archive/ORA-3.8.0.tar.gz
@@ -49,3 +49,4 @@
       remote_src: yes
       extra_opts:
         - --strip-components=1
+        - --gunzip
