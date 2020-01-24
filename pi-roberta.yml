@@ -38,13 +38,13 @@
   #      - uflash
 
   - name: Unarchive Open Roberta
-    unarchive:
-      src: https://github.com/OpenRoberta/openroberta-lab/archive/ORA-3.8.0.zip
-      dest: /tmp
-      remote_src: yes
-      creates: OpenRoberta
+    block:
+      - name: Get Open Roberta sources
+        unarchive:
+          src: https://github.com/OpenRoberta/openroberta-lab/archive/ORA-3.8.0.zip
+          dest: /tmp
+          remote_src: yes
 
-  - name: Rename openroberta-lab-ORA-3.8.0
-    command: mv /tmp/openroberta-lab-ORA-3.8.0 OpenRoberta
-    args:
-      creates: OpenRoberta
+      - name: Rename openroberta-lab-ORA-3.8.0
+        command: mv /tmp/openroberta-lab-ORA-3.8.0 OpenRoberta
+    creates: "{{ansible_user_dir}}/OpenRoberta"
