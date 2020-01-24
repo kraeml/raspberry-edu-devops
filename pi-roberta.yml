@@ -39,6 +39,6 @@
 
   - name: Unarchive Open Roberta
     unarchive:
-      src: https://github.com/OpenRoberta/openroberta-lab/archive/ORA-3.8.0.zip
+      src: https://github.com/OpenRoberta/openroberta-lab/archive/ORA-3.8.0.tar.gz
       dest: OpenRoberta
       remote_src: yes
