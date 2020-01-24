@@ -37,16 +37,13 @@
   #    name:
   #      - uflash
 
-  - name: Create OpenRoberta directory
-    file:
-      path: OpenRoberta
-      state: directory
-
   - name: Unarchive Open Roberta
     unarchive:
-      src: https://github.com/OpenRoberta/openroberta-lab/archive/ORA-3.8.0.tar.gz
-      dest: OpenRoberta
-      remote_src: yes
-      extra_opts:
-        - --strip-components=1
-        - --gunzip
+      src: https://github.com/OpenRoberta/openroberta-lab/archive/ORA-3.8.0.zip
+      dest: /tmp
+      creates: OpenRoberta
+
+  - name: Rename openroberta-lab-ORA-3.8.0
+    command: mv /tmp/openroberta-lab-ORA-3.8.0 OpenRoberta
+    args:
+      - creates: OpenRoberta
