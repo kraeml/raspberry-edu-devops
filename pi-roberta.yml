@@ -45,10 +45,12 @@
           dest: /tmp
           remote_src: yes
           creates: "{{ansible_user_dir}}/OpenRoberta"
+        tag:
+          - get_ora
 
       - name: Rename openroberta-lab-ORA-3.8.0
         command: mv /tmp/openroberta-lab-ORA-3.8.0 OpenRoberta
         args:
           creates: "{{ansible_user_dir}}/OpenRoberta"
-    tag:
-      - get_ora
+        tag:
+          - get_ora
