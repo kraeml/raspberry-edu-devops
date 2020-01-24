@@ -1,0 +1,44 @@
+---
+- name: Install Open Roberta
+  hosts: pis
+  connection: local
+
+  tasks:
+  - name: install Open Roverta Dependencies Arduino
+    become: yes
+    apt:
+      name:
+        - libusb-0.1-4
+        - gcc-avr
+        - binutils-avr
+        - gdb-avr
+        - avr-libc
+        - avrdude
+      update_cache: yes
+      cache_valid_time: 3600
+
+  - name: install Open Roverta Dependencies NXT
+    become: yes
+    apt:
+      name:
+        - nbc
+
+  - name: install Open Roverta Dependencies Calliope
+    become: yes
+    apt:
+      name:
+        - gcc-arm-none-eabi
+        - srecord
+        - libssl-dev
+
+  - name: install Open Roverta Dependencies micro:bit
+    become: yes
+    apt:
+      name:
+        - uflash
+
+  - name: Unarchive Open Roberta
+    unarchive:
+      src: https://github.com/OpenRoberta/openroberta-lab/archive/ORA-3.8.0.zip
+      dest: OpenRoberta
+      remote_src: yes
