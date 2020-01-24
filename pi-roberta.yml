@@ -45,5 +45,5 @@
 
   - name: Rename openroberta-lab-ORA-3.8.0
     command: mv /tmp/openroberta-lab-ORA-3.8.0 OpenRoberta
-    args:
-      - creates: OpenRoberta
+      args:
+        creates: OpenRoberta
