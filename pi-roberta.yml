@@ -41,6 +41,7 @@
     unarchive:
       src: https://github.com/OpenRoberta/openroberta-lab/archive/ORA-3.8.0.zip
       dest: /tmp
+      remote_src: yes
       creates: OpenRoberta
 
   - name: Rename openroberta-lab-ORA-3.8.0
