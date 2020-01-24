@@ -4,7 +4,7 @@
   connection: local
 
   tasks:
-  - name: install Open Roverta Dependencies Arduino
+  - name: install Open Roberta Dependencies Arduino
     become: yes
     apt:
       name:
@@ -17,13 +17,13 @@
       update_cache: yes
       cache_valid_time: 3600
 
-  - name: install Open Roverta Dependencies NXT
+  - name: install Open Roberta Dependencies NXT
     become: yes
     apt:
       name:
         - nbc
 
-  - name: install Open Roverta Dependencies Calliope
+  - name: install Open Roberta Dependencies Calliope
     become: yes
     apt:
       name:
@@ -31,11 +31,11 @@
         - srecord
         - libssl-dev
 
-  - name: install Open Roverta Dependencies micro:bit
-    become: yes
-    apt:
-      name:
-        - uflash
+  #- name: install Open Roberta Dependencies micro:bit
+  #  become: yes
+  #  apt:
+  #    name:
+  #      - uflash
 
   - name: Unarchive Open Roberta
     unarchive:
