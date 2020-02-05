@@ -24,6 +24,7 @@
     git:
       dest: "{{ansible_user_dir}}/pololu-rpi-slave-arduino-library"
       repo: https://github.com/pololu/pololu-rpi-slave-arduino-library.git
+
   # Start the server automatically
 
   # It’s annoying to have to log into the Raspberry Pi every time you start up your robot, so you will probably want to set up the server as a background service that starts automatically. With Raspbian Jessie and later, it’s easy to do this using systemd. Edit a file in the service directory:
