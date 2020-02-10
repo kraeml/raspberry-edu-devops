@@ -4,7 +4,7 @@ After=multi-user.target
 [Service]
 User={{ansible_user}}
 Type=idle
-ExecStart=/usr/bin/python3 /home/{{ansible_user}}/pololu-rpi-slave-arduino-library/pi/server.py
+ExecStart=/usr/bin/python3 {{ansible_user_dir}}/pololu-rpi-slave-arduino-library/pi/server.py
 
 [Install]
 WantedBy=multi-user.target

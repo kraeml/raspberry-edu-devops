@@ -16,9 +16,20 @@
         - python3-flask
         - python3-smbus
 
+  - name: Get i2c
+    become: yes
+    command: raspi-config nonint get_i2c
+    register: i2c_setings
+
+  - name: Debug i2c_setings
+    debug:
+      var: i2c_setings
+      verbosity: 1
+
   - name: Set i2c
     become: yes
     command: raspi-config nonint do_i2c 0
+    when: i2c_setings.stdout == "1"
 
   # wget https://github.com/pololu/pololu-rpi-slave-arduino-library/archive/<version>.tar.gz
   # tar -xzf <version>.tar.gz
@@ -43,7 +54,7 @@
     - name: a_star_restart
       service:
         name: "{{item}}"
-        state: restarted
+        state: started
         enabled: yes
       with_items:
         - a_star_heartbeat
