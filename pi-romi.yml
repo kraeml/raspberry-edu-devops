@@ -30,6 +30,7 @@
     become: yes
     command: raspi-config nonint do_i2c 0
     when: i2c_setings.stdout == "1"
+    changed_when: False
 
   # wget https://github.com/pololu/pololu-rpi-slave-arduino-library/archive/<version>.tar.gz
   # tar -xzf <version>.tar.gz
