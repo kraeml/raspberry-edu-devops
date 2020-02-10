@@ -42,12 +42,10 @@
   handlers:
     - name: a_star_slave_restart
       service:
-        name: a_star_slave
+        name: "{{item}}"
         state: restarted
         enabled: yes
-    - name: a_star_heartbeat_restart
-      service:
-        name: a_star_heartbeat
-        state: restarted
-        enabled: yes
+      with_items:
+        - a_star_heartbeat
+        - a_star_slave
 ...
