@@ -20,17 +20,25 @@
     become: yes
     command: raspi-config nonint get_i2c
     register: i2c_setings
+    changed_when: False
 
   - name: Debug i2c_setings
     debug:
       var: i2c_setings
       verbosity: 1
 
+  - name: Add a line to a file if the file does not exist, without passing regexp
+    become: yes
+    lineinfile:
+      path: /boot/config.txt
+      line: dtparam=i2c_arm_baudrate=400000
+
+
   - name: Set i2c
     become: yes
     command: raspi-config nonint do_i2c 0
     when: i2c_setings.stdout == "1"
-    changed_when: False
+
 
   # wget https://github.com/pololu/pololu-rpi-slave-arduino-library/archive/<version>.tar.gz
   # tar -xzf <version>.tar.gz
