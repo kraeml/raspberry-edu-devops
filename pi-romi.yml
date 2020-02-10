@@ -16,6 +16,10 @@
         - python3-flask
         - python3-smbus
 
+  - name: Set i2c
+    become: yes
+    command: raspi-config nonint do_i2c 0
+
   # wget https://github.com/pololu/pololu-rpi-slave-arduino-library/archive/<version>.tar.gz
   # tar -xzf <version>.tar.gz
   # mv pololu-rpi-slave-arduino-library-master pololu-rpi-slave-arduino-library
