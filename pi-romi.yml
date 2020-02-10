@@ -29,46 +29,25 @@
       dest: "{{ansible_user_dir}}/pololu-rpi-slave-arduino-library"
       repo: https://github.com/pololu/pololu-rpi-slave-arduino-library.git
 
-  # Start the server automatically
+  - name: Start the server automatically
+    become: yes
+    template:
+      dest: "/lib/systemd/system/{{item}}.service"
+      src: "/lib/systemd/system/{{item}}.service.j2"
+    register: "{{itme}}_restart"
+    with_items:
+      - a_star_slave
+      - a_star_heartbeat
 
-  # It’s annoying to have to log into the Raspberry Pi every time you start up your robot, so you will probably want to set up the server as a background service that starts automatically. With Raspbian Jessie and later, it’s easy to do this using systemd. Edit a file in the service directory:
-
-  #sudo nano /lib/systemd/system/a_star_slave.service
-
-  #Add the following lines (adjusting User and the path to server.py if necessary):
-
-  #Description=Romi Slave Server
-  #After=multi-user.target
-
-  #[Service]
-  #User=pi
-  #Type=idle
-  #ExecStart=/usr/bin/python3 /home/pi/pololu-rpi-slave-arduino-library/pi/server.py
-
-  #[Install]
-  #WantedBy=multi-user.target
-  #
-  #There is also an included script that periodically pings the server to blink the LEDs as a heartbeat indicator. Edit a file for this service:
-  #
-  #sudo nano /lib/systemd/system/a_star_heartbeat.service
-  #
-  #Add the following lines, again adjusting User and the path if necessary:
-
-  #Description=Romi Slave Heartbeat
-  #After=multi-user.target
-  #
-  #[Service]
-  #User=pi
-  #Type=idle
-  #ExecStart=/usr/bin/python3 /home/pi/pololu-rpi-slave-arduino-library/pi/heartbeat.py
-  #
-  #[Install]
-  #WantedBy=multi-user.target
-  #
-  #Enable and start these services:
-  #
-  #sudo systemctl enable a_star_slave
-  #sudo systemctl enable a_star_heartbeat
-  #sudo systemctl start a_star_slave
-  #sudo systemctl start a_star_heartbeat
+  handlers:
+    - name: a_star_slave_restart
+      service:
+        name: a_star_slave
+        state: restarted
+        enabled: yes
+    - name: a_star_heartbeat_restart
+      service:
+        name: a_star_heartbeat
+        state: restarted
+        enabled: yes
 ...

@@ -1,0 +1,10 @@
+Description=Romi Slave Heartbeat
+After=multi-user.target
+
+[Service]
+User={{ansible_user}}
+Type=idle
+ExecStart=/usr/bin/python3 /home/{{ansible_user}}/pololu-rpi-slave-arduino-library/pi/heartbeat.py
+
+[Install]
+WantedBy=multi-user.target
