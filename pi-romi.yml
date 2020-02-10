@@ -34,13 +34,13 @@
     template:
       dest: "/lib/systemd/system/{{item}}.service"
       src: "/lib/systemd/system/{{item}}.service.j2"
-    register: "{{itme}}_restart"
+    register: "a_star_restart"
     with_items:
       - a_star_slave
       - a_star_heartbeat
 
   handlers:
-    - name: a_star_slave_restart
+    - name: a_star_restart
       service:
         name: "{{item}}"
         state: restarted
