@@ -33,7 +33,7 @@
     become: yes
     template:
       dest: "/lib/systemd/system/{{item}}.service"
-      src: "/lib/systemd/system/{{item}}.service.j2"
+      src: "lib/systemd/system/{{item}}.service.j2"
     register: "a_star_restart"
     with_items:
       - a_star_slave
