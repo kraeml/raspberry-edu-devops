@@ -1,0 +1,18 @@
+---
+- name: Romi chasis setup
+  hosts: ubunturomi
+  connection: local
+
+#https://www.pololu.com/blog/663/building-a-raspberry-pi-robot-with-the-romi-chassis
+
+  tasks:
+  - debug:
+      var: ansible_user
+      verbosity: 1
+  - name: Install flask
+    apt:
+      name:
+        - python3
+        - python3-smbus
+
+...

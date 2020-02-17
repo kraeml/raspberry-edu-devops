@@ -28,9 +28,13 @@ pi2-keller
 piZero-home
 piZero-romi
 
+[ubunturos]
+ubuntu-romi
+
 [piromi]
 piZero-romi
 pi3-romi
+
 
 [pi2home]
 pi2-home
