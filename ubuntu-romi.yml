@@ -4,7 +4,7 @@
   connection: local
   vars:
     ros_user:
-        name: pi-home 
+        name: pi-home
         group: pi-home
     #ros_configuration: desktop-full
     ros_packages:
@@ -29,5 +29,21 @@
         - python3
         - python3-smbus
         - python-smbus
+        - git
 
+  - name: Clone
+    git:
+      dest: "/home/{{ ros_user.name }}/{{ catkin_ws }}/src/RomiPi"
+      repo: https://github.com/ftPeter/RomiPi.git
+    become: yes
+    become_user: "{{ ros_user.name }}"
+
+  - name: Build catkin workspace
+    shell: source /opt/ros/{{ ros_distribution }}/setup.bash && source /home/{{ ros_user.name }}/{{ catkin_ws }}/devel/setup.bash  && catkin_make
+    args:
+      chdir: /home/{{ ros_user.name }}/{{ catkin_ws }}
+      executable: /bin/bash
+      #creates: devel/setup.bash
+    become: yes
+    become_user: "{{ ros_user.name }}"
 ...
