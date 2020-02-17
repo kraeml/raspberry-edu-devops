@@ -1,6 +1,9 @@
 [lokal]
 localhost ansible_connection=local
 
+[dummy]
+pi3-dummy
+
 [pi3cluster]
 cluster-00
 cluster-01
