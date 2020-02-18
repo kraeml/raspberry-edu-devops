@@ -70,6 +70,7 @@
       state: stopped
       enabled: no
     when: realvnc_vnc_server is changed
+
   - name: Add RDP
     become: yes
     apt:
@@ -78,13 +79,15 @@
       update_cache: yes
       cache_valid_time: 3600
     # ToDo into Jupyternotebook??
+
   - name: Ensure jupyter dependencies are installed
     become: yes
     apt:
         name:
           - libxml2-dev
           - libxslt1-dev
-  - name: Ensure raspberry dependencies are installed
+
+  - name: Ensure dependencies are installed
     become: yes
     apt:
         name:
@@ -100,8 +103,6 @@
           - expect
           - git
           - ieee-data
-            #- libjpeg62-turbo
-            #- libjpeg62-turbo-dev
           - libffi-dev
           - libssl-dev
           - lsof
@@ -112,29 +113,39 @@
           - python-dev
           - python3-dev
           - python3-pip
-          #- python3-blinkt
-          #- python-blinkt
-                #- raspi-gpio
           - rsync
           - sudo
           - sl
           - sshpass
-            #- sense-hat
           - screen
           - tree
           - tidy
           - vim
-            #- wiringpi
           - zip
+          # ToDo Jave could not installed because certificates are wrong
           #- lsb-core
           #- openjdk-9-jdk
           #- oracle-java8-jdk
-
         update_cache: yes
         cache_valid_time: 3600
     tags:
         - base
-    # ToDo Jave could not installed because certificates are wrong
+
+  - name: Ensure raspians dependencies are installed
+    become: yes
+    apt:
+        name:
+          - libjpeg62-turbo
+          - libjpeg62-turbo-dev
+          - raspi-gpio
+          - sense-hat
+          - wiringpi
+        update_cache: yes
+        cache_valid_time: 3600
+    when: ansible_distribution != "Ubuntu"
+    tags:
+        - base
+
   - block:
     - name: Ensure raspberry dependencies are installed
       become: yes
