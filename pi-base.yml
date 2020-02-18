@@ -135,6 +135,18 @@
     become: yes
     apt:
         name:
+          - python3-matplotlib
+          - python-matplotlib
+        update_cache: yes
+        cache_valid_time: 3600
+    when: ansible_distribution == "Ubuntu"
+    tags:
+        - base
+
+  - name: Ensure raspians dependencies are installed
+    become: yes
+    apt:
+        name:
           - libjpeg62-turbo
           - libjpeg62-turbo-dev
           - raspi-gpio
