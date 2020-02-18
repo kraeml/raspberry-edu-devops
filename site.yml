@@ -38,5 +38,6 @@
 - import_playbook: pi-web-dev.yml
 - import_playbook: pi-romi.yml
 - import_playbook: pi-lxc.yml
+- import_playbook: ubuntu-romi.yml
 #- import_playbook: pi-roberta.yml
 - import_playbook: pi-argon.yml
