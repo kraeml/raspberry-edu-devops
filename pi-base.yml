@@ -100,8 +100,8 @@
           - expect
           - git
           - ieee-data
-          - libjpeg62-turbo
-          - libjpeg62-turbo-dev
+            #- libjpeg62-turbo
+            #- libjpeg62-turbo-dev
           - libffi-dev
           - libssl-dev
           - lsof
@@ -114,17 +114,17 @@
           - python3-pip
           #- python3-blinkt
           #- python-blinkt
-          - raspi-gpio
+                #- raspi-gpio
           - rsync
           - sudo
           - sl
           - sshpass
-          - sense-hat
+            #- sense-hat
           - screen
           - tree
           - tidy
           - vim
-          - wiringpi
+            #- wiringpi
           - zip
           #- lsb-core
           #- openjdk-9-jdk
