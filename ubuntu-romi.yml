@@ -19,9 +19,6 @@
 
 
   tasks:
-  - debug:
-      var: ansible_user
-      verbosity: 1
   - name: Install python packages
     become: yes
     apt:
@@ -31,14 +28,14 @@
         - python-smbus
         - git
 
-  - name: Clone
+  - name: Clone RomiPi
     git:
       dest: "/home/{{ ros_user.name }}/{{ catkin_ws }}/src/RomiPi"
       repo: https://github.com/ftPeter/RomiPi.git
     become: yes
     become_user: "{{ ros_user.name }}"
 
-  - name: Build catkin workspace
+  - name: Build RomiPi workspace
     shell: source /opt/ros/{{ ros_distribution }}/setup.bash && source /home/{{ ros_user.name }}/{{ catkin_ws }}/devel/setup.bash  && catkin_make
     args:
       chdir: /home/{{ ros_user.name }}/{{ catkin_ws }}
