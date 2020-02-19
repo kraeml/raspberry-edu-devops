@@ -29,7 +29,7 @@
         path: /var/swap
     register: swap_file
     #when_change: False
-    
+
   - name: Ensure dphys is not running
     become: yes
     service:
@@ -122,6 +122,8 @@
           - tidy
           - vim
           - zip
+          - python-setuptools
+          - python3-setuptools
           # ToDo Jave could not installed because certificates are wrong
           #- lsb-core
           #- openjdk-9-jdk
@@ -137,6 +139,8 @@
         name:
           - python3-matplotlib
           - python-matplotlib
+          - python-pandas
+          - python3-pandas
         update_cache: yes
         cache_valid_time: 3600
     when: ansible_distribution == "Ubuntu"
