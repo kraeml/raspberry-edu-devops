@@ -124,6 +124,8 @@
           - zip
           - python-setuptools
           - python3-setuptools
+          - python-pymysql
+          - python3-pymysql
           # ToDo Jave could not installed because certificates are wrong
           #- lsb-core
           #- openjdk-9-jdk
