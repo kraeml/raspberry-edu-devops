@@ -17,4 +17,5 @@
       git:
         dest: "{{ansible_user_dir}}/TAPAS"
         repo: https://github.com/SDI-SoftwareDefinedInverter/TAPAS.git
+        #update: no
 ...
