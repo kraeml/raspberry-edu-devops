@@ -1,6 +1,6 @@
 ---
-- name: Argon One Case
-  hosts: pi-tapas
+- name: Tapas SDI
+  hosts: tapas
   connection: local
 
   tasks:
