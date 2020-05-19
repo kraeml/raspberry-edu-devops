@@ -66,6 +66,7 @@
   hosts: pis
   connection: local
 
+  tasks: 
   - name: Remove realvnc-vnc-server
     become: yes
     apt:
