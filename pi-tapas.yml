@@ -1,0 +1,20 @@
+---
+- name: Argon One Case
+  hosts: pi-tapas
+  connection: local
+
+  tasks:
+    - name: Make sure that you have a working Python 3.0 and git installation
+      become: yes
+      apt:
+          name:
+            - python3
+            - git
+          update_cache: yes
+          cache_valid_time: 3600
+
+    - name: Get the TAPAS software and documentation package
+      git:
+        dest: "{{ansible_user_dir}}/TAPAS"
+        repo: https://github.com/SDI-SoftwareDefinedInverter/TAPAS.git
+...
