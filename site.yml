@@ -28,6 +28,7 @@
         - "hosts"
         - "ansible.cfg"
 
+- import_playbook: pi-tapas.yml
 - import_playbook: pi-inspec.yml
 #ToDo Ubuntu core testing below
 - import_playbook: pi-nodered.yml
