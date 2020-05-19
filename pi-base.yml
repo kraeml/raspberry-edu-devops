@@ -1,5 +1,5 @@
 ---
-- name: Base packages - ToDo Refactor
+- name: Base packages
   hosts: all
   connection: local
 
@@ -53,8 +53,18 @@
     notify:
         - dphy-swapfile
 
-  - name: Flush handlers
-    meta: flush_handlers
+  handlers:
+  - name: dphy-swapfile
+    become: yes
+    service:
+        name: dphys-swapfile
+        state: restarted
+        enabled: yes
+
+
+- name: Base packages for pi3 only - ToDo Refactor
+  hosts: pis
+  connection: local
 
   - name: Remove realvnc-vnc-server
     become: yes
@@ -208,14 +218,6 @@
           value: "current"
     tags:
         - git
-
-  handlers:
-  - name: dphy-swapfile
-    become: yes
-    service:
-        name: dphys-swapfile
-        state: restarted
-        enabled: yes
 
 - name: Base packages for pi3 only - ToDo Refactor
   hosts: pis
