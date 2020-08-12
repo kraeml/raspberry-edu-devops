@@ -18,9 +18,9 @@
           - sense-hat
           - raspi-gpio
           - python3-rpi.gpio
-          - python-rpi.gpio
+          #- python-rpi.gpio
           - python3-blinkt
-          - python-blinkt
+          #- python-blinkt
           - build-essential
           - pigpiod
         update_cache: yes
